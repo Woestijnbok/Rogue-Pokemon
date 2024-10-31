@@ -4,7 +4,7 @@
 #include "Fighting.h"
 
 #pragma region gameInformation
-std::string g_WindowTitle{ "Scuffed Pokémon - Made By Gommers, Tijl & Demeyer, Artuur - 1DAE11" };
+std::string g_WindowTitle{ "Rogue Pokemon - Made By Gommers, Tijl & Demeyer, Artuur" };
 float g_WindowWidth{ 1280.0f };
 float g_WindowHeight{ 720.0f };
 #pragma endregion gameInformation
