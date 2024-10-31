@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{3545a4ea-9b73-4ac1-a7e0-a3e6eb86c086}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Exploring">
+      <UniqueIdentifier>{7ea5217e-b5e4-4425-a648-cc2ea8957e39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fighting">
+      <UniqueIdentifier>{e944e739-dde7-4d58-b5de-a99b7430abc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{7b5d52fa-52c6-472d-9fce-2478a878813d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyUtils">
+      <UniqueIdentifier>{1f6dd1de-060e-4cb9-ba2d-55985daefa3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{b34f00a7-5fea-42ad-8352-b4a111ac7aa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Structs">
+      <UniqueIdentifier>{1e790a68-7944-409c-b811-cc1eb3a93268}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Exploring.cpp">
+      <Filter>Exploring</Filter>
+    </ClCompile>
+    <ClCompile Include="Fighting.cpp">
+      <Filter>Fighting</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="MyUtils.cpp">
+      <Filter>MyUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="structs.cpp">
+      <Filter>Structs</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Exploring.h">
+      <Filter>Exploring</Filter>
+    </ClInclude>
+    <ClInclude Include="Fighting.h">
+      <Filter>Fighting</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="MyUtils.h">
+      <Filter>MyUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="structs.h">
+      <Filter>Structs</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

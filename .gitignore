@@ -396,3 +396,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Make sure all libraries and resources are tracked
+!Libraries/
+!Libraries/**
+!Resources/
+!Resources/**
