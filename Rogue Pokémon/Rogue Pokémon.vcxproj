@@ -28,12 +28,14 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+	<LocalDebuggerWorkingDirectory>$(ProjectDir)</LocalDebuggerWorkingDirectory>
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+	<LocalDebuggerWorkingDirectory>$(ProjectDir)</LocalDebuggerWorkingDirectory>
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
@@ -41,12 +43,14 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+	<LocalDebuggerWorkingDirectory>$(ProjectDir)</LocalDebuggerWorkingDirectory>
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+	<LocalDebuggerWorkingDirectory>$(ProjectDir)</LocalDebuggerWorkingDirectory>
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
@@ -110,8 +114,7 @@
       <Command>xcopy /Y /D  "$(SolutionDir)Libraries\SDL\lib\$(PlatformTarget)\*.dll" "$(OutDir)"
 xcopy /Y /D  "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\*.dll" "$(OutDir)"
 xcopy /Y /D  "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\*.dll" "$(OutDir)"
-xcopy /Y /D  "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\*.dll" "$(OutDir)"
-xcopy /E /I /Y /D "$(ProjectDir)Resources" "$(OutDir)Resources"</Command>
+xcopy /Y /D  "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -135,8 +138,7 @@ xcopy /E /I /Y /D "$(ProjectDir)Resources" "$(OutDir)Resources"</Command>
       <Command>xcopy /Y /D  "$(SolutionDir)Libraries\SDL\lib\$(PlatformTarget)\*.dll" "$(OutDir)"
 xcopy /Y /D  "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\*.dll" "$(OutDir)"
 xcopy /Y /D  "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\*.dll" "$(OutDir)"
-xcopy /Y /D  "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\*.dll" "$(OutDir)"
-xcopy /E /I /Y /D "$(ProjectDir)Resources" "$(OutDir)Resources"</Command>
+xcopy /Y /D  "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -157,8 +159,7 @@ xcopy /E /I /Y /D "$(ProjectDir)Resources" "$(OutDir)Resources"</Command>
       <Command>xcopy /Y /D  "$(SolutionDir)Libraries\SDL\lib\$(PlatformTarget)\*.dll" "$(OutDir)"
 xcopy /Y /D  "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\*.dll" "$(OutDir)"
 xcopy /Y /D  "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\*.dll" "$(OutDir)"
-xcopy /Y /D  "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\*.dll" "$(OutDir)"
-xcopy /E /I /Y /D "$(ProjectDir)Resources" "$(OutDir)Resources"</Command>
+xcopy /Y /D  "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -182,8 +183,7 @@ xcopy /E /I /Y /D "$(ProjectDir)Resources" "$(OutDir)Resources"</Command>
       <Command>xcopy /Y /D  "$(SolutionDir)Libraries\SDL\lib\$(PlatformTarget)\*.dll" "$(OutDir)"
 xcopy /Y /D  "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\*.dll" "$(OutDir)"
 xcopy /Y /D  "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\*.dll" "$(OutDir)"
-xcopy /Y /D  "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\*.dll" "$(OutDir)"
-xcopy /E /I /Y /D "$(ProjectDir)Resources" "$(OutDir)Resources"</Command>
+xcopy /Y /D  "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
