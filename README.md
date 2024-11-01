@@ -1,7 +1,7 @@
 # Introduction
 
-Rogue Pokémon is a collaborative side project developed by myself and my friend, [Tijl Gommers](https://be.linkedin.com/in/tijl-gommers-661572316 "LinkedIn Profile"). 
-Our shared passion for the classic Pokémon games inspired us to create a small, interactive world where players can engage in exploration and battles using familiar mechanics.
+**Rogue Pokémon** is a collaborative side project developed by myself and my friend, [Tijl Gommers](https://be.linkedin.com/in/tijl-gommers-661572316 "LinkedIn Profile"). 
+Our shared passion for the classic pokémon games inspired us to create a small, interactive world where players can engage in exploration and battles using familiar mechanics.
 
 <div align="center">
   <img src="https://github.com/Woestijnbok/Rogue-Pokemon/blob/main/Screenshots/Exploration.jpg?raw=true" width="800" height="auto">
