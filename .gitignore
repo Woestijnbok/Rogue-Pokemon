@@ -400,5 +400,5 @@ FodyWeavers.xsd
 # Make sure all libraries and resources are tracked
 !Libraries/
 !Libraries/**
-!Resources/
-!Resources/**
+!Rogue Pokémon/Resources/
+!Rogue Pokémon/Resources/**
