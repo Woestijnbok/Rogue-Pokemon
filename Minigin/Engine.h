@@ -20,7 +20,7 @@ namespace Minigin
 		Engine& operator=(const Engine& other) = delete;
 		Engine& operator=(Engine&& other) noexcept = delete;
 
-		static void Initialize(const std::string& nameWindow);
+		static void Initialize(const std::string& nameWindow, const glm::ivec2 windowSize);
 		static void Run(const std::function<void()>& load);
 		static void Destroy();
 		static SDL_Window* GetWindow();

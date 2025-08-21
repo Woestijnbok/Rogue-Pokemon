@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include <iostream>
 #include <functional>
+#include <vec2.hpp>
 
 #include "Engine.h"
 #include "ResourceManager.h"
@@ -21,7 +22,7 @@ void Load()
 
 int main(int, char* [])
 {
-	Engine::Initialize("Rogue Pokemon");
+	Engine::Initialize("Rogue Pokemon", glm::ivec2{ 920, 520 });
 	Engine::Run(&Load);
 	Engine::Destroy();
 

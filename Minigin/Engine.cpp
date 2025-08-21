@@ -16,13 +16,13 @@
 
 using namespace Minigin;
 
-glm::ivec2 Engine::m_WindowSize{ 510, 600 };
+glm::ivec2 Engine::m_WindowSize{ 920, 520 };
 SDL_Window* Engine::m_Window{ nullptr };
 const int Engine::m_TargetFrameRate{ 60 };
 const std::chrono::milliseconds Engine::m_TargetFrameDuration{ 1000 / m_TargetFrameRate };
 bool Engine::m_Initialized{ false };
 
-void Engine::Initialize(const std::string& nameWindow)
+void Engine::Initialize(const std::string& nameWindow, const glm::ivec2 windowSize)
 {
 	if (m_Initialized) return;
 
@@ -31,6 +31,7 @@ void Engine::Initialize(const std::string& nameWindow)
 		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
 	}
 
+	m_WindowSize = windowSize;
 	m_Window = SDL_CreateWindow
 	(
 		nameWindow.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_WindowSize.x, m_WindowSize.y,
