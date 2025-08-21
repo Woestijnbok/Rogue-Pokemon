@@ -8,11 +8,6 @@
 #include "ResourceManager.h"
 #include "InputManager.h"
 #include "SceneManager.h"
-#include "GameObject.h"
-#include "ImageComponent.h"
-#include "TextComponent.h"
-#include "FPSCounterComponent.h"
-#include "SpriteComponent.h"
 
 void Load();
 

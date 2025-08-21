@@ -17,12 +17,6 @@
     <ClCompile Include="..\Libraries\Imgui\include\imgui_widgets.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
-    <ClCompile Include="..\Libraries\Implot\include\implot.cpp">
-      <Filter>implot</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Libraries\Implot\include\implot_items.cpp">
-      <Filter>implot</Filter>
-    </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -124,12 +118,6 @@
     </ClInclude>
     <ClInclude Include="..\Libraries\Imgui\include\imgui_internal.h">
       <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Libraries\Implot\include\implot.h">
-      <Filter>implot</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Libraries\Implot\include\implot_internal.h">
-      <Filter>implot</Filter>
     </ClInclude>
     <ClInclude Include="..\Libraries\Imgui\include\imstb_truetype.h">
       <Filter>imgui</Filter>
@@ -237,9 +225,6 @@
   <ItemGroup>
     <Filter Include="imgui">
       <UniqueIdentifier>{9f7a4a1f-a376-444e-9ee0-ce3ce0bd560e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="implot">
-      <UniqueIdentifier>{e0970c6b-6ad9-40f1-b2cb-735eeba4af46}</UniqueIdentifier>
     </Filter>
     <Filter Include="Components">
       <UniqueIdentifier>{beb27258-f0a7-4bb7-ba7f-1f4162e50a5f}</UniqueIdentifier>

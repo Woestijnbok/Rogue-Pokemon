@@ -11,7 +11,6 @@
 #include "imgui.h"
 #include "backends/imgui_impl_sdl2.h"
 #include "backends/imgui_impl_sdlrenderer2.h"
-#include "implot.h"
 #include "Engine.h"
 #include "Sprite.h"
 
@@ -39,7 +38,6 @@ private:
 	SDL_Window* m_Window;
 	SDL_Color m_ClearColor;
 	ImGuiContext* m_ImGuiContext;
-	ImPlotContext* m_ImPlotContext;
 	int m_WindowHeight;
 
 	int GetDriverIndex() const;
@@ -51,7 +49,6 @@ Renderer::Impl::Impl() :
 	m_Window{ Engine::GetWindow() },
 	m_ClearColor{},
 	m_ImGuiContext{},
-	m_ImPlotContext{},
 	m_WindowHeight{ Engine::GetWindowSize().y }
 {
 	m_Renderer = SDL_CreateRenderer(m_Window, GetDriverIndex(), SDL_RENDERER_ACCELERATED);
@@ -62,7 +59,6 @@ Renderer::Impl::Impl() :
 	}
 
 	m_ImGuiContext = ImGui::CreateContext();
-	m_ImPlotContext = ImPlot::CreateContext();
 	ImGui_ImplSDL2_InitForSDLRenderer(m_Window, m_Renderer);
 	ImGui_ImplSDLRenderer2_Init(m_Renderer);
 
@@ -77,7 +73,6 @@ Renderer::Impl::~Impl()
 {
 	ImGui_ImplSDLRenderer2_Shutdown();	
 	ImGui_ImplSDL2_Shutdown();	
-	ImPlot::DestroyContext(m_ImPlotContext);	
 	ImGui::DestroyContext(m_ImGuiContext);	
 
 	if (m_Renderer != nullptr)	

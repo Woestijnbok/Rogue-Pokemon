@@ -204,8 +204,6 @@
     <ClInclude Include="..\Libraries\Imgui\include\imstb_rectpack.h" />
     <ClInclude Include="..\Libraries\Imgui\include\imstb_textedit.h" />
     <ClInclude Include="..\Libraries\Imgui\include\imstb_truetype.h" />
-    <ClInclude Include="..\Libraries\Implot\include\implot.h" />
-    <ClInclude Include="..\Libraries\Implot\include\implot_internal.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Component.h" />
@@ -245,8 +243,6 @@
     <ClCompile Include="..\Libraries\Imgui\include\imgui_draw.cpp" />
     <ClCompile Include="..\Libraries\Imgui\include\imgui_tables.cpp" />
     <ClCompile Include="..\Libraries\Imgui\include\imgui_widgets.cpp" />
-    <ClCompile Include="..\Libraries\Implot\include\implot.cpp" />
-    <ClCompile Include="..\Libraries\Implot\include\implot_items.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="Component.cpp" />
