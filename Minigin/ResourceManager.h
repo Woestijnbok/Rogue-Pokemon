@@ -32,10 +32,10 @@ namespace Minigin
 		const std::filesystem::path& GetFileRootPath() const;
 
 	private:
-		const std::filesystem::path m_TextureRootDirectory;
-		const std::filesystem::path m_FontRootDirectory;
-		const std::filesystem::path m_AudioRootDirectory;
-		const std::filesystem::path m_FileRootDirectory;
+		static const std::filesystem::path m_TextureRootDirectory;
+		static const std::filesystem::path m_FontRootDirectory;
+		static const std::filesystem::path m_AudioRootDirectory;
+		static const std::filesystem::path m_FileRootDirectory;
 
 		explicit ResourceManager();
 

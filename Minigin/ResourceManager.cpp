@@ -9,12 +9,13 @@
 
 using namespace Minigin;
 
+const std::filesystem::path ResourceManager::m_TextureRootDirectory{ "Resources/Textures" };
+const std::filesystem::path ResourceManager::m_FontRootDirectory{ "Resources/Fonts" };
+const std::filesystem::path ResourceManager::m_AudioRootDirectory{ "Resources/Audio" };
+const std::filesystem::path ResourceManager::m_FileRootDirectory{ "Resources/Files" };
+
 ResourceManager::ResourceManager() :	
-	Singleton{},	
-	m_TextureRootDirectory{ "Resources/Textures" },	
-	m_FontRootDirectory{ "Resources/Fonts" },
-	m_AudioRootDirectory{ "Resources/Audio" },
-	m_FileRootDirectory{ "Resources/Files" }
+	Singleton{}
 {	
 	// Checking texture root directory	
 	if (std::filesystem::exists(m_TextureRootDirectory))
