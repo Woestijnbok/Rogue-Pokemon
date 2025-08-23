@@ -28,10 +28,14 @@ public:
 private:
 	static constexpr size_t m_Rows{ 20 };
 	static constexpr size_t m_Collumns{ 10 };
+	static constexpr int m_TileChanceGrass{ 10 };
+	static constexpr int m_TileChancePokemon{ 5 };
+	static constexpr int m_TileChanceItem{ 1 };
 
 	std::array<Tile, m_Collumns * m_Rows> m_Tiles;
 	const std::unique_ptr<Minigin::Texture> m_TileDirtTexture;
 	const std::unique_ptr<Minigin::Texture> m_TileGrassTexture;
+	const std::unique_ptr<Minigin::Texture> m_TileItemTexture;
 	const size_t m_TileSize;
 	const float m_TileRenderScale;
 	std::random_device m_RandomDevice;

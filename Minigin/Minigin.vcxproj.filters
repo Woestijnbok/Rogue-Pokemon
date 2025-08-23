@@ -107,6 +107,9 @@
     <ClCompile Include="Collision.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Data Types</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h" />
@@ -220,6 +223,9 @@
     </ClInclude>
     <ClInclude Include="Collision.h">
       <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Data Types</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

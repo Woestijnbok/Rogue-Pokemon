@@ -5,6 +5,7 @@
 #include <vec2.hpp>
 
 #include "Singleton.h"
+#include "Color.h"
 
 namespace Minigin
 {
@@ -37,6 +38,7 @@ namespace Minigin
 		* The center is the point at wich the texture will rotate around (point in texture space).	
 		*/
 		void RenderTexture(const Texture& texture, const Transform& transform, const glm::ivec2& center = glm::ivec2{ -1 }) const;
+
 		/*
 		* @brief renders a certain frame of a sprite centered around the give transform.
 		*
@@ -45,6 +47,8 @@ namespace Minigin
 		* The rotation will dictate the rotation of the frame around the center of itself.
 		*/
 		void RenderSprite(const Sprite& sprite, int frame, const Transform& transform) const;
+
+		void RenderDebugBox(const glm::ivec2& bottomLeft, const glm::ivec2 topRight, const Color color, bool fill) const;
 
 	private:
 		class Impl;

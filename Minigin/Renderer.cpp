@@ -32,6 +32,7 @@ public:
 	Texture* CreateTexture(Font* font, const std::string& text);
 	void RenderTexture(const Texture& texture, const Transform& transform, const glm::ivec2& center) const;	
 	void RenderSprite(const Sprite& sprite, int frame, const Transform& transform) const;
+	void RenderDebugBox(const glm::ivec2& bottomLeft, const glm::ivec2 topRight, const Color color, bool fill) const;
 
 private:
 	SDL_Renderer* m_Renderer;
@@ -67,6 +68,8 @@ Renderer::Impl::Impl() :
 	{
 		throw std::runtime_error(std::string("ResourceManager::ResourceManager() - ") + SDL_GetError());
 	}
+
+	SDL_SetRenderDrawBlendMode(m_Renderer, SDL_BlendMode::SDL_BLENDMODE_BLEND);
 }
 
 Renderer::Impl::~Impl()
@@ -191,6 +194,22 @@ void Renderer::Impl::RenderSprite(const Sprite& sprite, int frame, const Transfo
 	SDL_RenderCopyEx(m_Renderer, sprite.GetSheet()->GetTexture(), &source, &destination, static_cast<double>(angle), nullptr, flip);	
 }
 
+void Renderer::Impl::RenderDebugBox(const glm::ivec2& bottomLeft, const glm::ivec2 topRight, const Color color, bool fill) const
+{
+	SDL_SetRenderDrawColor(m_Renderer, color.r, color.g, color.b, color.a);
+
+	SDL_Rect rectangle{ bottomLeft.x, m_WindowHeight - topRight.y, (topRight.x - bottomLeft.x), (topRight.y - bottomLeft.y) };
+
+	if (fill)
+	{
+		SDL_RenderFillRect(m_Renderer, &rectangle);
+	}
+	else
+	{
+		SDL_RenderDrawRect(m_Renderer, &rectangle);
+	}
+}
+
 int Renderer::Impl::GetDriverIndex() const
 {
 	int index{ -1 };
@@ -241,4 +260,9 @@ void Minigin::Renderer::RenderTexture(const Texture& texture, const Transform& t
 void Renderer::RenderSprite(const Sprite& sprite, int frame, const Transform& transform) const
 {
 	m_Pimpl->RenderSprite(sprite, frame, transform);
+}
+
+void Minigin::Renderer::RenderDebugBox(const glm::ivec2& bottomLeft, const glm::ivec2 topRight, const Color color, bool fill) const
+{
+	m_Pimpl->RenderDebugBox(bottomLeft, topRight, color, fill);
 }

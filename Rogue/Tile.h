@@ -9,7 +9,9 @@ public:
 	enum class Terrain : uint8_t
 	{
 		Dirt,
-		Grass
+		Grass,
+		Item,
+		Pokemon
 	};
 
 	Tile();
