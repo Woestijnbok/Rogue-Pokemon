@@ -12,7 +12,7 @@ namespace Minigin
 	class Texture;
 }
 
-class TileManagerComponent : public Minigin::Component
+class TileManagerComponent final : public Minigin::Component
 {
 public:
 	explicit TileManagerComponent(Minigin::GameObject* owner);
@@ -26,8 +26,8 @@ public:
 	virtual void Render() const override;
 
 private:
-	static constexpr size_t m_Rows{ 20 };
-	static constexpr size_t m_Collumns{ 10 };
+	static constexpr size_t m_Rows{ 10 };
+	static constexpr size_t m_Collumns{ 20 };
 	static constexpr int m_TileChanceGrass{ 10 };
 	static constexpr int m_TileChancePokemon{ 5 };
 	static constexpr int m_TileChanceItem{ 1 };

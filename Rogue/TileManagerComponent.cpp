@@ -15,7 +15,7 @@ TileManagerComponent::TileManagerComponent(Minigin::GameObject* owner) :
 	m_TileDirtTexture{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Tiles/Dirt.png") },
 	m_TileGrassTexture{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Tiles/Grass.png") },
 	m_TileItemTexture{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Tiles/Item.png") },
-	m_TileSize{ Engine::GetWindowSize().x / m_Rows },
+	m_TileSize{ Engine::GetWindowSize().y / m_Rows },
 	m_TileRenderScale{ static_cast<float>(m_TileSize) / static_cast<float>(m_TileDirtTexture->GetSize().x) },
 	m_RandomDevice{},
 	m_RandomEngine{ m_RandomDevice() },
@@ -39,7 +39,7 @@ void TileManagerComponent::Render() const
 
 void TileManagerComponent::RenderTile(const Tile& tile, const size_t row, const size_t collumn) const
 {
-	const Transform transform{ glm::ivec2{ (row * m_TileSize) + (m_TileSize / 2), (collumn * m_TileSize) + (m_TileSize / 2)}, 0, glm::vec2{ m_TileRenderScale }};
+	const Transform transform{ glm::ivec2{ (collumn * m_TileSize) + (m_TileSize / 2), (row * m_TileSize) + (m_TileSize / 2) }, 0, glm::vec2{ m_TileRenderScale }};
 
 	switch (tile.GetTerrain())
 	{

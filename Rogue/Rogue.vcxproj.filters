@@ -8,10 +8,19 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="TrainerComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveCommand.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
       <UniqueIdentifier>{589c8711-d7d3-4204-97d7-c3cef7f990f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Commands">
+      <UniqueIdentifier>{42f98310-399a-47ea-b814-42de1b159bfd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -20,6 +29,12 @@
     </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TrainerComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveCommand.h">
+      <Filter>Commands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
