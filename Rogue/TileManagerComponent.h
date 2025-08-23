@@ -6,6 +6,7 @@
 
 #include "Component.h"
 #include "Tile.h"
+#include "MovementComponent.h"
 
 namespace Minigin
 {
@@ -24,8 +25,14 @@ public:
 	TileManagerComponent& operator=(TileManagerComponent&& other) noexcept = delete;
 
 	virtual void Render() const override;
+	glm::ivec2 GetStartTile() const;
+	size_t GetTileSize() const;
+	bool CanMove(const glm::ivec2& position, MovementComponent::Direction direction) const;
 
 private:
+	void RenderTile(const Tile& tile, const size_t row, const size_t collumn) const;
+	void RandomizeTiles();
+
 	static constexpr size_t m_Rows{ 10 };
 	static constexpr size_t m_Collumns{ 20 };
 	static constexpr int m_TileChanceGrass{ 10 };
@@ -41,7 +48,4 @@ private:
 	std::random_device m_RandomDevice;
 	std::mt19937 m_RandomEngine;
 	std::uniform_int_distribution<int> m_RandomDistribution;
-
-	void RenderTile(const Tile& tile, const size_t row, const size_t collumn) const;
-	void RandomizeTiles();
 };

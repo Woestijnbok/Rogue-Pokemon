@@ -14,6 +14,7 @@
     <ClCompile Include="MoveCommand.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
+    <ClCompile Include="MovementComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -36,5 +37,6 @@
     <ClInclude Include="MoveCommand.h">
       <Filter>Commands</Filter>
     </ClInclude>
+    <ClInclude Include="MovementComponent.h" />
   </ItemGroup>
 </Project>

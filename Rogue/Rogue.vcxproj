@@ -203,12 +203,14 @@ xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll"
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveCommand.cpp" />
+    <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManagerComponent.cpp" />
     <ClCompile Include="TrainerComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MoveCommand.h" />
+    <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManagerComponent.h" />
     <ClInclude Include="TrainerComponent.h" />

@@ -11,6 +11,8 @@
 #include "SceneManager.h"
 #include "TileManagerComponent.h"
 #include "TrainerComponent.h"
+#include "MovementComponent.h"
+#include "MoveCommand.h"
 
 void Load();
 
@@ -20,16 +22,19 @@ void Load()
 {
 	Scene* scene{ SceneManager::Instance()->CreateScene("World") };
 
-	GameObject* manager{ scene->CreateGameObject("Manager", true) };
-	manager->CreateComponent<TileManagerComponent>();
+	GameObject* managerObject{ scene->CreateGameObject("Manager", true) };
+	TileManagerComponent* tileManagerComponent{ managerObject->CreateComponent<TileManagerComponent>() };
 
 	GameObject* trainerObject{ scene->CreateGameObject("Trainer", true) };
 	TrainerComponent* trainerComponent{ trainerObject->CreateComponent<TrainerComponent>() };
+	MovementComponent* movementComponent{ trainerObject->CreateComponent<MovementComponent>(tileManagerComponent) };
 
-	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::W, InputAction::Trigger::Down, std::make_shared<MoveCommand>(trainerComponent, MoveCommand::Direction::Up));
-	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::D, InputAction::Trigger::Down, std::make_shared<MoveCommand>(trainerComponent, MoveCommand::Direction::Right));
-	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::S, InputAction::Trigger::Down, std::make_shared<MoveCommand>(trainerComponent, MoveCommand::Direction::Down));
-	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::A, InputAction::Trigger::Down, std::make_shared<MoveCommand>(trainerComponent, MoveCommand::Direction::Left));
+	trainerComponent;
+
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::W, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, MovementComponent::Direction::Up));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::D, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, MovementComponent::Direction::Right));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::S, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, MovementComponent::Direction::Down));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::A, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, MovementComponent::Direction::Left));
 }
 
 int main(int, char* [])

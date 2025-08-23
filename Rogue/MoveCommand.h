@@ -1,22 +1,12 @@
 #pragma once
 
 #include "Command.h"
-
-class TrainerComponent;
+#include "MovementComponent.h"
 
 class MoveCommand final : public Minigin::GameObjectCommand
 {
 public:
-	enum class Direction
-	{
-		Up,
-		Right,
-		Down,
-		Left
-	};
-
-
-	MoveCommand(TrainerComponent* trainer, Direction direction);
+	MoveCommand(MovementComponent* component, MovementComponent::Direction direction);
 	virtual ~MoveCommand() = default;
 
 	MoveCommand(const MoveCommand&) = delete;
@@ -27,7 +17,7 @@ public:
 	virtual void Execute() override;
 
 private:
-	const Direction m_Direction;
-	TrainerComponent* m_Trainer;
+	MovementComponent::Direction m_Direction;
+	MovementComponent* m_MovementComponent;
 
 };

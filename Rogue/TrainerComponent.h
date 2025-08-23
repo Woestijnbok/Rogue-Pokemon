@@ -23,13 +23,8 @@ public:
 
 	virtual void Render() const override;
 
-	void Move(MoveCommand::Direction direction);
-
 private:
-	void SetDirection(MoveCommand::Direction direction);
-
 	std::unique_ptr<Minigin::Sprite> m_TrainerDownSprite;
 	std::unique_ptr<Minigin::Sprite> m_TrainerUpSprite;
 	std::unique_ptr<Minigin::Sprite> m_TrainerRightSprite;
-	MoveCommand::Direction m_Direction;
 };

@@ -1,4 +1,6 @@
 #include <vec2.hpp>
+#include <algorithm>
+#include <iostream>
 
 #include "TileManagerComponent.h"
 #include "Renderer.h"
@@ -35,6 +37,58 @@ void TileManagerComponent::Render() const
 			RenderTile(m_Tiles.at(index), row, collumn);
 		}
 	}
+}
+
+glm::ivec2 TileManagerComponent::GetStartTile() const
+{
+	glm::ivec2 tile{ -1, -1 };
+	size_t index{ 0 };
+
+	do
+	{
+		if (m_Tiles.at(index).GetTerrain() == Tile::Terrain::Dirt)
+		{
+			tile.x = int(index / m_Collumns);
+			tile.y = int(index % m_Collumns);
+			return tile;
+		}
+
+		++index;
+	} 
+	while (index < m_Tiles.size() and tile.x == -1);
+
+	return tile;
+}
+
+size_t TileManagerComponent::GetTileSize() const
+{
+	return m_TileSize;
+}
+
+bool TileManagerComponent::CanMove(const glm::ivec2& position, MovementComponent::Direction direction) const
+{
+	bool canMove{ false };
+	glm::ivec2 currentTileIndices{ position.y / static_cast<int>(m_TileSize), position.x / static_cast<int>(m_TileSize) };
+
+	std::cout << std::format("({}, {})", currentTileIndices.x, currentTileIndices.y) << std::endl;
+
+	switch (direction)
+	{
+	case MovementComponent::Direction::Up:
+		canMove = currentTileIndices.x + 1 < m_Rows;
+		break;
+	case MovementComponent::Direction::Right:
+		canMove = currentTileIndices.y + 1 < m_Collumns;
+		break;
+	case MovementComponent::Direction::Down:
+		canMove = currentTileIndices.x - 1 > 0;
+		break;
+	case MovementComponent::Direction::Left:
+		canMove = currentTileIndices.y - 1 > 0;
+		break;
+	}
+
+	return canMove;
 }
 
 void TileManagerComponent::RenderTile(const Tile& tile, const size_t row, const size_t collumn) const
