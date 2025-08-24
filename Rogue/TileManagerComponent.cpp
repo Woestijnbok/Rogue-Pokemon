@@ -81,14 +81,19 @@ bool TileManagerComponent::CanMove(const glm::ivec2& position, MovementComponent
 		canMove = currentTileIndices.y + 1 < m_Collumns;
 		break;
 	case MovementComponent::Direction::Down:
-		canMove = currentTileIndices.x - 1 > 0;
+		canMove = currentTileIndices.x > 0;
 		break;
 	case MovementComponent::Direction::Left:
-		canMove = currentTileIndices.y - 1 > 0;
+		canMove = currentTileIndices.y > 0;
 		break;
 	}
 
 	return canMove;
+}
+
+float TileManagerComponent::GetRenderScale() const
+{
+	return m_TileRenderScale;
 }
 
 void TileManagerComponent::RenderTile(const Tile& tile, const size_t row, const size_t collumn) const

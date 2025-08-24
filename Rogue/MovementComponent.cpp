@@ -1,7 +1,11 @@
+#include <cassert>
+
 #include "MovementComponent.h"
 #include "GameObject.h"
 #include "TimeManager.h"
 #include "TileManagerComponent.h"
+#include "SpriteComponent.h"
+#include "ResourceManager.h"
 
 using namespace Minigin;
 
@@ -10,9 +14,11 @@ MovementComponent::MovementComponent(Minigin::GameObject* owner, TileManagerComp
 	m_Direction{ Direction::Down },
 	m_TargetPosition{},
 	m_TileManagerComponent{ tileManager },
-	m_Speed{ 500.0f }
+	m_Speed{ 200.0f },
+	m_SpriteComponent{ GetOwner()->GetComponent<SpriteComponent>() }
 {
 	TeleportToStartTile();
+	AddMovementSrites();
 }
 
 void MovementComponent::Update()
@@ -74,15 +80,23 @@ void MovementComponent::Move(Direction direction)
 			{
 			case Direction::Up:
 				m_TargetPosition.emplace(currentPosition.x, currentPosition.y + static_cast<int>(m_TileManagerComponent->GetTileSize()));
+				m_SpriteComponent->SetSprite("Up", false);
+				m_SpriteComponent->SetRenderScale(glm::vec2{ m_TileManagerComponent->GetRenderScale() });
 				break;
 			case Direction::Right:
 				m_TargetPosition.emplace(currentPosition.x + static_cast<int>(m_TileManagerComponent->GetTileSize()), currentPosition.y);
+				m_SpriteComponent->SetSprite("Right", false);
+				m_SpriteComponent->SetRenderScale(glm::vec2{ m_TileManagerComponent->GetRenderScale() });
 				break;
 			case Direction::Down:
 				m_TargetPosition.emplace(currentPosition.x, currentPosition.y - static_cast<int>(m_TileManagerComponent->GetTileSize()));
+				m_SpriteComponent->SetSprite("Down", false);
+				m_SpriteComponent->SetRenderScale(glm::vec2{ m_TileManagerComponent->GetRenderScale() });
 				break;
 			case Direction::Left:
 				m_TargetPosition.emplace(currentPosition.x - static_cast<int>(m_TileManagerComponent->GetTileSize()), currentPosition.y);
+				m_SpriteComponent->SetSprite("Right", false);
+				m_SpriteComponent->SetRenderScale(glm::vec2{ -m_TileManagerComponent->GetRenderScale(), m_TileManagerComponent->GetRenderScale() });
 				break;
 			default:
 				throw std::exception{ "MovementComponent::Update() - Invalid direction." };
@@ -124,4 +138,27 @@ void MovementComponent::CompleteMovement(glm::ivec2& newPosition)
 	newPosition = m_TargetPosition.value();
 	m_Moving = false;
 	m_TargetPosition.reset();
+	m_SpriteComponent->SetPaused(true);
+}
+
+void MovementComponent::AddMovementSrites()
+{
+	assert(m_SpriteComponent);
+	
+	// TODO: take a look at how hardcoded values can be avoided here
+	constexpr int frames{ 3 };
+	constexpr glm::ivec2 feetOffset{ 0, 5 };
+	const std::chrono::milliseconds frameTime{ std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::duration<float>(m_TileManagerComponent->GetTileSize() / (m_Speed * frames))) };
+
+	std::shared_ptr<Sprite> downSprite{ ResourceManager::Instance()->LoadSprite("Character/Down.png", frames, 3, 1) };
+	m_SpriteComponent->AddSprite(downSprite, frameTime, "Down");
+	std::shared_ptr<Sprite> rightSprite{ ResourceManager::Instance()->LoadSprite("Character/Right.png", frames, 3, 1) };
+	m_SpriteComponent->AddSprite(rightSprite, frameTime, "Right");
+	std::shared_ptr<Sprite> upSprite{ ResourceManager::Instance()->LoadSprite("Character/Up.png", frames, 3, 1) };
+	m_SpriteComponent->AddSprite(upSprite, frameTime, "Up");
+
+	m_SpriteComponent->SetSprite("Down", false);
+	m_SpriteComponent->SetPaused(true);
+	m_SpriteComponent->SetRenderOffset(glm::ivec2{ feetOffset * int(m_TileManagerComponent->GetRenderScale()) });
+	m_SpriteComponent->SetRenderScale(glm::vec2{ m_TileManagerComponent->GetRenderScale() });
 }

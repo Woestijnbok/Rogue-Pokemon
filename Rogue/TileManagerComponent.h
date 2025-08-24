@@ -28,6 +28,7 @@ public:
 	glm::ivec2 GetStartTile() const;
 	size_t GetTileSize() const;
 	bool CanMove(const glm::ivec2& position, MovementComponent::Direction direction) const;
+	float GetRenderScale() const;
 
 private:
 	void RenderTile(const Tile& tile, const size_t row, const size_t collumn) const;

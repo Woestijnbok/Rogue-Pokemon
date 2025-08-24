@@ -4,6 +4,8 @@
 #include <chrono>
 #include <string>
 #include <unordered_map>
+#include <optional>
+#include <vec2.hpp>
 
 #include "Component.h"
 
@@ -26,15 +28,25 @@ namespace Minigin
 		virtual void Render() const override;
 
 		void AddSprite(const std::shared_ptr<Sprite>& sprite, const std::chrono::milliseconds frameTime, const std::string& name);
-		void SetSprite(const std::string& name);	
-		std::shared_ptr<Sprite> GetSprite(const std::string& name) const;	
+		void SetSprite(const std::string& name, bool loop);	
+		std::shared_ptr<Sprite> GetSprite(const std::string& name) const;
+		void SetPaused(bool paused);
+		void SetRenderOffset(const glm::ivec2& offset);
+		void SetRenderScale(const glm::vec2& scale);
+		glm::ivec2 GetRenderOffset() const;
+		glm::vec2 GetRenderScale() const;
+		void ClearRenderScale();
+		void ClearRenderOffset();
 		void Reset();
 
 	private:
 		std::unordered_map<std::string, std::pair<std::shared_ptr<Sprite>, std::chrono::milliseconds>> m_Sprites;
-		std::string m_CurrentSpriteName;	
-		std::chrono::steady_clock::time_point m_LastTimePoint;
-		int m_Frame;
-		bool m_UpdateTimePoint;
+		std::string m_CurrentSpriteName;
+		bool m_Paused;
+		bool m_Loop;
+		std::chrono::milliseconds m_AccumulatedFrameTime;
+		int m_CurrentFrame;
+		std::optional<glm::ivec2> m_RenderOffset;
+		std::optional<glm::vec2> m_RenderScale;
 	};
 }

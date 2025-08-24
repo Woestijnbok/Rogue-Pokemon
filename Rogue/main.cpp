@@ -13,6 +13,7 @@
 #include "TrainerComponent.h"
 #include "MovementComponent.h"
 #include "MoveCommand.h"
+#include "SpriteComponent.h"
 
 void Load();
 
@@ -22,15 +23,17 @@ void Load()
 {
 	Scene* scene{ SceneManager::Instance()->CreateScene("World") };
 
+	// Manager game object & components
 	GameObject* managerObject{ scene->CreateGameObject("Manager", true) };
 	TileManagerComponent* tileManagerComponent{ managerObject->CreateComponent<TileManagerComponent>() };
 
+	// Trainer game object & components
 	GameObject* trainerObject{ scene->CreateGameObject("Trainer", true) };
-	TrainerComponent* trainerComponent{ trainerObject->CreateComponent<TrainerComponent>() };
+	//TrainerComponent* trainerComponent{ trainerObject->CreateComponent<TrainerComponent>() };
+	SpriteComponent* spriteComponent{ trainerObject->CreateComponent<SpriteComponent>() }; spriteComponent;
 	MovementComponent* movementComponent{ trainerObject->CreateComponent<MovementComponent>(tileManagerComponent) };
 
-	trainerComponent;
-
+	// Trainer input
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::W, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, MovementComponent::Direction::Up));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::D, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, MovementComponent::Direction::Right));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::S, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, MovementComponent::Direction::Down));

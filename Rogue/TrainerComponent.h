@@ -3,12 +3,6 @@
 #include <memory>
 
 #include "Component.h"
-#include "MoveCommand.h"
-
-namespace Minigin
-{
-	class Sprite;
-}
 
 class TrainerComponent final : public Minigin::Component
 {
@@ -21,10 +15,6 @@ public:
 	TrainerComponent& operator=(const TrainerComponent& other) = delete;
 	TrainerComponent& operator=(TrainerComponent&& other) noexcept = delete;
 
-	virtual void Render() const override;
-
 private:
-	std::unique_ptr<Minigin::Sprite> m_TrainerDownSprite;
-	std::unique_ptr<Minigin::Sprite> m_TrainerUpSprite;
-	std::unique_ptr<Minigin::Sprite> m_TrainerRightSprite;
+	
 };
