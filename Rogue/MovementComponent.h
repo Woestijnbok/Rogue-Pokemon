@@ -41,7 +41,7 @@ private:
 	void SetDirection(Direction direction);
 	void TeleportToStartTile();
 	void CompleteMovement(glm::ivec2& newPosition);
-	void AddMovementSrites();
+	void AddMovementSrites(); // TODO: move to sprite component (child of) using OnMoveStarted and OnMoveCompleted events?
 
 	Direction m_Direction;
 	bool m_Moving;

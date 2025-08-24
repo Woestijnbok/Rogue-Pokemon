@@ -1,6 +1,5 @@
 #include <vec2.hpp>
 #include <algorithm>
-#include <iostream>
 
 #include "TileManagerComponent.h"
 #include "Renderer.h"
@@ -68,9 +67,7 @@ size_t TileManagerComponent::GetTileSize() const
 bool TileManagerComponent::CanMove(const glm::ivec2& position, MovementComponent::Direction direction) const
 {
 	bool canMove{ false };
-	glm::ivec2 currentTileIndices{ position.y / static_cast<int>(m_TileSize), position.x / static_cast<int>(m_TileSize) };
-
-	std::cout << std::format("({}, {})", currentTileIndices.x, currentTileIndices.y) << std::endl;
+	glm::ivec2 currentTileIndices{ GetTileIndices(position) };
 
 	switch (direction)
 	{
@@ -94,6 +91,11 @@ bool TileManagerComponent::CanMove(const glm::ivec2& position, MovementComponent
 float TileManagerComponent::GetRenderScale() const
 {
 	return m_TileRenderScale;
+}
+
+glm::ivec2 TileManagerComponent::GetTileIndices(const glm::ivec2& position) const
+{
+	return glm::ivec2{ position.y / static_cast<int>(m_TileSize), position.x / static_cast<int>(m_TileSize) };
 }
 
 void TileManagerComponent::RenderTile(const Tile& tile, const size_t row, const size_t collumn) const

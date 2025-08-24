@@ -8,10 +8,28 @@
 #include <vec2.hpp>
 
 #include "Component.h"
+#include "Transform.h"
 
 namespace Minigin
 {
 	class Sprite;
+
+	struct SpriteInformation final
+	{
+	public:
+		explicit SpriteInformation(const std::shared_ptr<Sprite>& sprite, const std::chrono::milliseconds& frameTime, const Transform& renderOffset);
+		explicit SpriteInformation(const std::shared_ptr<Sprite>& sprite, const std::chrono::milliseconds& frameTime);
+		~SpriteInformation() = default;
+
+		SpriteInformation(const SpriteInformation&) = default;
+		SpriteInformation(SpriteInformation&&) noexcept = default;
+		SpriteInformation& operator= (const SpriteInformation&) = default;
+		SpriteInformation& operator= (SpriteInformation&&) noexcept = default;
+
+		std::shared_ptr<Sprite> Sprite;
+		std::chrono::milliseconds FrameTime;
+		std::optional<Transform> RenderOffset;
+	};
 
 	class SpriteComponent final : public Component
 	{
@@ -27,26 +45,22 @@ namespace Minigin
 		virtual void Update() override;
 		virtual void Render() const override;
 
-		void AddSprite(const std::shared_ptr<Sprite>& sprite, const std::chrono::milliseconds frameTime, const std::string& name);
-		void SetSprite(const std::string& name, bool loop);	
-		std::shared_ptr<Sprite> GetSprite(const std::string& name) const;
+		void AddSprite(const std::string& name, const SpriteInformation& spriteInformation);
+		void SetSprite(const std::string& name);	
+		SpriteInformation* GetSprite(const std::string& name);
+		SpriteInformation const* GetSprite(const std::string& name) const;
+		SpriteInformation* GetCurrentSprite();
+		SpriteInformation const* GetCurrentSprite() const;
 		void SetPaused(bool paused);
-		void SetRenderOffset(const glm::ivec2& offset);
-		void SetRenderScale(const glm::vec2& scale);
-		glm::ivec2 GetRenderOffset() const;
-		glm::vec2 GetRenderScale() const;
-		void ClearRenderScale();
-		void ClearRenderOffset();
+		void SetLoop(bool loop);
 		void Reset();
 
 	private:
-		std::unordered_map<std::string, std::pair<std::shared_ptr<Sprite>, std::chrono::milliseconds>> m_Sprites;
-		std::string m_CurrentSpriteName;
+		std::unordered_map<std::string, SpriteInformation> m_Sprites;
+		SpriteInformation* m_CurrentSprite;
 		bool m_Paused;
 		bool m_Loop;
 		std::chrono::milliseconds m_AccumulatedFrameTime;
 		int m_CurrentFrame;
-		std::optional<glm::ivec2> m_RenderOffset;
-		std::optional<glm::vec2> m_RenderScale;
 	};
 }
