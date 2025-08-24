@@ -15,6 +15,9 @@
       <Filter>Commands</Filter>
     </ClCompile>
     <ClCompile Include="MovementComponent.cpp" />
+    <ClCompile Include="PokemonComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -38,5 +41,8 @@
       <Filter>Commands</Filter>
     </ClInclude>
     <ClInclude Include="MovementComponent.h" />
+    <ClInclude Include="PokemonComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

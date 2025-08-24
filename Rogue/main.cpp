@@ -4,6 +4,7 @@
 #include <iostream>
 #include <functional>
 #include <vec2.hpp>
+#include <functional>
 
 #include "Engine.h"
 #include "ResourceManager.h"
@@ -15,20 +16,34 @@
 #include "MoveCommand.h"
 #include "SpriteComponent.h"
 
+class PokemonComponent;
+
 void Load();
+void StartBattle(Minigin::Scene* worldScene, Minigin::Scene* battleScene, PokemonComponent* x);
 
 using namespace Minigin;
 
+void StartBattle(Minigin::Scene* worldScene, Minigin::Scene* battleScene, PokemonComponent* x)
+{
+	worldScene->SetStatus(ControllableObject::Status::Disabled);
+	battleScene->SetStatus(ControllableObject::Status::Enabled);
+	x;
+}
+
 void Load()
 {
-	Scene* scene{ SceneManager::Instance()->CreateScene("World") };
+	Scene* worldScene{ SceneManager::Instance()->CreateScene("World") };
+	Scene* battleScene{ SceneManager::Instance()->CreateScene("World") };
+	battleScene;
 
 	// Manager game object & components
-	GameObject* managerObject{ scene->CreateGameObject("Manager", true) };
+	GameObject* managerObject{ worldScene->CreateGameObject("Manager", true) };
 	TileManagerComponent* tileManagerComponent{ managerObject->CreateComponent<TileManagerComponent>() };
 
+	tileManagerComponent->OnBattleStart().AddObserver(std::bind(&StartBattle, worldScene, battleScene, std::placeholders::_1));
+
 	// Trainer game object & components
-	GameObject* trainerObject{ scene->CreateGameObject("Trainer", true) };
+	GameObject* trainerObject{ worldScene->CreateGameObject("Trainer", true) };
 	//TrainerComponent* trainerComponent{ trainerObject->CreateComponent<TrainerComponent>() };
 	SpriteComponent* spriteComponent{ trainerObject->CreateComponent<SpriteComponent>() }; spriteComponent;
 	MovementComponent* movementComponent{ trainerObject->CreateComponent<MovementComponent>(tileManagerComponent) };

@@ -67,6 +67,7 @@ void MovementComponent::Update()
 		}
 
 		GetOwner()->SetLocalPosition(newPosition);
+		m_TileManagerComponent->CheckForBattle(newPosition);
 	}
 }
 

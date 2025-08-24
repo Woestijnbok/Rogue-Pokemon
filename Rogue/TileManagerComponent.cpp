@@ -7,6 +7,7 @@
 #include "ResourceManager.h"
 #include "Transform.h"
 #include "Engine.h"
+#include "PokemonComponent.h"
 
 using namespace Minigin;
 
@@ -20,7 +21,8 @@ TileManagerComponent::TileManagerComponent(Minigin::GameObject* owner) :
 	m_TileRenderScale{ static_cast<float>(m_TileSize) / static_cast<float>(m_TileDirtTexture->GetSize().x) },
 	m_RandomDevice{},
 	m_RandomEngine{ m_RandomDevice() },
-	m_RandomDistribution{ 0, 100 }
+	m_RandomDistribution{ 0, 100 },
+	m_OnBattleStart{}
 {
 	RandomizeTiles();
 }
@@ -96,6 +98,26 @@ float TileManagerComponent::GetRenderScale() const
 glm::ivec2 TileManagerComponent::GetTileIndices(const glm::ivec2& position) const
 {
 	return glm::ivec2{ position.y / static_cast<int>(m_TileSize), position.x / static_cast<int>(m_TileSize) };
+}
+
+Minigin::Subject<PokemonComponent*>& TileManagerComponent::OnBattleStart()
+{
+	return m_OnBattleStart;
+}
+
+const Tile& TileManagerComponent::GetTile(int row, int collumn) const
+{
+	return m_Tiles.at((row * m_Collumns) + collumn);
+}
+
+void TileManagerComponent::CheckForBattle(const glm::ivec2& position)
+{
+	const glm::ivec2 tileIndices{ GetTileIndices(position) };
+
+	if (GetTile(tileIndices.x, tileIndices.y).GetTerrain() == Tile::Terrain::Pokemon)
+	{
+		m_OnBattleStart.Notify(nullptr);
+	}
 }
 
 void TileManagerComponent::RenderTile(const Tile& tile, const size_t row, const size_t collumn) const

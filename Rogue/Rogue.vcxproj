@@ -204,6 +204,7 @@ xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll"
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveCommand.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
+    <ClCompile Include="PokemonComponent.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManagerComponent.cpp" />
     <ClCompile Include="TrainerComponent.cpp" />
@@ -211,6 +212,7 @@ xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll"
   <ItemGroup>
     <ClInclude Include="MoveCommand.h" />
     <ClInclude Include="MovementComponent.h" />
+    <ClInclude Include="PokemonComponent.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManagerComponent.h" />
     <ClInclude Include="TrainerComponent.h" />
