@@ -1,0 +1,4446 @@
+[
+  {
+    "index": 1,
+    "name": "Treecko",
+    "moves": [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "razor-wind",
+        "power": 80
+      }
+    ]
+  },
+  {
+    "index": 2,
+    "name": "Grovyle",
+    "moves": [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 3,
+    "name": "Sceptile",
+    "moves": [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 4,
+    "name": "Torchic",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "scratch",
+        "power": 40
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      }
+    ]
+  },
+  {
+    "index": 5,
+    "name": "Combusken"
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "scratch",
+        "power": 40
+      }
+    ]
+  },
+  {
+    "index": 6,
+    "name": "Blaziken",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "scratch",
+        "power": 40
+      }
+    ]
+  },
+  {
+    "index": 7,
+    "name": "Mudkip",
+    "moves": [
+      {
+        "name": "stomp",
+        "power": 65
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      }
+    ]
+  },
+  {
+    "index": 8,
+    "name": "Marshtomp",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "stomp",
+        "power": 65
+      },
+      {
+        "name": "mega-kick",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 9,
+    "name": "Swampert",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "stomp",
+        "power": 65
+      },
+      {
+        "name": "mega-kick",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 10,
+    "name": "Poochyena",
+    "moves": [
+      {
+        "name": "sand-attack",
+        "power": 0
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      }
+    ]
+  },
+  {
+    "index": 11,
+    "name": "Mightyena",
+    "moves": [
+      {
+        "name": "sand-attack",
+        "power": 0
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      }
+    ]
+  },
+  {
+    "index": 12,
+    "name": "Zigzagoon",
+    "moves": [
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "sand-attack",
+        "power": 0
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      }
+    ]
+  },
+  {
+    "index": 13,
+    "name": "Linoone",
+    "moves": [
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "sand-attack",
+        "power": 0
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      }
+    ]
+  },
+  {
+    "index": 14,
+    "name": "Wurmple",
+    "moves": [
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "poison-sting",
+        "power": 15
+      },
+      {
+        "name": "string-shot",
+        "power": 0
+      },
+      {
+        "name": "snore",
+        "power": 50
+      }
+    ]
+  },
+  {
+    "index": 15,
+    "name": "Silcoon",
+    "moves": [
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "poison-sting",
+        "power": 15
+      },
+      {
+        "name": "string-shot",
+        "power": 0
+      },
+      {
+        "name": "harden",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 16,
+    "name": "Beautifly",
+    "moves": [
+      {
+        "name": "gust",
+        "power": 40
+      },
+      {
+        "name": "whirlwind",
+        "power": 0
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 17,
+    "name": "Cascoon",
+    "moves": [
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "poison-sting",
+        "power": 15
+      },
+      {
+        "name": "string-shot",
+        "power": 0
+      },
+      {
+        "name": "harden",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 18,
+    "name": "Dustox",
+    "moves": [
+      {
+        "name": "gust",
+        "power": 40
+      },
+      {
+        "name": "whirlwind",
+        "power": 0
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 19,
+    "name": "Lotad",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 20,
+    "name": "Lombre",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 21,
+    "name": "Ludicolo",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 22,
+    "name": "Seedot",
+    "moves": [
+      {
+        "name": "razor-wind",
+        "power": 80
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      }
+    ]
+  },
+  {
+    "index": 23,
+    "name": "Nuzleaf",
+    "moves": [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "razor-wind",
+        "power": 80
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      }
+    ]
+  },
+  {
+    "index": 24,
+    "name": "Shiftry",
+    "moves": [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "whirlwind",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 25,
+    "name": "Taillow",
+    "moves": [
+      {
+        "name": "wing-attack",
+        "power": 60
+      },
+      {
+        "name": "whirlwind",
+        "power": 0
+      },
+      {
+        "name": "fly",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 26,
+    "name": "Swellow",
+    "moves": [
+      {
+        "name": "wing-attack",
+        "power": 60
+      },
+      {
+        "name": "fly",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "growl",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 27,
+    "name": "Wingull",
+    "moves": [
+      {
+        "name": "gust",
+        "power": 40
+      },
+      {
+        "name": "wing-attack",
+        "power": 60
+      },
+      {
+        "name": "fly",
+        "power": 90
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 28,
+    "name": "Pelipper",
+    "moves": [
+      {
+        "name": "wing-attack",
+        "power": 60
+      },
+      {
+        "name": "fly",
+        "power": 90
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 29,
+    "name": "Ralts",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 30,
+    "name": "Kirlia",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 31,
+    "name": "Gardevoir",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 32,
+    "name": "Surskit",
+    "moves": [
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "mist",
+        "power": 0
+      },
+      {
+        "name": "water-gun",
+        "power": 40
+      }
+    ]
+  },
+  {
+    "index": 33,
+    "name": "Masquerain",
+    "moves": [
+      {
+        "name": "gust",
+        "power": 40
+      },
+      {
+        "name": "whirlwind",
+        "power": 0
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 34,
+    "name": "Shroomish",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      }
+    ]
+  },
+  {
+    "index": 35,
+    "name": "Breloom",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      }
+    ]
+  },
+  {
+    "index": 36,
+    "name": "Slakoth",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 37,
+    "name": "Vigoroth",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 38,
+    "name": "Slaking",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 39,
+    "name": "Abra",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 40,
+    "name": "Kadabra",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 41,
+    "name": "Alakazam",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 42,
+    "name": "Nincada",
+    "moves": [
+      {
+        "name": "scratch",
+        "power": 40
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "gust",
+        "power": 40
+      },
+      {
+        "name": "sand-attack",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 43,
+    "name": "Ninjask",
+    "moves": [
+      {
+        "name": "scratch",
+        "power": 40
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "sand-attack",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 44,
+    "name": "Shedinja",
+    "moves": [
+      {
+        "name": "scratch",
+        "power": 40
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "sand-attack",
+        "power": 0
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 45,
+    "name": "Whismur",
+    "moves": [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 46,
+    "name": "Loudred",
+    "moves": [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 47,
+    "name": "Exploud",
+    "moves": [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 48,
+    "name": "Makuhita",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 49,
+    "name": "Hariyama",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 50,
+    "name": "Goldeen",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "horn-attack",
+        "power": 65
+      },
+      {
+        "name": "fury-attack",
+        "power": 15
+      }
+    ]
+  },
+  {
+    "index": 51,
+    "name": "Seaking",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "horn-attack",
+        "power": 65
+      },
+      {
+        "name": "fury-attack",
+        "power": 15
+      }
+    ]
+  },
+  {
+    "index": 52,
+    "name": "Magikarp",
+    "moves": [
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "hydro-pump",
+        "power": 110
+      },
+      {
+        "name": "splash",
+        "power": 0
+      },
+      {
+        "name": "flail",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 53,
+    "name": "Gyarados",
+    "moves": [
+      {
+        "name": "bind",
+        "power": 15
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      }
+    ]
+  },
+  {
+    "index": 54,
+    "name": "Azurill",
+    "moves": [
+      {
+        "name": "slam",
+        "power": 80
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 55,
+    "name": "Marill",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "slam",
+        "power": 80
+      },
+      {
+        "name": "mega-kick",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 56,
+    "name": "Azumarill",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "slam",
+        "power": 80
+      },
+      {
+        "name": "mega-kick",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 57,
+    "name": "Geodude",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "sand-attack",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 58,
+    "name": "Graveler",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "sand-attack",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 59,
+    "name": "Golem",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "mega-kick",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 60,
+    "name": "Nosepass",
+    "moves": [
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      }
+    ]
+  },
+  {
+    "index": 61,
+    "name": "Skitty",
+    "moves": [
+      {
+        "name": "double-slap",
+        "power": 15
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      }
+    ]
+  },
+  {
+    "index": 62,
+    "name": "Delcatty",
+    "moves": [
+      {
+        "name": "double-slap",
+        "power": 15
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      }
+    ]
+  },
+  {
+    "index": 63,
+    "name": "Zubat",
+    "moves": [
+      {
+        "name": "razor-wind",
+        "power": 80
+      },
+      {
+        "name": "gust",
+        "power": 40
+      },
+      {
+        "name": "wing-attack",
+        "power": 60
+      },
+      {
+        "name": "whirlwind",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 64,
+    "name": "Golbat",
+    "moves": [
+      {
+        "name": "razor-wind",
+        "power": 80
+      },
+      {
+        "name": "gust",
+        "power": 40
+      },
+      {
+        "name": "wing-attack",
+        "power": 60
+      },
+      {
+        "name": "whirlwind",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 65,
+    "name": "Crobat",
+    "moves": [
+      {
+        "name": "gust",
+        "power": 40
+      },
+      {
+        "name": "wing-attack",
+        "power": 60
+      },
+      {
+        "name": "fly",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 66,
+    "name": "Tentacool",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "bind",
+        "power": 15
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      }
+    ]
+  },
+  {
+    "index": 67,
+    "name": "Tentacruel",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "bind",
+        "power": 15
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      }
+    ]
+  },
+  {
+    "index": 68,
+    "name": "Sableye",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 69,
+    "name": "Mawile",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "vice-grip",
+        "power": 55
+      }
+    ]
+  },
+  {
+    "index": 70,
+    "name": "Aron",
+    "moves": [
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "stomp",
+        "power": 65
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      }
+    ]
+  },
+  {
+    "index": 71,
+    "name": "Lairon",
+    "moves": [
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      }
+    ]
+  },
+  {
+    "index": 72,
+    "name": "Aggron",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 73,
+    "name": "Machop",
+    "moves": [
+      {
+        "name": "karate-chop",
+        "power": 50
+      },
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 74,
+    "name": "Machoke",
+    "moves": [
+      {
+        "name": "karate-chop",
+        "power": 50
+      },
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 75,
+    "name": "Machamp",
+    "moves": [
+      {
+        "name": "karate-chop",
+        "power": 50
+      },
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 76,
+    "name": "Meditite",
+    "moves": [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 77,
+    "name": "Medicham",
+    "moves": [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 78,
+    "name": "Electrike",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 79,
+    "name": "Manectric",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 80,
+    "name": "Plusle",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "mega-kick",
+        "power": 120
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      }
+    ]
+  },
+  {
+    "index": 81,
+    "name": "Minun",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "mega-kick",
+        "power": 120
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      }
+    ]
+  },
+  {
+    "index": 82,
+    "name": "Magnemite",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 83,
+    "name": "Magneton",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 84,
+    "name": "Voltorb",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 85,
+    "name": "Electrode",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 86,
+    "name": "Volbeat",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "mega-kick",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 87,
+    "name": "Illumise",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "mega-kick",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 88,
+    "name": "Oddish",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 89,
+    "name": "Gloom",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 90,
+    "name": "Vileplume",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      }
+    ]
+  },
+  {
+    "index": 91,
+    "name": "Bellossom",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "acid",
+        "power": 40
+      }
+    ]
+  },
+  {
+    "index": 92,
+    "name": "Doduo",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "wing-attack",
+        "power": 60
+      },
+      {
+        "name": "whirlwind",
+        "power": 0
+      },
+      {
+        "name": "fly",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 93,
+    "name": "Dodrio",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "wing-attack",
+        "power": 60
+      },
+      {
+        "name": "whirlwind",
+        "power": 0
+      },
+      {
+        "name": "fly",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 94,
+    "name": "Roselia",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 95,
+    "name": "Gulpin",
+    "moves": [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 96,
+    "name": "Swalot",
+    "moves": [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 97,
+    "name": "Carvanha",
+    "moves": [
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "thrash",
+        "power": 120
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "leer",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 98,
+    "name": "Sharpedo",
+    "moves": [
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "leer",
+        "power": 0
+      },
+      {
+        "name": "bite",
+        "power": 60
+      }
+    ]
+  },
+  {
+    "index": 99,
+    "name": "Wailmer",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "thrash",
+        "power": 120
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 100,
+    "name": "Wailord",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "growl",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 101,
+    "name": "Numel",
+    "moves": [
+      {
+        "name": "stomp",
+        "power": 65
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      }
+    ]
+  },
+  {
+    "index": 102,
+    "name": "Camerupt",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 103,
+    "name": "Slugma",
+    "moves": [
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "ember",
+        "power": 40
+      }
+    ]
+  },
+  {
+    "index": 104,
+    "name": "Magcargo",
+    "moves": [
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "ember",
+        "power": 40
+      }
+    ]
+  },
+  {
+    "index": 105,
+    "name": "Torkoal",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 106,
+    "name": "Grimer",
+    "moves": [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 107,
+    "name": "Muk",
+    "moves": [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 108,
+    "name": "Koffing",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 109,
+    "name": "Weezing",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 110,
+    "name": "Spoink",
+    "moves": [
+      {
+        "name": "whirlwind",
+        "power": 0
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 111,
+    "name": "Grumpig",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 112,
+    "name": "Sandshrew",
+    "moves": [
+      {
+        "name": "scratch",
+        "power": 40
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "sand-attack",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 113,
+    "name": "Sandslash",
+    "moves": [
+      {
+        "name": "scratch",
+        "power": 40
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "sand-attack",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 114,
+    "name": "Spinda",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 115,
+    "name": "Skarmory",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "wing-attack",
+        "power": 60
+      },
+      {
+        "name": "whirlwind",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 116,
+    "name": "Trapinch",
+    "moves": [
+      {
+        "name": "gust",
+        "power": 40
+      },
+      {
+        "name": "sand-attack",
+        "power": 0
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      }
+    ]
+  },
+  {
+    "index": 117,
+    "name": "Vibrava",
+    "moves": [
+      {
+        "name": "gust",
+        "power": 40
+      },
+      {
+        "name": "fly",
+        "power": 90
+      },
+      {
+        "name": "sand-attack",
+        "power": 0
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      }
+    ]
+  },
+  {
+    "index": 118,
+    "name": "Flygon",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "gust",
+        "power": 40
+      }
+    ]
+  },
+  {
+    "index": 119,
+    "name": "Cacnea",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      }
+    ]
+  },
+  {
+    "index": 120,
+    "name": "Cacturne",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      }
+    ]
+  },
+  {
+    "index": 121,
+    "name": "Swablu",
+    "moves": [
+      {
+        "name": "fly",
+        "power": 90
+      },
+      {
+        "name": "fury-attack",
+        "power": 15
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 122,
+    "name": "Altaria",
+    "moves": [
+      {
+        "name": "fly",
+        "power": 90
+      },
+      {
+        "name": "fury-attack",
+        "power": 15
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 123,
+    "name": "Zangoose",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 124,
+    "name": "Seviper",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "bind",
+        "power": 15
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      }
+    ]
+  },
+  {
+    "index": 125,
+    "name": "Lunatone",
+    "moves": [
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "ice-beam",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 126,
+    "name": "Solrock",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 127,
+    "name": "Barboach",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "thrash",
+        "power": 120
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 128,
+    "name": "Whiscash",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "thrash",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 129,
+    "name": "Corphish",
+    "moves": [
+      {
+        "name": "vice-grip",
+        "power": 55
+      },
+      {
+        "name": "guillotine",
+        "power": 0
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      }
+    ]
+  },
+  {
+    "index": 130,
+    "name": "Crawdaunt",
+    "moves": [
+      {
+        "name": "vice-grip",
+        "power": 55
+      },
+      {
+        "name": "guillotine",
+        "power": 0
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      }
+    ]
+  },
+  {
+    "index": 131,
+    "name": "Baltoy",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "ice-beam",
+        "power": 90
+      },
+      {
+        "name": "psybeam",
+        "power": 65
+      }
+    ]
+  },
+  {
+    "index": 132,
+    "name": "Claydol",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "ice-beam",
+        "power": 90
+      },
+      {
+        "name": "psybeam",
+        "power": 65
+      }
+    ]
+  },
+  {
+    "index": 133,
+    "name": "Lileep",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "bind",
+        "power": 15
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "wrap",
+        "power": 15
+      }
+    ]
+  },
+  {
+    "index": 134,
+    "name": "Cradily",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "bind",
+        "power": 15
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      }
+    ]
+  },
+  {
+    "index": 135,
+    "name": "Anorith",
+    "moves": [
+      {
+        "name": "scratch",
+        "power": 40
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "sand-attack",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 136,
+    "name": "Armaldo",
+    "moves": [
+      {
+        "name": "scratch",
+        "power": 40
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      }
+    ]
+  },
+  {
+    "index": 137,
+    "name": "Igglybuff",
+    "moves": [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "mega-kick",
+        "power": 120
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      }
+    ]
+  },
+  {
+    "index": 138,
+    "name": "Jigglypuff",
+    "moves": [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "double-slap",
+        "power": 15
+      },
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 139,
+    "name": "Wigglytuff",
+    "moves": [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "double-slap",
+        "power": 15
+      },
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 140,
+    "name": "Feebas",
+    "moves": [
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "mist",
+        "power": 0
+      },
+      {
+        "name": "surf",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 141,
+    "name": "Milotic",
+    "moves": [
+      {
+        "name": "bind",
+        "power": 15
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "wrap",
+        "power": 15
+      }
+    ]
+  },
+  {
+    "index": 142,
+    "name": "Castform",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 143,
+    "name": "Staryu",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 144,
+    "name": "Starmie",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 145,
+    "name": "Kecleon",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 146,
+    "name": "Shuppet",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "disable",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 147,
+    "name": "Banette",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 148,
+    "name": "Duskull",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "leer",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 149,
+    "name": "Dusclops",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 150,
+    "name": "Tropius",
+    "moves": [
+      {
+        "name": "razor-wind",
+        "power": 80
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "gust",
+        "power": 40
+      }
+    ]
+  },
+  {
+    "index": 151,
+    "name": "Chimecho",
+    "moves": [
+      {
+        "name": "bind",
+        "power": 15
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "wrap",
+        "power": 15
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 152,
+    "name": "Absol",
+    "moves": [
+      {
+        "name": "scratch",
+        "power": 40
+      },
+      {
+        "name": "razor-wind",
+        "power": 80
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      }
+    ]
+  },
+  {
+    "index": 153,
+    "name": "Vulpix",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 154,
+    "name": "Ninetales",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 155,
+    "name": "Pichu",
+    "moves": [
+      {
+        "name": "double-slap",
+        "power": 15
+      },
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "mega-kick",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 156,
+    "name": "Pikachu",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "pay-day",
+        "power": 40
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "slam",
+        "power": 80
+      }
+    ]
+  },
+  {
+    "index": 157,
+    "name": "Raichu",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "pay-day",
+        "power": 40
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "slam",
+        "power": 80
+      }
+    ]
+  },
+  {
+    "index": 158,
+    "name": "Psyduck",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "pay-day",
+        "power": 40
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "scratch",
+        "power": 40
+      }
+    ]
+  },
+  {
+    "index": 159,
+    "name": "Golduck",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "pay-day",
+        "power": 40
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "scratch",
+        "power": 40
+      }
+    ]
+  },
+  {
+    "index": 160,
+    "name": "Wynaut",
+    "moves": [
+      {
+        "name": "counter",
+        "power": 0
+      },
+      {
+        "name": "amnesia",
+        "power": 0
+      },
+      {
+        "name": "splash",
+        "power": 0
+      },
+      {
+        "name": "destiny-bond",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 161,
+    "name": "Wobbuffet",
+    "moves": [
+      {
+        "name": "counter",
+        "power": 0
+      },
+      {
+        "name": "amnesia",
+        "power": 0
+      },
+      {
+        "name": "splash",
+        "power": 0
+      },
+      {
+        "name": "destiny-bond",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 162,
+    "name": "Natu",
+    "moves": [
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "leer",
+        "power": 0
+      },
+      {
+        "name": "peck",
+        "power": 35
+      },
+      {
+        "name": "drill-peck",
+        "power": 80
+      }
+    ]
+  },
+  {
+    "index": 163,
+    "name": "Xatu",
+    "moves": [
+      {
+        "name": "fly",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "leer",
+        "power": 0
+      },
+      {
+        "name": "hyper-beam",
+        "power": 150
+      }
+    ]
+  },
+  {
+    "index": 164,
+    "name": "Girafarig",
+    "moves": [
+      {
+        "name": "razor-wind",
+        "power": 80
+      },
+      {
+        "name": "stomp",
+        "power": 65
+      },
+      {
+        "name": "double-kick",
+        "power": 30
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      }
+    ]
+  },
+  {
+    "index": 165,
+    "name": "Phanpy",
+    "moves": [
+      {
+        "name": "slam",
+        "power": 80
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      }
+    ]
+  },
+  {
+    "index": 166,
+    "name": "Donphan",
+    "moves": [
+      {
+        "name": "slam",
+        "power": 80
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "horn-attack",
+        "power": 65
+      },
+      {
+        "name": "fury-attack",
+        "power": 15
+      }
+    ]
+  },
+  {
+    "index": 167,
+    "name": "Pinsir",
+    "moves": [
+      {
+        "name": "vice-grip",
+        "power": 55
+      },
+      {
+        "name": "guillotine",
+        "power": 0
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      }
+    ]
+  },
+  {
+    "index": 168,
+    "name": "Heracross",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "horn-attack",
+        "power": 65
+      }
+    ]
+  },
+  {
+    "index": 169,
+    "name": "Rhyhorn",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "stomp",
+        "power": 65
+      },
+      {
+        "name": "sand-attack",
+        "power": 0
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      }
+    ]
+  },
+  {
+    "index": 170,
+    "name": "Rhydon",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "pay-day",
+        "power": 40
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 171,
+    "name": "Snorunt",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 172,
+    "name": "Glalie",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 173,
+    "name": "Spheal",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "growl",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 174,
+    "name": "Sealeo",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "growl",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 175,
+    "name": "Walrein",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 176,
+    "name": "Clamperl",
+    "moves": [
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "supersonic",
+        "power": 0
+      },
+      {
+        "name": "water-gun",
+        "power": 40
+      }
+    ]
+  },
+  {
+    "index": 177,
+    "name": "Huntail",
+    "moves": [
+      {
+        "name": "bind",
+        "power": 15
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "bite",
+        "power": 60
+      }
+    ]
+  },
+  {
+    "index": 178,
+    "name": "Gorebyss",
+    "moves": [
+      {
+        "name": "bind",
+        "power": 15
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "water-gun",
+        "power": 40
+      }
+    ]
+  },
+  {
+    "index": 179,
+    "name": "Relicanth",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 180,
+    "name": "Corsola",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 181,
+    "name": "Chinchou",
+    "moves": [
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "supersonic",
+        "power": 0
+      },
+      {
+        "name": "mist",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 182,
+    "name": "Lanturn",
+    "moves": [
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "supersonic",
+        "power": 0
+      },
+      {
+        "name": "mist",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 183,
+    "name": "Luvdisc",
+    "moves": [
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "supersonic",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 184,
+    "name": "Horsea",
+    "moves": [
+      {
+        "name": "razor-wind",
+        "power": 80
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 185,
+    "name": "Seadra",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      },
+      {
+        "name": "leer",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 186,
+    "name": "Kingdra",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 187,
+    "name": "Bagon",
+    "moves": [
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 188,
+    "name": "Shelgon",
+    "moves": [
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 189,
+    "name": "Salamence",
+    "moves": [
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "fly",
+        "power": 90
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      }
+    ]
+  },
+  {
+    "index": 190,
+    "name": "Beldum",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "tackle",
+        "power": 40
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "iron-defense",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 191,
+    "name": "Metang",
+    "moves": [
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      }
+    ]
+  },
+  {
+    "index": 192,
+    "name": "Metagross",
+    "moves": [
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      }
+    ]
+  },
+  {
+    "index": 193,
+    "name": "Regirock",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 194,
+    "name": "Regice",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "stomp",
+        "power": 65
+      }
+    ]
+  },
+  {
+    "index": 195,
+    "name": "Registeel",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "stomp",
+        "power": 65
+      }
+    ]
+  },
+  {
+    "index": 196,
+    "name": "Latias",
+    "moves": [
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "fly",
+        "power": 90
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 197,
+    "name": "Latios",
+    "moves": [
+      {
+        "name": "cut",
+        "power": 50
+      },
+      {
+        "name": "fly",
+        "power": 90
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      }
+    ]
+  },
+  {
+    "index": 198,
+    "name": "Kyogre",
+    "moves": [
+      {
+        "name": "headbutt",
+        "power": 70
+      },
+      {
+        "name": "body-slam",
+        "power": 85
+      },
+      {
+        "name": "take-down",
+        "power": 90
+      },
+      {
+        "name": "double-edge",
+        "power": 120
+      }
+    ]
+  },
+  {
+    "index": 199,
+    "name": "Groudon",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      }
+    ]
+  },
+  {
+    "index": 200,
+    "name": "Rayquaza",
+    "moves": [
+      {
+        "name": "swords-dance",
+        "power": 0
+      },
+      {
+        "name": "fly",
+        "power": 90
+      },
+      {
+        "name": "bind",
+        "power": 15
+      },
+      {
+        "name": "headbutt",
+        "power": 70
+      }
+    ]
+  },
+  {
+    "index": 201,
+    "name": "Jirachi",
+    "moves": [
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "fire-punch",
+        "power": 75
+      },
+      {
+        "name": "ice-punch",
+        "power": 75
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      }
+    ]
+  },
+  {
+    "index": 202,
+    "name": "Deoxys",
+    "moves": [
+      {
+        "name": "psychic",
+        "power": 90
+      },
+      {
+        "name": "zen-headbutt",
+        "power": 80
+      },
+      {
+        "name": "night-shade",
+        "power": 0
+      },
+      {
+        "name": "hyper-beam",
+        "power": 150
+      }
+    ]
+  }
+]

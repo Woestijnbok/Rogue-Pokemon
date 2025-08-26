@@ -10,6 +10,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Rogue", "Rogue\Rogue.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Minigin", "Minigin\Minigin.vcxproj", "{41B0EC47-D48C-4B0F-951B-D98595FFAE0A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pokedex", "Pokedex\Pokedex.vcxproj", "{BEBA94A3-D8E7-49F8-939A-951BEEA9C948}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -34,6 +36,14 @@ Global
 		{41B0EC47-D48C-4B0F-951B-D98595FFAE0A}.Release|x64.Build.0 = Release|x64
 		{41B0EC47-D48C-4B0F-951B-D98595FFAE0A}.Release|x86.ActiveCfg = Release|Win32
 		{41B0EC47-D48C-4B0F-951B-D98595FFAE0A}.Release|x86.Build.0 = Release|Win32
+		{BEBA94A3-D8E7-49F8-939A-951BEEA9C948}.Debug|x64.ActiveCfg = Debug|x64
+		{BEBA94A3-D8E7-49F8-939A-951BEEA9C948}.Debug|x64.Build.0 = Debug|x64
+		{BEBA94A3-D8E7-49F8-939A-951BEEA9C948}.Debug|x86.ActiveCfg = Debug|Win32
+		{BEBA94A3-D8E7-49F8-939A-951BEEA9C948}.Debug|x86.Build.0 = Debug|Win32
+		{BEBA94A3-D8E7-49F8-939A-951BEEA9C948}.Release|x64.ActiveCfg = Release|x64
+		{BEBA94A3-D8E7-49F8-939A-951BEEA9C948}.Release|x64.Build.0 = Release|x64
+		{BEBA94A3-D8E7-49F8-939A-951BEEA9C948}.Release|x86.ActiveCfg = Release|Win32
+		{BEBA94A3-D8E7-49F8-939A-951BEEA9C948}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

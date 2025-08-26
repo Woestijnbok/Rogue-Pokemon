@@ -87,28 +87,28 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(ProjectDir)Output\$(Configuration)\$(PlatformTarget)\</OutDir>
     <IntDir>$(ProjectDir)Intermediate\$(Configuration)\$(PlatformTarget)\</IntDir>
-    <IncludePath>$(SolutionDir)Minigin;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Minigin;$(SolutionDir)Pokedex;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Minigin\Output\$(Configuration)\$(PlatformTarget);$(LibraryPath)</LibraryPath>
     <TargetName>RoguePokemon</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)Output\$(Configuration)\$(PlatformTarget)\</OutDir>
     <IntDir>$(ProjectDir)Intermediate\$(Configuration)\$(PlatformTarget)\</IntDir>
-    <IncludePath>$(SolutionDir)Minigin;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Minigin;$(SolutionDir)Pokedex;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Minigin\Output\$(Configuration)\$(PlatformTarget);$(LibraryPath)</LibraryPath>
     <TargetName>RoguePokemon</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)Output\$(Configuration)\$(PlatformTarget)\</OutDir>
     <IntDir>$(ProjectDir)Intermediate\$(Configuration)\$(PlatformTarget)\</IntDir>
-    <IncludePath>$(SolutionDir)Minigin;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Minigin;$(SolutionDir)Pokedex;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Minigin\Output\$(Configuration)\$(PlatformTarget);$(LibraryPath)</LibraryPath>
     <TargetName>RoguePokemon</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)Output\$(Configuration)\$(PlatformTarget)\</OutDir>
     <IntDir>$(ProjectDir)Intermediate\$(Configuration)\$(PlatformTarget)\</IntDir>
-    <IncludePath>$(SolutionDir)Minigin;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Minigin;$(SolutionDir)Pokedex;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Minigin\Output\$(Configuration)\$(PlatformTarget);$(LibraryPath)</LibraryPath>
     <TargetName>RoguePokemon</TargetName>
   </PropertyGroup>
@@ -130,7 +130,9 @@
       <Command>xcopy /Y /I "$(SolutionDir)Libraries\SDL\lib\$(PlatformTarget)\SDL2.dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\SDL2_image.dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)</Command>
+xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)
+xcopy "$(ProjectDir)Resources" "$(OutDir)\Resources" /E /I /H /K /Y
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin" $(OutDir)\Resources\Files</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -153,7 +155,9 @@ xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll"
       <Command>xcopy /Y /I "$(SolutionDir)Libraries\SDL\lib\$(PlatformTarget)\SDL2.dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\SDL2_image.dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)</Command>
+xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)
+xcopy "$(ProjectDir)Resources" "$(OutDir)\Resources" /E /I /H /K /Y
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin" $(OutDir)\Resources\Files</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -174,7 +178,9 @@ xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll"
       <Command>xcopy /Y /I "$(SolutionDir)Libraries\SDL\lib\$(PlatformTarget)\SDL2.dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\SDL2_image.dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)</Command>
+xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)
+xcopy "$(ProjectDir)Resources" "$(OutDir)\Resources" /E /I /H /K /Y
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin" $(OutDir)\Resources\Files</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -197,10 +203,14 @@ xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll"
       <Command>xcopy /Y /I "$(SolutionDir)Libraries\SDL\lib\$(PlatformTarget)\SDL2.dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\SDL2_image.dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)</Command>
+xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)
+xcopy "$(ProjectDir)Resources" "$(OutDir)\Resources" /E /I /H /K /Y
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin" $(OutDir)\Resources\Files</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BattleManagerComponent.cpp" />
+    <ClCompile Include="DebugCommands.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveCommand.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
@@ -210,6 +220,8 @@ xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll"
     <ClCompile Include="TrainerComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BattleManagerComponent.h" />
+    <ClInclude Include="DebugCommands.h" />
     <ClInclude Include="MoveCommand.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="PokemonComponent.h" />

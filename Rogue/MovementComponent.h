@@ -6,6 +6,7 @@
 #include "Component.h"
 
 class TileManagerComponent;
+class TrainerComponent;
 
 namespace Minigin
 {
@@ -47,6 +48,7 @@ private:
 	bool m_Moving;
 	std::optional<glm::ivec2> m_TargetPosition;
 	TileManagerComponent* m_TileManagerComponent;
+	TrainerComponent* m_TrainerComponent;
 	float m_Speed;
 	Minigin::SpriteComponent* m_SpriteComponent;
 };

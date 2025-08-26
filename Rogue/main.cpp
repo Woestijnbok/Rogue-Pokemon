@@ -4,47 +4,53 @@
 #include <iostream>
 #include <functional>
 #include <vec2.hpp>
-#include <functional>
 
 #include "Engine.h"
 #include "ResourceManager.h"
 #include "InputManager.h"
 #include "SceneManager.h"
+#include "Scene.h"
 #include "TileManagerComponent.h"
+#include "BattleManagerComponent.h"
+#include "DebugCommands.h"
 #include "TrainerComponent.h"
 #include "MovementComponent.h"
 #include "MoveCommand.h"
 #include "SpriteComponent.h"
 
-class PokemonComponent;
-
-void Load();
-void StartBattle(Minigin::Scene* worldScene, Minigin::Scene* battleScene, PokemonComponent* x);
-
 using namespace Minigin;
 
-void StartBattle(Minigin::Scene* worldScene, Minigin::Scene* battleScene, PokemonComponent* x)
+void FocusBattle(Scene* world, Scene* battle)
 {
-	worldScene->SetStatus(ControllableObject::Status::Disabled);
-	battleScene->SetStatus(ControllableObject::Status::Enabled);
-	x;
+	world->SetStatus(ControllableObject::Status::Disabled);
+	battle->SetStatus(ControllableObject::Status::Enabled);
+}
+
+void FocusWorld(Scene* world, Scene* battle)
+{
+	world->SetStatus(ControllableObject::Status::Enabled);
+	battle->SetStatus(ControllableObject::Status::Disabled);
 }
 
 void Load()
 {
 	Scene* worldScene{ SceneManager::Instance()->CreateScene("World") };
-	Scene* battleScene{ SceneManager::Instance()->CreateScene("World") };
-	battleScene;
+	Scene* battleScene{ SceneManager::Instance()->CreateScene("Battle", false) };
 
 	// Manager game object & components
-	GameObject* managerObject{ worldScene->CreateGameObject("Manager", true) };
-	TileManagerComponent* tileManagerComponent{ managerObject->CreateComponent<TileManagerComponent>() };
+	GameObject* tileManagerObject{ worldScene->CreateGameObject("Manager", true) };
+	TileManagerComponent* tileManagerComponent{ tileManagerObject->CreateComponent<TileManagerComponent>() };
 
-	tileManagerComponent->OnBattleStart().AddObserver(std::bind(&StartBattle, worldScene, battleScene, std::placeholders::_1));
+	GameObject* battleManagerObject{ battleScene->CreateGameObject("Manager", true) };
+	BattleManagerComponent* battleManagerComponent{ battleManagerObject->CreateComponent<BattleManagerComponent>() };
+
+	tileManagerComponent->OnPokemonEncounter().AddObserver(std::bind(&BattleManagerComponent::MakeBattle, battleManagerComponent, std::placeholders::_1));
+	battleManagerComponent->OnBattleStarted().AddObserver(std::bind(&FocusBattle, worldScene, battleScene));
+	battleManagerComponent->OnBattleFinished().AddObserver(std::bind(&FocusWorld, worldScene, battleScene));
 
 	// Trainer game object & components
 	GameObject* trainerObject{ worldScene->CreateGameObject("Trainer", true) };
-	//TrainerComponent* trainerComponent{ trainerObject->CreateComponent<TrainerComponent>() };
+	TrainerComponent* trainerComponent{ trainerObject->CreateComponent<TrainerComponent>() }; trainerComponent;
 	SpriteComponent* spriteComponent{ trainerObject->CreateComponent<SpriteComponent>() }; spriteComponent;
 	MovementComponent* movementComponent{ trainerObject->CreateComponent<MovementComponent>(tileManagerComponent) };
 
@@ -53,6 +59,10 @@ void Load()
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::D, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, MovementComponent::Direction::Right));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::S, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, MovementComponent::Direction::Down));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::A, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, MovementComponent::Direction::Left));
+
+#ifdef _DEBUG
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::B, InputAction::Trigger::Pressed, std::make_shared<SkipBattleCommand>(battleManagerComponent));
+#endif
 }
 
 int main(int, char* [])

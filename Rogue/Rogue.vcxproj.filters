@@ -14,9 +14,17 @@
     <ClCompile Include="MoveCommand.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
-    <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="PokemonComponent.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleManagerComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugCommands.cpp">
+      <Filter>Commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -25,6 +33,9 @@
     </Filter>
     <Filter Include="Commands">
       <UniqueIdentifier>{42f98310-399a-47ea-b814-42de1b159bfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{97d28b87-bb20-4709-982f-620f78deb176}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -40,9 +51,17 @@
     <ClInclude Include="MoveCommand.h">
       <Filter>Commands</Filter>
     </ClInclude>
-    <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="PokemonComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleManagerComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugCommands.h">
+      <Filter>Commands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

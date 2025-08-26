@@ -14,7 +14,7 @@ namespace Minigin
 	class Texture;
 }
 
-class PokemonComponent;
+class TrainerComponent;
 
 class TileManagerComponent final : public Minigin::Component
 {
@@ -33,9 +33,9 @@ public:
 	bool CanMove(const glm::ivec2& position, MovementComponent::Direction direction) const;
 	float GetRenderScale() const;
 	glm::ivec2 GetTileIndices(const glm::ivec2& position) const;
-	Minigin::Subject<PokemonComponent*>& OnBattleStart();
+	Minigin::Subject<TrainerComponent*>& OnPokemonEncounter();
 	const Tile& GetTile(int row, int collumn) const;
-	void CheckForBattle(const glm::ivec2& position);
+	void CheckForBattle(TrainerComponent* trainer);
 
 private:
 	void RenderTile(const Tile& tile, const size_t row, const size_t collumn) const;
@@ -56,5 +56,5 @@ private:
 	std::random_device m_RandomDevice;
 	std::mt19937 m_RandomEngine;
 	std::uniform_int_distribution<int> m_RandomDistribution;
-	Minigin::Subject<PokemonComponent*> m_OnBattleStart;
+	Minigin::Subject<TrainerComponent*> m_OnPokemonEncounter;
 };

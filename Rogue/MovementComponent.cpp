@@ -3,6 +3,7 @@
 #include <format>
 
 #include "MovementComponent.h"
+#include "TrainerComponent.h"
 #include "GameObject.h"
 #include "TimeManager.h"
 #include "TileManagerComponent.h"
@@ -16,11 +17,15 @@ MovementComponent::MovementComponent(Minigin::GameObject* owner, TileManagerComp
 	m_Direction{ Direction::Down },
 	m_TargetPosition{},
 	m_TileManagerComponent{ tileManager },
+	m_TrainerComponent{ owner->GetComponent<TrainerComponent>() },
 	m_Speed{ 200.0f },
 	m_SpriteComponent{ GetOwner()->GetComponent<SpriteComponent>() }
 {
 	TeleportToStartTile();
 	AddMovementSrites();
+
+	assert(m_TileManagerComponent);
+	assert(m_TrainerComponent);
 }
 
 void MovementComponent::Update()
@@ -67,7 +72,6 @@ void MovementComponent::Update()
 		}
 
 		GetOwner()->SetLocalPosition(newPosition);
-		m_TileManagerComponent->CheckForBattle(newPosition);
 	}
 }
 
@@ -151,8 +155,12 @@ void MovementComponent::CompleteMovement(glm::ivec2& newPosition)
 	m_TargetPosition.reset();
 	m_SpriteComponent->SetPaused(true);
 
+#ifdef _DEBUG
 	glm::ivec2 newTileIndices{ m_TileManagerComponent->GetTileIndices(newPosition) };
 	std::cout << std::format("({}, {})", newTileIndices.x, newTileIndices.y) << std::endl;
+#endif // DEBUG
+
+	m_TileManagerComponent->CheckForBattle(m_TrainerComponent);
 }
 
 void MovementComponent::AddMovementSrites()

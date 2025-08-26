@@ -1,0 +1,48 @@
+[
+  {
+    "index": 1,
+    "name": "Treecko",
+    "moves":
+    [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "razor-wind",
+        "power": 80
+      }
+    ]
+  },
+  {
+    "index": 2,
+    "name": "Grovyle",
+    "moves":
+    [
+      {
+        "name": "pound",
+        "power": 40
+      },
+      {
+        "name": "mega-punch",
+        "power": 80
+      },
+      {
+        "name": "thunder-punch",
+        "power": 75
+      },
+      {
+        "name": "swords-dance",
+        "power": 0
+      }
+    ]
+  }
+]
