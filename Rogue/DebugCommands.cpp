@@ -1,5 +1,9 @@
 #include "DebugCommands.h"
+
+// Components
 #include "BattleManagerComponent.h"
+
+using namespace Minigin;
 
 SkipBattleCommand::SkipBattleCommand(BattleManagerComponent* battleManager) :
 	Command{},
@@ -10,5 +14,8 @@ SkipBattleCommand::SkipBattleCommand(BattleManagerComponent* battleManager) :
 
 void SkipBattleCommand::Execute()
 {
-	m_BattleManager->EndBattle();
+	if (m_BattleManager->InBattle())
+	{
+		m_BattleManager->EndBattle();
+	}
 }

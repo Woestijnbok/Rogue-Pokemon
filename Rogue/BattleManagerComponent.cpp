@@ -1,20 +1,26 @@
-#include <filesystem>
-#include <fstream>
+#include "BattleManagerComponent.h"
+
+// Libraries
 #include <cassert>
 
-#include "BattleManagerComponent.h"
-#include "GameObject.h"
-#include "PokemonComponent.h"
-#include "ResourceManager.h"
-#include "SceneManager.h"
-#include "Pokedex.hpp"
-#include "Renderer.h"
+// Core
 #include "Engine.h"
+#include "Renderer.h"
+#include "ResourceManager.h"
+#include "GameObject.h"
 #include "Texture.h" 
+
+// Components
+#include "PokemonComponent.h"
+#include "TrainerComponent.h"
+
+// Other
+#include "Helpers.h"
+#include "Pokedex.hpp"
 
 using namespace Minigin;
 
-BattleManagerComponent::BattleManagerComponent(Minigin::GameObject* owner) :
+BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	Component{ owner },
 	m_CurrentBattle{ nullptr, nullptr },
 	m_OnBattleStarted{},
@@ -24,7 +30,10 @@ BattleManagerComponent::BattleManagerComponent(Minigin::GameObject* owner) :
 	m_TrainerPokemonTexture{},
 	m_RandomDevice{},
 	m_RandomEngine{ m_RandomDevice() },
-	m_RandomDistribution{ 1, POKEDEX_COUNT }
+	m_ChanceDistribution{ 0.0f, 100.0f },
+	m_CommonDistribution{ 1, POKEDEX_LEGENDARY_START - 1 },
+	m_LegendaryDistribution{ POKEDEX_LEGENDARY_START, POKEDEX_COUNT },
+	m_LegendaryChance{ 5 }
 {
 	assert(m_BattleBackground.get());
 }
@@ -37,8 +46,8 @@ void BattleManagerComponent::Render() const
 	Transform transform{ windowSize / 2 , 0, glm::vec2{ windowSize.x / float(textureSize.x), windowSize.y / float(textureSize.y) } };
 	Renderer::Instance()->RenderTexture(*m_BattleBackground, transform);
 
-	transform.SetScale(glm::vec2{ 1.0f });
-	transform.SetPosition(glm::ivec2{ 50, 50 });
+	transform.SetScale(glm::vec2{ 3.0f });
+	transform.SetPosition(glm::ivec2{ 200, 100 });
 	Renderer::Instance()->RenderTexture(*m_TrainerPokemonTexture, transform);
 
 	transform.SetPosition(glm::ivec2{ 700, 350 });
@@ -47,18 +56,31 @@ void BattleManagerComponent::Render() const
 
 void BattleManagerComponent::MakeBattle(TrainerComponent* trainer)
 {
-	trainer;
-	StartBattle(ReadPokemon(static_cast<uint8_t>(m_RandomDistribution(m_RandomEngine))), ReadPokemon(static_cast<uint8_t>(m_RandomDistribution(m_RandomEngine))));
+	uint8_t enemyPokemonIndex{ 0 };
+	if (m_ChanceDistribution(m_RandomEngine) <= m_LegendaryChance)
+	{
+		enemyPokemonIndex = static_cast<uint8_t>(m_LegendaryDistribution(m_RandomEngine));
+	}
+	else
+	{
+		enemyPokemonIndex = static_cast<uint8_t>(m_CommonDistribution(m_RandomEngine));
+	}
+
+	StartBattle(trainer->GetActivePokemon(), ReadPokemon(enemyPokemonIndex));
 }
 
 void BattleManagerComponent::EndBattle()
 {
-	m_OnBattleFinished.Notify();
-
-	m_CurrentBattle.first->GetOwner()->SetStatus(ControllableObject::Status::Destroyed);
 	m_CurrentBattle.second->GetOwner()->SetStatus(ControllableObject::Status::Destroyed);
-	m_TrainerPokemonTexture.reset();
+	m_CurrentBattle.second = nullptr;
 	m_EnemyPokemonTexture.reset();
+
+	m_OnBattleFinished.Notify();
+}
+
+bool BattleManagerComponent::InBattle() const
+{
+	return m_CurrentBattle.second != nullptr;
 }
 
 Minigin::Subject<>& BattleManagerComponent::OnBattleStarted()
@@ -71,32 +93,15 @@ Minigin::Subject<>& BattleManagerComponent::OnBattleFinished()
 	return m_OnBattleFinished;
 }
 
-PokemonComponent* BattleManagerComponent::ReadPokemon(uint8_t pokedexIndex) const
+void BattleManagerComponent::StartBattle(PokemonComponent* trainer, PokemonComponent* enemy)
 {
-	const std::filesystem::path path{ ResourceManager::Instance()->GetFileRootPath() / "Pokedex.bin" };
-	assert(std::filesystem::exists(path));
-
-	std::ifstream file{ path, std::ios::binary };
-	assert(file.is_open());
-
-	file.seekg(sizeof(PODPokemon) * (pokedexIndex - 1));
-
-	PODPokemon pokemon{};
-	file.read(reinterpret_cast<char*>(&pokemon), sizeof(PODPokemon));
-
-	Scene* battleScene{ SceneManager::Instance()->GetScene("Battle") };
-	GameObject* pokemonObject{ battleScene->CreateGameObject(pokemon.Name) };
-	PokemonComponent* pokemonComponent{ pokemonObject->CreateComponent<PokemonComponent>(pokemon) };
-
-	return pokemonComponent;
-}
-
-void BattleManagerComponent::StartBattle(PokemonComponent* player, PokemonComponent* enemy)
-{
-	m_CurrentBattle.first = player;
+	if (m_CurrentBattle.first != trainer)
+	{
+		m_CurrentBattle.first = trainer;
+		m_TrainerPokemonTexture.reset(Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / std::format("Pokemon/{}.png", trainer->GetName())));
+	}
+	
 	m_CurrentBattle.second = enemy;
-
-	m_TrainerPokemonTexture.reset(Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / std::format("Pokemon/{}.png", player->GetName())));
 	m_EnemyPokemonTexture.reset(Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / std::format("Pokemon/{}.png", enemy->GetName())));
 
 	m_OnBattleStarted.Notify();

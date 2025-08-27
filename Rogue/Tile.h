@@ -1,19 +1,16 @@
 #pragma once
 
+// Libraries
 #include <cstdint>
 
-class Tile final
+// Other
+#include "Enums.h"
+
+/*
+* Tile struct containing all information a tile holds.
+*/
+struct Tile final
 {
-public:
-
-	enum class Terrain : uint8_t
-	{
-		Dirt,
-		Grass,
-		Item,
-		Pokemon
-	};
-
 	Tile();
 	explicit Tile(Terrain terrain);
 	~Tile() = default;
@@ -23,9 +20,6 @@ public:
 	Tile& operator=(const Tile& other) = default;
 	Tile& operator=(Tile&& other) noexcept = default;
 
-	Terrain GetTerrain() const;
-	void SetTerrain(Terrain terrain);
-
-private:
-	Terrain m_Terrain;
+	// Terrain type for this tile
+	Terrain Type;
 };

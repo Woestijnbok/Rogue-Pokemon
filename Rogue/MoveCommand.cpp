@@ -1,25 +1,22 @@
-#include <exception>
-
 #include "MoveCommand.h"
+
+// Libraries
+#include <cassert>
+
+// Core
 #include "GameObject.h"
+
+// Components
 #include "MovementComponent.h"
 
 using namespace Minigin;
 
-MoveCommand::MoveCommand(MovementComponent* component, MovementComponent::Direction direction) :
-	GameObjectCommand{ component->GetOwner() },
+MoveCommand::MoveCommand(MovementComponent* movementComponent, Direction direction) :
+	GameObjectCommand{ movementComponent->GetOwner() },
 	m_Direction{ direction },
-	m_MovementComponent{ component }
+	m_MovementComponent{ movementComponent }
 {
-	if (GetGameObject() == nullptr)
-	{
-		throw std::exception{ "MoveCommand::MoveCommand() - Move command has invalid game object" };
-	}
-
-	if (m_MovementComponent == nullptr)
-	{
-		throw std::exception{ "MoveCommand::MoveCommand() - Move command has invalid tank component." };
-	}
+	assert(m_MovementComponent);
 }
 
 void MoveCommand::Execute()

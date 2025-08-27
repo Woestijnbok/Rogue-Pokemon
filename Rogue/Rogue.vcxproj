@@ -210,8 +210,13 @@ xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin"
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BattleManagerComponent.cpp" />
-    <ClCompile Include="DebugCommands.cpp" />
+    <ClCompile Include="DebugCommands.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Move.cpp" />
     <ClCompile Include="MoveCommand.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="PokemonComponent.cpp" />
@@ -221,7 +226,13 @@ xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin"
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BattleManagerComponent.h" />
-    <ClInclude Include="DebugCommands.h" />
+    <ClInclude Include="DebugCommands.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Enums.h" />
+    <ClInclude Include="Helpers.h" />
+    <ClInclude Include="Move.h" />
     <ClInclude Include="MoveCommand.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="PokemonComponent.h" />

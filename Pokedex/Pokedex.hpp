@@ -8,6 +8,7 @@
 
 #define MAX_NAME_LENGTH 50
 #define POKEDEX_COUNT 202
+#define POKEDEX_LEGENDARY_START 193
 
 struct PODMove final
 {

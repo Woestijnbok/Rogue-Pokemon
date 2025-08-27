@@ -1,17 +1,14 @@
 #include "PokemonComponent.h"
+
+// Core
 #include "GameObject.h"
+
+// Other
 #include "Pokedex.hpp"
 
 using namespace Minigin;
 
-Move::Move(const std::string& name, uint8_t power) :
-	Name{ name },
-	Power{ power }
-{
-
-}
-
-PokemonComponent::PokemonComponent(Minigin::GameObject* owner, const PODPokemon& pokemon) :
+PokemonComponent::PokemonComponent(GameObject* owner, const PODPokemon& pokemon) :
 	Component{ owner },
 	m_Name{ pokemon.Name },
 	m_Moves

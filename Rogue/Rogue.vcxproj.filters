@@ -5,9 +5,6 @@
     <ClCompile Include="TileManagerComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="TrainerComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -26,6 +23,15 @@
     <ClCompile Include="DebugCommands.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
+    <ClCompile Include="Helpers.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -34,15 +40,12 @@
     <Filter Include="Commands">
       <UniqueIdentifier>{42f98310-399a-47ea-b814-42de1b159bfd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Helpers">
+    <Filter Include="Other">
       <UniqueIdentifier>{97d28b87-bb20-4709-982f-620f78deb176}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TileManagerComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="TrainerComponent.h">
@@ -62,6 +65,18 @@
     </ClInclude>
     <ClInclude Include="DebugCommands.h">
       <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Helpers.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Enums.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
+      <Filter>Other</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

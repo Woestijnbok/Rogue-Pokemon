@@ -1,22 +1,33 @@
-#define WIN32_LEAN_AND_MEAN
-
+// Libraries
 #include <Windows.h>
 #include <iostream>
 #include <functional>
 #include <vec2.hpp>
 
+// Core
 #include "Engine.h"
 #include "ResourceManager.h"
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "Scene.h"
+
+// Components
 #include "TileManagerComponent.h"
 #include "BattleManagerComponent.h"
-#include "DebugCommands.h"
 #include "TrainerComponent.h"
 #include "MovementComponent.h"
-#include "MoveCommand.h"
 #include "SpriteComponent.h"
+
+// Commands
+#include "MoveCommand.h"
+#ifdef _DEBUG
+#include "DebugCommands.h"
+#endif
+
+// Other
+#include "Enums.h"
+
+#define WIN32_LEAN_AND_MEAN
 
 using namespace Minigin;
 
@@ -55,10 +66,10 @@ void Load()
 	MovementComponent* movementComponent{ trainerObject->CreateComponent<MovementComponent>(tileManagerComponent) };
 
 	// Trainer input
-	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::W, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, MovementComponent::Direction::Up));
-	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::D, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, MovementComponent::Direction::Right));
-	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::S, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, MovementComponent::Direction::Down));
-	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::A, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, MovementComponent::Direction::Left));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::W, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, Direction::Up));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::D, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, Direction::Right));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::S, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, Direction::Down));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::A, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, Direction::Left));
 
 #ifdef _DEBUG
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::B, InputAction::Trigger::Pressed, std::make_shared<SkipBattleCommand>(battleManagerComponent));

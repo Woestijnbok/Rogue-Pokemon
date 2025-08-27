@@ -1,36 +1,45 @@
-#include <cassert>
-#include <iostream>
-#include <format>
-
 #include "MovementComponent.h"
-#include "TrainerComponent.h"
+
+// Libraries
+#include <cassert>
+#include <format>
+#ifdef _DEBUG
+#include <iostream>
+#endif
+
+// Core
 #include "GameObject.h"
 #include "TimeManager.h"
+#include "ResourceManager.h"
+
+// Components
+#include "TrainerComponent.h"
 #include "TileManagerComponent.h"
 #include "SpriteComponent.h"
-#include "ResourceManager.h"
 
 using namespace Minigin;
 
 MovementComponent::MovementComponent(Minigin::GameObject* owner, TileManagerComponent* tileManager) :
 	Component{ owner },
 	m_Direction{ Direction::Down },
+	m_Moving{ false },
+	m_Speed{ 200.0f },
 	m_TargetPosition{},
 	m_TileManagerComponent{ tileManager },
 	m_TrainerComponent{ owner->GetComponent<TrainerComponent>() },
-	m_Speed{ 200.0f },
-	m_SpriteComponent{ GetOwner()->GetComponent<SpriteComponent>() }
+	m_SpriteComponent{ owner->GetComponent<SpriteComponent>() }
 {
-	TeleportToStartTile();
-	AddMovementSrites();
-
 	assert(m_TileManagerComponent);
 	assert(m_TrainerComponent);
+	assert(m_SpriteComponent);
+
+	TeleportToStartTile();
+	AddMovementSrites();
 }
 
 void MovementComponent::Update()
 {
-	if (m_Moving)
+	if (IsMoving())
 	{
 		assert(m_TargetPosition.has_value());
 
@@ -77,7 +86,7 @@ void MovementComponent::Update()
 
 void MovementComponent::Move(Direction direction)
 {
-	if (!m_Moving)
+	if (!IsMoving())
 	{
 		const glm::ivec2 currentPosition{ GetOwner()->GetLocalTransform().GetPosition() };
 
@@ -123,9 +132,14 @@ void MovementComponent::Move(Direction direction)
 	}
 }
 
-MovementComponent::Direction MovementComponent::GetDirection() const
+Direction MovementComponent::GetDirection() const
 {
 	return m_Direction;
+}
+
+bool MovementComponent::IsMoving() const
+{
+	return m_Moving;
 }
 
 void MovementComponent::SetSpeed(float speed)
@@ -148,7 +162,7 @@ void MovementComponent::TeleportToStartTile()
 
 void MovementComponent::CompleteMovement(glm::ivec2& newPosition)
 {
-	assert(m_TargetPosition.has_value() and m_Moving);
+	assert(m_TargetPosition.has_value() and IsMoving());
 
 	newPosition = m_TargetPosition.value();
 	m_Moving = false;
@@ -165,6 +179,7 @@ void MovementComponent::CompleteMovement(glm::ivec2& newPosition)
 
 void MovementComponent::AddMovementSrites()
 {
+	// TODO: move to sprite component (child of) using OnMoveStarted and OnMoveCompleted events?
 	assert(m_SpriteComponent);
 	
 	// TODO: take a look at how hardcoded values can be avoided here
