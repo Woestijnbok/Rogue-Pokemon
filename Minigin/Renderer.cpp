@@ -32,7 +32,9 @@ public:
 	Texture* CreateTexture(Font* font, const std::string& text);
 	void RenderTexture(const Texture& texture, const Transform& transform, const glm::ivec2& center) const;	
 	void RenderSprite(const Sprite& sprite, int frame, const Transform& transform) const;
+#ifdef _DEBUG
 	void RenderDebugBox(const glm::ivec2& bottomLeft, const glm::ivec2 topRight, const Color color, bool fill) const;
+#endif
 
 private:
 	SDL_Renderer* m_Renderer;
@@ -194,6 +196,7 @@ void Renderer::Impl::RenderSprite(const Sprite& sprite, int frame, const Transfo
 	SDL_RenderCopyEx(m_Renderer, sprite.GetSheet()->GetTexture(), &source, &destination, static_cast<double>(angle), nullptr, flip);	
 }
 
+#ifdef _DEBUG
 void Renderer::Impl::RenderDebugBox(const glm::ivec2& bottomLeft, const glm::ivec2 topRight, const Color color, bool fill) const
 {
 	SDL_SetRenderDrawColor(m_Renderer, color.r, color.g, color.b, color.a);
@@ -209,6 +212,7 @@ void Renderer::Impl::RenderDebugBox(const glm::ivec2& bottomLeft, const glm::ive
 		SDL_RenderDrawRect(m_Renderer, &rectangle);
 	}
 }
+#endif
 
 int Renderer::Impl::GetDriverIndex() const
 {
@@ -262,7 +266,9 @@ void Renderer::RenderSprite(const Sprite& sprite, int frame, const Transform& tr
 	m_Pimpl->RenderSprite(sprite, frame, transform);
 }
 
+#ifdef _DEBUG
 void Minigin::Renderer::RenderDebugBox(const glm::ivec2& bottomLeft, const glm::ivec2 topRight, const Color color, bool fill) const
 {
 	m_Pimpl->RenderDebugBox(bottomLeft, topRight, color, fill);
 }
+#endif

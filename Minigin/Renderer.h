@@ -48,7 +48,9 @@ namespace Minigin
 		*/
 		void RenderSprite(const Sprite& sprite, int frame, const Transform& transform) const;
 
+#ifdef _DEBUG
 		void RenderDebugBox(const glm::ivec2& bottomLeft, const glm::ivec2 topRight, const Color color, bool fill) const;
+#endif
 
 	private:
 		class Impl;

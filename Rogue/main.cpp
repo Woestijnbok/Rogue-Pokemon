@@ -3,6 +3,9 @@
 #include <iostream>
 #include <functional>
 #include <vec2.hpp>
+#ifdef _DEBUG
+#include <vld.h>
+#endif
 
 // Core
 #include "Engine.h"
