@@ -26,6 +26,7 @@
 
 // Other
 #include "Enums.h"
+#include "Helpers.h"
 
 #define WIN32_LEAN_AND_MEAN
 
@@ -62,8 +63,9 @@ void Load()
 	// Trainer game object & components
 	GameObject* trainerObject{ worldScene->CreateGameObject("Trainer", true) };
 	TrainerComponent* trainerComponent{ trainerObject->CreateComponent<TrainerComponent>() }; trainerComponent;
-	SpriteComponent* spriteComponent{ trainerObject->CreateComponent<SpriteComponent>() }; spriteComponent;
 	MovementComponent* movementComponent{ trainerObject->CreateComponent<MovementComponent>(tileManagerComponent) };
+	SpriteComponent* spriteComponent{ MakeTrainerSprites(trainerObject, tileManagerComponent, movementComponent) };
+	ConnectSpritesToMovement(spriteComponent, movementComponent);
 
 	// Trainer input
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::W, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, Direction::Up));

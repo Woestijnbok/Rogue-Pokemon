@@ -6,14 +6,10 @@
 
 // Core
 #include "Component.h"
+#include "Subject.h"
 
 // Other
 #include "Enums.h"
-
-namespace Minigin
-{
-	class SpriteComponent;
-}
 
 class TileManagerComponent;
 class TrainerComponent;
@@ -63,11 +59,29 @@ public:
 	*/
 	bool IsMoving() const;
 	/*
+	* Gets the speed of the movement component.
+	*
+	* @return The speed to use for movement.
+	*/
+	float GetSpeed() const;
+	/*
 	* Sets the speed for the movement component.
 	* 
 	* @param speed: The speed to use for movement.
 	*/
 	void SetSpeed(float speed);
+	/*
+	* Gets the on move started event.
+	* 
+	* @return Move started event.
+	*/
+	Minigin::Subject<Direction>& OnMoveStarted();
+	/*
+	* Gets the on move completed event.
+	*
+	* @return Move completed event.
+	*/
+	Minigin::Subject<>& OnMoveCompleted();
 
 private:
 	/*
@@ -87,10 +101,6 @@ private:
 	* @param newPosition: The position that will be set to the finished target position
 	*/
 	void CompleteMovement(glm::ivec2& newPosition);
-	/*
-	* Adds the required movement sprites.
-	*/
-	void AddMovementSrites(); 
 
 	// Current direction
 	Direction m_Direction;
@@ -104,6 +114,8 @@ private:
 	TileManagerComponent* m_TileManagerComponent;
 	// Cached trainer component
 	TrainerComponent* m_TrainerComponent;
-	// Cached sprite component
-	Minigin::SpriteComponent* m_SpriteComponent;
+	// Move started event
+	Minigin::Subject<Direction> m_OnMoveStarted;
+	// Move completed event
+	Minigin::Subject<> m_OnMoveCompleted;
 };

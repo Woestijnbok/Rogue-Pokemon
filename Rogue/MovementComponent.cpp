@@ -15,7 +15,6 @@
 // Components
 #include "TrainerComponent.h"
 #include "TileManagerComponent.h"
-#include "SpriteComponent.h"
 
 using namespace Minigin;
 
@@ -26,15 +25,12 @@ MovementComponent::MovementComponent(Minigin::GameObject* owner, TileManagerComp
 	m_Speed{ 200.0f },
 	m_TargetPosition{},
 	m_TileManagerComponent{ tileManager },
-	m_TrainerComponent{ owner->GetComponent<TrainerComponent>() },
-	m_SpriteComponent{ owner->GetComponent<SpriteComponent>() }
+	m_TrainerComponent{ owner->GetComponent<TrainerComponent>() }
 {
 	assert(m_TileManagerComponent);
 	assert(m_TrainerComponent);
-	assert(m_SpriteComponent);
 
 	TeleportToStartTile();
-	AddMovementSrites();
 }
 
 void MovementComponent::Update()
@@ -96,31 +92,15 @@ void MovementComponent::Move(Direction direction)
 			{
 			case Direction::Up:
 				m_TargetPosition.emplace(currentPosition.x, currentPosition.y + static_cast<int>(m_TileManagerComponent->GetTileSize()));
-				m_SpriteComponent->SetSprite("Up");
 				break;
 			case Direction::Right:
 				m_TargetPosition.emplace(currentPosition.x + static_cast<int>(m_TileManagerComponent->GetTileSize()), currentPosition.y);
-				m_SpriteComponent->SetSprite("Right");
-				// TODO: make sprite flipper helper function
-				{
-					const Transform spriteRenderOffset{ m_SpriteComponent->GetCurrentSprite()->RenderOffset.value() };
-					m_SpriteComponent->GetCurrentSprite()->RenderOffset.value().SetScale(glm::vec2{ std::abs(spriteRenderOffset.GetScale().x), spriteRenderOffset.GetScale().y });
-					m_SpriteComponent->GetCurrentSprite()->RenderOffset.value().SetPosition(glm::ivec2{ -std::abs(spriteRenderOffset.GetPosition().x), spriteRenderOffset.GetPosition().y});
-				}
 				break;
 			case Direction::Down:
 				m_TargetPosition.emplace(currentPosition.x, currentPosition.y - static_cast<int>(m_TileManagerComponent->GetTileSize()));
-				m_SpriteComponent->SetSprite("Down");
 				break;
 			case Direction::Left:
 				m_TargetPosition.emplace(currentPosition.x - static_cast<int>(m_TileManagerComponent->GetTileSize()), currentPosition.y);
-				m_SpriteComponent->SetSprite("Right");
-				
-				{
-					const Transform spriteRenderOffset{ m_SpriteComponent->GetCurrentSprite()->RenderOffset.value() };
-					m_SpriteComponent->GetCurrentSprite()->RenderOffset.value().SetScale(glm::vec2{ -std::abs(spriteRenderOffset.GetScale().x), spriteRenderOffset.GetScale().y });
-					m_SpriteComponent->GetCurrentSprite()->RenderOffset.value().SetPosition(glm::ivec2{ std::abs(spriteRenderOffset.GetPosition().x), spriteRenderOffset.GetPosition().y });
-				}
 				break;
 			default:
 				throw std::exception{ "MovementComponent::Update() - Invalid direction." };
@@ -128,6 +108,7 @@ void MovementComponent::Move(Direction direction)
 
 			m_Moving = true;
 			SetDirection(direction);
+			m_OnMoveStarted.Notify(direction);
 		}
 	}
 }
@@ -142,9 +123,24 @@ bool MovementComponent::IsMoving() const
 	return m_Moving;
 }
 
+float MovementComponent::GetSpeed() const
+{
+	return m_Speed;
+}
+
 void MovementComponent::SetSpeed(float speed)
 {
 	m_Speed = speed;
+}
+
+Minigin::Subject<Direction>& MovementComponent::OnMoveStarted()
+{
+	return m_OnMoveStarted;
+}
+
+Minigin::Subject<>& MovementComponent::OnMoveCompleted()
+{
+	return m_OnMoveCompleted;
 }
 
 void MovementComponent::SetDirection(Direction direction)
@@ -167,53 +163,12 @@ void MovementComponent::CompleteMovement(glm::ivec2& newPosition)
 	newPosition = m_TargetPosition.value();
 	m_Moving = false;
 	m_TargetPosition.reset();
-	m_SpriteComponent->SetPaused(true);
+	m_OnMoveCompleted.Notify();
 
 #ifdef _DEBUG
 	glm::ivec2 newTileIndices{ m_TileManagerComponent->GetTileIndices(newPosition) };
 	std::cout << std::format("({}, {})", newTileIndices.x, newTileIndices.y) << std::endl;
 #endif // DEBUG
 
-	m_TileManagerComponent->CheckForBattle(m_TrainerComponent);
-}
-
-void MovementComponent::AddMovementSrites()
-{
-	// TODO: move to sprite component (child of) using OnMoveStarted and OnMoveCompleted events?
-	assert(m_SpriteComponent);
-	
-	// TODO: take a look at how hardcoded values can be avoided here
-	constexpr int frames{ 3 };
-	constexpr glm::vec2 feetOffsetUpDown{ 0, 5 };
-	constexpr glm::vec2 feetOffsetRight{ -2, 5 };
-	const std::chrono::milliseconds frameTime{ std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::duration<float>(m_TileManagerComponent->GetTileSize() / (m_Speed * frames))) };
-	const float renderScale{ m_TileManagerComponent->GetRenderScale() };
-
-	const SpriteInformation downSpriteInformation
-	{ 
-		ResourceManager::Instance()->LoadSprite("Character/Down.png", frames, 3, 1),
-		frameTime,
-		Transform{ glm::ivec2{ feetOffsetUpDown * renderScale }, 0, glm::vec2{ renderScale } }
-	};
-	m_SpriteComponent->AddSprite("Down", downSpriteInformation);
-
-	const SpriteInformation rightSpriteInformation
-	{
-		ResourceManager::Instance()->LoadSprite("Character/Right.png", frames, 3, 1),
-		frameTime,
-		Transform{ glm::ivec2{ feetOffsetRight * renderScale }, 0, glm::vec2{ renderScale } }
-	};
-	m_SpriteComponent->AddSprite("Right", rightSpriteInformation);
-
-	const SpriteInformation upSpriteInformation
-	{
-		ResourceManager::Instance()->LoadSprite("Character/Up.png", frames, 3, 1),
-		frameTime,
-		Transform{ glm::ivec2{ feetOffsetUpDown * renderScale }, 0, glm::vec2{ renderScale } }
-	};
-	m_SpriteComponent->AddSprite("Up", upSpriteInformation);
-
-	m_SpriteComponent->SetSprite("Down");
-	m_SpriteComponent->SetPaused(true);
-	m_SpriteComponent->SetLoop(false);
+	m_TileManagerComponent->CheckForBattle(m_TrainerComponent); // TODO: Make the tile manager check this using on move completed event
 }

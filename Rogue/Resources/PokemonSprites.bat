@@ -1,4 +1,4 @@
 @echo off
 REM Ensure Python is in your PATH
-python fetchpokemon.py
+python PokemonSprites.py
 pause
