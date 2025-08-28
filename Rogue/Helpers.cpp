@@ -34,7 +34,7 @@ PokemonComponent* ReadPokemon(uint8_t pokedexIndex)
 	file.read(reinterpret_cast<char*>(&pokemon), sizeof(PODPokemon));
 
 	Scene* battleScene{ SceneManager::Instance()->GetScene("Battle") };
-	GameObject* pokemonObject{ battleScene->CreateGameObject(pokemon.Name) };
+	GameObject* pokemonObject{ battleScene->CreateGameObject(std::format("Wild {}", pokemon.Name)) }; // TODO: fix crash when trainer has the same pokemon because of the same name
 	PokemonComponent* pokemonComponent{ pokemonObject->CreateComponent<PokemonComponent>(pokemon) };
 
 	return pokemonComponent;

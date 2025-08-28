@@ -24,6 +24,7 @@ TileManagerComponent::TileManagerComponent(Minigin::GameObject* owner) :
 	m_TileChanceGrass{ 10.0f },
 	m_TileChancePokemon{ 5.0f },
 	m_TileChanceItem{ 1.0f },
+	m_StartTile{ 5, 5 },
 	m_Tiles{},
 	m_TileDirtTexture{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Tiles/Dirt.png") },
 	m_TileGrassTexture{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Tiles/Grass.png") },
@@ -50,23 +51,7 @@ void TileManagerComponent::Render() const
 
 glm::ivec2 TileManagerComponent::GetStartTile() const
 {
-	glm::ivec2 tile{ -1, -1 };
-	size_t index{ 0 };
-
-	do
-	{
-		if (m_Tiles.at(index).Type == Terrain::Dirt)
-		{
-			tile.x = int(index / m_Collumns);
-			tile.y = int(index % m_Collumns);
-			return tile;
-		}
-
-		++index;
-	} 
-	while (index < m_Tiles.size() and tile.x == -1);
-
-	return tile;
+	return m_StartTile;
 }
 
 size_t TileManagerComponent::GetTileSize() const
@@ -177,4 +162,6 @@ void TileManagerComponent::RandomizeTiles()
 			}
 		}
 	}
+
+	m_Tiles.at((m_StartTile.x * m_Collumns) + m_StartTile.y).Type = Terrain::Dirt;
 }

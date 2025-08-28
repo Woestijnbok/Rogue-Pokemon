@@ -88,6 +88,14 @@ private:
 	Minigin::Subject<> m_OnBattleFinished;
 	// Battle background texture
 	std::unique_ptr<Minigin::Texture> m_BattleBackground;
+	// Battle trainer cloud texture
+	std::unique_ptr<Minigin::Texture> m_TrainerCloud;
+	// Battle enemy cloud texture
+	std::unique_ptr<Minigin::Texture> m_EnemyCloud;
+	// Battle info box texture
+	std::unique_ptr<Minigin::Texture> m_InfoBox;
+	// Battle move box texture
+	std::unique_ptr<Minigin::Texture> m_MoveBox;
 	// Trainer's active pokemon texture
 	std::unique_ptr<Minigin::Texture> m_TrainerPokemonTexture;
 	// Wild pokemon texture

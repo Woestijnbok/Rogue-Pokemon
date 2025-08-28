@@ -69,6 +69,7 @@ void Load()
 	MovementComponent* movementComponent{ trainerObject->CreateComponent<MovementComponent>(tileManagerComponent) };
 	SpriteComponent* spriteComponent{ MakeTrainerSprites(trainerObject, tileManagerComponent, movementComponent) };
 	ConnectSpritesToMovement(spriteComponent, movementComponent);
+	movementComponent->OnMoveCompleted().AddObserver(std::bind(&TileManagerComponent::CheckForBattle, tileManagerComponent, trainerComponent));
 
 	// Trainer input
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::W, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, Direction::Up));

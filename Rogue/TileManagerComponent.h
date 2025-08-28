@@ -129,6 +129,8 @@ private:
 	const float m_TileChancePokemon;
 	// Chance to generate a tile with an item
 	const float m_TileChanceItem;
+	// Start tile indices, this tile will always be dirt
+	const glm::ivec2 m_StartTile;
 	// Container containing all tiles
 	std::array<Tile, m_Collumns * m_Rows> m_Tiles;
 	// Dirt tile texture

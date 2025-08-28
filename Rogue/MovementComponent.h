@@ -12,7 +12,6 @@
 #include "Enums.h"
 
 class TileManagerComponent;
-class TrainerComponent;
 
 /*
 * Implements up, right, down and left tile based movement.
@@ -112,8 +111,6 @@ private:
 	std::optional<glm::ivec2> m_TargetPosition;
 	// Cached tile manager component
 	TileManagerComponent* m_TileManagerComponent;
-	// Cached trainer component
-	TrainerComponent* m_TrainerComponent;
 	// Move started event
 	Minigin::Subject<Direction> m_OnMoveStarted;
 	// Move completed event

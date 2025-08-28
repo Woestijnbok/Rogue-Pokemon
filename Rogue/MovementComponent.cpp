@@ -13,7 +13,6 @@
 #include "ResourceManager.h"
 
 // Components
-#include "TrainerComponent.h"
 #include "TileManagerComponent.h"
 
 using namespace Minigin;
@@ -24,11 +23,9 @@ MovementComponent::MovementComponent(Minigin::GameObject* owner, TileManagerComp
 	m_Moving{ false },
 	m_Speed{ 200.0f },
 	m_TargetPosition{},
-	m_TileManagerComponent{ tileManager },
-	m_TrainerComponent{ owner->GetComponent<TrainerComponent>() }
+	m_TileManagerComponent{ tileManager }
 {
 	assert(m_TileManagerComponent);
-	assert(m_TrainerComponent);
 
 	TeleportToStartTile();
 }
@@ -133,12 +130,12 @@ void MovementComponent::SetSpeed(float speed)
 	m_Speed = speed;
 }
 
-Minigin::Subject<Direction>& MovementComponent::OnMoveStarted()
+Subject<Direction>& MovementComponent::OnMoveStarted()
 {
 	return m_OnMoveStarted;
 }
 
-Minigin::Subject<>& MovementComponent::OnMoveCompleted()
+Subject<>& MovementComponent::OnMoveCompleted()
 {
 	return m_OnMoveCompleted;
 }
@@ -169,6 +166,4 @@ void MovementComponent::CompleteMovement(glm::ivec2& newPosition)
 	glm::ivec2 newTileIndices{ m_TileManagerComponent->GetTileIndices(newPosition) };
 	std::cout << std::format("({}, {})", newTileIndices.x, newTileIndices.y) << std::endl;
 #endif // DEBUG
-
-	m_TileManagerComponent->CheckForBattle(m_TrainerComponent); // TODO: Make the tile manager check this using on move completed event
 }
