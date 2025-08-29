@@ -106,7 +106,7 @@ Font* Minigin::ResourceManager::GetOrLoadFont(const std::filesystem::path& path,
 	const FontKey fontKey{ name, size };
 	Font* font{ nullptr };
 
-	if (!m_Fonts.contains(fontKey))
+	if (m_Fonts.contains(fontKey))
 	{
 		font = m_Fonts.find(fontKey)->second;
 	}

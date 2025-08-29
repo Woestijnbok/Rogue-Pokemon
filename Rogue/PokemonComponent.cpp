@@ -21,7 +21,7 @@ using namespace Minigin;
 
 PokemonComponent::PokemonComponent(GameObject* owner, const PODPokemon& pokemon, TrainerComponent* trainer) :
 	Component{ owner },
-	m_Name{  },
+	m_Name{ new Text{ pokemon.Name, ResourceManager::Instance()->GetOrLoadFont("Emerald.FON", "Emerald", 20) } },
 	m_Texture{ Renderer::Instance()->CreateTexture(GetPokemonTexturePath(pokemon.Name, false)) },
 	m_Moves
 	{ 

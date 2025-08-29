@@ -8,7 +8,8 @@
 #include "Renderer.h"
 #include "ResourceManager.h"
 #include "GameObject.h"
-#include "Texture.h" 
+#include "Texture.h"
+#include "Text.h"
 
 // Components
 #include "PokemonComponent.h"
@@ -51,6 +52,10 @@ void BattleManagerComponent::Render() const
 	transform.SetScale(glm::vec2{ 3.0f });
 	transform.SetPosition(glm::ivec2{ 200, 95 });
 	Renderer::Instance()->RenderTexture(*m_CurrentBattle.first->GetTexture(), transform);
+
+	transform.SetScale(glm::vec2{ 3.0f });
+	transform.SetPosition(glm::ivec2{ 400, 200 });
+	m_CurrentBattle.first->GetText()->Render(transform);
 
 	transform.SetPosition(glm::ivec2{ 700, 290 });
 	Renderer::Instance()->RenderTexture(*m_CurrentBattle.second->GetTexture(), transform);
