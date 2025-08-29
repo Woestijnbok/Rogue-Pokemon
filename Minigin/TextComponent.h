@@ -13,7 +13,7 @@ namespace Minigin
 	class TextComponent final : public Component
 	{
 	public:
-		explicit TextComponent(GameObject* owner, const std::string& text, std::shared_ptr<Font> font);
+		explicit TextComponent(GameObject* owner, const std::string& text, Font* font);
 		virtual ~TextComponent();
 
 		TextComponent(const TextComponent& other) = delete;
@@ -25,7 +25,7 @@ namespace Minigin
 		virtual void Render() const override;
 
 		void SetText(const std::string& text);
-		std::shared_ptr<Font> GetFont();
+		Font* GetFont();
 
 	private:
 		std::unique_ptr<Text> m_Text;

@@ -30,8 +30,6 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_EnemyCloud{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Enemy Cloud.png") },
 	m_InfoBox{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Info Box.png") },
 	m_MoveBox{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Move Box.png") },
-	m_EnemyPokemonTexture{},
-	m_TrainerPokemonTexture{},
 	m_RandomDevice{},
 	m_RandomEngine{ m_RandomDevice() },
 	m_ChanceDistribution{ 0.0f, 100.0f },
@@ -52,10 +50,10 @@ void BattleManagerComponent::Render() const
 
 	transform.SetScale(glm::vec2{ 3.0f });
 	transform.SetPosition(glm::ivec2{ 200, 95 });
-	Renderer::Instance()->RenderTexture(*m_TrainerPokemonTexture, transform);
+	Renderer::Instance()->RenderTexture(*m_CurrentBattle.first->GetTexture(), transform);
 
 	transform.SetPosition(glm::ivec2{ 700, 290 });
-	Renderer::Instance()->RenderTexture(*m_EnemyPokemonTexture, transform);
+	Renderer::Instance()->RenderTexture(*m_CurrentBattle.second->GetTexture(), transform);
 
 	transform.SetScale(glm::vec2{ 3.0f });
 	transform.SetPosition(glm::ivec2{ 500, 150 });
@@ -81,14 +79,14 @@ void BattleManagerComponent::MakeBattle(TrainerComponent* trainer)
 		enemyPokemonIndex = static_cast<uint8_t>(m_CommonDistribution(m_RandomEngine));
 	}
 
-	StartBattle(trainer->GetActivePokemon(), ReadPokemon(enemyPokemonIndex));
+	StartBattle(trainer->GetActivePokemon(), ReadPokemon(enemyPokemonIndex, nullptr));
 }
 
 void BattleManagerComponent::EndBattle()
 {
+	m_CurrentBattle.first = nullptr;
 	m_CurrentBattle.second->GetOwner()->SetStatus(ControllableObject::Status::Destroyed);
 	m_CurrentBattle.second = nullptr;
-	m_EnemyPokemonTexture.reset();
 
 	m_OnBattleFinished.Notify();
 }
@@ -110,14 +108,8 @@ Minigin::Subject<>& BattleManagerComponent::OnBattleFinished()
 
 void BattleManagerComponent::StartBattle(PokemonComponent* trainer, PokemonComponent* enemy)
 {
-	if (m_CurrentBattle.first != trainer)
-	{
-		m_CurrentBattle.first = trainer;
-		m_TrainerPokemonTexture.reset(Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / std::format("Pokemon/{} Back.png", trainer->GetName())));
-	}
-	
+	m_CurrentBattle.first = trainer;
 	m_CurrentBattle.second = enemy;
-	m_EnemyPokemonTexture.reset(Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / std::format("Pokemon/{}.png", enemy->GetName())));
 
 	m_OnBattleStarted.Notify();
 }

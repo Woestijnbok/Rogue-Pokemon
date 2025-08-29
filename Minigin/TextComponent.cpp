@@ -5,7 +5,7 @@
 
 using namespace Minigin;
 
-TextComponent::TextComponent(GameObject* owner, const std::string& text, std::shared_ptr<Font> font) :
+TextComponent::TextComponent(GameObject* owner, const std::string& text, Font* font) :
 	Component{ owner },
 	m_Text{ std::make_unique<Text>(text, font) }
 {
@@ -29,7 +29,7 @@ void TextComponent::SetText(const std::string& text)
 	m_Text->SetText(text);
 }
 
-std::shared_ptr<Font> TextComponent::GetFont()
+Font* TextComponent::GetFont()
 {
 	return m_Text->GetFont();	
 }

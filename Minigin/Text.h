@@ -4,17 +4,18 @@
 #include <memory>
 #include <vec2.hpp>
 
+#include "Font.h"
+#include "Texture.h"
+
 namespace Minigin
 {
-	class Font;
-	class Texture;
 	class Transform;
 
 	class Text final
 	{
 	public:
-		explicit Text(const std::string& text, std::shared_ptr<Font> font);
-		virtual ~Text();
+		explicit Text(const std::string& text, Font* font);
+		~Text() = default;
 
 		Text(const Text& other) = delete;
 		Text(Text&& other) noexcept = delete;
@@ -31,7 +32,8 @@ namespace Minigin
 		*/
 		void Render(const Transform& transform) const;	
 		void SetText(const std::string& text);
-		std::shared_ptr<Font> GetFont() const;
+		const std::string& GetText() const;
+		Font* GetFont() const;
 		glm::ivec2 GetSize();
 
 	private:

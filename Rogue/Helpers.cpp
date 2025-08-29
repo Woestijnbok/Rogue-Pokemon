@@ -1,8 +1,8 @@
 #include "Helpers.h"
 
 // Libraries
-#include <filesystem>
 #include <fstream>
+#include <format>
 
 // Core
 #include "ResourceManager.h"
@@ -14,13 +14,14 @@
 #include "TileManagerComponent.h"
 #include "SpriteComponent.h"
 #include "MovementComponent.h"
+#include "TrainerComponent.h"
 
 // Other
 #include "Pokedex.hpp"
 
 using namespace Minigin;
 
-PokemonComponent* ReadPokemon(uint8_t pokedexIndex)
+PokemonComponent* ReadPokemon(uint8_t pokedexIndex, TrainerComponent* trainer)
 {
 	const std::filesystem::path path{ ResourceManager::Instance()->GetFileRootPath() / "Pokedex.bin" };
 	assert(std::filesystem::exists(path));
@@ -34,8 +35,19 @@ PokemonComponent* ReadPokemon(uint8_t pokedexIndex)
 	file.read(reinterpret_cast<char*>(&pokemon), sizeof(PODPokemon));
 
 	Scene* battleScene{ SceneManager::Instance()->GetScene("Battle") };
-	GameObject* pokemonObject{ battleScene->CreateGameObject(std::format("Wild {}", pokemon.Name)) }; // TODO: fix crash when trainer has the same pokemon because of the same name
-	PokemonComponent* pokemonComponent{ pokemonObject->CreateComponent<PokemonComponent>(pokemon) };
+	GameObject* pokemonObject{ nullptr };
+	PokemonComponent* pokemonComponent{ nullptr };
+	if (trainer == nullptr)
+	{
+		pokemonObject = battleScene->CreateGameObject(std::format("Wild {}", pokemon.Name));
+		pokemonComponent = pokemonObject->CreateComponent<PokemonComponent>(pokemon);
+	}
+	else
+	{
+		pokemonObject = battleScene->CreateGameObject(std::format("Tamed {}", pokemon.Name));
+		pokemonComponent = pokemonObject->CreateComponent<PokemonComponent>(pokemon, trainer);
+	}
+	
 
 	return pokemonComponent;
 }
@@ -122,4 +134,11 @@ void ConnectSpritesToMovement(SpriteComponent* spriteComponent, MovementComponen
 			}
 		}
 	);
+}
+
+std::filesystem::path GetPokemonTexturePath(const std::string& name, bool isWild)
+{
+	const std::string textureName{ std::format("Pokemon/{}{}", name, (isWild) ? ".png" : " Back.png" ) };
+
+	return ResourceManager::Instance()->GetTextureRootPath() / textureName;
 }

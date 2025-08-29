@@ -1,21 +1,22 @@
 #include <stdexcept>
 #include <SDL_ttf.h>
+#include <algorithm>
+#include <ranges>
 
 #include "ResourceManager.h"
 #include "Renderer.h"
 #include "Texture.h"
-#include "Font.h"
 #include "Sprite.h"
 
 using namespace Minigin;
 
-const std::filesystem::path ResourceManager::m_TextureRootDirectory{ "Resources/Textures" };
-const std::filesystem::path ResourceManager::m_FontRootDirectory{ "Resources/Fonts" };
-const std::filesystem::path ResourceManager::m_AudioRootDirectory{ "Resources/Audio" };
-const std::filesystem::path ResourceManager::m_FileRootDirectory{ "Resources/Files" };
-
 ResourceManager::ResourceManager() :	
-	Singleton{}
+	Singleton{},
+	m_TextureRootDirectory{ "Resources/Textures" },
+	m_FontRootDirectory{ "Resources/Fonts" },
+	m_AudioRootDirectory{ "Resources/Audio" },
+	m_FileRootDirectory{ "Resources/Files" },
+	m_Fonts{}
 {	
 	// Checking texture root directory	
 	if (std::filesystem::exists(m_TextureRootDirectory))
@@ -74,8 +75,12 @@ std::shared_ptr<Texture> ResourceManager::LoadTexture(const std::filesystem::pat
 	return std::shared_ptr<Texture>(Renderer::Instance()->CreateTexture(fullPath));		
 }
 
-std::shared_ptr<Font> ResourceManager::LoadFont(const std::filesystem::path& path, unsigned int size) const	
+Font* ResourceManager::LoadFont(const std::filesystem::path& path, const std::string& name, uint8_t size)
 {
+	const FontKey fontKey{ name, size };
+
+	assert(!m_Fonts.contains(fontKey));
+
 	const std::filesystem::path fullPath{ m_FontRootDirectory / path };	
 
 	if (std::filesystem::exists(fullPath))
@@ -87,7 +92,55 @@ std::shared_ptr<Font> ResourceManager::LoadFont(const std::filesystem::path& pat
 	}
 	else throw std::runtime_error("ResourceManager::CreateFont() - path given doesn't exist");
 
-	return std::make_shared<Font>(fullPath, size);	
+	Font* font{ new Font{ fullPath, size } };
+	if (!m_Fonts.emplace(fontKey, font).second)
+	{
+		throw std::runtime_error("ResourceManager::CreateFont() - Couldn't emplace font in fonts collection");
+	}
+
+	return font;
+}
+
+Font* Minigin::ResourceManager::GetOrLoadFont(const std::filesystem::path& path, const std::string& name, uint8_t size)
+{
+	const FontKey fontKey{ name, size };
+	Font* font{ nullptr };
+
+	if (!m_Fonts.contains(fontKey))
+	{
+		font = m_Fonts.find(fontKey)->second;
+	}
+	else
+	{
+		font = LoadFont(path, name, size);
+	}
+
+	return font;
+}
+
+void ResourceManager::RemoveFont(Font* font)
+{
+	const auto iterator{ std::ranges::find_if(m_Fonts, [font](const std::pair<const FontKey, Font*>& pair) -> bool { return pair.second == font; }) };
+
+	if (iterator == m_Fonts.end())
+	{
+		throw std::runtime_error("ResourceManager::RemoveFont() - Couldn't find the font to remove");
+	}
+
+	m_Fonts.erase(iterator->first);
+}
+
+Font* ResourceManager::GetFont(const std::string& name, uint8_t size) const
+{
+	const FontKey fontKey{ name, size };
+	Font* font{ m_Fonts.find(fontKey)->second };
+
+	if (font == nullptr)
+	{
+		throw std::runtime_error("ResourceManager::GetFont() - Couldn't find the font");
+	}
+
+	return font;
 }
 
 std::shared_ptr<Sprite> Minigin::ResourceManager::LoadSprite(const std::filesystem::path& path, int frames, int rows, int collumns)

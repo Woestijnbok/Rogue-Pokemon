@@ -13,7 +13,7 @@ using namespace Minigin;
 
 TrainerComponent::TrainerComponent(Minigin::GameObject* owner) :
 	Component{ owner },
-	m_ActivePokemon{ ReadPokemon(6) } // Blaziken pokedex index
+	m_ActivePokemon{ ReadPokemon(6, this) } // Blaziken pokedex index
 {
 	
 }

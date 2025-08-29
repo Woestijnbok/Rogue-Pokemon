@@ -2,14 +2,15 @@
 
 #include <memory>
 #include <filesystem>
+#include <unordered_map>
 
 #include "Singleton.h"
+#include "Font.h"
 
 namespace Minigin
 {
 	class Texture;
-	class Font;
-	class Sprite;		
+	class Sprite;
 
 	class ResourceManager final : public Singleton<ResourceManager>
 	{
@@ -24,7 +25,10 @@ namespace Minigin
 		ResourceManager& operator= (const ResourceManager&&) noexcept = delete;
 
 		std::shared_ptr<Texture> LoadTexture(const std::filesystem::path& path) const;
-		std::shared_ptr<Font> LoadFont(const std::filesystem::path& path, unsigned int size) const;
+		Font* LoadFont(const std::filesystem::path& path, const std::string& name, uint8_t size);
+		Font* GetOrLoadFont(const std::filesystem::path& path, const std::string& name, uint8_t size);
+		void RemoveFont(Font* font);
+		Font* GetFont(const std::string& name, uint8_t size) const;
 		std::shared_ptr<Sprite> LoadSprite(const std::filesystem::path& path, int frames, int rows, int collumns);
 		const std::filesystem::path& GetTextureRootPath() const;	
 		const std::filesystem::path& GetFontRootPath() const;
@@ -32,12 +36,12 @@ namespace Minigin
 		const std::filesystem::path& GetFileRootPath() const;
 
 	private:
-		static const std::filesystem::path m_TextureRootDirectory;
-		static const std::filesystem::path m_FontRootDirectory;
-		static const std::filesystem::path m_AudioRootDirectory;
-		static const std::filesystem::path m_FileRootDirectory;
+		const std::filesystem::path m_TextureRootDirectory;
+		const std::filesystem::path m_FontRootDirectory;
+		const std::filesystem::path m_AudioRootDirectory;
+		const std::filesystem::path m_FileRootDirectory;
+		std::unordered_map<FontKey, Font*> m_Fonts;
 
 		explicit ResourceManager();
-
 	};
 }

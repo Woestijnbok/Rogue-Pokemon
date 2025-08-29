@@ -1,21 +1,18 @@
 #include "Text.h"
-#include "Font.h"
-#include "Texture.h"
 #include "Renderer.h"
 #include "Transform.h"
+#include "ResourceManager.h"
 
 using namespace Minigin;
 
-Text::Text(const std::string& text, std::shared_ptr<Font> font) :
+Text::Text(const std::string& text, Font* font) :
 	m_NeedsUpdate{ true },
 	m_Text{ text },
-	m_Font{ std::move(font) },
-	m_Texture{ Renderer::Instance()->CreateTexture(m_Font.get(), m_Text) }		
+	m_Font{ font },
+	m_Texture{ Renderer::Instance()->CreateTexture(font, text) }		
 {
 
 }
-
-Text::~Text() = default;
 
 void Text::Update()
 {
@@ -37,16 +34,21 @@ void Text::SetText(const std::string& text)
 	m_NeedsUpdate = true;
 }
 
-std::shared_ptr<Font> Text::GetFont() const
+const std::string& Text::GetText() const
 {
-	return m_Font;
+	return m_Text;
+}
+
+Font* Text::GetFont() const
+{
+	return m_Font.get();
 }
 
 glm::ivec2 Minigin::Text::GetSize()
 {
 	if (m_NeedsUpdate)	
 	{
-		m_Texture.reset(Renderer::Instance()->CreateTexture(m_Font.get(), m_Text));	
+		m_Texture.reset(Renderer::Instance()->CreateTexture(m_Font.get(), m_Text));
 		m_NeedsUpdate = false;	
 	}
 

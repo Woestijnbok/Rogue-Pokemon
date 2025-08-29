@@ -1,0 +1,15 @@
+- Have the trainer be able to catch pokemon using master balls which can be picked up in the item loot table.
+- Main menu will have rayquaza background like in emerald, start menu, score menu, and a name text bar for the scores
+- In the play menu you will be able to select your start pokemon, one of the Hoenn starters final evolutions (Sceptile #3, Blaziken #6, Swampert #9)
+- Also in the play menu you wil be able to write a seed manually, this is optional
+- Pokemon component will hold their name, type(s), base stats, lvl = 100 (for now), moves and wether or not they have a trainer
+- A pokemon move will hold their type, power, accucary and wether or not it's pyhisical or special
+- Since pokemon now are always level 100 we could increase the wild pokemon lvl each new level and make the trainers pokemon go up using candy item
+- A heal item which heals the whole party to full health
+- Player progresses each level when heaving defeated 80% of pokemon, current level = score
+
+# Item Table
+
+1. Full Restore: Heals trainer's party to full health
+2. Master Ball: Can be used to catch pokemon in battle
+3. Rare Candy: Used to level your pokemon +7

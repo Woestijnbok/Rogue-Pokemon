@@ -96,10 +96,6 @@ private:
 	std::unique_ptr<Minigin::Texture> m_InfoBox;
 	// Battle move box texture
 	std::unique_ptr<Minigin::Texture> m_MoveBox;
-	// Trainer's active pokemon texture
-	std::unique_ptr<Minigin::Texture> m_TrainerPokemonTexture;
-	// Wild pokemon texture
-	std::unique_ptr<Minigin::Texture> m_EnemyPokemonTexture;
 	// Random device used for creating seeds
 	std::random_device m_RandomDevice;
 	// Random engine used to generate random values based on a seed.
