@@ -109,6 +109,7 @@ void TileManagerComponent::CheckForBattle(TrainerComponent* trainer)
 
 	if (GetTile(tileIndices.x, tileIndices.y).Type == Terrain::Pokemon)
 	{
+		m_Tiles.at((tileIndices.x * m_Collumns) + tileIndices.y).Type = Terrain::Grass;
 		m_OnPokemonEncounter.Notify(trainer);
 	}
 }
