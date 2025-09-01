@@ -2,26 +2,22 @@
 #include "Text.h"
 #include "Font.h"
 #include "GameObject.h"	
+#include "Renderer.h"
 
 using namespace Minigin;
 
-TextComponent::TextComponent(GameObject* owner, const std::string& text, Font* font) :
+TextComponent::TextComponent(GameObject* owner, const std::string& text, Font* font, const Color& color) :
 	Component{ owner },
-	m_Text{ std::make_unique<Text>(text, font) }
+	m_Text{ std::make_unique<Text>(text, font, color) }
 {
 
 }
 
 Minigin::TextComponent::~TextComponent() = default;
 
-void TextComponent::Update()
-{
-	m_Text->Update();	
-}
-
 void TextComponent::Render() const
 {
-	m_Text->Render(GetOwner()->GetWorldTransform());	
+	Renderer::Instance()->RenderText(*m_Text.get(), GetOwner()->GetWorldTransform());	
 }
 
 void TextComponent::SetText(const std::string& text)

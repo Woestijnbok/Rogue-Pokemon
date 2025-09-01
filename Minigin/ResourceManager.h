@@ -40,7 +40,7 @@ namespace Minigin
 		const std::filesystem::path m_FontRootDirectory;
 		const std::filesystem::path m_AudioRootDirectory;
 		const std::filesystem::path m_FileRootDirectory;
-		std::unordered_map<FontKey, Font*> m_Fonts;
+		std::unordered_map<FontKey, std::unique_ptr<Font>> m_Fonts;
 
 		explicit ResourceManager();
 	};

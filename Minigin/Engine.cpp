@@ -106,10 +106,10 @@ void Engine::Destroy()
 	Renderer::Destroy();
 	SDL_DestroyWindow(m_Window);
 	AudioManager::Destroy();
-	ResourceManager::Destroy();
 	SceneManager::Destroy();
 	InputManager::Destroy();
 	TimeManager::Destroy();
+	ResourceManager::Destroy();
 	SDL_Quit();
 }
 

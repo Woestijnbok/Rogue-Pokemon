@@ -6,6 +6,7 @@
 
 #include "Font.h"
 #include "Texture.h"
+#include "Color.h"
 
 namespace Minigin
 {
@@ -14,7 +15,7 @@ namespace Minigin
 	class Text final
 	{
 	public:
-		explicit Text(const std::string& text, Font* font);
+		explicit Text(const std::string& text, Font* font, const Color& color);
 		~Text() = default;
 
 		Text(const Text& other) = delete;
@@ -22,25 +23,19 @@ namespace Minigin
 		Text& operator=(const Text& other) = delete;
 		Text& operator=(Text&& other) noexcept = delete;
 
-		void Update();
-		/*
-		* @brief renders self centered around the give transform.
-		*
-		* @param The scale makes the text possibly strectch or shrink and flip with negative values.
-		* The position will be the center point of the text.
-		* The rotation will dictate the rotation of the text around the center of itself.
-		*/
-		void Render(const Transform& transform) const;	
 		void SetText(const std::string& text);
 		const std::string& GetText() const;
 		Font* GetFont() const;
-		glm::ivec2 GetSize();
+		Texture* GetTexture();
 
 	private:
+		void Update();
+
 		bool m_NeedsUpdate;
 		std::string m_Text;
-		std::shared_ptr<Font> m_Font;
+		Font* m_Font;
 		std::unique_ptr<Texture> m_Texture;
+		Color m_Color;
 
 	};
 }

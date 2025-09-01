@@ -10,6 +10,7 @@
 #include "GameObject.h"
 #include "Texture.h"
 #include "Text.h"
+#include "Scene.h"
 
 // Components
 #include "PokemonComponent.h"
@@ -43,33 +44,11 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 
 void BattleManagerComponent::Render() const
 {
-	const glm::ivec2 windowSize{ Engine::GetWindowSize() };
-	const glm::ivec2 textureSize{ m_BattleBackground->GetSize() };
-
-	Transform transform{ windowSize / 2 , 0, glm::vec2{ windowSize.x / float(textureSize.x), windowSize.y / float(textureSize.y) } };
-	Renderer::Instance()->RenderTexture(*m_BattleBackground, transform);
-
-	transform.SetScale(glm::vec2{ 3.0f });
-	transform.SetPosition(glm::ivec2{ 200, 95 });
-	Renderer::Instance()->RenderTexture(*m_CurrentBattle.first->GetTexture(), transform);
-
-	transform.SetScale(glm::vec2{ 3.0f });
-	transform.SetPosition(glm::ivec2{ 400, 200 });
-	m_CurrentBattle.first->GetText()->Render(transform);
-
-	transform.SetPosition(glm::ivec2{ 700, 290 });
-	Renderer::Instance()->RenderTexture(*m_CurrentBattle.second->GetTexture(), transform);
-
-	transform.SetScale(glm::vec2{ 3.0f });
-	transform.SetPosition(glm::ivec2{ 500, 150 });
-	Renderer::Instance()->RenderTexture(*m_TrainerCloud, transform);
-
-	transform.SetPosition(glm::ivec2{ 350, 350 });
-	Renderer::Instance()->RenderTexture(*m_EnemyCloud, transform);
-
-	transform.SetScale(glm::vec2{ 1.8f });
-	transform.SetPosition(glm::ivec2{ 745, 41 });
-	Renderer::Instance()->RenderTexture(*m_MoveBox, transform);
+	RenderBackground();
+	RenderPokemons();
+	RenderTrainerCloud();
+	RenderEnemyCloud();
+	RenderMoveSelect();
 }
 
 void BattleManagerComponent::MakeBattle(TrainerComponent* trainer)
@@ -84,7 +63,13 @@ void BattleManagerComponent::MakeBattle(TrainerComponent* trainer)
 		enemyPokemonIndex = static_cast<uint8_t>(m_CommonDistribution(m_RandomEngine));
 	}
 
-	StartBattle(trainer->GetActivePokemon(), ReadPokemon(enemyPokemonIndex, nullptr));
+	PODPokemon pokemon{};
+	ReadPokemon(pokemon, enemyPokemonIndex);
+
+	GameObject* wildPokemonObject{ GetOwner()->GetScene()->CreateGameObject(std::format("Wild {}", pokemon.Name)) };
+	PokemonComponent* wildPokemonComponent{ wildPokemonObject->CreateComponent<PokemonComponent>(pokemon) };
+
+	StartBattle(trainer->GetActivePokemon(), wildPokemonComponent);
 }
 
 void BattleManagerComponent::EndBattle()
@@ -117,4 +102,57 @@ void BattleManagerComponent::StartBattle(PokemonComponent* trainer, PokemonCompo
 	m_CurrentBattle.second = enemy;
 
 	m_OnBattleStarted.Notify();
+}
+
+void BattleManagerComponent::RenderBackground() const
+{
+	const glm::ivec2 windowSize{ Engine::GetWindowSize() };
+	const glm::ivec2 textureSize{ m_BattleBackground->GetSize() };
+
+	const Transform transform{ windowSize / 2 , 0, glm::vec2{ windowSize.x / float(textureSize.x), windowSize.y / float(textureSize.y) } };
+	Renderer::Instance()->RenderTexture(*m_BattleBackground, transform);
+}
+
+void BattleManagerComponent::RenderPokemons() const
+{
+	const Transform trainerTransform{ glm::ivec2{ 200, 95 } , 0, glm::vec2{ 3.0f } };
+	Renderer::Instance()->RenderTexture(*m_CurrentBattle.first->GetTexture(), trainerTransform);
+
+	const Transform enemyTransform{ glm::ivec2{ 700, 290 }, 0, glm::vec2{ 3.0f } };
+	Renderer::Instance()->RenderTexture(*m_CurrentBattle.second->GetTexture(), enemyTransform);
+}
+
+void BattleManagerComponent::RenderTrainerCloud() const
+{
+	const Transform cloudTransform{ glm::ivec2{ 500, 150 }, 0, glm::vec2{ 3.0f } };
+	Renderer::Instance()->RenderTexture(*m_TrainerCloud, cloudTransform);
+
+	const int nameWidth{ m_CurrentBattle.first->GetNameText()->GetTexture()->GetSize().x };
+	const Transform nameTransform{ glm::ivec2{ 400 + (nameWidth / 2), 170 }, 0, glm::vec2{ 1.0f } };
+	Renderer::Instance()->RenderText(*m_CurrentBattle.first->GetNameText(), nameTransform);
+
+	const int levelWidth{ m_CurrentBattle.first->GetLevelText()->GetTexture()->GetSize().x };
+	const Transform levelTransform{ glm::ivec2{ 620 - (levelWidth / 2), 170 }, 0, glm::vec2{ 1.0f } };
+	Renderer::Instance()->RenderText(*m_CurrentBattle.first->GetLevelText(), levelTransform);
+	//
+}
+
+void BattleManagerComponent::RenderEnemyCloud() const
+{
+	const Transform cloudTransform{ glm::ivec2{ 350, 350 }, 0, glm::vec2{ 3.0f } };
+	Renderer::Instance()->RenderTexture(*m_TrainerCloud, cloudTransform);
+
+	const int nameWidth{ m_CurrentBattle.second->GetNameText()->GetTexture()->GetSize().x };
+	const Transform nameTransform{ glm::ivec2{ 250 + (nameWidth / 2), 370}, 0, glm::vec2{1.0f}};
+	Renderer::Instance()->RenderText(*m_CurrentBattle.second->GetNameText(), nameTransform);
+
+	const int levelWidth{ m_CurrentBattle.second->GetLevelText()->GetTexture()->GetSize().x };
+	const Transform levelTransform{ glm::ivec2{ 470 - (levelWidth / 2), 370 }, 0, glm::vec2{ 1.0f } };
+	Renderer::Instance()->RenderText(*m_CurrentBattle.second->GetLevelText(), levelTransform);
+}
+
+void BattleManagerComponent::RenderMoveSelect() const
+{
+	const Transform transform{ glm::ivec2{ 745, 41 }, 0, glm::vec2{ 1.8f } };
+	Renderer::Instance()->RenderTexture(*m_MoveBox, transform);
 }

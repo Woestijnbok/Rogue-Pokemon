@@ -79,6 +79,26 @@ private:
 	* @param enemy: The wild pokemon.
 	*/
 	void StartBattle(PokemonComponent* trainer, PokemonComponent* enemy);
+	/*
+	* Renders the battle background.
+	*/
+	void RenderBackground() const;
+	/*
+	* Renders both the enemy pokemon and trainer's pokemon.
+	*/
+	void RenderPokemons() const;
+	/*
+	* Renders trainer's cloud including name, cloud, level, hp.
+	*/
+	void RenderTrainerCloud() const;
+	/*
+	* Renders enemy's cloud including name, cloud, level, hp.
+	*/
+	void RenderEnemyCloud() const;
+	/*
+	* Renders move select menu.
+	*/
+	void RenderMoveSelect() const;
 
 	// Current battle pair, first one being the trainer's pokemon and latter the wild pokemon
 	std::pair<PokemonComponent*, PokemonComponent*> m_CurrentBattle;

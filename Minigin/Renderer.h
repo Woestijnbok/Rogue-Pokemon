@@ -13,6 +13,7 @@ namespace Minigin
 	class Font;
 	class Transform;
 	class Sprite;
+	class Text;
 
 	class Renderer final : public Singleton<Renderer>
 	{
@@ -28,7 +29,7 @@ namespace Minigin
 
 		void Render() const;
 		Texture* CreateTexture(const std::filesystem::path& path) const;
-		Texture* CreateTexture(Font* font, const std::string& text) const;
+		Texture* CreateTexture(Font* font, const std::string& text, const Color& color) const;
 		/*
 		* @brief renders a texture centered around the give transform.
 		*
@@ -47,6 +48,16 @@ namespace Minigin
 		* The rotation will dictate the rotation of the frame around the center of itself.
 		*/
 		void RenderSprite(const Sprite& sprite, int frame, const Transform& transform) const;
+
+		/*
+		* @brief renders a text centered around the give transform.
+		*
+		* @param The scale makes the texture possibly strectch or shrink and flip with negative values.
+		* The position will be the center point of the texture.
+		* The rotation will dictate the rotation of the texture around the center of itself.
+		* The center is the point at wich the texture will rotate around (point in texture space).
+		*/
+		void RenderText(Text& text, const Transform& transform, const glm::ivec2& center = glm::ivec2{ -1 }) const;
 
 #ifdef _DEBUG
 		void RenderDebugBox(const glm::ivec2& bottomLeft, const glm::ivec2 topRight, const Color color, bool fill) const;

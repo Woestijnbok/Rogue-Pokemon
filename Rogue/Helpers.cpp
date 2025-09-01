@@ -21,7 +21,7 @@
 
 using namespace Minigin;
 
-PokemonComponent* ReadPokemon(uint8_t pokedexIndex, TrainerComponent* trainer)
+void ReadPokemon(PODPokemon& pokemon, uint8_t pokedexIndex)
 {
 	const std::filesystem::path path{ ResourceManager::Instance()->GetFileRootPath() / "Pokedex.bin" };
 	assert(std::filesystem::exists(path));
@@ -30,26 +30,7 @@ PokemonComponent* ReadPokemon(uint8_t pokedexIndex, TrainerComponent* trainer)
 	assert(file.is_open());
 
 	file.seekg(sizeof(PODPokemon) * (pokedexIndex - 1));
-
-	PODPokemon pokemon{};
 	file.read(reinterpret_cast<char*>(&pokemon), sizeof(PODPokemon));
-
-	Scene* battleScene{ SceneManager::Instance()->GetScene("Battle") };
-	GameObject* pokemonObject{ nullptr };
-	PokemonComponent* pokemonComponent{ nullptr };
-	if (trainer == nullptr)
-	{
-		pokemonObject = battleScene->CreateGameObject(std::format("Wild {}", pokemon.Name));
-		pokemonComponent = pokemonObject->CreateComponent<PokemonComponent>(pokemon);
-	}
-	else
-	{
-		pokemonObject = battleScene->CreateGameObject(std::format("Tamed {}", pokemon.Name));
-		pokemonComponent = pokemonObject->CreateComponent<PokemonComponent>(pokemon, trainer);
-	}
-	
-
-	return pokemonComponent;
 }
 
 SpriteComponent* MakeTrainerSprites(GameObject* object, TileManagerComponent* tileManager, MovementComponent* movementComponent)

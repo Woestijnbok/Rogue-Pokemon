@@ -31,6 +31,8 @@ public:
 	PokemonComponent* GetActivePokemon() const;
 
 private:
+	PokemonComponent* CreateStartPokemon() const;
+
 	// Active pokemon
 	PokemonComponent* m_ActivePokemon;
 };

@@ -108,7 +108,7 @@ Font* Minigin::ResourceManager::GetOrLoadFont(const std::filesystem::path& path,
 
 	if (m_Fonts.contains(fontKey))
 	{
-		font = m_Fonts.find(fontKey)->second;
+		font = GetFont(name, size);
 	}
 	else
 	{
@@ -120,7 +120,7 @@ Font* Minigin::ResourceManager::GetOrLoadFont(const std::filesystem::path& path,
 
 void ResourceManager::RemoveFont(Font* font)
 {
-	const auto iterator{ std::ranges::find_if(m_Fonts, [font](const std::pair<const FontKey, Font*>& pair) -> bool { return pair.second == font; }) };
+	const auto iterator{ std::ranges::find_if(m_Fonts, [font](const std::pair<const FontKey, std::unique_ptr<Font>>& pair) -> bool { return pair.second.get() == font; })};
 
 	if (iterator == m_Fonts.end())
 	{
@@ -133,7 +133,7 @@ void ResourceManager::RemoveFont(Font* font)
 Font* ResourceManager::GetFont(const std::string& name, uint8_t size) const
 {
 	const FontKey fontKey{ name, size };
-	Font* font{ m_Fonts.find(fontKey)->second };
+	Font* font{ m_Fonts.find(fontKey)->second.get() };
 
 	if (font == nullptr)
 	{

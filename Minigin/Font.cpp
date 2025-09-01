@@ -11,13 +11,13 @@ Font::Font(const std::filesystem::path& path, uint8_t size) :
 	m_Font{ TTF_OpenFont(path.generic_string().c_str(), size) },
 	m_Size{ size }
 {
+	//TTF_SetFontStyle(m_Font, TTF_STYLE_BOLD);
 	if (m_Font == nullptr) throw std::runtime_error(std::string("Font::Font() - ") + SDL_GetError());	
 }
 
 Font::~Font()
 {
 	TTF_CloseFont(m_Font);
-	ResourceManager::Instance()->RemoveFont(this);
 }
 
 TTF_Font* Font::GetFont() const

@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "Component.h"
+#include "Color.h"
 
 namespace Minigin
 {
@@ -13,7 +14,7 @@ namespace Minigin
 	class TextComponent final : public Component
 	{
 	public:
-		explicit TextComponent(GameObject* owner, const std::string& text, Font* font);
+		explicit TextComponent(GameObject* owner, const std::string& text, Font* font, const Color& color);
 		virtual ~TextComponent();
 
 		TextComponent(const TextComponent& other) = delete;
@@ -21,7 +22,6 @@ namespace Minigin
 		TextComponent& operator=(const TextComponent& other) = delete;
 		TextComponent& operator=(TextComponent&& other) noexcept = delete;
 
-		virtual void Update() override;
 		virtual void Render() const override;
 
 		void SetText(const std::string& text);

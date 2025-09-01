@@ -2,6 +2,7 @@
 #include "Text.h"
 #include "GameObject.h"
 #include "ResourceManager.h"
+#include "Renderer.h"
 
 using namespace Minigin;
 
@@ -9,7 +10,7 @@ FPSCounterComponent::FPSCounterComponent(GameObject* owner) :
 	Component{ owner },
 	m_LastTimePoint{},
 	m_FrameCounter{ 0 },
-	m_Text{ std::make_unique<Text>("0.0 FPS", ResourceManager::Instance()->LoadFont("Lingua.otf", "Lingua", 36)) },
+	m_Text{ std::make_unique<Text>("0.0 FPS", ResourceManager::Instance()->LoadFont("Lingua.otf", "Lingua", 36), Color::Black) },
 	m_Running{ false }
 {
 	
@@ -36,12 +37,10 @@ void FPSCounterComponent::Update()
 
 		m_FrameCounter = 0;
 		m_LastTimePoint = std::chrono::steady_clock::now();	
-	}
-
-	m_Text->Update();	
+	}	
 }
 
 void FPSCounterComponent::Render() const
 {
-	m_Text->Render(GetOwner()->GetWorldTransform());
+	Renderer::Instance()->RenderText(*m_Text.get(), GetOwner()->GetWorldTransform());
 }

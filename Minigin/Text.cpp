@@ -5,11 +5,12 @@
 
 using namespace Minigin;
 
-Text::Text(const std::string& text, Font* font) :
-	m_NeedsUpdate{ true },
+Text::Text(const std::string& text, Font* font, const Color& color) :
+	m_NeedsUpdate{ false },
 	m_Text{ text },
 	m_Font{ font },
-	m_Texture{ Renderer::Instance()->CreateTexture(font, text) }		
+	m_Texture{ Renderer::Instance()->CreateTexture(font, text, color)},
+	m_Color{ color }
 {
 
 }
@@ -18,14 +19,9 @@ void Text::Update()
 {
 	if (m_NeedsUpdate)
 	{
-		m_Texture.reset(Renderer::Instance()->CreateTexture(m_Font.get(), m_Text));
+		m_Texture.reset(Renderer::Instance()->CreateTexture(m_Font, m_Text, m_Color));
 		m_NeedsUpdate = false;
 	}
-}
-
-void Text::Render(const Transform& transform) const
-{
-	m_Texture->Render(transform);
 }
 
 void Text::SetText(const std::string& text)
@@ -41,16 +37,15 @@ const std::string& Text::GetText() const
 
 Font* Text::GetFont() const
 {
-	return m_Font.get();
+	return m_Font;
 }
 
-glm::ivec2 Minigin::Text::GetSize()
+Texture* Minigin::Text::GetTexture()
 {
-	if (m_NeedsUpdate)	
+	if (m_NeedsUpdate)
 	{
-		m_Texture.reset(Renderer::Instance()->CreateTexture(m_Font.get(), m_Text));
-		m_NeedsUpdate = false;	
+		Update();
 	}
 
-	return m_Texture->GetSize();
+	return m_Texture.get();
 }

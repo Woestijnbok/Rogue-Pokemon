@@ -24,7 +24,7 @@ namespace Minigin
 
 	private:
 		_TTF_Font* const m_Font;
-		uint8_t m_Size;
+		const uint8_t m_Size;
 
 	};
 

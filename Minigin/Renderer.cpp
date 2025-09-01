@@ -13,6 +13,7 @@
 #include "backends/imgui_impl_sdlrenderer2.h"
 #include "Engine.h"
 #include "Sprite.h"
+#include "Text.h"
 
 using namespace Minigin;
 
@@ -29,9 +30,10 @@ public:
 
 	void Render() const;
 	Texture* CreateTexture(const std::filesystem::path& path) const;
-	Texture* CreateTexture(Font* font, const std::string& text);
+	Texture* CreateTexture(Font* font, const std::string& text, const Color& color);
 	void RenderTexture(const Texture& texture, const Transform& transform, const glm::ivec2& center) const;	
 	void RenderSprite(const Sprite& sprite, int frame, const Transform& transform) const;
+	void RenderText(Text& text, const Transform& transform, const glm::ivec2& center = glm::ivec2{ -1 }) const;
 #ifdef _DEBUG
 	void RenderDebugBox(const glm::ivec2& bottomLeft, const glm::ivec2 topRight, const Color color, bool fill) const;
 #endif
@@ -112,10 +114,10 @@ Texture* Renderer::Impl::CreateTexture(const std::filesystem::path& path) const
 	return new Texture{ texture };
 }
 
-Texture* Renderer::Impl::CreateTexture(Font* font, const std::string& text)
+Texture* Renderer::Impl::CreateTexture(Font* font, const std::string& text, const Color& color)
 {
-	const SDL_Color color{ 255,255,255,255 }; // only white text is supported now
-	SDL_Surface* surface{ TTF_RenderText_Blended(font->GetFont(), text.c_str(), color) };
+	const SDL_Color sdlColor{ color.r, color.g, color.b, color.a }; // only white text is supported now
+	SDL_Surface* surface{ TTF_RenderText_Blended(font->GetFont(), text.c_str(), sdlColor) };
 	if (surface == nullptr)	
 	{
 		throw std::runtime_error(std::string("Renderer::Impl::CreateTexture() - ") + SDL_GetError());
@@ -196,6 +198,11 @@ void Renderer::Impl::RenderSprite(const Sprite& sprite, int frame, const Transfo
 	SDL_RenderCopyEx(m_Renderer, sprite.GetSheet()->GetTexture(), &source, &destination, static_cast<double>(angle), nullptr, flip);	
 }
 
+void Minigin::Renderer::Impl::RenderText(Text& text, const Transform& transform, const glm::ivec2& center) const
+{
+	RenderTexture(*text.GetTexture(), transform, center);
+}
+
 #ifdef _DEBUG
 void Renderer::Impl::RenderDebugBox(const glm::ivec2& bottomLeft, const glm::ivec2 topRight, const Color color, bool fill) const
 {
@@ -251,9 +258,9 @@ Texture* Renderer::CreateTexture(const std::filesystem::path& path) const
 	return m_Pimpl->CreateTexture(path);
 }
 
-Texture* Renderer::CreateTexture(Font* font, const std::string& text) const
+Texture* Renderer::CreateTexture(Font* font, const std::string& text, const Color& color) const
 {
-	return m_Pimpl->CreateTexture(font, text);
+	return m_Pimpl->CreateTexture(font, text, color);
 }
 
 void Minigin::Renderer::RenderTexture(const Texture& texture, const Transform& transform, const glm::ivec2& center) const
@@ -264,6 +271,11 @@ void Minigin::Renderer::RenderTexture(const Texture& texture, const Transform& t
 void Renderer::RenderSprite(const Sprite& sprite, int frame, const Transform& transform) const
 {
 	m_Pimpl->RenderSprite(sprite, frame, transform);
+}
+
+void Minigin::Renderer::RenderText(Text& text, const Transform& transform, const glm::ivec2& center) const
+{
+	m_Pimpl->RenderText(text, transform, center);
 }
 
 #ifdef _DEBUG

@@ -10,20 +10,16 @@ namespace Minigin
 	class GameObject;
 }
 
-class PokemonComponent;
+struct PODPokemon;
 class TileManagerComponent;
 class MovementComponent;
-class TrainerComponent;
 
 /*
-* Reads pokemon information from Pokedex.bin (binary pokedex file) to create pokemon component.
+* Reads pokemon information from Pokedex.bin (binary pokedex file).
 * 
 * @param pokedexIndex: The pokedex index that will be used to read the correct pokemon in the pokedex file.
-* @param trainer: The potential trainer of this pokemon, leave this nullptr if it's a wild pokemon.
-* 
-* @return The pokemon component based on the given pokedex information.
 */
-PokemonComponent* ReadPokemon(uint8_t pokedexIndex, TrainerComponent* trainer);
+void ReadPokemon(PODPokemon& pokemon, uint8_t pokedexIndex);
 
 /*
 * Makes a sprite component and adds all the trainer sprites.
