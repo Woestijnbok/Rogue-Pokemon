@@ -27,10 +27,10 @@ PokemonComponent::PokemonComponent(GameObject* owner, const PODPokemon& pokemon,
 	m_Texture{ Renderer::Instance()->CreateTexture(GetPokemonTexturePath(pokemon.Name, false)) },
 	m_Moves
 	{ 
-		Move{ pokemon.Moves[0].Name, pokemon.Moves[0].Power }, 
-		Move{ pokemon.Moves[1].Name, pokemon.Moves[1].Power },
-		Move{ pokemon.Moves[2].Name, pokemon.Moves[2].Power },
-		Move{ pokemon.Moves[3].Name, pokemon.Moves[3].Power }
+		Move{ pokemon.Moves[0], ResourceManager::Instance()->GetFont("Emerald", 30) }, 
+		Move{ pokemon.Moves[1], ResourceManager::Instance()->GetFont("Emerald", 30) },
+		Move{ pokemon.Moves[2], ResourceManager::Instance()->GetFont("Emerald", 30) },
+		Move{ pokemon.Moves[3], ResourceManager::Instance()->GetFont("Emerald", 30) }
 	},
 	m_Trainer{ trainer }
 {
@@ -44,10 +44,10 @@ PokemonComponent::PokemonComponent(Minigin::GameObject* owner, const PODPokemon&
 	m_Texture{ Renderer::Instance()->CreateTexture(GetPokemonTexturePath(pokemon.Name, true)) },
 	m_Moves
 	{
-		Move{ pokemon.Moves[0].Name, pokemon.Moves[0].Power },
-		Move{ pokemon.Moves[1].Name, pokemon.Moves[1].Power },
-		Move{ pokemon.Moves[2].Name, pokemon.Moves[2].Power },
-		Move{ pokemon.Moves[3].Name, pokemon.Moves[3].Power }
+		Move{ pokemon.Moves[0], ResourceManager::Instance()->GetFont("Emerald", 30) },
+		Move{ pokemon.Moves[1], ResourceManager::Instance()->GetFont("Emerald", 30) },
+		Move{ pokemon.Moves[2], ResourceManager::Instance()->GetFont("Emerald", 30) },
+		Move{ pokemon.Moves[3], ResourceManager::Instance()->GetFont("Emerald", 30) }
 	},
 	m_Trainer{}
 {
@@ -87,4 +87,9 @@ void PokemonComponent::SetLevel(uint8_t level)
 uint8_t PokemonComponent::GetLevel() const
 {
 	return static_cast<uint8_t>(std::stoi(m_LevelText->GetText().substr(3)));
+}
+
+const std::array<Move, 4>& PokemonComponent::GetMoves() const
+{
+	return m_Moves;
 }

@@ -92,6 +92,12 @@ public:
 	* @return The pokemon's level.
 	*/
 	uint8_t GetLevel() const;
+	/*
+	* Returns all moves this pokemon has, aka 4.
+	* 
+	* @return The moves array.
+	*/
+	const std::array<Move, 4>& GetMoves() const;
 	
 private:
 	// Pokemon name

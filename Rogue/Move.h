@@ -2,7 +2,17 @@
 
 // Libraries
 #include <cstdint>
+#include <memory>
 #include <string>
+
+// Other
+#include <Pokedex.hpp>
+
+namespace Minigin
+{
+	class Text;
+	class Font;
+}
 
 /*
 * Struct containing all information for a pokemon move / attack.
@@ -15,7 +25,7 @@ struct Move
 	* @param name: The move's name.
 	* @param power: The move's power.
 	*/
-	explicit Move(const std::string& name, uint8_t power);
+	explicit Move(const PODMove& move, Minigin::Font* font);
 	~Move() = default;
 
 	Move(const Move& other) = default;
@@ -23,8 +33,16 @@ struct Move
 	Move& operator=(const Move& other) = default;
 	Move& operator=(Move&& other) noexcept = default;
 	
-	// Move name
-	const std::string Name;
-	// Move power
+	// Name text
+	const std::unique_ptr<Minigin::Text> NameText;
+	// Power
 	const uint8_t Power;
+
+private:
+	/*
+	* Converts a pokemon's move name to the display name
+	*
+	* @param name: The move's name straight from the pokedex file.
+	*/
+	static std::string GetDisplayName(const std::string& name);
 };

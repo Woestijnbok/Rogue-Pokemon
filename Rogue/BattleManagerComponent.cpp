@@ -44,6 +44,7 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 
 void BattleManagerComponent::Render() const
 {
+	// TODO: Fix magic values in helper functions.
 	RenderBackground();
 	RenderPokemons();
 	RenderTrainerCloud();
@@ -134,7 +135,6 @@ void BattleManagerComponent::RenderTrainerCloud() const
 	const int levelWidth{ m_CurrentBattle.first->GetLevelText()->GetTexture()->GetSize().x };
 	const Transform levelTransform{ glm::ivec2{ 620 - (levelWidth / 2), 170 }, 0, glm::vec2{ 1.0f } };
 	Renderer::Instance()->RenderText(*m_CurrentBattle.first->GetLevelText(), levelTransform);
-	//
 }
 
 void BattleManagerComponent::RenderEnemyCloud() const
@@ -153,6 +153,28 @@ void BattleManagerComponent::RenderEnemyCloud() const
 
 void BattleManagerComponent::RenderMoveSelect() const
 {
-	const Transform transform{ glm::ivec2{ 745, 41 }, 0, glm::vec2{ 1.8f } };
-	Renderer::Instance()->RenderTexture(*m_MoveBox, transform);
+	const Transform boxTransform{ glm::ivec2{ 745, 41 }, 0, glm::vec2{ 1.8f } };
+	Renderer::Instance()->RenderTexture(*m_MoveBox, boxTransform);
+
+	const std::array<Move, 4>& trainerPokemonMoves{ m_CurrentBattle.first->GetMoves() };
+
+	const int firstMoveWidth{ trainerPokemonMoves.at(0).NameText->GetTexture()->GetSize().x };
+	const glm::ivec2 firstMovePosition{ 580, 60 };
+	const Transform firstMoveTransform{ glm::ivec2{ firstMovePosition.x + (firstMoveWidth / 2), firstMovePosition.y }, 0, glm::vec2{1.0f}};
+	Renderer::Instance()->RenderText(*trainerPokemonMoves.at(0).NameText.get(), firstMoveTransform);
+
+	const int secondMoveWidth{ trainerPokemonMoves.at(1).NameText->GetTexture()->GetSize().x };
+	const glm::ivec2 secondMovePosition{ 780, 60 };
+	const Transform secondMoveTransform{ glm::ivec2{ secondMovePosition.x + (secondMoveWidth / 2), secondMovePosition.y }, 0, glm::vec2{1.0f} };
+	Renderer::Instance()->RenderText(*trainerPokemonMoves.at(1).NameText.get(), secondMoveTransform);
+
+	const int thirdMoveWidth{ trainerPokemonMoves.at(2).NameText->GetTexture()->GetSize().x };
+	const glm::ivec2 thirdMovePosition{ 580, 25 };
+	const Transform thirdMoveTransform{ glm::ivec2{ thirdMovePosition.x + (thirdMoveWidth / 2), thirdMovePosition.y }, 0, glm::vec2{1.0f} };
+	Renderer::Instance()->RenderText(*trainerPokemonMoves.at(2).NameText.get(), thirdMoveTransform);
+
+	const int fourthMoveWidth{ trainerPokemonMoves.at(3).NameText->GetTexture()->GetSize().x };
+	const glm::ivec2 fourthMovePosition{ 780, 25 };
+	const Transform fourthMoveTransform{ glm::ivec2{ fourthMovePosition.x + (fourthMoveWidth / 2), fourthMovePosition.y }, 0, glm::vec2{1.0f} };
+	Renderer::Instance()->RenderText(*trainerPokemonMoves.at(3).NameText.get(), fourthMoveTransform);
 }

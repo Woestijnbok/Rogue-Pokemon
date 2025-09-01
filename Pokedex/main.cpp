@@ -21,7 +21,7 @@ int main(int, char* [])
 
 	const std::filesystem::path outputFilePath{ "Pokedex.bin" };
 
-	std::array<PODPokemon, POKEDEX_COUNT> pokedex{};
+	std::array<PODPokemon, POKEDEX_COUNT> pokedex{}; // TODO: this is all on the stack !!!!!!!! fix urgent
 
 	ReadPokedex(pokedex, inputFilePath);
 	WritePokedex(pokedex, outputFilePath);
