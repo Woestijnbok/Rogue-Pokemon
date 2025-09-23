@@ -92,9 +92,17 @@ private:
 	*/
 	void RenderTrainerCloud() const;
 	/*
+	* Renders trainer's pokemon health bar.
+	*/
+	void RenderTrainerHealth() const;
+	/*
 	* Renders enemy's cloud including name, cloud, level, hp.
 	*/
 	void RenderEnemyCloud() const;
+	/*
+	* Renders enemy's pokemon health bar.
+	*/
+	void RenderEnemyHealth() const;
 	/*
 	* Renders move select menu.
 	*/

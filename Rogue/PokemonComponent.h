@@ -93,6 +93,12 @@ public:
 	*/
 	uint8_t GetLevel() const;
 	/*
+	* Gets the pokemon's health in percentage.
+	*
+	* @return The pokemon's health.
+	*/
+	float GetHealthPercentage() const;
+	/*
 	* Returns all moves this pokemon has, aka 4.
 	* 
 	* @return The moves array.
@@ -110,4 +116,8 @@ private:
 	const std::array<Move, 4> m_Moves;
 	// Optional trainer, empty if a wild pokemon
 	const std::optional<TrainerComponent const *> m_Trainer;
+	// Current health
+	uint16_t m_MaxHealth;
+	// Max Health
+	uint16_t m_CurrentHealth;
 };

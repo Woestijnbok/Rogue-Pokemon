@@ -44,7 +44,7 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 
 void BattleManagerComponent::Render() const
 {
-	// TODO: Fix magic values in helper functions.
+	// TODO: Fix magic values in helper functions use constexpr.
 	RenderBackground();
 	RenderPokemons();
 	RenderTrainerCloud();
@@ -125,6 +125,8 @@ void BattleManagerComponent::RenderPokemons() const
 
 void BattleManagerComponent::RenderTrainerCloud() const
 {
+	RenderTrainerHealth();
+
 	const Transform cloudTransform{ glm::ivec2{ 500, 150 }, 0, glm::vec2{ 3.0f } };
 	Renderer::Instance()->RenderTexture(*m_TrainerCloud, cloudTransform);
 
@@ -137,8 +139,35 @@ void BattleManagerComponent::RenderTrainerCloud() const
 	Renderer::Instance()->RenderText(*m_CurrentBattle.first->GetLevelText(), levelTransform);
 }
 
+void BattleManagerComponent::RenderTrainerHealth() const
+{
+	constexpr glm::ivec2 bottomLeft{ 460, 130 };
+	constexpr glm::ivec2 topRight{ 620, 155 };
+	constexpr Color backgroundColor{ 76, 74, 76 };
+
+	const float healthPercentage{ m_CurrentBattle.first->GetHealthPercentage() };
+	const int healthWidth{ static_cast<int>((topRight.x - bottomLeft.x) * healthPercentage) };
+	const glm::ivec2 healthTopRight{ bottomLeft.x + healthWidth, topRight.y };
+	const glm::ivec2 backgroundBottomLeft{ healthTopRight.x, bottomLeft.y };
+
+	Color healthColor{ Color::Green };
+	if (healthPercentage <= 0.25f)
+	{
+		healthColor = Color::Red;
+	}
+	else if (healthPercentage <= 0.5f)
+	{
+		healthColor = Color{ 255, 165, 0 };
+	}
+
+	Renderer::Instance()->RenderBox(backgroundBottomLeft , topRight, backgroundColor, true);
+	Renderer::Instance()->RenderBox(bottomLeft, healthTopRight, healthColor, true);
+}
+
 void BattleManagerComponent::RenderEnemyCloud() const
 {
+	RenderEnemyHealth();
+
 	const Transform cloudTransform{ glm::ivec2{ 350, 350 }, 0, glm::vec2{ 3.0f } };
 	Renderer::Instance()->RenderTexture(*m_TrainerCloud, cloudTransform);
 
@@ -149,6 +178,31 @@ void BattleManagerComponent::RenderEnemyCloud() const
 	const int levelWidth{ m_CurrentBattle.second->GetLevelText()->GetTexture()->GetSize().x };
 	const Transform levelTransform{ glm::ivec2{ 470 - (levelWidth / 2), 370 }, 0, glm::vec2{ 1.0f } };
 	Renderer::Instance()->RenderText(*m_CurrentBattle.second->GetLevelText(), levelTransform);
+}
+
+void BattleManagerComponent::RenderEnemyHealth() const
+{
+	constexpr glm::ivec2 bottomLeft{ 310, 330 };
+	constexpr glm::ivec2 topRight{ 470, 355 };
+	constexpr Color backgroundColor{ 76, 74, 76 };
+
+	const float healthPercentage{ m_CurrentBattle.second->GetHealthPercentage() };
+	const int healthWidth{ static_cast<int>((topRight.x - bottomLeft.x) * healthPercentage) };
+	const glm::ivec2 healthTopRight{ bottomLeft.x + healthWidth, topRight.y };
+	const glm::ivec2 backgroundBottomLeft{ healthTopRight.x, bottomLeft.y };
+
+	Color healthColor{ Color::Green };
+	if (healthPercentage <= 0.25f)
+	{
+		healthColor = Color::Red;
+	}
+	else if (healthPercentage <= 0.5f)
+	{
+		healthColor = Color{ 255, 165, 0 };
+	}
+
+	Renderer::Instance()->RenderBox(backgroundBottomLeft, topRight, backgroundColor, true);
+	Renderer::Instance()->RenderBox(bottomLeft, healthTopRight, healthColor, true);
 }
 
 void BattleManagerComponent::RenderMoveSelect() const

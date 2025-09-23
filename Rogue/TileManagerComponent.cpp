@@ -133,7 +133,7 @@ void TileManagerComponent::RenderTile(const size_t row, const size_t collumn) co
 		case Terrain::Pokemon:
 			Renderer::Instance()->RenderTexture(*m_TileGrassTexture, transform);
 #ifdef _DEBUG
-			Renderer::Instance()->RenderDebugBox(glm::ivec2{ collumn * m_TileSize, row * m_TileSize }, glm::ivec2{ (collumn * m_TileSize) + m_TileSize, (row * m_TileSize) + m_TileSize }, Color{ 255, 0, 0, 100 }, true);
+			Renderer::Instance()->RenderBox(glm::ivec2{ collumn * m_TileSize, row * m_TileSize }, glm::ivec2{ (collumn * m_TileSize) + m_TileSize, (row * m_TileSize) + m_TileSize }, Color{ 255, 0, 0, 100 }, true);
 #endif // _DEBUG
 			break;
 		default:

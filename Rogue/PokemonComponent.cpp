@@ -32,7 +32,9 @@ PokemonComponent::PokemonComponent(GameObject* owner, const PODPokemon& pokemon,
 		Move{ pokemon.Moves[2], ResourceManager::Instance()->GetFont("Emerald", 30) },
 		Move{ pokemon.Moves[3], ResourceManager::Instance()->GetFont("Emerald", 30) }
 	},
-	m_Trainer{ trainer }
+	m_Trainer{ trainer },
+	m_MaxHealth{ 100 },
+	m_CurrentHealth{ m_MaxHealth }
 {
 	
 }
@@ -49,7 +51,9 @@ PokemonComponent::PokemonComponent(Minigin::GameObject* owner, const PODPokemon&
 		Move{ pokemon.Moves[2], ResourceManager::Instance()->GetFont("Emerald", 30) },
 		Move{ pokemon.Moves[3], ResourceManager::Instance()->GetFont("Emerald", 30) }
 	},
-	m_Trainer{}
+	m_Trainer{},
+	m_MaxHealth{ 100 },
+	m_CurrentHealth{ m_MaxHealth }
 {
 	
 }
@@ -87,6 +91,11 @@ void PokemonComponent::SetLevel(uint8_t level)
 uint8_t PokemonComponent::GetLevel() const
 {
 	return static_cast<uint8_t>(std::stoi(m_LevelText->GetText().substr(3)));
+}
+
+float PokemonComponent::GetHealthPercentage() const
+{
+	return static_cast<float>(m_CurrentHealth) / static_cast<float>(m_MaxHealth);
 }
 
 const std::array<Move, 4>& PokemonComponent::GetMoves() const

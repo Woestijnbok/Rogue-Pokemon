@@ -108,7 +108,7 @@
       <Filter>Helpers</Filter>
     </ClCompile>
     <ClCompile Include="Color.cpp">
-      <Filter>Data Types</Filter>
+      <Filter>Data Types\Color</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -225,7 +225,7 @@
       <Filter>Helpers</Filter>
     </ClInclude>
     <ClInclude Include="Color.h">
-      <Filter>Data Types</Filter>
+      <Filter>Data Types\Color</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -330,6 +330,9 @@
     </Filter>
     <Filter Include="Helpers">
       <UniqueIdentifier>{a36d6a3c-7e78-4a0a-bb37-950c4862c535}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data Types\Color">
+      <UniqueIdentifier>{675b0fc5-cb33-44da-99e2-7a93d5213938}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

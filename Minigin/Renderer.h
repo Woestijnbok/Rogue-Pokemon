@@ -59,9 +59,15 @@ namespace Minigin
 		*/
 		void RenderText(Text& text, const Transform& transform, const glm::ivec2& center = glm::ivec2{ -1 }) const;
 
-#ifdef _DEBUG
-		void RenderDebugBox(const glm::ivec2& bottomLeft, const glm::ivec2 topRight, const Color color, bool fill) const;
-#endif
+		/*
+		* Renders a rectangle centered around the give transform.
+		*
+		* @param bottomLeft: Bottom left position of the box.
+		* @param topRight: Top right position of the box.
+		* @param color: The color used to draw the box.
+		* @param fill: Wether or not to fill the box.
+		*/
+		void RenderBox(const glm::ivec2& bottomLeft, const glm::ivec2 topRight, const Color color, bool fill) const;
 
 	private:
 		class Impl;
