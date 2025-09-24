@@ -44,3 +44,16 @@ Command* InputAction::GetCommand() const
 {
 	return m_Command.get();	
 }
+
+bool InputAction::IsValid() const
+{
+	bool isValid{ true };
+
+	GameObjectCommand* objectCommand{ dynamic_cast<GameObjectCommand*>(GetCommand()) };
+	if (objectCommand != nullptr)
+	{
+		isValid = !objectCommand->IsInvalid();
+	}
+
+	return isValid;
+}

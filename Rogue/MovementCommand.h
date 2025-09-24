@@ -11,7 +11,7 @@ class MovementComponent;
 /*
 * Command that will call move on the movement component in the given direction.
 */
-class MoveCommand final : public Minigin::GameObjectCommand
+class MovementCommand final : public Minigin::GameObjectCommand
 {
 public:
 	/*
@@ -20,13 +20,13 @@ public:
 	* @param movementComponent: The movement component that will be used to call move logic.
 	* @param direction: The move direction used in move calls.
 	*/
-	MoveCommand(MovementComponent* movementComponent, Direction direction);
-	virtual ~MoveCommand() = default;
+	MovementCommand(MovementComponent* movementComponent, Direction direction);
+	virtual ~MovementCommand() = default;
 
-	MoveCommand(const MoveCommand&) = delete;
-	MoveCommand(MoveCommand&&) = delete;
-	MoveCommand& operator= (const MoveCommand&) = delete;
-	MoveCommand& operator= (const MoveCommand&&) = delete;
+	MovementCommand(const MovementCommand&) = delete;
+	MovementCommand(MovementCommand&&) = delete;
+	MovementCommand& operator= (const MovementCommand&) = delete;
+	MovementCommand& operator= (const MovementCommand&&) = delete;
 
 	/*
 	* Will try start movement using the cached movement component.

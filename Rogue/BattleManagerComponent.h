@@ -9,6 +9,8 @@
 #include "Component.h"
 #include "Subject.h"
 
+#include "Enums.h"
+
 namespace Minigin
 {
 	class Texture;
@@ -58,6 +60,12 @@ public:
 	* @return If there is an ongoing battle = true.
 	*/
 	bool InBattle() const;
+	/*
+	* Switches the currently selected move.
+	* 
+	* @param direction: The direction to move the selection.
+	*/
+	void ChangeSelectedMove(Direction direction);
 	/*
 	* Getter for the on battle started event.
 	* 
@@ -124,6 +132,8 @@ private:
 	std::unique_ptr<Minigin::Texture> m_InfoBox;
 	// Battle move box texture
 	std::unique_ptr<Minigin::Texture> m_MoveBox;
+	// Select move arrow texture
+	std::unique_ptr<Minigin::Texture> m_SelectArrow;
 	// Random device used for creating seeds
 	std::random_device m_RandomDevice;
 	// Random engine used to generate random values based on a seed.
@@ -136,4 +146,6 @@ private:
 	std::uniform_int_distribution<int> m_LegendaryDistribution;
 	// Chance of encountering a legendary pokemon
 	const float m_LegendaryChance;
+	// Current move index
+	uint8_t m_CurrentMove;
 };	

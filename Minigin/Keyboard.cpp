@@ -64,7 +64,7 @@ bool Keyboard::Impl::ProcessInput()
 			for (const InputAction& inputAction : m_InputActions)	
 			{
 				if ((event.key.keysym.sym == static_cast<SDL_KeyCode>(inputAction.GetButton())) and	
-					(inputAction.GetTrigger() == InputAction::Trigger::Pressed))	
+					(inputAction.GetTrigger() == InputAction::Trigger::Pressed) and inputAction.IsValid())	
 				{
 					inputAction.GetCommand()->Execute();	
 				}
@@ -74,7 +74,7 @@ bool Keyboard::Impl::ProcessInput()
 			for (const InputAction& inputAction : m_InputActions)	
 			{
 				if ((event.key.keysym.sym == static_cast<SDL_KeyCode>(inputAction.GetButton())) and	
-					(inputAction.GetTrigger() == InputAction::Trigger::Up))	
+					(inputAction.GetTrigger() == InputAction::Trigger::Up) and inputAction.IsValid())
 				{
 					inputAction.GetCommand()->Execute();	
 				}

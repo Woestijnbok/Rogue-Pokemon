@@ -8,7 +8,7 @@
     <ClCompile Include="TrainerComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="MoveCommand.cpp">
+    <ClCompile Include="MovementCommand.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
     <ClCompile Include="PokemonComponent.cpp">
@@ -32,6 +32,9 @@
     <ClCompile Include="Move.cpp">
       <Filter>Other</Filter>
     </ClCompile>
+    <ClCompile Include="SelectMoveCommand.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -51,7 +54,7 @@
     <ClInclude Include="TrainerComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="MoveCommand.h">
+    <ClInclude Include="MovementCommand.h">
       <Filter>Commands</Filter>
     </ClInclude>
     <ClInclude Include="PokemonComponent.h">
@@ -77,6 +80,9 @@
     </ClInclude>
     <ClInclude Include="Move.h">
       <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectMoveCommand.h">
+      <Filter>Commands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

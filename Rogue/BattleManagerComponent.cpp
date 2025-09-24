@@ -32,12 +32,14 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_EnemyCloud{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Enemy Cloud.png") },
 	m_InfoBox{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Info Box.png") },
 	m_MoveBox{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Move Box.png") },
+	m_SelectArrow{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Select Arrow.png") },
 	m_RandomDevice{},
 	m_RandomEngine{ m_RandomDevice() },
 	m_ChanceDistribution{ 0.0f, 100.0f },
 	m_CommonDistribution{ 1, POKEDEX_LEGENDARY_START - 1 },
 	m_LegendaryDistribution{ POKEDEX_LEGENDARY_START, POKEDEX_COUNT },
-	m_LegendaryChance{ 5 }
+	m_LegendaryChance{ 5 },
+	m_CurrentMove{ 0 }
 {
 	assert(m_BattleBackground.get());
 }
@@ -85,6 +87,39 @@ void BattleManagerComponent::EndBattle()
 bool BattleManagerComponent::InBattle() const
 {
 	return m_CurrentBattle.second != nullptr;
+}
+
+void BattleManagerComponent::ChangeSelectedMove(Direction direction)
+{
+	switch (direction)
+	{
+	case Direction::Up:
+		if (m_CurrentMove == 2 or m_CurrentMove == 3)
+		{
+			m_CurrentMove -= 2;
+		}
+		break;
+	case Direction::Right:
+		if (m_CurrentMove == 0 or m_CurrentMove == 2)
+		{
+			m_CurrentMove += 1;
+		}
+		break;
+	case Direction::Down:
+		if (m_CurrentMove == 0 or m_CurrentMove == 1)
+		{
+			m_CurrentMove += 2;
+		}
+		break;
+	case Direction::Left:
+		if (m_CurrentMove == 1 or m_CurrentMove == 3)
+		{
+			m_CurrentMove -= 1;
+		}
+		break;
+	}
+
+	assert(m_CurrentMove >= 0 and m_CurrentMove < 4);
 }
 
 Minigin::Subject<>& BattleManagerComponent::OnBattleStarted()
@@ -231,4 +266,25 @@ void BattleManagerComponent::RenderMoveSelect() const
 	const glm::ivec2 fourthMovePosition{ 780, 25 };
 	const Transform fourthMoveTransform{ glm::ivec2{ fourthMovePosition.x + (fourthMoveWidth / 2), fourthMovePosition.y }, 0, glm::vec2{1.0f} };
 	Renderer::Instance()->RenderText(*trainerPokemonMoves.at(3).NameText.get(), fourthMoveTransform);
+
+	glm::ivec2 arrowPosition{};
+	switch (m_CurrentMove)
+	{
+	case 0:
+		arrowPosition = glm::ivec2{ 565.0f, 60.0f };
+		break;
+	case 1:
+		arrowPosition = glm::ivec2{ 765.0f, 60.0f };
+		break;
+	case 2:
+		arrowPosition = glm::ivec2{ 565.0f, 25.0f };
+		break;
+	case 3:
+		arrowPosition = glm::ivec2{ 765.0f, 25.0f };
+		break;
+	default:
+		throw std::runtime_error("BattleManagerComponent::RenderMoveSelect: Invalid move index");
+	}
+
+	Renderer::Instance()->RenderTexture(*m_SelectArrow.get(), Transform{ arrowPosition, 0, glm::vec2{ 1.0f } });
 }

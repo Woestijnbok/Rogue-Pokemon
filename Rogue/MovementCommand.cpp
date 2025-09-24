@@ -1,4 +1,4 @@
-#include "MoveCommand.h"
+#include "MovementCommand.h"
 
 // Libraries
 #include <cassert>
@@ -11,7 +11,7 @@
 
 using namespace Minigin;
 
-MoveCommand::MoveCommand(MovementComponent* movementComponent, Direction direction) :
+MovementCommand::MovementCommand(MovementComponent* movementComponent, Direction direction) :
 	GameObjectCommand{ movementComponent->GetOwner() },
 	m_Direction{ direction },
 	m_MovementComponent{ movementComponent }
@@ -19,7 +19,7 @@ MoveCommand::MoveCommand(MovementComponent* movementComponent, Direction directi
 	assert(m_MovementComponent);
 }
 
-void MoveCommand::Execute()
+void MovementCommand::Execute()
 {
 	m_MovementComponent->Move(m_Direction);
 }

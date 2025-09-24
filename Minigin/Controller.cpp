@@ -69,6 +69,11 @@ void Controller::Impl::ProcessInput()
 
 	for (const InputAction& inputAction : m_InputActions)	
 	{
+		if (!inputAction.IsValid())
+		{
+			continue;
+		}
+
 		switch (inputAction.GetTrigger())		
 		{
 		case InputAction::Trigger::Down:

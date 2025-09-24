@@ -33,6 +33,7 @@ namespace Minigin
 		unsigned int GetButton() const;
 		Trigger GetTrigger() const;
 		Command* GetCommand() const;
+		bool IsValid() const;
 
 	private:
 		unsigned int m_Button;

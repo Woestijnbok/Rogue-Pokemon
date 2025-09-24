@@ -31,6 +31,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -44,6 +45,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -221,9 +223,10 @@ xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin"
     <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Move.cpp" />
-    <ClCompile Include="MoveCommand.cpp" />
+    <ClCompile Include="MovementCommand.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="PokemonComponent.cpp" />
+    <ClCompile Include="SelectMoveCommand.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManagerComponent.cpp" />
     <ClCompile Include="TrainerComponent.cpp" />
@@ -237,9 +240,10 @@ xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin"
     <ClInclude Include="Enums.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="Move.h" />
-    <ClInclude Include="MoveCommand.h" />
+    <ClInclude Include="MovementCommand.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="PokemonComponent.h" />
+    <ClInclude Include="SelectMoveCommand.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManagerComponent.h" />
     <ClInclude Include="TrainerComponent.h" />

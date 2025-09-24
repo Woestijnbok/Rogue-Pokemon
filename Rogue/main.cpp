@@ -5,6 +5,7 @@
 #include <vec2.hpp>
 #ifdef _DEBUG
 #include <vld.h>
+#include <crtdbg.h>
 #endif
 
 // Core
@@ -22,7 +23,8 @@
 #include "SpriteComponent.h"
 
 // Commands
-#include "MoveCommand.h"
+#include "MovementCommand.h"
+#include "SelectMoveCommand.h"
 #ifdef _DEBUG
 #include "DebugCommands.h"
 #endif
@@ -73,11 +75,17 @@ void Load()
 	ConnectSpritesToMovement(spriteComponent, movementComponent);
 	movementComponent->OnMoveCompleted().AddObserver(std::bind(&TileManagerComponent::CheckForBattle, tileManagerComponent, trainerComponent));
 
-	// Trainer input
-	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::W, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, Direction::Up));
-	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::D, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, Direction::Right));
-	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::S, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, Direction::Down));
-	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::A, InputAction::Trigger::Pressed, std::make_shared<MoveCommand>(movementComponent, Direction::Left));
+	// Movement input
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::W, InputAction::Trigger::Pressed, std::make_shared<MovementCommand>(movementComponent, Direction::Up));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::D, InputAction::Trigger::Pressed, std::make_shared<MovementCommand>(movementComponent, Direction::Right));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::S, InputAction::Trigger::Pressed, std::make_shared<MovementCommand>(movementComponent, Direction::Down));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::A, InputAction::Trigger::Pressed, std::make_shared<MovementCommand>(movementComponent, Direction::Left));
+
+	// Select input
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::W, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Up));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::D, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Right));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::S, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Down));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::A, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Left));
 
 #ifdef _DEBUG
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::B, InputAction::Trigger::Pressed, std::make_shared<SkipBattleCommand>(battleManagerComponent));
@@ -86,6 +94,11 @@ void Load()
 
 int main(int, char* [])
 {
+#ifdef _DEBUG
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF | _CRTDBG_CHECK_ALWAYS_DF);
+	//_CrtSetBreakAlloc(287);
+#endif
+
 	Engine::Initialize("Rogue Pokemon", glm::ivec2{ 960, 480 });
 	Engine::Run(&Load);
 	Engine::Destroy();

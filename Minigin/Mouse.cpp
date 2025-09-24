@@ -38,6 +38,11 @@ bool Mouse::Impl::ProcessInput()
 {
 	for (const InputAction& inputAction : m_InputActions)
 	{
+		if(!inputAction.IsValid())
+		{
+			continue;
+		}
+
 		switch (static_cast<Action>(inputAction.GetButton()))
 		{
 		case Action::LeftClick:
