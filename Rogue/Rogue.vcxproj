@@ -135,8 +135,8 @@ xcopy /Y /I "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.
 xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\vld_$(PlatformTarget).dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\dbghelp.dll" $(OutDir)
-xcopy "$(ProjectDir)Resources" "$(OutDir)\Resources" /E /I /H /K /Y
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin" $(OutDir)\Resources\Files</Command>
+xcopy "$(ProjectDir)Resources" "$(OutDir)Resources" /E /I /H /K /Y
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin" $(OutDir)Resources\Files</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -160,8 +160,8 @@ xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin"
 xcopy /Y /I "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\SDL2_image.dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)
-xcopy "$(ProjectDir)Resources" "$(OutDir)\Resources" /E /I /H /K /Y
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin" $(OutDir)\Resources\Files</Command>
+xcopy "$(ProjectDir)Resources" "$(OutDir)Resources" /E /I /H /K /Y
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin" $(OutDir)Resources\Files</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -185,8 +185,8 @@ xcopy /Y /I "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.
 xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\vld_$(PlatformTarget).dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\dbghelp.dll" $(OutDir)
-xcopy "$(ProjectDir)Resources" "$(OutDir)\Resources" /E /I /H /K /Y
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin" $(OutDir)\Resources\Files</Command>
+xcopy "$(ProjectDir)Resources" "$(OutDir)Resources" /E /I /H /K /Y
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin" $(OutDir)Resources\Files</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -210,8 +210,8 @@ xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin"
 xcopy /Y /I "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\SDL2_image.dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)
-xcopy "$(ProjectDir)Resources" "$(OutDir)\Resources" /E /I /H /K /Y
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin" $(OutDir)\Resources\Files</Command>
+xcopy "$(ProjectDir)Resources" "$(OutDir)Resources" /E /I /H /K /Y
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin" $(OutDir)Resources\Files</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
