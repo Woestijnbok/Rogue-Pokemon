@@ -25,6 +25,7 @@
 // Commands
 #include "MovementCommand.h"
 #include "SelectMoveCommand.h"
+#include "BattleConfirmCommand.h"
 #ifdef _DEBUG
 #include "DebugCommands.h"
 #endif
@@ -82,6 +83,7 @@ void Load()
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::A, InputAction::Trigger::Pressed, std::make_shared<MovementCommand>(movementComponent, Direction::Left));
 
 	// Select input
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::One, InputAction::Trigger::Pressed, std::make_shared<BattleConfirmCommand>(battleManagerComponent));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::W, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Up));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::D, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Right));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::S, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Down));

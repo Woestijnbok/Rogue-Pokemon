@@ -67,6 +67,10 @@ public:
 	*/
 	void ChangeSelectedMove(Direction direction);
 	/*
+	* Confirms the current state of the battle.
+	*/
+	void Confirm();
+	/*
 	* Getter for the on battle started event.
 	* 
 	* @return The battle started event.

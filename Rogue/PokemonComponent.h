@@ -11,6 +11,7 @@
 
 // Other
 #include "Move.h"
+#include "PokemonStats.h"
 
 namespace Minigin
 {
@@ -51,11 +52,17 @@ public:
 	PokemonComponent& operator=(PokemonComponent&& other) noexcept = delete;
 
 	/*
-	* Returns the name of the pokemon.
+	* Gets all the stats of the pokemon.
 	* 
-	* @return The name of the pokemon
+	* @return The stats of the pokemon.
 	*/
-	const std::string& GetName() const;
+	PokemonStats& GetStats();
+	/*
+	* Returns all moves this pokemon has, aka 4.
+	*
+	* @return The moves array.
+	*/
+	const std::array<Move, 4>& GetMoves() const;
 	/*
 	* Returns the name of the pokemon in text.
 	*
@@ -87,37 +94,23 @@ public:
 	*/
 	void SetLevel(uint8_t level);
 	/*
-	* Gets the level of the pokemon.
-	*
-	* @return The pokemon's level.
-	*/
-	uint8_t GetLevel() const;
-	/*
 	* Gets the pokemon's health in percentage.
 	*
 	* @return The pokemon's health.
 	*/
 	float GetHealthPercentage() const;
-	/*
-	* Returns all moves this pokemon has, aka 4.
-	* 
-	* @return The moves array.
-	*/
-	const std::array<Move, 4>& GetMoves() const;
 	
 private:
+	// Pokemon level number
+	PokemonStats m_Stats;
+	// The moves / attacks of the pokemon
+	const std::array<Move, 4> m_Moves;
 	// Pokemon name
-	const std::unique_ptr<Minigin::Text> m_NameText;
-	// Pokemon level
+	const std::unique_ptr<Minigin::Text> m_Name;
+	// Pokemon level in text
 	const std::unique_ptr<Minigin::Text> m_LevelText;
 	// Pokemon texture
 	const std::unique_ptr<Minigin::Texture> m_Texture;
-	// The moves / attacks of the pokemon
-	const std::array<Move, 4> m_Moves;
 	// Optional trainer, empty if a wild pokemon
 	const std::optional<TrainerComponent const *> m_Trainer;
-	// Current health
-	uint16_t m_MaxHealth;
-	// Max Health
-	uint16_t m_CurrentHealth;
 };

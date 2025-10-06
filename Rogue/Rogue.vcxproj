@@ -215,6 +215,7 @@ xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin"
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BattleConfirmCommand.cpp" />
     <ClCompile Include="BattleManagerComponent.cpp" />
     <ClCompile Include="DebugCommands.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -226,12 +227,14 @@ xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin"
     <ClCompile Include="MovementCommand.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="PokemonComponent.cpp" />
+    <ClCompile Include="PokemonStats.cpp" />
     <ClCompile Include="SelectMoveCommand.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileManagerComponent.cpp" />
     <ClCompile Include="TrainerComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BattleConfirmCommand.h" />
     <ClInclude Include="BattleManagerComponent.h" />
     <ClInclude Include="DebugCommands.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -243,6 +246,7 @@ xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin"
     <ClInclude Include="MovementCommand.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="PokemonComponent.h" />
+    <ClInclude Include="PokemonStats.h" />
     <ClInclude Include="SelectMoveCommand.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManagerComponent.h" />

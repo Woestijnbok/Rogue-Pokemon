@@ -7,6 +7,7 @@
 
 // Other
 #include <Pokedex.hpp>
+#include "Enums.h"
 
 namespace Minigin
 {
@@ -34,9 +35,17 @@ struct Move
 	Move& operator=(Move&& other) noexcept = default;
 	
 	// Name text
-	const std::unique_ptr<Minigin::Text> NameText;
+	const std::unique_ptr<Minigin::Text> Name;
+	// Move Type
+	MoveType Type;
+	// Element Type
+	ElementType Element;
 	// Power
 	const uint8_t Power;
+	// Accuracy
+	const uint8_t Accuracy;
+	// Crit chance
+	const uint8_t CritChance;
 
 private:
 	/*

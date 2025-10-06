@@ -35,6 +35,12 @@
     <ClCompile Include="SelectMoveCommand.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
+    <ClCompile Include="PokemonStats.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleConfirmCommand.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -82,6 +88,12 @@
       <Filter>Other</Filter>
     </ClInclude>
     <ClInclude Include="SelectMoveCommand.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="PokemonStats.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleConfirmCommand.h">
       <Filter>Commands</Filter>
     </ClInclude>
   </ItemGroup>

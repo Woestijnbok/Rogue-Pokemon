@@ -7,8 +7,12 @@
 using namespace Minigin;
 
 Move::Move(const PODMove& move, Font* font) :
-	NameText{ new Text{ GetDisplayName(move.Name), font, Color::Black } },
-	Power{ move.Power }
+	Name{ new Text{ GetDisplayName(move.Name), font, Color::Black } },
+	Type{ MoveType::Physical },
+	Element{ ElementType::Normal },
+	Power{ move.Power },
+	Accuracy{ 100 },
+	CritChance{ 6 }
 {
 
 }

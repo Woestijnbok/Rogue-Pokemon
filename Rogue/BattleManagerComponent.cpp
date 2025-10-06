@@ -122,6 +122,11 @@ void BattleManagerComponent::ChangeSelectedMove(Direction direction)
 	assert(m_CurrentMove >= 0 and m_CurrentMove < 4);
 }
 
+void BattleManagerComponent::Confirm()
+{
+
+}
+
 Minigin::Subject<>& BattleManagerComponent::OnBattleStarted()
 {
 	return m_OnBattleStarted;
@@ -247,25 +252,25 @@ void BattleManagerComponent::RenderMoveSelect() const
 
 	const std::array<Move, 4>& trainerPokemonMoves{ m_CurrentBattle.first->GetMoves() };
 
-	const int firstMoveWidth{ trainerPokemonMoves.at(0).NameText->GetTexture()->GetSize().x };
+	const int firstMoveWidth{ trainerPokemonMoves.at(0).Name->GetTexture()->GetSize().x };
 	const glm::ivec2 firstMovePosition{ 580, 60 };
 	const Transform firstMoveTransform{ glm::ivec2{ firstMovePosition.x + (firstMoveWidth / 2), firstMovePosition.y }, 0, glm::vec2{1.0f}};
-	Renderer::Instance()->RenderText(*trainerPokemonMoves.at(0).NameText.get(), firstMoveTransform);
+	Renderer::Instance()->RenderText(*trainerPokemonMoves.at(0).Name.get(), firstMoveTransform);
 
-	const int secondMoveWidth{ trainerPokemonMoves.at(1).NameText->GetTexture()->GetSize().x };
+	const int secondMoveWidth{ trainerPokemonMoves.at(1).Name->GetTexture()->GetSize().x };
 	const glm::ivec2 secondMovePosition{ 780, 60 };
 	const Transform secondMoveTransform{ glm::ivec2{ secondMovePosition.x + (secondMoveWidth / 2), secondMovePosition.y }, 0, glm::vec2{1.0f} };
-	Renderer::Instance()->RenderText(*trainerPokemonMoves.at(1).NameText.get(), secondMoveTransform);
+	Renderer::Instance()->RenderText(*trainerPokemonMoves.at(1).Name.get(), secondMoveTransform);
 
-	const int thirdMoveWidth{ trainerPokemonMoves.at(2).NameText->GetTexture()->GetSize().x };
+	const int thirdMoveWidth{ trainerPokemonMoves.at(2).Name->GetTexture()->GetSize().x };
 	const glm::ivec2 thirdMovePosition{ 580, 25 };
 	const Transform thirdMoveTransform{ glm::ivec2{ thirdMovePosition.x + (thirdMoveWidth / 2), thirdMovePosition.y }, 0, glm::vec2{1.0f} };
-	Renderer::Instance()->RenderText(*trainerPokemonMoves.at(2).NameText.get(), thirdMoveTransform);
+	Renderer::Instance()->RenderText(*trainerPokemonMoves.at(2).Name.get(), thirdMoveTransform);
 
-	const int fourthMoveWidth{ trainerPokemonMoves.at(3).NameText->GetTexture()->GetSize().x };
+	const int fourthMoveWidth{ trainerPokemonMoves.at(3).Name->GetTexture()->GetSize().x };
 	const glm::ivec2 fourthMovePosition{ 780, 25 };
 	const Transform fourthMoveTransform{ glm::ivec2{ fourthMovePosition.x + (fourthMoveWidth / 2), fourthMovePosition.y }, 0, glm::vec2{1.0f} };
-	Renderer::Instance()->RenderText(*trainerPokemonMoves.at(3).NameText.get(), fourthMoveTransform);
+	Renderer::Instance()->RenderText(*trainerPokemonMoves.at(3).Name.get(), fourthMoveTransform);
 
 	glm::ivec2 arrowPosition{};
 	switch (m_CurrentMove)
