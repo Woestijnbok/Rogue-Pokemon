@@ -55,8 +55,6 @@ void Load()
 	Scene* worldScene{ SceneManager::Instance()->CreateScene("World") };
 	Scene* battleScene{ SceneManager::Instance()->CreateScene("Battle", false) };
 
-	//
-
 	// Manager game object & components
 	GameObject* tileManagerObject{ worldScene->CreateGameObject("Manager", true) };
 	TileManagerComponent* tileManagerComponent{ tileManagerObject->CreateComponent<TileManagerComponent>() };
@@ -96,11 +94,6 @@ void Load()
 
 int main(int, char* [])
 {
-#ifdef _DEBUG
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF | _CRTDBG_CHECK_ALWAYS_DF);
-	//_CrtSetBreakAlloc(287);
-#endif
-
 	Engine::Initialize("Rogue Pokemon", glm::ivec2{ 960, 480 });
 	Engine::Run(&Load);
 	Engine::Destroy();

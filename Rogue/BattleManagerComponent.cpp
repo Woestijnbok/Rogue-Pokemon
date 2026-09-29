@@ -171,11 +171,11 @@ void BattleManagerComponent::RenderTrainerCloud() const
 	Renderer::Instance()->RenderTexture(*m_TrainerCloud, cloudTransform);
 
 	const int nameWidth{ m_CurrentBattle.first->GetNameText()->GetTexture()->GetSize().x };
-	const Transform nameTransform{ glm::ivec2{ 400 + (nameWidth / 2), 170 }, 0, glm::vec2{ 1.0f } };
+	const Transform nameTransform{ glm::ivec2{ 390 + (nameWidth / 2), 170 }, 0, glm::vec2{ 1.0f } };
 	Renderer::Instance()->RenderText(*m_CurrentBattle.first->GetNameText(), nameTransform);
 
 	const int levelWidth{ m_CurrentBattle.first->GetLevelText()->GetTexture()->GetSize().x };
-	const Transform levelTransform{ glm::ivec2{ 620 - (levelWidth / 2), 170 }, 0, glm::vec2{ 1.0f } };
+	const Transform levelTransform{ glm::ivec2{ 630 - (levelWidth / 2), 170 }, 0, glm::vec2{ 1.0f } };
 	Renderer::Instance()->RenderText(*m_CurrentBattle.first->GetLevelText(), levelTransform);
 }
 
@@ -208,15 +208,15 @@ void BattleManagerComponent::RenderEnemyCloud() const
 {
 	RenderEnemyHealth();
 
-	const Transform cloudTransform{ glm::ivec2{ 350, 350 }, 0, glm::vec2{ 3.0f } };
-	Renderer::Instance()->RenderTexture(*m_TrainerCloud, cloudTransform);
+	const Transform cloudTransform{ glm::ivec2{ 350, 350 }, 0, glm::vec2{ 3.0f, 3.0f } };
+	Renderer::Instance()->RenderTexture(*m_EnemyCloud, cloudTransform);
 
 	const int nameWidth{ m_CurrentBattle.second->GetNameText()->GetTexture()->GetSize().x };
-	const Transform nameTransform{ glm::ivec2{ 250 + (nameWidth / 2), 370}, 0, glm::vec2{1.0f}};
+	const Transform nameTransform{ glm::ivec2{ 220 + (nameWidth / 2), 370}, 0, glm::vec2{1.0f}};
 	Renderer::Instance()->RenderText(*m_CurrentBattle.second->GetNameText(), nameTransform);
 
 	const int levelWidth{ m_CurrentBattle.second->GetLevelText()->GetTexture()->GetSize().x };
-	const Transform levelTransform{ glm::ivec2{ 470 - (levelWidth / 2), 370 }, 0, glm::vec2{ 1.0f } };
+	const Transform levelTransform{ glm::ivec2{ 460 - (levelWidth / 2), 370 }, 0, glm::vec2{ 1.0f } };
 	Renderer::Instance()->RenderText(*m_CurrentBattle.second->GetLevelText(), levelTransform);
 }
 
