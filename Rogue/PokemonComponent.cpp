@@ -87,6 +87,11 @@ float PokemonComponent::GetHealthPercentage() const
 	return static_cast<float>(m_Stats.CurrentHealth) / static_cast<float>(m_Stats.MaxHealth);
 }
 
+bool PokemonComponent::IsDead() const
+{
+	return m_Stats.CurrentHealth <= 0;
+}
+
 PokemonStats& PokemonComponent::GetStats()
 {
 	return m_Stats;

@@ -14,6 +14,7 @@
 namespace Minigin
 {
 	class Texture;
+	class Text;
 }
 
 class PokemonComponent;
@@ -116,12 +117,36 @@ private:
 	*/
 	void RenderEnemyHealth() const;
 	/*
+	* Renders move info box..
+	*/
+	void RenderInfoBox() const;
+	/*
 	* Renders move select menu.
 	*/
 	void RenderMoveSelect() const;
+	/*
+	* Renders the used move
+	* 
+	* @param isPlayerMove: If the move used is the player's pokemon or the wild pokemon.
+	*/
+	void RenderUsedMove(bool isPlayerMove) const;
+	/*
+	* Uses the selected move.
+	*/
+	void UseSelectedMove();
+	/*
+	* Selects a random move for the enemy pokemon.
+	*/
+	void SelectEnemyMove();
+	/*
+	* Checks if the battle is over and ends it if so.
+	*/
+	void CheckBattleEnd();
 
 	// Current battle pair, first one being the trainer's pokemon and latter the wild pokemon
 	std::pair<PokemonComponent*, PokemonComponent*> m_CurrentBattle;
+	// Current battle state
+	BattleState m_CurrentBattleState;
 	// Battle started event
 	Minigin::Subject<> m_OnBattleStarted;
 	// Battle finished event
@@ -138,6 +163,10 @@ private:
 	std::unique_ptr<Minigin::Texture> m_MoveBox;
 	// Select move arrow texture
 	std::unique_ptr<Minigin::Texture> m_SelectArrow;
+	// Wild pokemon name used to identify the enemy pokemon in the battle.
+	std::unique_ptr<Minigin::Text> m_WildText;
+	// Used text to show the move used by the trainer's pokemon.
+	std::unique_ptr<Minigin::Text> m_UsedText;
 	// Random device used for creating seeds
 	std::random_device m_RandomDevice;
 	// Random engine used to generate random values based on a seed.

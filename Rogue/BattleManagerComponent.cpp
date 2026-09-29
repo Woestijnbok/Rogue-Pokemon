@@ -2,6 +2,7 @@
 
 // Libraries
 #include <cassert>
+#include <algorithm>
 
 // Core
 #include "Engine.h"
@@ -25,6 +26,7 @@ using namespace Minigin;
 BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	Component{ owner },
 	m_CurrentBattle{ nullptr, nullptr },
+	m_CurrentBattleState{ BattleState::None },
 	m_OnBattleStarted{},
 	m_OnBattleFinished{},
 	m_BattleBackground{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Battle Background.png") },
@@ -33,6 +35,8 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_InfoBox{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Info Box.png") },
 	m_MoveBox{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Move Box.png") },
 	m_SelectArrow{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Select Arrow.png") },
+	m_WildText{ new Text{ "Wild ", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
+	m_UsedText{ new Text{ "used ", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_RandomDevice{},
 	m_RandomEngine{ m_RandomDevice() },
 	m_ChanceDistribution{ 0.0f, 100.0f },
@@ -47,11 +51,32 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 void BattleManagerComponent::Render() const
 {
 	// TODO: Fix magic values in helper functions use constexpr.
+
 	RenderBackground();
 	RenderPokemons();
 	RenderTrainerCloud();
 	RenderEnemyCloud();
-	RenderMoveSelect();
+	RenderInfoBox();
+
+	switch (m_CurrentBattleState)
+	{
+	case BattleState::SelectMove:
+		RenderMoveSelect();
+		break;
+	case BattleState::PerformPlayerMove:
+		RenderUsedMove(true);
+		break;
+	case BattleState::PerformEnemyMove:
+		RenderUsedMove(false);
+		break;
+	case BattleState::EndBattle:
+		RenderUsedMove(m_CurrentBattle.second->IsDead());
+		break;
+	case BattleState::None:
+		break;
+	default:
+		break;
+	}
 }
 
 void BattleManagerComponent::MakeBattle(TrainerComponent* trainer)
@@ -80,6 +105,7 @@ void BattleManagerComponent::EndBattle()
 	m_CurrentBattle.first = nullptr;
 	m_CurrentBattle.second->GetOwner()->SetStatus(ControllableObject::Status::Destroyed);
 	m_CurrentBattle.second = nullptr;
+	m_CurrentBattleState = BattleState::None;
 
 	m_OnBattleFinished.Notify();
 }
@@ -124,7 +150,34 @@ void BattleManagerComponent::ChangeSelectedMove(Direction direction)
 
 void BattleManagerComponent::Confirm()
 {
-
+	if (m_CurrentBattleState != BattleState::None)
+	{
+		switch (m_CurrentBattleState)
+		{
+		case BattleState::SelectMove:
+			m_CurrentBattleState = BattleState::PerformPlayerMove;
+			UseSelectedMove();
+			CheckBattleEnd();
+			break;
+		case BattleState::PerformPlayerMove:
+			m_CurrentBattleState = BattleState::PerformEnemyMove;
+			SelectEnemyMove();
+			UseSelectedMove();
+			CheckBattleEnd();
+			break;
+		case BattleState::PerformEnemyMove:
+			m_CurrentBattleState = BattleState::SelectMove;
+			m_CurrentMove = 0;
+			break;
+		case BattleState::EndBattle:
+			EndBattle();
+			break;
+		case BattleState::None:
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 Minigin::Subject<>& BattleManagerComponent::OnBattleStarted()
@@ -141,6 +194,7 @@ void BattleManagerComponent::StartBattle(PokemonComponent* trainer, PokemonCompo
 {
 	m_CurrentBattle.first = trainer;
 	m_CurrentBattle.second = enemy;
+	m_CurrentBattleState = BattleState::SelectMove;
 
 	m_OnBattleStarted.Notify();
 }
@@ -245,11 +299,14 @@ void BattleManagerComponent::RenderEnemyHealth() const
 	Renderer::Instance()->RenderBox(bottomLeft, healthTopRight, healthColor, true);
 }
 
-void BattleManagerComponent::RenderMoveSelect() const
+void BattleManagerComponent::RenderInfoBox() const
 {
 	const Transform boxTransform{ glm::ivec2{ 745, 41 }, 0, glm::vec2{ 1.8f } };
 	Renderer::Instance()->RenderTexture(*m_MoveBox, boxTransform);
+}
 
+void BattleManagerComponent::RenderMoveSelect() const
+{
 	const std::array<Move, 4>& trainerPokemonMoves{ m_CurrentBattle.first->GetMoves() };
 
 	const int firstMoveWidth{ trainerPokemonMoves.at(0).Name->GetTexture()->GetSize().x };
@@ -292,4 +349,80 @@ void BattleManagerComponent::RenderMoveSelect() const
 	}
 
 	Renderer::Instance()->RenderTexture(*m_SelectArrow.get(), Transform{ arrowPosition, 0, glm::vec2{ 1.0f } });
+}
+
+void BattleManagerComponent::RenderUsedMove(bool isPlayerMove) const
+{
+	const glm::ivec2 topPosition{ 550.0f, 45.0f };
+	const glm::ivec2 bottomPosition{ 550.0f, 15.0f };
+	const uint8_t whiteSpace{ 10 };
+
+	if (isPlayerMove)
+	{
+		const glm::ivec2 namePosition{ topPosition + (m_CurrentBattle.first->GetNameText()->GetTexture()->GetSize() / 2) };
+		Renderer::Instance()->RenderText(*m_CurrentBattle.first->GetNameText(), Transform{ namePosition, 0, glm::vec2{ 1.0f } });
+
+		const glm::ivec2 usedPosition{ topPosition.x + m_CurrentBattle.first->GetNameText()->GetTexture()->GetSize().x + whiteSpace + (m_UsedText->GetTexture()->GetSize().x / 2), topPosition.y + (m_UsedText->GetTexture()->GetSize().y / 2) };
+		Renderer::Instance()->RenderText(*m_UsedText, Transform{ usedPosition, 0, glm::vec2{ 1.0f } });
+
+		const glm::ivec2 movePosition{ bottomPosition + (m_CurrentBattle.first->GetMoves().at(m_CurrentMove).Name->GetTexture()->GetSize() / 2) };
+		Renderer::Instance()->RenderText(*m_CurrentBattle.first->GetMoves().at(m_CurrentMove).Name, Transform{movePosition, 0, glm::vec2{1.0f}});
+	}
+	else
+	{
+		const glm::ivec2 wildPosition{ topPosition + (m_WildText->GetTexture()->GetSize() / 2) };
+		Renderer::Instance()->RenderText(*m_WildText, Transform{ wildPosition, 0, glm::vec2{ 1.0f } });
+
+		const glm::ivec2 namePosition{ topPosition.x + (m_WildText->GetTexture()->GetSize().x) + whiteSpace + (m_CurrentBattle.second->GetNameText()->GetTexture()->GetSize().x / 2), topPosition.y + (m_CurrentBattle.second->GetNameText()->GetTexture()->GetSize().y / 2) };
+		Renderer::Instance()->RenderText(*m_CurrentBattle.second->GetNameText(), Transform{ namePosition, 0, glm::vec2{ 1.0f } });
+
+		const glm::ivec2 usedPosition{ topPosition.x + (m_WildText->GetTexture()->GetSize().x) + (m_CurrentBattle.second->GetNameText()->GetTexture()->GetSize().x) + (2 * whiteSpace) + (m_UsedText->GetTexture()->GetSize().x / 2), topPosition.y + (m_UsedText->GetTexture()->GetSize().y / 2) };
+		Renderer::Instance()->RenderText(*m_UsedText, Transform{ usedPosition, 0, glm::vec2{ 1.0f } });
+
+		const glm::ivec2 movePosition{ bottomPosition + (m_CurrentBattle.second->GetMoves().at(m_CurrentMove).Name->GetTexture()->GetSize() / 2) };
+		Renderer::Instance()->RenderText(*m_CurrentBattle.second->GetMoves().at(m_CurrentMove).Name, Transform{ movePosition, 0, glm::vec2{1.0f} });
+	}
+}
+
+void BattleManagerComponent::UseSelectedMove()
+{
+	if (m_CurrentBattleState == BattleState::PerformPlayerMove)
+	{
+		uint8_t attackPower{ m_CurrentBattle.first->GetMoves()[m_CurrentMove].Power };
+		if (m_CurrentBattle.second->GetStats().CurrentHealth < attackPower)
+		{
+			m_CurrentBattle.second->GetStats().CurrentHealth = 0;
+		}
+		else
+		{
+			m_CurrentBattle.second->GetStats().CurrentHealth -= attackPower;
+		}
+	}
+	else
+	{
+		uint8_t attackPower{ m_CurrentBattle.second->GetMoves()[m_CurrentMove].Power };
+		if (m_CurrentBattle.first->GetStats().CurrentHealth < attackPower)
+		{
+			m_CurrentBattle.first->GetStats().CurrentHealth = 0;
+		}
+		else
+		{
+			m_CurrentBattle.first->GetStats().CurrentHealth -= attackPower;
+		}
+	}
+}
+
+void BattleManagerComponent::SelectEnemyMove()
+{
+	// For now just select a random move, later we can implement some scoring system to select the best move based on the situation.
+	std::uniform_int_distribution<int> distribution{ 0, 3 };
+	m_CurrentMove = static_cast<uint8_t>(distribution(m_RandomEngine));
+}
+
+void BattleManagerComponent::CheckBattleEnd()
+{
+	if (m_CurrentBattle.first->IsDead() or m_CurrentBattle.second->IsDead())
+	{
+		m_CurrentBattleState = BattleState::EndBattle;
+	}
 }

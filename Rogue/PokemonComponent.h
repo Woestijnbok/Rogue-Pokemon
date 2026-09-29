@@ -99,6 +99,12 @@ public:
 	* @return The pokemon's health.
 	*/
 	float GetHealthPercentage() const;
+	/*
+	* Chechs wether or not the pokemon is dead.
+	*
+	* @return true if pokemon fainted.
+	*/
+	bool IsDead() const;
 	
 private:
 	// Pokemon level number
