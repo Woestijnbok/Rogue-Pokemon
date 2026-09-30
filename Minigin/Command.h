@@ -5,6 +5,7 @@
 namespace Minigin
 {
 	class GameObject;
+	class Component;
 
 	class Command
 	{
@@ -39,7 +40,7 @@ namespace Minigin
 		GameObjectCommand& operator= (const GameObjectCommand&) = delete;
 		GameObjectCommand& operator= (const GameObjectCommand&&) noexcept = delete;
 
-		bool IsInvalid() const;
+		virtual bool IsValid() const;
 		GameObject* GetGameObject() const;
 
 	protected:
@@ -47,6 +48,28 @@ namespace Minigin
 
 	private:
 		GameObject* m_GameObject;
+
+	};
+
+	class ComponentCommand : public Minigin::GameObjectCommand
+	{
+	public:
+		explicit ComponentCommand(Component* component);
+		virtual ~ComponentCommand() = default;
+
+		ComponentCommand(const ComponentCommand&) = delete;
+		ComponentCommand(ComponentCommand&&) noexcept = delete;
+		ComponentCommand& operator= (const ComponentCommand&) = delete;
+		ComponentCommand& operator= (const ComponentCommand&&) noexcept = delete;
+
+		virtual bool IsValid() const override;
+		Component* GetComponent() const;
+
+	protected:
+
+
+	private:
+		Component* m_Component;
 
 	};
 }

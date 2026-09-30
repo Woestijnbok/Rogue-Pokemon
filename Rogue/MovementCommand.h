@@ -11,7 +11,7 @@ class MovementComponent;
 /*
 * Command that will call move on the movement component in the given direction.
 */
-class MovementCommand final : public Minigin::GameObjectCommand
+class MovementCommand final : public Minigin::ComponentCommand
 {
 public:
 	/*

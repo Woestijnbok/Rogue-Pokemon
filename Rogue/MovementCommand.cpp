@@ -12,7 +12,7 @@
 using namespace Minigin;
 
 MovementCommand::MovementCommand(MovementComponent* movementComponent, Direction direction) :
-	GameObjectCommand{ movementComponent->GetOwner() },
+	ComponentCommand{ movementComponent },
 	m_Direction{ direction },
 	m_MovementComponent{ movementComponent }
 {

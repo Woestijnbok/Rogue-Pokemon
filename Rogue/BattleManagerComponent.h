@@ -83,6 +83,12 @@ public:
 	* @return The battle finished event.
 	*/
 	Minigin::Subject<>& OnBattleFinished();
+	/*
+	* Getter for the info box texture
+	* 
+	* @return The info box texture.
+	*/
+	Minigin::Texture const* GetInfoBoxTexture() const;
 
 private:
 	/*

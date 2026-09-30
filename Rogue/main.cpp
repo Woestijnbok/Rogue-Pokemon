@@ -26,6 +26,7 @@
 #include "MovementCommand.h"
 #include "SelectMoveCommand.h"
 #include "BattleConfirmCommand.h"
+#include "MenuConfirmCommand.h"
 #ifdef _DEBUG
 #include "DebugCommands.h"
 #endif
@@ -68,11 +69,13 @@ void Load()
 
 	// Trainer game object & components
 	GameObject* trainerObject{ worldScene->CreateGameObject("Trainer", true) };
-	TrainerComponent* trainerComponent{ trainerObject->CreateComponent<TrainerComponent>() }; trainerComponent;
 	MovementComponent* movementComponent{ trainerObject->CreateComponent<MovementComponent>(tileManagerComponent) };
+	TrainerComponent* trainerComponent{ trainerObject->CreateComponent<TrainerComponent>() }; trainerComponent;
 	SpriteComponent* spriteComponent{ MakeTrainerSprites(trainerObject, tileManagerComponent, movementComponent) };
 	ConnectSpritesToMovement(spriteComponent, movementComponent);
-	movementComponent->OnMoveCompleted().AddObserver(std::bind(&TileManagerComponent::CheckForBattle, tileManagerComponent, trainerComponent));
+
+	movementComponent->OnMoveCompleted().AddObserver(std::bind(&TileManagerComponent::CheckTile, tileManagerComponent, trainerComponent));
+	tileManagerComponent->OnItemEncounter().AddObserver(std::bind(&TrainerComponent::HealActivePokemon, trainerComponent));
 
 	// Movement input
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::W, InputAction::Trigger::Pressed, std::make_shared<MovementCommand>(movementComponent, Direction::Up));
@@ -82,6 +85,7 @@ void Load()
 
 	// Select input
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::One, InputAction::Trigger::Pressed, std::make_shared<BattleConfirmCommand>(battleManagerComponent));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::One, InputAction::Trigger::Pressed, std::make_shared<MenuConfirmCommand>(trainerComponent));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::W, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Up));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::D, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Right));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::S, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Down));

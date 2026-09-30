@@ -41,6 +41,9 @@
     <ClCompile Include="BattleConfirmCommand.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
+    <ClCompile Include="MenuConfirmCommand.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -94,6 +97,9 @@
       <Filter>Other</Filter>
     </ClInclude>
     <ClInclude Include="BattleConfirmCommand.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuConfirmCommand.h">
       <Filter>Commands</Filter>
     </ClInclude>
   </ItemGroup>

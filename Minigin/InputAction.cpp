@@ -52,7 +52,7 @@ bool InputAction::IsValid() const
 	GameObjectCommand* objectCommand{ dynamic_cast<GameObjectCommand*>(GetCommand()) };
 	if (objectCommand != nullptr)
 	{
-		isValid = !objectCommand->IsInvalid();
+		isValid = objectCommand->IsValid();
 	}
 
 	return isValid;

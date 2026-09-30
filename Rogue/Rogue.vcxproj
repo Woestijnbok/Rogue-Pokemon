@@ -223,6 +223,7 @@ xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin"
     </ClCompile>
     <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuConfirmCommand.cpp" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="MovementCommand.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
@@ -242,6 +243,7 @@ xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin"
     </ClInclude>
     <ClInclude Include="Enums.h" />
     <ClInclude Include="Helpers.h" />
+    <ClInclude Include="MenuConfirmCommand.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="MovementCommand.h" />
     <ClInclude Include="MovementComponent.h" />

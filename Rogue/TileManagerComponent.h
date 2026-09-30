@@ -94,13 +94,19 @@ public:
 	* 
 	* @param trainer: The trainer to check for.
 	*/
-	void CheckForBattle(TrainerComponent* trainer);
+	void CheckTile(TrainerComponent* trainer);
 	/*
 	* Gets the pokemon encounter event.
 	* 
 	* @return The on pokemon encounter event.
 	*/
 	Minigin::Subject<TrainerComponent*>& OnPokemonEncounter();
+	/*
+	* Gets the item encounter event.
+	*
+	* @return The on item encounter event.
+	*/
+	Minigin::Subject<>& OnItemEncounter();
 
 private:
 	/*
@@ -147,4 +153,6 @@ private:
 	std::uniform_real_distribution<float> m_ChanceDistribution;
 	// On pokemon encounter event
 	Minigin::Subject<TrainerComponent*> m_OnPokemonEncounter;
+	// On item pickup event
+	Minigin::Subject<> m_OnItemPickup;
 };

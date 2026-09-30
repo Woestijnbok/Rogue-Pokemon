@@ -35,8 +35,8 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_InfoBox{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Info Box.png") },
 	m_MoveBox{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Move Box.png") },
 	m_SelectArrow{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Select Arrow.png") },
-	m_WildText{ new Text{ "Wild ", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
-	m_UsedText{ new Text{ "used ", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
+	m_WildText{ new Text{ "Wild", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
+	m_UsedText{ new Text{ "used", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_RandomDevice{},
 	m_RandomEngine{ m_RandomDevice() },
 	m_ChanceDistribution{ 0.0f, 100.0f },
@@ -50,8 +50,6 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 
 void BattleManagerComponent::Render() const
 {
-	// TODO: Fix magic values in helper functions use constexpr.
-
 	RenderBackground();
 	RenderPokemons();
 	RenderTrainerCloud();
@@ -188,6 +186,11 @@ Minigin::Subject<>& BattleManagerComponent::OnBattleStarted()
 Minigin::Subject<>& BattleManagerComponent::OnBattleFinished()
 {
 	return m_OnBattleFinished;
+}
+
+Texture const* BattleManagerComponent::GetInfoBoxTexture() const
+{
+	return m_InfoBox.get();
 }
 
 void BattleManagerComponent::StartBattle(PokemonComponent* trainer, PokemonComponent* enemy)

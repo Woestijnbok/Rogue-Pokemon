@@ -32,7 +32,8 @@ TileManagerComponent::TileManagerComponent(Minigin::GameObject* owner) :
 	m_RandomDevice{},
 	m_RandomEngine{ m_RandomDevice() },
 	m_ChanceDistribution{ 0.0f, 100.0f },
-	m_OnPokemonEncounter{}
+	m_OnPokemonEncounter{},
+	m_OnItemPickup{}
 {
 	m_TileRenderScale = static_cast<float>(m_TileSize) / static_cast<float>(m_TileDirtTexture->GetSize().x);
 	RandomizeTiles();
@@ -98,19 +99,37 @@ Minigin::Subject<TrainerComponent*>& TileManagerComponent::OnPokemonEncounter()
 	return m_OnPokemonEncounter;
 }
 
+Minigin::Subject<>& TileManagerComponent::OnItemEncounter()
+{
+	return m_OnItemPickup;
+}
+
 const Tile& TileManagerComponent::GetTile(int row, int collumn) const
 {
 	return m_Tiles.at((row * m_Collumns) + collumn);
 }
 
-void TileManagerComponent::CheckForBattle(TrainerComponent* trainer)
+void TileManagerComponent::CheckTile(TrainerComponent* trainer)
 {
 	const glm::ivec2 tileIndices{ GetTileIndices(trainer->GetOwner()->GetWorldTransform().GetPosition()) };
 
-	if (GetTile(tileIndices.x, tileIndices.y).Type == Terrain::Pokemon)
+	switch (GetTile(tileIndices.x, tileIndices.y).Type)
 	{
-		m_Tiles.at((tileIndices.x * m_Collumns) + tileIndices.y).Type = Terrain::Grass;
-		m_OnPokemonEncounter.Notify(trainer);
+	case Terrain::Pokemon:
+			m_Tiles.at((tileIndices.x * m_Collumns) + tileIndices.y).Type = Terrain::Grass;
+			m_OnPokemonEncounter.Notify(trainer);
+			break;
+	case Terrain::Item:
+		// check if the trainer can pick up the item
+		if (trainer->CanPickupItem())
+		{
+			// if yes, notify the item encounter
+			m_Tiles.at((tileIndices.x * m_Collumns) + tileIndices.y).Type = Terrain::Dirt;
+			m_OnItemPickup.Notify();
+		}
+		break;
+	default:
+		break;
 	}
 }
 
