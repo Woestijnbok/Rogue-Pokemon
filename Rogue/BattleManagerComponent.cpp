@@ -16,6 +16,7 @@
 // Components
 #include "PokemonComponent.h"
 #include "TrainerComponent.h"
+#include "MovementComponent.h"
 
 // Other
 #include "Helpers.h"
@@ -29,6 +30,8 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_CurrentBattleState{ BattleState::None },
 	m_OnBattleStarted{},
 	m_OnBattleFinished{},
+	m_OnBattleWon{},
+	m_OnBattleLost{},
 	m_BattleBackground{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Battle Background.png") },
 	m_TrainerCloud{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Trainer Cloud.png") },
 	m_EnemyCloud{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Enemy Cloud.png") },
@@ -100,17 +103,22 @@ void BattleManagerComponent::MakeBattle(TrainerComponent* trainer)
 
 void BattleManagerComponent::EndBattle()
 {
+	m_CurrentBattle.second->GetOwner()->SetStatus(ControllableObject::Status::Destroyed);
+	m_CurrentBattleState = BattleState::None;
+
+	// Notify occured events.
+	m_OnBattleFinished.Notify();
 	if (m_CurrentBattle.second->IsDead())
 	{
-		m_CurrentBattle.first->IncreaseScore(1);
+		m_OnBattleWon.Notify();
+	}
+	else
+	{
+		m_OnBattleLost.Notify();
 	}
 
 	m_CurrentBattle.first = nullptr;
-	m_CurrentBattle.second->GetOwner()->SetStatus(ControllableObject::Status::Destroyed);
 	m_CurrentBattle.second = nullptr;
-	m_CurrentBattleState = BattleState::None;
-
-	m_OnBattleFinished.Notify();
 }
 
 bool BattleManagerComponent::InBattle() const
@@ -191,6 +199,16 @@ Minigin::Subject<>& BattleManagerComponent::OnBattleStarted()
 Minigin::Subject<>& BattleManagerComponent::OnBattleFinished()
 {
 	return m_OnBattleFinished;
+}
+
+Minigin::Subject<>& BattleManagerComponent::OnBattleWon()
+{
+	return m_OnBattleWon;
+}
+
+Minigin::Subject<>& BattleManagerComponent::OnBattleLost()
+{
+	return m_OnBattleLost;
 }
 
 Texture const* BattleManagerComponent::GetInfoBoxTexture() const

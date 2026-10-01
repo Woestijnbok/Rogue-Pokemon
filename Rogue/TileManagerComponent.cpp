@@ -180,8 +180,17 @@ void TileManagerComponent::RandomizeTiles()
 			{
 				m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Item;
 			}
+			else
+			{
+				m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Dirt;
+			}
 		}
 	}
 
 	m_Tiles.at((m_StartTile.x * m_Collumns) + m_StartTile.y).Type = Terrain::Dirt;
+}
+
+void TileManagerComponent::Reset()
+{
+	RandomizeTiles();
 }

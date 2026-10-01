@@ -90,6 +90,12 @@ void TrainerComponent::IncreaseScore(uint16_t amount)
 #endif // DEBUG
 }
 
+void TrainerComponent::Reset()
+{
+	m_Score = 0;
+	m_ActivePokemon->GetStats().CurrentHealth = m_ActivePokemon->GetStats().MaxHealth;
+}
+
 PokemonComponent* TrainerComponent::CreateStartPokemon() const
 {
 	// TODO: Create option to choose now it's always blaziken

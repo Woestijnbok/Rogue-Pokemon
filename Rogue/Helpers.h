@@ -8,11 +8,16 @@ namespace Minigin
 {
 	class SpriteComponent;
 	class GameObject;
+	class Scene;
 }
 
 struct PODPokemon;
 class TileManagerComponent;
 class MovementComponent;
+class BattleManagerComponent;
+class TrainerComponent;
+class MovementComponent;
+class TileManagerComponent;
 
 /*
 * Reads pokemon information from Pokedex.bin (binary pokedex file).
@@ -48,3 +53,32 @@ void ConnectSpritesToMovement(Minigin::SpriteComponent* spriteComponent, Movemen
 * @return The file path to the texture of the pokemon.
 */
 std::filesystem::path GetPokemonTexturePath(const std::string& name, bool isWild);
+
+/*
+* Focuses the battle scene and disables the world scene.
+* 
+* @param world: The world scene to disable.
+* @param battle: The battle scene to enable.
+*/
+void FocusBattle(Minigin::Scene* world, Minigin::Scene* battle);
+
+/*
+* Focuses the world scene and disables the battle scene.
+* 
+* @param world: The world scene to enable.
+* @param battle: The battle scene to disable.
+*/
+void FocusWorld(Minigin::Scene* world, Minigin::Scene* battle);
+
+/*
+* Connects mutliple logic to battle events from the battle manager component.
+* 
+* @param battleManager: The battle manager component to connect events to.
+* @param world: The world scene to connect events to.
+* @param battle: The battle scene to connect events to.
+* @param tileManager: The tile manager component to connect events to.
+* @param trainer: The trainer component to connect events to.
+* @param movementComponent: The movement component to connect events to.
+* @param spriteComponent: The sprite component to connect events to.
+*/
+void ConnectBattleEvents(BattleManagerComponent* battleManager, Minigin::Scene* world, Minigin::Scene* battle, TileManagerComponent* tileManager, TrainerComponent* trainer, MovementComponent* movementComponent, Minigin::SpriteComponent* spriteComponent);

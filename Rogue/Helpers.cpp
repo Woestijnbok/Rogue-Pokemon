@@ -8,6 +8,7 @@
 #include "ResourceManager.h"
 #include "SceneManager.h"
 #include "GameObject.h"
+#include "Scene.h"
 
 // Components
 #include "PokemonComponent.h"
@@ -15,6 +16,9 @@
 #include "SpriteComponent.h"
 #include "MovementComponent.h"
 #include "TrainerComponent.h"
+#include "BattleManagerComponent.h"
+#include "TrainerComponent.h"
+#include "MovementComponent.h"
 
 // Other
 #include "Pokedex.hpp"
@@ -122,4 +126,34 @@ std::filesystem::path GetPokemonTexturePath(const std::string& name, bool isWild
 	const std::string textureName{ std::format("Pokemon/{}{}", name, (isWild) ? ".png" : " Back.png" ) };
 
 	return ResourceManager::Instance()->GetTextureRootPath() / textureName;
+}
+
+void FocusBattle(Scene* world, Scene* battle)
+{
+	world->SetStatus(ControllableObject::Status::Disabled);
+	battle->SetStatus(ControllableObject::Status::Enabled);
+}
+
+void FocusWorld(Scene* world, Scene* battle)
+{
+	world->SetStatus(ControllableObject::Status::Enabled);
+	battle->SetStatus(ControllableObject::Status::Disabled);
+}
+
+void ConnectBattleEvents(BattleManagerComponent* battleManager, Minigin::Scene* world, Minigin::Scene* battle, TileManagerComponent* tileManager, TrainerComponent* trainer, MovementComponent* movementComponent, Minigin::SpriteComponent* spriteComponent)
+{
+	// Battle started event
+	battleManager->OnBattleStarted().AddObserver(std::bind(&FocusBattle, world, battle));
+
+	// Battle finished event
+	battleManager->OnBattleFinished().AddObserver(std::bind(&FocusWorld, world, battle));
+
+	// Battle won event
+	battleManager->OnBattleWon().AddObserver(std::bind(&TrainerComponent::IncreaseScore, trainer, uint16_t(1)));
+
+	// Battle lost event
+	battleManager->OnBattleLost().AddObserver(std::bind(&TrainerComponent::Reset, trainer));
+	battleManager->OnBattleLost().AddObserver(std::bind(&MovementComponent::Reset, movementComponent));
+	battleManager->OnBattleLost().AddObserver(std::bind(&SpriteComponent::Reset, spriteComponent));
+	battleManager->OnBattleLost().AddObserver(std::bind(&TileManagerComponent::Reset, tileManager));
 }

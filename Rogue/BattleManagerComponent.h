@@ -84,6 +84,18 @@ public:
 	*/
 	Minigin::Subject<>& OnBattleFinished();
 	/*
+	* Getter for the on battle won event.
+	*
+	* @return The battle won event.
+	*/
+	Minigin::Subject<>& OnBattleWon();
+	/*
+	* Getter for the on battle lost event.
+	*
+	* @return The battle lost event.
+	*/
+	Minigin::Subject<>& OnBattleLost();
+	/*
 	* Getter for the info box texture
 	* 
 	* @return The info box texture.
@@ -157,6 +169,10 @@ private:
 	Minigin::Subject<> m_OnBattleStarted;
 	// Battle finished event
 	Minigin::Subject<> m_OnBattleFinished;
+	// Battle won aka the trainer / player won.
+	Minigin::Subject<> m_OnBattleWon;
+	// Battle the trainer's pokemon lost.
+	Minigin::Subject<> m_OnBattleLost;
 	// Battle background texture
 	std::unique_ptr<Minigin::Texture> m_BattleBackground;
 	// Battle trainer cloud texture

@@ -81,6 +81,10 @@ public:
 	* @return Move completed event.
 	*/
 	Minigin::Subject<>& OnMoveCompleted();
+	/*
+	* Resets the movement component.
+	*/
+	void Reset();
 
 private:
 	/*

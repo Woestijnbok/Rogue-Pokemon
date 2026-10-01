@@ -39,18 +39,6 @@
 
 using namespace Minigin;
 
-void FocusBattle(Scene* world, Scene* battle)
-{
-	world->SetStatus(ControllableObject::Status::Disabled);
-	battle->SetStatus(ControllableObject::Status::Enabled);
-}
-
-void FocusWorld(Scene* world, Scene* battle)
-{
-	world->SetStatus(ControllableObject::Status::Enabled);
-	battle->SetStatus(ControllableObject::Status::Disabled);
-}
-
 void Load()
 {
 	Scene* worldScene{ SceneManager::Instance()->CreateScene("World") };
@@ -64,8 +52,6 @@ void Load()
 	BattleManagerComponent* battleManagerComponent{ battleManagerObject->CreateComponent<BattleManagerComponent>() };
 
 	tileManagerComponent->OnPokemonEncounter().AddObserver(std::bind(&BattleManagerComponent::MakeBattle, battleManagerComponent, std::placeholders::_1));
-	battleManagerComponent->OnBattleStarted().AddObserver(std::bind(&FocusBattle, worldScene, battleScene));
-	battleManagerComponent->OnBattleFinished().AddObserver(std::bind(&FocusWorld, worldScene, battleScene));
 
 	// Trainer game object & components
 	GameObject* trainerObject{ worldScene->CreateGameObject("Trainer", true) };
@@ -76,6 +62,7 @@ void Load()
 
 	movementComponent->OnMoveCompleted().AddObserver(std::bind(&TileManagerComponent::CheckTile, tileManagerComponent, trainerComponent));
 	tileManagerComponent->OnItemEncounter().AddObserver(std::bind(&TrainerComponent::HealActivePokemon, trainerComponent));
+	ConnectBattleEvents(battleManagerComponent, worldScene, battleScene, tileManagerComponent, trainerComponent, movementComponent, spriteComponent);
 
 	// Movement input
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::W, InputAction::Trigger::Pressed, std::make_shared<MovementCommand>(movementComponent, Direction::Up));

@@ -68,6 +68,10 @@ public:
 	* @param amount: The amount to increase the score by.
 	*/
 	void IncreaseScore(uint16_t amount);
+	/*
+	* Resets the trainer tot the starting.
+	*/
+	void Reset();
 
 private:
 	PokemonComponent* CreateStartPokemon() const;

@@ -140,6 +140,14 @@ Subject<>& MovementComponent::OnMoveCompleted()
 	return m_OnMoveCompleted;
 }
 
+void MovementComponent::Reset()
+{
+	m_Moving = false;
+	m_Direction = Direction::Down;
+	m_TargetPosition.reset();
+	TeleportToStartTile();
+}
+
 void MovementComponent::SetDirection(Direction direction)
 {
 	m_Direction = direction;

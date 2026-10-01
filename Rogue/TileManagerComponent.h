@@ -107,6 +107,10 @@ public:
 	* @return The on item encounter event.
 	*/
 	Minigin::Subject<>& OnItemEncounter();
+	/*
+	* Resets the tile manager to a new starting tile set.
+	*/
+	void Reset();
 
 private:
 	/*
