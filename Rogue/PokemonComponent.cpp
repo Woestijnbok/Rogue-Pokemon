@@ -20,7 +20,7 @@
 
 using namespace Minigin;
 
-PokemonComponent::PokemonComponent(GameObject* owner, const PODPokemon& pokemon, TrainerComponent const* trainer) :
+PokemonComponent::PokemonComponent(GameObject* owner, const PODPokemon& pokemon, TrainerComponent const * trainer) :
 	Component{ owner },
 	m_Stats{},
 	m_Moves
@@ -51,7 +51,7 @@ PokemonComponent::PokemonComponent(Minigin::GameObject* owner, const PODPokemon&
 	m_Name{ new Text{ pokemon.Name, ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_LevelText{ new Text{ "Lv ", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_Texture{ Renderer::Instance()->CreateTexture(GetPokemonTexturePath(pokemon.Name, true)) },
-	m_Trainer{}
+	m_Trainer{ nullptr }
 {
 	SetLevel(100);
 }
@@ -73,7 +73,7 @@ Texture const * PokemonComponent::GetTexture() const
 
 bool PokemonComponent::IsWild() const
 {
-	return !m_Trainer.has_value();
+	return m_Trainer == nullptr;
 }
 
 void PokemonComponent::SetLevel(uint8_t level)
@@ -90,6 +90,11 @@ float PokemonComponent::GetHealthPercentage() const
 bool PokemonComponent::IsDead() const
 {
 	return m_Stats.CurrentHealth <= 0;
+}
+
+TrainerComponent const * PokemonComponent::GetTrainer() const
+{
+	return  m_Trainer;
 }
 
 PokemonStats& PokemonComponent::GetStats()

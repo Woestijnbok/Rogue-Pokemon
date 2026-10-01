@@ -95,11 +95,16 @@ void BattleManagerComponent::MakeBattle(TrainerComponent* trainer)
 	GameObject* wildPokemonObject{ GetOwner()->GetScene()->CreateGameObject(std::format("Wild {}", pokemon.Name)) };
 	PokemonComponent* wildPokemonComponent{ wildPokemonObject->CreateComponent<PokemonComponent>(pokemon) };
 
-	StartBattle(trainer->GetActivePokemon(), wildPokemonComponent);
+	StartBattle(trainer, wildPokemonComponent);
 }
 
 void BattleManagerComponent::EndBattle()
 {
+	if (m_CurrentBattle.second->IsDead())
+	{
+		m_CurrentBattle.first->IncreaseScore(1);
+	}
+
 	m_CurrentBattle.first = nullptr;
 	m_CurrentBattle.second->GetOwner()->SetStatus(ControllableObject::Status::Destroyed);
 	m_CurrentBattle.second = nullptr;
@@ -193,7 +198,7 @@ Texture const* BattleManagerComponent::GetInfoBoxTexture() const
 	return m_InfoBox.get();
 }
 
-void BattleManagerComponent::StartBattle(PokemonComponent* trainer, PokemonComponent* enemy)
+void BattleManagerComponent::StartBattle(TrainerComponent* trainer, PokemonComponent* enemy)
 {
 	m_CurrentBattle.first = trainer;
 	m_CurrentBattle.second = enemy;
@@ -214,7 +219,7 @@ void BattleManagerComponent::RenderBackground() const
 void BattleManagerComponent::RenderPokemons() const
 {
 	const Transform trainerTransform{ glm::ivec2{ 200, 95 } , 0, glm::vec2{ 3.0f } };
-	Renderer::Instance()->RenderTexture(*m_CurrentBattle.first->GetTexture(), trainerTransform);
+	Renderer::Instance()->RenderTexture(*m_CurrentBattle.first->GetActivePokemon()->GetTexture(), trainerTransform);
 
 	const Transform enemyTransform{ glm::ivec2{ 700, 290 }, 0, glm::vec2{ 3.0f } };
 	Renderer::Instance()->RenderTexture(*m_CurrentBattle.second->GetTexture(), enemyTransform);
@@ -224,25 +229,29 @@ void BattleManagerComponent::RenderTrainerCloud() const
 {
 	RenderTrainerHealth();
 
+	PokemonComponent const * trainerPokemon{ m_CurrentBattle.first->GetActivePokemon() };
+
 	const Transform cloudTransform{ glm::ivec2{ 500, 150 }, 0, glm::vec2{ 3.0f } };
 	Renderer::Instance()->RenderTexture(*m_TrainerCloud, cloudTransform);
 
-	const int nameWidth{ m_CurrentBattle.first->GetNameText()->GetTexture()->GetSize().x };
+	const int nameWidth{ trainerPokemon->GetNameText()->GetTexture()->GetSize().x };
 	const Transform nameTransform{ glm::ivec2{ 390 + (nameWidth / 2), 170 }, 0, glm::vec2{ 1.0f } };
-	Renderer::Instance()->RenderText(*m_CurrentBattle.first->GetNameText(), nameTransform);
+	Renderer::Instance()->RenderText(*trainerPokemon->GetNameText(), nameTransform);
 
-	const int levelWidth{ m_CurrentBattle.first->GetLevelText()->GetTexture()->GetSize().x };
+	const int levelWidth{ trainerPokemon->GetLevelText()->GetTexture()->GetSize().x };
 	const Transform levelTransform{ glm::ivec2{ 630 - (levelWidth / 2), 170 }, 0, glm::vec2{ 1.0f } };
-	Renderer::Instance()->RenderText(*m_CurrentBattle.first->GetLevelText(), levelTransform);
+	Renderer::Instance()->RenderText(*trainerPokemon->GetLevelText(), levelTransform);
 }
 
 void BattleManagerComponent::RenderTrainerHealth() const
 {
+	PokemonComponent const* trainerPokemon{ m_CurrentBattle.first->GetActivePokemon() };
+
 	constexpr glm::ivec2 bottomLeft{ 460, 130 };
 	constexpr glm::ivec2 topRight{ 620, 155 };
 	constexpr Color backgroundColor{ 76, 74, 76 };
 
-	const float healthPercentage{ m_CurrentBattle.first->GetHealthPercentage() };
+	const float healthPercentage{ trainerPokemon->GetHealthPercentage() };
 	const int healthWidth{ static_cast<int>((topRight.x - bottomLeft.x) * healthPercentage) };
 	const glm::ivec2 healthTopRight{ bottomLeft.x + healthWidth, topRight.y };
 	const glm::ivec2 backgroundBottomLeft{ healthTopRight.x, bottomLeft.y };
@@ -310,7 +319,7 @@ void BattleManagerComponent::RenderInfoBox() const
 
 void BattleManagerComponent::RenderMoveSelect() const
 {
-	const std::array<Move, 4>& trainerPokemonMoves{ m_CurrentBattle.first->GetMoves() };
+	const std::array<Move, 4>& trainerPokemonMoves{ m_CurrentBattle.first->GetActivePokemon()->GetMoves()};
 
 	const int firstMoveWidth{ trainerPokemonMoves.at(0).Name->GetTexture()->GetSize().x };
 	const glm::ivec2 firstMovePosition{ 580, 60 };
@@ -362,14 +371,16 @@ void BattleManagerComponent::RenderUsedMove(bool isPlayerMove) const
 
 	if (isPlayerMove)
 	{
-		const glm::ivec2 namePosition{ topPosition + (m_CurrentBattle.first->GetNameText()->GetTexture()->GetSize() / 2) };
-		Renderer::Instance()->RenderText(*m_CurrentBattle.first->GetNameText(), Transform{ namePosition, 0, glm::vec2{ 1.0f } });
+		PokemonComponent const* trainerPokemon{ m_CurrentBattle.first->GetActivePokemon() };
 
-		const glm::ivec2 usedPosition{ topPosition.x + m_CurrentBattle.first->GetNameText()->GetTexture()->GetSize().x + whiteSpace + (m_UsedText->GetTexture()->GetSize().x / 2), topPosition.y + (m_UsedText->GetTexture()->GetSize().y / 2) };
+		const glm::ivec2 namePosition{ topPosition + (trainerPokemon->GetNameText()->GetTexture()->GetSize() / 2) };
+		Renderer::Instance()->RenderText(*trainerPokemon->GetNameText(), Transform{ namePosition, 0, glm::vec2{ 1.0f } });
+
+		const glm::ivec2 usedPosition{ topPosition.x + trainerPokemon->GetNameText()->GetTexture()->GetSize().x + whiteSpace + (m_UsedText->GetTexture()->GetSize().x / 2), topPosition.y + (m_UsedText->GetTexture()->GetSize().y / 2) };
 		Renderer::Instance()->RenderText(*m_UsedText, Transform{ usedPosition, 0, glm::vec2{ 1.0f } });
 
-		const glm::ivec2 movePosition{ bottomPosition + (m_CurrentBattle.first->GetMoves().at(m_CurrentMove).Name->GetTexture()->GetSize() / 2) };
-		Renderer::Instance()->RenderText(*m_CurrentBattle.first->GetMoves().at(m_CurrentMove).Name, Transform{movePosition, 0, glm::vec2{1.0f}});
+		const glm::ivec2 movePosition{ bottomPosition + (trainerPokemon->GetMoves().at(m_CurrentMove).Name->GetTexture()->GetSize() / 2) };
+		Renderer::Instance()->RenderText(*trainerPokemon->GetMoves().at(m_CurrentMove).Name, Transform{movePosition, 0, glm::vec2{1.0f}});
 	}
 	else
 	{
@@ -389,28 +400,31 @@ void BattleManagerComponent::RenderUsedMove(bool isPlayerMove) const
 
 void BattleManagerComponent::UseSelectedMove()
 {
+	PokemonComponent* trainerPokemon{ m_CurrentBattle.first->GetActivePokemon() };
+	PokemonComponent* wildPokemon{ m_CurrentBattle.second };
+
 	if (m_CurrentBattleState == BattleState::PerformPlayerMove)
 	{
-		uint8_t attackPower{ m_CurrentBattle.first->GetMoves()[m_CurrentMove].Power };
-		if (m_CurrentBattle.second->GetStats().CurrentHealth < attackPower)
+		uint8_t attackPower{ trainerPokemon->GetMoves()[m_CurrentMove].Power};
+		if (wildPokemon->GetStats().CurrentHealth < attackPower)
 		{
-			m_CurrentBattle.second->GetStats().CurrentHealth = 0;
+			wildPokemon->GetStats().CurrentHealth = 0;
 		}
 		else
 		{
-			m_CurrentBattle.second->GetStats().CurrentHealth -= attackPower;
+			wildPokemon->GetStats().CurrentHealth -= attackPower;
 		}
 	}
 	else
 	{
-		uint8_t attackPower{ m_CurrentBattle.second->GetMoves()[m_CurrentMove].Power };
-		if (m_CurrentBattle.first->GetStats().CurrentHealth < attackPower)
+		uint8_t attackPower{ wildPokemon->GetMoves()[m_CurrentMove].Power };
+		if (trainerPokemon->GetStats().CurrentHealth < attackPower)
 		{
-			m_CurrentBattle.first->GetStats().CurrentHealth = 0;
+			trainerPokemon->GetStats().CurrentHealth = 0;
 		}
 		else
 		{
-			m_CurrentBattle.first->GetStats().CurrentHealth -= attackPower;
+			trainerPokemon->GetStats().CurrentHealth -= attackPower;
 		}
 	}
 }
@@ -424,7 +438,7 @@ void BattleManagerComponent::SelectEnemyMove()
 
 void BattleManagerComponent::CheckBattleEnd()
 {
-	if (m_CurrentBattle.first->IsDead() or m_CurrentBattle.second->IsDead())
+	if (m_CurrentBattle.first->GetActivePokemon()->IsDead() or m_CurrentBattle.second->IsDead())
 	{
 		m_CurrentBattleState = BattleState::EndBattle;
 	}

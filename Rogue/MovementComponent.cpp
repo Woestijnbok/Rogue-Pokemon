@@ -163,7 +163,7 @@ void MovementComponent::CompleteMovement(glm::ivec2& newPosition)
 	m_OnMoveCompleted.Notify();
 
 #ifdef _DEBUG
-	glm::ivec2 newTileIndices{ m_TileManagerComponent->GetTileIndices(newPosition) };
-	std::cout << std::format("({}, {})", newTileIndices.x, newTileIndices.y) << std::endl;
+	//glm::ivec2 newTileIndices{ m_TileManagerComponent->GetTileIndices(newPosition) };
+	//std::cout << std::format("({}, {})", newTileIndices.x, newTileIndices.y) << std::endl;
 #endif // DEBUG
 }

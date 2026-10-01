@@ -97,7 +97,7 @@ private:
 	* @param trainer: The trainer's pokemon.
 	* @param enemy: The wild pokemon.
 	*/
-	void StartBattle(PokemonComponent* trainer, PokemonComponent* enemy);
+	void StartBattle(TrainerComponent* trainer, PokemonComponent* enemy);
 	/*
 	* Renders the battle background.
 	*/
@@ -150,7 +150,7 @@ private:
 	void CheckBattleEnd();
 
 	// Current battle pair, first one being the trainer's pokemon and latter the wild pokemon
-	std::pair<PokemonComponent*, PokemonComponent*> m_CurrentBattle;
+	std::pair<TrainerComponent*, PokemonComponent*> m_CurrentBattle;
 	// Current battle state
 	BattleState m_CurrentBattleState;
 	// Battle started event

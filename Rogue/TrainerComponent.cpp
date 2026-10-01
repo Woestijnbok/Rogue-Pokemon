@@ -81,6 +81,15 @@ void TrainerComponent::ConfirmPickup()
 	}
 }
 
+void TrainerComponent::IncreaseScore(uint16_t amount)
+{
+	m_Score += amount;
+
+#ifdef _DEBUG
+	std::cout << std::format("Current score: {}", m_Score) << std::endl;
+#endif // DEBUG
+}
+
 PokemonComponent* TrainerComponent::CreateStartPokemon() const
 {
 	// TODO: Create option to choose now it's always blaziken

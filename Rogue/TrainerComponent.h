@@ -62,6 +62,12 @@ public:
 	* Remove the pickup prompt.
 	*/
 	void ConfirmPickup();
+	/*
+	* Inceases the score of the trainer.
+	* 
+	* @param amount: The amount to increase the score by.
+	*/
+	void IncreaseScore(uint16_t amount);
 
 private:
 	PokemonComponent* CreateStartPokemon() const;
@@ -76,4 +82,6 @@ private:
 	Minigin::Texture const * m_InfoBoxTexture;
 	// Cached pickup prompt text
 	std::unique_ptr<Minigin::Text> m_PickupText;
+	// Score based on how many wild pokemon we have defeated
+	uint16_t m_Score;
 };

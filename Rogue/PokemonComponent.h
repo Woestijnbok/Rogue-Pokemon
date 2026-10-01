@@ -3,7 +3,6 @@
 // Libraries
 #include <array>
 #include <string>
-#include <optional>
 #include <memory>
 
 // Core
@@ -76,9 +75,9 @@ public:
 	*/
 	Minigin::Text* GetLevelText() const;
 	/*
-	* Returns the name of the pokemon.
+	* Returns the texture of the pokemon.
 	*
-	* @return The name of the pokemon
+	* @return The texture of the pokemon
 	*/
 	Minigin::Texture const * GetTexture() const;
 	/*
@@ -105,6 +104,12 @@ public:
 	* @return true if pokemon fainted.
 	*/
 	bool IsDead() const;
+	/*
+	* Getter for the trainer of this pokemon.
+	* 
+	* @return pointer to trainer component, nullptr if wild pokemon.
+	*/
+	TrainerComponent const * GetTrainer() const;
 	
 private:
 	// Pokemon level number
@@ -118,5 +123,5 @@ private:
 	// Pokemon texture
 	const std::unique_ptr<Minigin::Texture> m_Texture;
 	// Optional trainer, empty if a wild pokemon
-	const std::optional<TrainerComponent const *> m_Trainer;
+	TrainerComponent const * m_Trainer;
 };
