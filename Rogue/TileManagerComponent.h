@@ -111,6 +111,17 @@ public:
 	* Resets the tile manager to a new starting tile set.
 	*/
 	void Reset();
+	/*
+	* Increases the amount of defeated pokemon in this tile set by 1.
+	* Goes to the next level if the amount of defeated pokemon is enough to complete the level.
+	*/
+	void DefeatedPokemon();
+	/*
+	* Gets the level defeated event.
+	*
+	* @return The on level defeated event.
+	*/
+	Minigin::Subject<>& OnLevelDefeated();
 
 private:
 	/*
@@ -124,6 +135,10 @@ private:
 	* Randomizes all tiles to have random terrains.
 	*/
 	void RandomizeTiles();
+	/*
+	* Sets up the new tileset / level.
+	*/
+	void SetupNextLevel();
 
 	// Amount of rows
 	static constexpr int m_Rows{ 10 };
@@ -159,4 +174,12 @@ private:
 	Minigin::Subject<TrainerComponent*> m_OnPokemonEncounter;
 	// On item pickup event
 	Minigin::Subject<> m_OnItemPickup;
+	// Number of spawned pokemon this tileset in the begining
+	uint8_t m_SpawnedPokemon;
+	// Number of defeated pokemon this tileset
+	uint8_t m_DefeatedPokemon;
+	// Ration in % of pokemon that needs to be defeated to complete the level
+	const float m_LevelDefeatRatio;
+	// On level / tileset defeated event
+	Minigin::Subject<> m_OnLevelDefeated;
 };

@@ -22,7 +22,7 @@ TileManagerComponent::TileManagerComponent(Minigin::GameObject* owner) :
 	m_TileSize{ Engine::GetWindowSize().y / m_Rows },
 	m_TileRenderScale{ 1.0f },
 	m_TileChanceGrass{ 10.0f },
-	m_TileChancePokemon{ 5.0f },
+	m_TileChancePokemon{ 2.0f },
 	m_TileChanceItem{ 1.0f },
 	m_StartTile{ 5, 5 },
 	m_Tiles{},
@@ -33,7 +33,11 @@ TileManagerComponent::TileManagerComponent(Minigin::GameObject* owner) :
 	m_RandomEngine{ m_RandomDevice() },
 	m_ChanceDistribution{ 0.0f, 100.0f },
 	m_OnPokemonEncounter{},
-	m_OnItemPickup{}
+	m_OnItemPickup{},
+	m_SpawnedPokemon{},
+	m_DefeatedPokemon{},
+	m_LevelDefeatRatio{ 50.0f },
+	m_OnLevelDefeated{}
 {
 	m_TileRenderScale = static_cast<float>(m_TileSize) / static_cast<float>(m_TileDirtTexture->GetSize().x);
 	RandomizeTiles();
@@ -175,6 +179,7 @@ void TileManagerComponent::RandomizeTiles()
 			else if (randomValue < m_TileChanceGrass + m_TileChancePokemon)
 			{
 				m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Pokemon;
+				++m_SpawnedPokemon;
 			}
 			else if (randomValue < m_TileChanceGrass + m_TileChancePokemon + m_TileChanceItem)
 			{
@@ -190,7 +195,30 @@ void TileManagerComponent::RandomizeTiles()
 	m_Tiles.at((m_StartTile.x * m_Collumns) + m_StartTile.y).Type = Terrain::Dirt;
 }
 
+void TileManagerComponent::SetupNextLevel()
+{
+	// TODO: make it more than just randomizing the tiles, maybe add more pokemon and items each level
+	RandomizeTiles();
+}
+
 void TileManagerComponent::Reset()
 {
+	m_SpawnedPokemon = 0;
+	m_DefeatedPokemon = 0;
 	RandomizeTiles();
+}
+
+void TileManagerComponent::DefeatedPokemon()
+{
+	++m_DefeatedPokemon;
+	if (std::round(float(m_DefeatedPokemon) / m_SpawnedPokemon) >= std::round(m_LevelDefeatRatio / 100.0f))
+	{
+		m_OnLevelDefeated.Notify();
+		SetupNextLevel();
+	}
+}
+
+Minigin::Subject<>& TileManagerComponent::OnLevelDefeated()
+{
+	return m_OnLevelDefeated;
 }

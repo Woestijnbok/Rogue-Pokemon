@@ -150,10 +150,15 @@ void ConnectBattleEvents(BattleManagerComponent* battleManager, Minigin::Scene* 
 
 	// Battle won event
 	battleManager->OnBattleWon().AddObserver(std::bind(&TrainerComponent::IncreaseScore, trainer, uint16_t(1)));
+	battleManager->OnBattleWon().AddObserver(std::bind(&TileManagerComponent::DefeatedPokemon, tileManager));
 
 	// Battle lost event
 	battleManager->OnBattleLost().AddObserver(std::bind(&TrainerComponent::Reset, trainer));
 	battleManager->OnBattleLost().AddObserver(std::bind(&MovementComponent::Reset, movementComponent));
 	battleManager->OnBattleLost().AddObserver(std::bind(&SpriteComponent::Reset, spriteComponent));
 	battleManager->OnBattleLost().AddObserver(std::bind(&TileManagerComponent::Reset, tileManager));
+
+	// Level defeated event
+	tileManager->OnLevelDefeated().AddObserver(std::bind(&MovementComponent::Reset, movementComponent));
+	tileManager->OnLevelDefeated().AddObserver(std::bind(&SpriteComponent::Reset, spriteComponent));
 }
