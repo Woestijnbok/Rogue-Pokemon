@@ -148,12 +148,24 @@ private:
 	const int m_TileSize;
 	// Render scale for all tile textures
 	float m_TileRenderScale;
+	// Start Chance to generate a tile with grass at first tile set / level
+	const float m_StartTileChanceGrass;
+	// Start Chance to generate a tile with a pokemon at first tile set / level
+	const float m_StartTileChancePokemon;
+	// Start Chance to generate a tile with an item at first tile set / level
+	const float m_StartTileChanceItem;
+	// Multiplier to change the chance to generate a tile with grass for each new tile set / level in %
+	const float m_MultiplierTileChanceGrass;
+	// Multiplier to change the chance to generate a tile with a pokemon for each new tile set / level in %
+	const float m_MultiplierTileChancePokemon;
+	// Multiplier to change the chance to generate a tile with an item for each new tile set / level in %
+	const float m_MultiplierTileChanceItem;
 	// Chance to generate a tile with grass
-	const float m_TileChanceGrass;
+	float m_TileChanceGrass;
 	// Chance to generate a tile with a pokemon
-	const float m_TileChancePokemon;
+	float m_TileChancePokemon;
 	// Chance to generate a tile with an item
-	const float m_TileChanceItem;
+	float m_TileChanceItem;
 	// Start tile indices, this tile will always be dirt
 	const glm::ivec2 m_StartTile;
 	// Container containing all tiles

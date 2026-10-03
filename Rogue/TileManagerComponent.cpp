@@ -21,9 +21,15 @@ TileManagerComponent::TileManagerComponent(Minigin::GameObject* owner) :
 	Component{ owner },
 	m_TileSize{ Engine::GetWindowSize().y / m_Rows },
 	m_TileRenderScale{ 1.0f },
-	m_TileChanceGrass{ 10.0f },
-	m_TileChancePokemon{ 2.0f },
-	m_TileChanceItem{ 1.0f },
+	m_StartTileChanceGrass{ 10.0f },
+	m_StartTileChancePokemon{ 2.0f },
+	m_StartTileChanceItem{ 2.0f },
+	m_MultiplierTileChanceGrass{ 150.0f },
+	m_MultiplierTileChancePokemon{ 120.0f },
+	m_MultiplierTileChanceItem{ 120.0f },
+	m_TileChanceGrass{ m_StartTileChanceGrass },
+	m_TileChancePokemon{ m_StartTileChancePokemon },
+	m_TileChanceItem{ m_StartTileChanceItem },
 	m_StartTile{ 5, 5 },
 	m_Tiles{},
 	m_TileDirtTexture{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Tiles/Dirt.png") },
@@ -197,7 +203,9 @@ void TileManagerComponent::RandomizeTiles()
 
 void TileManagerComponent::SetupNextLevel()
 {
-	// TODO: make it more than just randomizing the tiles, maybe add more pokemon and items each level
+	m_TileChanceGrass *= (m_MultiplierTileChanceGrass / 100.0f);
+	m_TileChancePokemon *= (m_MultiplierTileChancePokemon / 100.0f);
+	m_TileChanceItem *= (m_MultiplierTileChanceItem / 100.0f);
 	RandomizeTiles();
 }
 
@@ -205,6 +213,9 @@ void TileManagerComponent::Reset()
 {
 	m_SpawnedPokemon = 0;
 	m_DefeatedPokemon = 0;
+	m_TileChanceGrass = m_StartTileChanceGrass;
+	m_TileChancePokemon = m_StartTileChancePokemon;
+	m_TileChanceItem = m_StartTileChanceItem;
 	RandomizeTiles();
 }
 
