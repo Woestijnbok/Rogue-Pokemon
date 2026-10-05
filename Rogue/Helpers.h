@@ -82,3 +82,10 @@ void FocusWorld(Minigin::Scene* world, Minigin::Scene* battle);
 * @param spriteComponent: The sprite component to connect events to.
 */
 void ConnectBattleEvents(BattleManagerComponent* battleManager, Minigin::Scene* world, Minigin::Scene* battle, TileManagerComponent* tileManager, TrainerComponent* trainer, MovementComponent* movementComponent, Minigin::SpriteComponent* spriteComponent);
+
+/*
+* Sets up all audio for the game, links to certain events.
+* 
+* @param battleManager: The battle manager component to connect events to.
+*/
+void SetupAudio(BattleManagerComponent* battleManager);

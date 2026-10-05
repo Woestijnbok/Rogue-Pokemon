@@ -9,6 +9,7 @@
 #include "SceneManager.h"
 #include "GameObject.h"
 #include "Scene.h"
+#include "AudioManager.h"
 
 // Components
 #include "PokemonComponent.h"
@@ -161,4 +162,12 @@ void ConnectBattleEvents(BattleManagerComponent* battleManager, Minigin::Scene* 
 	// Level defeated event
 	tileManager->OnLevelDefeated().AddObserver(std::bind(&MovementComponent::Reset, movementComponent));
 	tileManager->OnLevelDefeated().AddObserver(std::bind(&SpriteComponent::Reset, spriteComponent));
+}
+
+void SetupAudio(BattleManagerComponent* battleManager)
+{
+	AudioManager::Instance()->PlayMusic("Roam.mp3");
+
+	battleManager->OnBattleStarted().AddObserver(std::bind(&AudioManager::PlayMusic, AudioManager::Instance(), "Encounter.mp3"));
+	battleManager->OnBattleFinished().AddObserver(std::bind(&AudioManager::PlayMusic, AudioManager::Instance(), "Roam.mp3"));
 }

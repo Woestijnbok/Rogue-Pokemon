@@ -81,6 +81,9 @@ void Load()
 #ifdef _DEBUG
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::B, InputAction::Trigger::Pressed, std::make_shared<SkipBattleCommand>(battleManagerComponent));
 #endif
+
+	//Audio
+	SetupAudio(battleManagerComponent);
 }
 
 int main(int, char* [])
