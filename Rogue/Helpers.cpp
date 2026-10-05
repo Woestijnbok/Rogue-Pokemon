@@ -164,10 +164,14 @@ void ConnectBattleEvents(BattleManagerComponent* battleManager, Minigin::Scene* 
 	tileManager->OnLevelDefeated().AddObserver(std::bind(&SpriteComponent::Reset, spriteComponent));
 }
 
-void SetupAudio(BattleManagerComponent* battleManager)
+void SetupAudio(BattleManagerComponent* battleManager, TileManagerComponent* tileManager)
 {
-	AudioManager::Instance()->PlayMusic("Roam.mp3");
+	AudioManager::Instance()->HandleMusic("Roam.mp3", AudioManager::Action::Play);
 
-	battleManager->OnBattleStarted().AddObserver(std::bind(&AudioManager::PlayMusic, AudioManager::Instance(), "Encounter.mp3"));
-	battleManager->OnBattleFinished().AddObserver(std::bind(&AudioManager::PlayMusic, AudioManager::Instance(), "Roam.mp3"));
+	battleManager->OnBattleStarted().AddObserver(std::bind(&AudioManager::HandleMusic, AudioManager::Instance(), "Encounter.mp3", AudioManager::Action::Play));
+	battleManager->OnBattleFinished().AddObserver(std::bind(&AudioManager::HandleMusic, AudioManager::Instance(), "Roam.mp3", AudioManager::Action::Play));
+	battleManager->OnBattleWon().AddObserver(std::bind(&AudioManager::HandleEffect, AudioManager::Instance(), "Battle Won.mp3", AudioManager::Action::Play));
+	battleManager->OnBattleLost().AddObserver(std::bind(&AudioManager::HandleEffect, AudioManager::Instance(), "Battle Lost.mp3", AudioManager::Action::Play));
+
+	tileManager->OnItemEncounter().AddObserver(std::bind(&AudioManager::HandleEffect, AudioManager::Instance(), "Heal.mp3", AudioManager::Action::Play));
 }

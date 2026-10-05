@@ -83,7 +83,7 @@ void Load()
 #endif
 
 	//Audio
-	SetupAudio(battleManagerComponent);
+	SetupAudio(battleManagerComponent, tileManagerComponent);
 }
 
 int main(int, char* [])

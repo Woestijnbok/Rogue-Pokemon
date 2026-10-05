@@ -1,4 +1,4 @@
-#define SDL_MIXER_AUDIO_NUMBER_OF_CHANNELS 5		
+#define AUDIOMANAGER_EFFECT_CHANNEL_COUNT 5
 
 #include <SDL.h>
 #include <SDL_mixer.h>
@@ -9,34 +9,12 @@
 #include <algorithm>
 #include <string>
 #include <atomic>
+#include <utility>
 
 #include "AudioManager.h"
 #include "ResourceManager.h"
 
 using namespace Minigin;
-
-AudioManager::Request::Request(Action action, Type type, const std::filesystem::path& path) :
-	m_Action{ action },
-	m_Type{ type },
-	m_Path{ path }	
-{
-
-}
-
-AudioManager::Action AudioManager::Request::GetAction() const
-{
-	return m_Action;
-}
-
-AudioManager::Type AudioManager::Request::GetType() const
-{
-	return m_Type;
-}
-
-const std::filesystem::path& AudioManager::Request::GetPath() const
-{
-	return m_Path;
-}
 
 class AudioManager::Impl	
 {
@@ -50,9 +28,9 @@ public:
 	Impl& operator=(Impl&& other) noexcept = delete;
 
 	void Update();	
-	void PlayMusic(const std::filesystem::path& path);
-	void PlayEffect(const std::filesystem::path& path);	
-	void StopMusic();
+	void HandleMusic(const std::filesystem::path& path, Action action);
+	void HandleEffect(const std::filesystem::path& path, Action action);
+	void StopAllEffects();
 	void StopAll();
 	void StopRunning();
 	void Mute(bool mute);
@@ -61,29 +39,34 @@ public:
 private:
 	std::queue<Request> m_Requests;
 	Mix_Music* m_Music;
-	std::array<Mix_Chunk*, SDL_MIXER_AUDIO_NUMBER_OF_CHANNELS> m_EffectChannels;
+	std::array<std::pair<Mix_Chunk*, std::filesystem::path>, AUDIOMANAGER_EFFECT_CHANNEL_COUNT> m_EffectChannels;
 	std::mutex m_Mutex;
 	std::atomic<bool> m_Running;
 
 	void ProcessRequest(const Request& request);
-	void StartPlayingMusic(const std::filesystem::path& path);
-	void StartPlayingEffect(const std::filesystem::path& path);
-	void StopPlayingMusic();
+	void PlayMusic(const std::filesystem::path& path);
+	void PauseMusic();
+	void ResumeMusic();
+	void StopMusic();
+	void PlayEffect(const std::filesystem::path& path);
+	void PauseEffect(const std::filesystem::path& path);
+	void ResumeEffect(const std::filesystem::path& path);
+	void StopEffect(const std::filesystem::path& path);
+	void StopAllSoundEffects();
 	void StopAllEffectsAndMusic();
-	void CheckEffectChannels();
 	/*
-	* @brief Testing comment documentation (doxygen-style)
-	* @return nothing a number
-	* @param chunck is there for fun
+	* Tries to find an usable channel for playing a sound effect.
+	* 
+	* @param channel: The channel that will be used to play the sound effect.
+	* @returns: True if the channel can be reused aka the same sound effect is already loaded and finished playing.
 	*/
-	int GetChunckIndex(Mix_Chunk* chunck) const;
-
+	bool TryFindUnusedChannel(int& channel, const std::filesystem::path& path);
 };
 
 AudioManager::Impl::Impl() :
 	m_Requests{},
 	m_Music{},	
-	m_EffectChannels{ nullptr, nullptr, nullptr, nullptr, nullptr },
+	m_EffectChannels{},
 	m_Mutex{},
 	m_Running{ false }	
 {
@@ -92,9 +75,14 @@ AudioManager::Impl::Impl() :
 		throw std::runtime_error(std::string("Mix_Init Error: ") + Mix_GetError());	
 	}
 
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, SDL_MIXER_AUDIO_NUMBER_OF_CHANNELS, 2048) == -1)	
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) == -1)	
 	{
 		throw std::runtime_error(std::string("Mix_OpenAudio Error: ") + Mix_GetError());	
+	}
+
+	if (Mix_AllocateChannels(AUDIOMANAGER_EFFECT_CHANNEL_COUNT) != AUDIOMANAGER_EFFECT_CHANNEL_COUNT)
+	{
+		throw std::runtime_error(std::string("Mix_AllocateChannels Error: ") + Mix_GetError());
 	}
 }
 
@@ -102,9 +90,9 @@ AudioManager::Impl::~Impl()
 {
 	Mix_FreeMusic(m_Music);
 
-	for (Mix_Chunk* chunck : m_EffectChannels)	
+	for (const std::pair<Mix_Chunk*, std::filesystem::path>& pair : m_EffectChannels)
 	{
-		Mix_FreeChunk(chunck);	
+		Mix_FreeChunk(pair.first);	
 	}	
 
 	Mix_CloseAudio();
@@ -125,27 +113,25 @@ void AudioManager::Impl::Update()
 
 			m_Requests.pop();
 		}
-
-		CheckEffectChannels();	
 	}
 }
 
-void AudioManager::Impl::PlayMusic(const std::filesystem::path& path)	
+void AudioManager::Impl::HandleMusic(const std::filesystem::path& path, Action action)	
 {
 	std::unique_lock lock{ m_Mutex };
-	m_Requests.push(Request{ Action::Play, Type::Music, path });			
+	m_Requests.push(Request{ action, Type::Music, path });			
 }
 
-void AudioManager::Impl::PlayEffect(const std::filesystem::path& path)
+void AudioManager::Impl::HandleEffect(const std::filesystem::path& path, Action action)
 {
 	std::unique_lock lock{ m_Mutex };	
-	m_Requests.push(Request{ Action::Play, Type::Effect, path });		
+	m_Requests.push(Request{ action, Type::Effect, path });		
 }
 
-void AudioManager::Impl::StopMusic()
+void AudioManager::Impl::StopAllEffects()
 {
-	std::unique_lock lock{ m_Mutex };	
-	m_Requests.push(Request{ Action::Stop, Type::Music, "" });	
+	std::unique_lock lock{ m_Mutex };
+	m_Requests.push(Request{ Action::Stop, Type::AllEffects, "" });
 }
 
 void AudioManager::Impl::StopAll()
@@ -175,9 +161,11 @@ void AudioManager::Impl::Mute(bool mute)
 
 void AudioManager::Impl::ProcessRequest(const Request& request)
 {
-	const std::filesystem::path fullPath{ ResourceManager::Instance()->GetAudioRootPath() / request.GetPath()};
+	const std::filesystem::path audioPath{ request.GetPath() };
+	const std::filesystem::path fullPath{ ResourceManager::Instance()->GetAudioRootPath() / audioPath };
 
-	if (request.GetAction() == Action::Play)	
+	// If it's an action that requires a filepath, check if the file exists and is a regular file
+	if (request.GetAction() != Action::Stop)	
 	{
 		if (std::filesystem::exists(fullPath))
 		{
@@ -192,32 +180,52 @@ void AudioManager::Impl::ProcessRequest(const Request& request)
 	switch (request.GetType())	
 	{
 	case Type::Music:	
-		// either play or stop music
-		if (request.GetAction() == Action::Play)
+		switch (request.GetAction())
 		{
-			StartPlayingMusic(fullPath);
-		}
-		else if (request.GetAction() == Action::Stop)
-		{
-			StopPlayingMusic();
+		case Action::Play:
+			PlayMusic(fullPath);
+			break;
+		case Action::Pause:
+			PauseMusic();
+			break;
+		case Action::Resume:
+			ResumeMusic();
+			break;
+		case Action::Stop:
+			StopMusic();
+			break;
 		}
 		break;
 	case Type::Effect:
-		// only play effect
-		StartPlayingEffect(fullPath);		
+		switch (request.GetAction())
+		{
+			case Action::Play:
+				PlayEffect(audioPath);
+				break;
+			case Action::Pause:
+				PauseEffect(audioPath);
+				break;
+			case Action::Resume:
+				ResumeEffect(audioPath);
+				break;
+			case Action::Stop:
+				StopEffect(audioPath);
+				break;
+		}	
+		break;
+	case Type::AllEffects:
+		StopAllSoundEffects();
 		break;
 	case Type::All:
-		// only stop all
 		StopAllEffectsAndMusic();	
 		break;
 	}
 }
 
-void AudioManager::Impl::StartPlayingMusic(const std::filesystem::path& path)
+void AudioManager::Impl::PlayMusic(const std::filesystem::path& path)
 {
-	Mix_FreeMusic(m_Music);
-	m_Music = nullptr;
-	m_Music = Mix_LoadMUS(path.generic_string().c_str());	
+	StopMusic();
+	m_Music = Mix_LoadMUS(path.generic_string().c_str());
 
 	if (!m_Music)
 	{
@@ -226,80 +234,175 @@ void AudioManager::Impl::StartPlayingMusic(const std::filesystem::path& path)
 
 	if (Mix_PlayMusic(m_Music, -1) == -1)
 	{
-		throw std::runtime_error(std::string{ "AudioManager::Impl::StartPlayingMusic() - " } + Mix_GetError());	
+		throw std::runtime_error(std::string{ "AudioManager::Impl::StartPlayingMusic() - " } + Mix_GetError());
 	}
 }
 
-void AudioManager::Impl::StartPlayingEffect(const std::filesystem::path& path)		
+void AudioManager::Impl::PauseMusic()
 {
-	const auto it{ std::ranges::find_if(m_EffectChannels, [](Mix_Chunk* chunck) -> bool { return chunck == nullptr; }) };
-
-	if (it == m_EffectChannels.end())	
-	{
-		//throw std::runtime_error("AudioManager::Impl::StartPlayingEffect() - Failed find open sound channel.");
-		return;
-	}
-
-	*it = Mix_LoadWAV(path.generic_string().c_str());
-
-	if (*it == nullptr)			
-	{
-		throw std::runtime_error(std::string{ "AudioManager::Impl::StartPlayingEffect() - " } + Mix_GetError());	
-	}
-
-	if (Mix_PlayChannel(GetChunckIndex(*it), *it, 0) == -1)	
-	{
-		throw std::runtime_error(std::string{ "AudioManager::Impl::StartPlayingEffect() - " } + Mix_GetError());	
-	}
+	Mix_PauseMusic();
 }
 
-void AudioManager::Impl::StopPlayingMusic()
+void AudioManager::Impl::ResumeMusic()
 {
+	Mix_ResumeMusic();
+}
+
+void AudioManager::Impl::StopMusic()
+{
+	Mix_HaltMusic();
 	Mix_FreeMusic(m_Music);
 	m_Music = nullptr;
 }
 
-void AudioManager::Impl::CheckEffectChannels()
+void AudioManager::Impl::PlayEffect(const std::filesystem::path& path)		
 {
-	std::ranges::for_each	
-	(
-		m_EffectChannels, [this](Mix_Chunk*& chunck) -> void		
+	int channel { -1 };
+	bool canReuseEffect{ TryFindUnusedChannel(channel, path) };
+
+	// Couldn't find an unused channel, so we can't play the effect
+	if (channel == -1)	
+	{
+		return;
+	}
+	else
+	{
+		const std::filesystem::path fullPath{ ResourceManager::Instance()->GetAudioRootPath() / path };
+
+		// Couldn't reuse the Mix_Chunk , so we need to load it a new one.
+		if (!canReuseEffect)
 		{
-			if (chunck != nullptr)	
+			m_EffectChannels.at(channel).first = Mix_LoadWAV(fullPath.generic_string().c_str());
+			
+			if (m_EffectChannels.at(channel).first != nullptr)
 			{
-				if (Mix_Playing(GetChunckIndex(chunck)) == 0)
-				{
-					Mix_FreeChunk(chunck);
-					chunck = nullptr;	
-				}
+				m_EffectChannels.at(channel).second = path;
+			}
+			else
+			{
+				throw std::runtime_error(std::string{ "AudioManager::Impl::StartPlayingEffect() - " } + Mix_GetError());
 			}
 		}
-	);
+
+		// Try to play the Mix_Chunk
+		if (Mix_PlayChannel(channel, m_EffectChannels.at(channel).first, 0) == -1)
+		{
+			Mix_FreeChunk(m_EffectChannels.at(channel).first);
+			m_EffectChannels.at(channel).first = nullptr;
+			m_EffectChannels.at(channel).second.clear();
+
+			throw std::runtime_error(std::string{ "AudioManager::Impl::StartPlayingEffect() - " } + Mix_GetError());
+		}
+	}
+}
+
+void AudioManager::Impl::PauseEffect(const std::filesystem::path& path)
+{
+	for (int channel { 0 }; channel < AUDIOMANAGER_EFFECT_CHANNEL_COUNT; channel++)
+	{
+		if (m_EffectChannels.at(channel).second == path)
+		{
+			Mix_Pause(channel);	
+		}
+	}
+}
+
+void AudioManager::Impl::ResumeEffect(const std::filesystem::path& path)
+{
+	for (int channel{ 0 }; channel < AUDIOMANAGER_EFFECT_CHANNEL_COUNT; channel++)
+	{
+		if (m_EffectChannels.at(channel).second == path)
+		{
+			Mix_Resume(channel);
+		}
+	}
+}
+
+void AudioManager::Impl::StopEffect(const std::filesystem::path& path)
+{
+	for (int channel{ 0 }; channel < AUDIOMANAGER_EFFECT_CHANNEL_COUNT; channel++)
+	{
+		if (m_EffectChannels.at(channel).second == path)
+		{
+			Mix_HaltChannel(channel);
+		}
+	}
+}
+
+void AudioManager::Impl::StopAllSoundEffects()
+{
+	for (int channel{ 0 }; channel < AUDIOMANAGER_EFFECT_CHANNEL_COUNT; channel++)
+	{
+		Mix_HaltChannel(channel);
+	}
 }
 
 void AudioManager::Impl::StopAllEffectsAndMusic()
 {
-	StopPlayingMusic();
-
-	std::ranges::for_each	
-	(
-		m_EffectChannels, [](Mix_Chunk*& chunck) -> void	
-		{
-			Mix_FreeChunk(chunck);
-			chunck = nullptr;	
-		}
-	);
+	StopAllSoundEffects();
+	StopMusic();
 }
 
-int AudioManager::Impl::GetChunckIndex(Mix_Chunk* chunck) const
+bool AudioManager::Impl::TryFindUnusedChannel(int& channel, const std::filesystem::path& path)
 {
-	auto it{ std::ranges::find(m_EffectChannels, chunck) };
+	channel = -1;
+	bool canReuseEffect{ false };
 
-	if (it != m_EffectChannels.end())
+	int reusableChannel{ -1 };
+	int freeChannel{ -1 };
+	int finishedChannel{ -1 };
+
+	for (int i{0}; i < AUDIOMANAGER_EFFECT_CHANNEL_COUNT; i++)
 	{
-		return static_cast<int>(std::distance(m_EffectChannels.begin(), it));
+		// The channel is in use
+		if (m_EffectChannels.at(i).first != nullptr)
+		{
+			// The channel is not playing and is not paused
+			if (Mix_Playing(i) == 0 and Mix_Paused(i) == 0)
+			{
+				// When we find a channel that can be reused, we can stop searching for a usable channel
+				if (m_EffectChannels.at(i).second == path)
+				{
+					reusableChannel = i;
+					break;
+				}
+				// keep looking for a channel we can free up only if there are no free channels found already
+				else if(freeChannel == -1)
+				{
+					finishedChannel = i;
+				}
+			}
+		}
+		// Find a free channel
+		if (freeChannel == -1 and m_EffectChannels.at(i).first == nullptr)
+		{
+			freeChannel = i;
+		}
 	}
-	else return -1;
+
+	// Case 1: There is a channel with the same sound effect and it has finished playing.
+	if (reusableChannel != -1)
+	{
+		channel = reusableChannel;
+		canReuseEffect = true;
+	}
+	// Case 2: There is a free channel
+	else if (freeChannel != -1)
+	{
+		channel = freeChannel;
+	}
+	// Case 3: We can free up the channel.
+	else if (finishedChannel != -1)
+	{
+		Mix_FreeChunk(m_EffectChannels.at(finishedChannel).first);
+		m_EffectChannels.at(finishedChannel).first = nullptr;
+		m_EffectChannels.at(finishedChannel).second.clear();
+
+		channel = finishedChannel;
+	}
+	// Case 4: No channels are free
+
+	return canReuseEffect;
 }
 
 AudioManager::AudioManager() :	
@@ -311,25 +414,48 @@ AudioManager::AudioManager() :
 
 AudioManager::~AudioManager() = default;
 
+AudioManager::Request::Request(Action action, Type type, const std::filesystem::path& path) :
+	m_Action{ action },
+	m_Type{ type },
+	m_Path{ path }
+{
+
+}
+
+AudioManager::Action AudioManager::Request::GetAction() const
+{
+	return m_Action;
+}
+
+AudioManager::Type AudioManager::Request::GetType() const
+{
+	return m_Type;
+}
+
+const std::filesystem::path& AudioManager::Request::GetPath() const
+{
+	return m_Path;
+}
+
 void AudioManager::Update()
 {
 	m_Pimpl->Update();	
 }
 
-void AudioManager::PlayMusic(const std::filesystem::path& path)
+void AudioManager::HandleMusic(const std::filesystem::path& path, Action action)
 {
-	m_Pimpl->PlayMusic(path);
+	m_Pimpl->HandleMusic(path, action);
 }
 
-void AudioManager::PlayEffect(const std::filesystem::path& path)
+void AudioManager::HandleEffect(const std::filesystem::path& path, Action action)
 {
-	m_Pimpl->PlayEffect(path);
+	m_Pimpl->HandleEffect(path, action);
 }
 
-void AudioManager::StopMusic()
+void AudioManager::StopAllEffects()
 {
-	m_Pimpl->StopMusic();
-}
+	m_Pimpl->StopAllEffects();	
+}	
 
 void AudioManager::StopAll()
 {

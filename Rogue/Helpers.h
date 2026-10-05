@@ -88,4 +88,4 @@ void ConnectBattleEvents(BattleManagerComponent* battleManager, Minigin::Scene* 
 * 
 * @param battleManager: The battle manager component to connect events to.
 */
-void SetupAudio(BattleManagerComponent* battleManager);
+void SetupAudio(BattleManagerComponent* battleManager, TileManagerComponent* tileManager);

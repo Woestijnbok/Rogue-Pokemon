@@ -13,13 +13,16 @@ namespace Minigin
 		enum class Action	
 		{
 			Play,
-			Stop,
+			Pause,
+			Resume,
+			Stop
 		};
 
 		enum class Type
 		{
 			Music,
 			Effect,
+			AllEffects,
 			All
 		};
 
@@ -55,9 +58,9 @@ namespace Minigin
 		AudioManager& operator= (const AudioManager&&) noexcept = delete;
 
 		void Update();
-		void PlayMusic(const std::filesystem::path& path);
-		void PlayEffect(const std::filesystem::path& path);
-		void StopMusic();
+		void HandleMusic(const std::filesystem::path& path, Action action);
+		void HandleEffect(const std::filesystem::path& path, Action action);
+		void StopAllEffects();
 		void StopAll();
 		void StopRunning();
 		void Mute(bool mute);
