@@ -89,3 +89,10 @@ void ConnectBattleEvents(BattleManagerComponent* battleManager, Minigin::Scene* 
 * @param battleManager: The battle manager component to connect events to.
 */
 void SetupAudio(BattleManagerComponent* battleManager, TileManagerComponent* tileManager);
+
+/*
+* Helper callback function for when a sound effect is finished playing to trigger correct new sounds based on the finished sound effect.
+* 
+* @param path: The path to the sound effect that finished playing.
+*/
+void OnSoundEffectFinished(const std::filesystem::path& path);

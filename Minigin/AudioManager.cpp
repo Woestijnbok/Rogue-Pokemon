@@ -34,14 +34,16 @@ public:
 	void StopAll();
 	void StopRunning();
 	void Mute(bool mute);
-
+	Minigin::Subject<const std::filesystem::path&>& OnEffectFinished();
 
 private:
 	std::queue<Request> m_Requests;
 	Mix_Music* m_Music;
 	std::array<std::pair<Mix_Chunk*, std::filesystem::path>, AUDIOMANAGER_EFFECT_CHANNEL_COUNT> m_EffectChannels;
+	std::array<bool, AUDIOMANAGER_EFFECT_CHANNEL_COUNT> m_EffectChannelsStopped;	
 	std::mutex m_Mutex;
 	std::atomic<bool> m_Running;
+	Minigin::Subject<const std::filesystem::path&> m_OnEffectFinished;
 
 	void ProcessRequest(const Request& request);
 	void PlayMusic(const std::filesystem::path& path);
@@ -61,12 +63,14 @@ private:
 	* @returns: True if the channel can be reused aka the same sound effect is already loaded and finished playing.
 	*/
 	bool TryFindUnusedChannel(int& channel, const std::filesystem::path& path);
+	void OnChannelFinished(int channel);
 };
 
 AudioManager::Impl::Impl() :
 	m_Requests{},
 	m_Music{},	
 	m_EffectChannels{},
+	m_EffectChannelsStopped{},
 	m_Mutex{},
 	m_Running{ false }	
 {
@@ -75,7 +79,7 @@ AudioManager::Impl::Impl() :
 		throw std::runtime_error(std::string("Mix_Init Error: ") + Mix_GetError());	
 	}
 
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) == -1)	
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 1, 2048) == -1)	
 	{
 		throw std::runtime_error(std::string("Mix_OpenAudio Error: ") + Mix_GetError());	
 	}
@@ -84,6 +88,8 @@ AudioManager::Impl::Impl() :
 	{
 		throw std::runtime_error(std::string("Mix_AllocateChannels Error: ") + Mix_GetError());
 	}
+
+	Mix_ChannelFinished([](int channel) -> void { AudioManager::Instance()->m_Pimpl->OnChannelFinished(channel); });
 }
 
 AudioManager::Impl::~Impl()
@@ -105,13 +111,21 @@ void AudioManager::Impl::Update()
 
 	while (m_Running)
 	{
-		std::unique_lock lock{ m_Mutex };
-
-		while (!m_Requests.empty())
+		// Only lock the mutex when working on the requests queue
+		std::optional<Request> request{};
 		{
-			ProcessRequest(m_Requests.front());
+			std::lock_guard lock{ m_Mutex };
 
-			m_Requests.pop();
+			if (!m_Requests.empty())
+			{
+				request = m_Requests.front();
+				m_Requests.pop();
+			}
+		}
+
+		if (request.has_value())
+		{
+			ProcessRequest(request.value());
 		}
 	}
 }
@@ -293,6 +307,10 @@ void AudioManager::Impl::PlayEffect(const std::filesystem::path& path)
 
 			throw std::runtime_error(std::string{ "AudioManager::Impl::StartPlayingEffect() - " } + Mix_GetError());
 		}
+		else
+		{
+			m_EffectChannelsStopped.at(channel) = false;
+		}
 	}
 }
 
@@ -324,6 +342,7 @@ void AudioManager::Impl::StopEffect(const std::filesystem::path& path)
 	{
 		if (m_EffectChannels.at(channel).second == path)
 		{
+			m_EffectChannelsStopped.at(channel) = true;
 			Mix_HaltChannel(channel);
 		}
 	}
@@ -333,6 +352,7 @@ void AudioManager::Impl::StopAllSoundEffects()
 {
 	for (int channel{ 0 }; channel < AUDIOMANAGER_EFFECT_CHANNEL_COUNT; channel++)
 	{
+		m_EffectChannelsStopped.at(channel) = true;
 		Mix_HaltChannel(channel);
 	}
 }
@@ -405,6 +425,29 @@ bool AudioManager::Impl::TryFindUnusedChannel(int& channel, const std::filesyste
 	return canReuseEffect;
 }
 
+Minigin::Subject<const std::filesystem::path&>& Minigin::AudioManager::Impl::OnEffectFinished()
+{
+	return m_OnEffectFinished;
+}
+
+void AudioManager::Impl::OnChannelFinished(int channel)
+{
+	if (channel < 0 || channel >= AUDIOMANAGER_EFFECT_CHANNEL_COUNT)
+	{
+		throw std::runtime_error(std::string{ "AudioManager::Impl::OnChannelFinished() - Unknown Channel" } + Mix_GetError());
+	}
+
+	const std::filesystem::path& path{ m_EffectChannels.at(channel).second };
+	if (path.empty())
+	{
+		throw std::runtime_error(std::string{ "AudioManager::Impl::OnChannelFinished() - Channel has no valid path" });
+	}
+	else if(!m_EffectChannelsStopped.at(channel))
+	{
+		m_OnEffectFinished.Notify(path);
+	}
+}
+
 AudioManager::AudioManager() :	
 	Singleton{},	
 	m_Pimpl{ std::make_unique<AudioManager::Impl>() }	
@@ -418,6 +461,14 @@ AudioManager::Request::Request(Action action, Type type, const std::filesystem::
 	m_Action{ action },
 	m_Type{ type },
 	m_Path{ path }
+{
+
+}
+
+Minigin::AudioManager::Request::Request() :
+	m_Action{ Action::Invalid },
+	m_Type{ Type::Invalid },
+	m_Path{ "" }
 {
 
 }
@@ -470,4 +521,9 @@ void AudioManager::StopRunning()
 void Minigin::AudioManager::Mute(bool mute)
 {
 	m_Pimpl->Mute(mute);
+}
+
+Minigin::Subject<const std::filesystem::path& >& Minigin::AudioManager::OnEffectFinished()
+{
+	return m_Pimpl->OnEffectFinished();
 }

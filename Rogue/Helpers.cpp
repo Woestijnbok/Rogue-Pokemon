@@ -166,12 +166,33 @@ void ConnectBattleEvents(BattleManagerComponent* battleManager, Minigin::Scene* 
 
 void SetupAudio(BattleManagerComponent* battleManager, TileManagerComponent* tileManager)
 {
+	AudioManager::Instance()->OnEffectFinished().AddObserver(std::bind(&OnSoundEffectFinished, std::placeholders::_1));
 	AudioManager::Instance()->HandleMusic("Roam.mp3", AudioManager::Action::Play);
 
+	battleManager->OnBattleStarted().AddObserver(std::bind(&AudioManager::StopAll, AudioManager::Instance()));
 	battleManager->OnBattleStarted().AddObserver(std::bind(&AudioManager::HandleMusic, AudioManager::Instance(), "Encounter.mp3", AudioManager::Action::Play));
+
+	battleManager->OnBattleFinished().AddObserver(std::bind(&AudioManager::StopAll, AudioManager::Instance()));
 	battleManager->OnBattleFinished().AddObserver(std::bind(&AudioManager::HandleMusic, AudioManager::Instance(), "Roam.mp3", AudioManager::Action::Play));
+	battleManager->OnBattleFinished().AddObserver(std::bind(&AudioManager::HandleMusic, AudioManager::Instance(), "Roam.mp3", AudioManager::Action::Pause));
 	battleManager->OnBattleWon().AddObserver(std::bind(&AudioManager::HandleEffect, AudioManager::Instance(), "Battle Won.mp3", AudioManager::Action::Play));
 	battleManager->OnBattleLost().AddObserver(std::bind(&AudioManager::HandleEffect, AudioManager::Instance(), "Battle Lost.mp3", AudioManager::Action::Play));
 
+	tileManager->OnItemEncounter().AddObserver(std::bind(&AudioManager::StopAllEffects, AudioManager::Instance()));
+	tileManager->OnItemEncounter().AddObserver(std::bind(&AudioManager::HandleMusic, AudioManager::Instance(), "Roam.mp3", AudioManager::Action::Pause));
 	tileManager->OnItemEncounter().AddObserver(std::bind(&AudioManager::HandleEffect, AudioManager::Instance(), "Heal.mp3", AudioManager::Action::Play));
+}
+
+void OnSoundEffectFinished(const std::filesystem::path& /*path*/)
+{
+	/*if (path == "Heal.mp3")
+	{
+		AudioManager::Instance()->HandleMusic("Roam.mp3", AudioManager::Action::Resume);
+	}
+	else
+	{
+		AudioManager::Instance()->HandleMusic("Roam.mp3", AudioManager::Action::Play);
+	}*/
+
+	AudioManager::Instance()->HandleMusic("Roam.mp3", AudioManager::Action::Resume);
 }

@@ -4,6 +4,7 @@
 #include <filesystem>
 
 #include "Singleton.h"
+#include "Subject.h"
 
 namespace Minigin	
 {
@@ -15,7 +16,8 @@ namespace Minigin
 			Play,
 			Pause,
 			Resume,
-			Stop
+			Stop,
+			Invalid
 		};
 
 		enum class Type
@@ -23,18 +25,20 @@ namespace Minigin
 			Music,
 			Effect,
 			AllEffects,
-			All
+			All,
+			Invalid
 		};
 
 		class Request final
 		{
 		public:
 			explicit Request(Action action, Type type, const std::filesystem::path& path);
+			explicit Request();
 			virtual ~Request() = default;
 
 			Request(const Request&) = default;
 			Request(Request&&) noexcept = default;
-			Request& operator= (const Request&) = delete;
+			Request& operator= (const Request&) = default;
 			Request& operator= (const Request&&) noexcept = delete;
 
 			Action GetAction() const;	
@@ -42,9 +46,9 @@ namespace Minigin
 			const std::filesystem::path& GetPath() const;
 
 		private:
-			const Action m_Action;	
-			const Type m_Type;	
-			const std::filesystem::path m_Path;
+			Action m_Action;	
+			Type m_Type;	
+			std::filesystem::path m_Path;
 
 		};
 			
@@ -64,6 +68,12 @@ namespace Minigin
 		void StopAll();
 		void StopRunning();
 		void Mute(bool mute);
+		/*
+		* Getter for the OnEffectFinished event.
+		* 
+		* @return: The OnEffectFinished event which only gets called when a sound effect is finished playing not by calling stop on it.
+		*/
+		Minigin::Subject<const std::filesystem::path&>& OnEffectFinished();
 		
 
 	private:
