@@ -56,8 +56,8 @@ void Load()
 	// Trainer game object & components
 	GameObject* trainerObject{ worldScene->CreateGameObject("Trainer", true) };
 	MovementComponent* movementComponent{ trainerObject->CreateComponent<MovementComponent>(tileManagerComponent) };
-	TrainerComponent* trainerComponent{ trainerObject->CreateComponent<TrainerComponent>() }; trainerComponent;
 	SpriteComponent* spriteComponent{ MakeTrainerSprites(trainerObject, tileManagerComponent, movementComponent) };
+	TrainerComponent* trainerComponent{ trainerObject->CreateComponent<TrainerComponent>() };
 	ConnectSpritesToMovement(spriteComponent, movementComponent);
 
 	movementComponent->OnMoveCompleted().AddObserver(std::bind(&TileManagerComponent::CheckTile, tileManagerComponent, trainerComponent));
