@@ -22,8 +22,7 @@ enum class Terrain : uint8_t
 enum class MoveType : uint8_t
 {
 	Physical,
-	Special,
-	Status
+	Special
 };
 
 enum class ElementType : uint8_t
