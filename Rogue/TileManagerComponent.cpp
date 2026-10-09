@@ -172,33 +172,44 @@ void TileManagerComponent::RenderTile(const size_t row, const size_t collumn) co
 
 void TileManagerComponent::RandomizeTiles()
 {
-	for (size_t row{}; row < m_Rows; ++row)
+	do
 	{
-		for (size_t collumn{}; collumn < m_Collumns; ++collumn)
-		{
-			const float randomValue{ m_ChanceDistribution(m_RandomEngine) };
+		m_SpawnedPokemon = 0;
 
-			if (randomValue < m_TileChanceGrass)
+		for (size_t row{}; row < m_Rows; ++row)
+		{
+			for (size_t collumn{}; collumn < m_Collumns; ++collumn)
 			{
-				m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Grass;
-			}
-			else if (randomValue < m_TileChanceGrass + m_TileChancePokemon)
-			{
-				m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Pokemon;
-				++m_SpawnedPokemon;
-			}
-			else if (randomValue < m_TileChanceGrass + m_TileChancePokemon + m_TileChanceItem)
-			{
-				m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Item;
-			}
-			else
-			{
-				m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Dirt;
+				const float randomValue{ m_ChanceDistribution(m_RandomEngine) };
+
+				if (randomValue < m_TileChanceGrass)
+				{
+					m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Grass;
+				}
+				else if (randomValue < m_TileChanceGrass + m_TileChancePokemon)
+				{
+					m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Pokemon;
+					++m_SpawnedPokemon;
+				}
+				else if (randomValue < m_TileChanceGrass + m_TileChancePokemon + m_TileChanceItem)
+				{
+					m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Item;
+				}
+				else
+				{
+					m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Dirt;
+				}
 			}
 		}
-	}
 
-	m_Tiles.at((m_StartTile.x * m_Collumns) + m_StartTile.y).Type = Terrain::Dirt;
+		// If start tile was a pokemon decrease pokemon count
+		if (m_Tiles.at((m_StartTile.x * m_Collumns) + m_StartTile.y).Type == Terrain::Pokemon)
+		{
+			--m_SpawnedPokemon;
+		}
+		m_Tiles.at((m_StartTile.x * m_Collumns) + m_StartTile.y).Type = Terrain::Dirt;
+	}
+	while (m_SpawnedPokemon == 0);
 }
 
 void TileManagerComponent::SetupNextLevel()
