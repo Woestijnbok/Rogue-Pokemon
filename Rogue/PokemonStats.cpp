@@ -1,7 +1,7 @@
 #include "PokemonStats.h"
 
 PokemonStats::PokemonStats() :
-	Level{ 100 },
+	Level{ 1 },
 	MaxHealth{ 100 },
 	CurrentHealth{ MaxHealth },
 	Attack{ 100 },

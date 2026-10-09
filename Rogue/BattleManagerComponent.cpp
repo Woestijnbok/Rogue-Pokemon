@@ -42,13 +42,15 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_UsedText{ new Text{ "used", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_RandomDevice{},
 	m_RandomEngine{ m_RandomDevice() },
+	m_StartWildPokemonLevelDistribution{ 1, 5 },
+	m_CurrentWildPokemonLevelDistribution{ m_StartWildPokemonLevelDistribution },
 	m_ChanceDistribution{ 0.0f, 100.0f },
 	m_CommonDistribution{ 1, POKEDEX_LEGENDARY_START - 1 },
 	m_LegendaryDistribution{ POKEDEX_LEGENDARY_START, POKEDEX_COUNT },
 	m_LegendaryChance{ 5 },
 	m_CurrentMove{ 0 }
 {
-	assert(m_BattleBackground.get());
+	
 }
 
 void BattleManagerComponent::Render() const
@@ -97,6 +99,7 @@ void BattleManagerComponent::MakeBattle(TrainerComponent* trainer)
 
 	GameObject* wildPokemonObject{ GetOwner()->GetScene()->CreateGameObject(std::format("Wild {}", pokemon.Name)) };
 	PokemonComponent* wildPokemonComponent{ wildPokemonObject->CreateComponent<PokemonComponent>(pokemon) };
+	SetWildPokemonLevel(wildPokemonComponent);
 
 	StartBattle(trainer, wildPokemonComponent);
 }
@@ -214,6 +217,26 @@ Minigin::Subject<>& BattleManagerComponent::OnBattleLost()
 Texture const* BattleManagerComponent::GetInfoBoxTexture() const
 {
 	return m_InfoBox.get();
+}
+
+void BattleManagerComponent::Reset()
+{
+	m_CurrentWildPokemonLevelDistribution = m_StartWildPokemonLevelDistribution;
+}
+
+std::uniform_int_distribution<int>::param_type BattleManagerComponent::GetWildPokemonLevelRange()
+{
+	return m_CurrentWildPokemonLevelDistribution.param();
+}
+
+void BattleManagerComponent::SetWildPokemonLevelRange(const std::uniform_int_distribution<int>::param_type& range)
+{
+	if ((range._Min > range._Max) or (range._Min < 0) or (range._Max > 100))
+	{
+		throw std::exception{ std::format("Invalid wild pokemon level range: minLevel = {}, maxLevel = {}", range._Max, range._Max).c_str() };
+	}
+
+	m_CurrentWildPokemonLevelDistribution.param(range);
 }
 
 void BattleManagerComponent::StartBattle(TrainerComponent* trainer, PokemonComponent* enemy)
@@ -460,4 +483,9 @@ void BattleManagerComponent::CheckBattleEnd()
 	{
 		m_CurrentBattleState = BattleState::EndBattle;
 	}
+}
+
+void BattleManagerComponent::SetWildPokemonLevel(PokemonComponent* pokemon)
+{
+	pokemon->SetLevel(static_cast<uint16_t>(m_CurrentWildPokemonLevelDistribution(m_RandomEngine)));
 }

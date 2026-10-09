@@ -101,6 +101,20 @@ public:
 	* @return The info box texture.
 	*/
 	Minigin::Texture const* GetInfoBoxTexture() const;
+	/*
+	* Resets all the battle manager information as if we were to start at level / tileset 1.
+	*/
+	void Reset();
+	/*
+	* Gets the minimum and maximum level of the wild pokemon that can be encountered currently.
+	*/
+	std::uniform_int_distribution<int>::param_type GetWildPokemonLevelRange();
+	/*
+	* Void sets the minimum and maximum level of the wild pokemon that can be encountered.
+	* 
+	* @param range: The new level range for wild pokemon.
+	*/
+	void SetWildPokemonLevelRange(const std::uniform_int_distribution<int>::param_type& range);
 
 private:
 	/*
@@ -160,6 +174,10 @@ private:
 	* Checks if the battle is over and ends it if so.
 	*/
 	void CheckBattleEnd();
+	/*
+	* Helper to set the level of the wild pokemon.
+	*/
+	void SetWildPokemonLevel(PokemonComponent* pokemon);
 
 	// Current battle pair, first one being the trainer's pokemon and latter the wild pokemon
 	std::pair<TrainerComponent*, PokemonComponent*> m_CurrentBattle;
@@ -193,6 +211,10 @@ private:
 	std::random_device m_RandomDevice;
 	// Random engine used to generate random values based on a seed.
 	std::mt19937 m_RandomEngine;
+	// Start level distribution of wild pokemon.
+	std::uniform_int_distribution<int> m_StartWildPokemonLevelDistribution;
+	// Current level distribution of wild pokemon.
+	std::uniform_int_distribution<int> m_CurrentWildPokemonLevelDistribution;
 	// Distribution used to determine chance going to a max of 100%
 	std::uniform_real_distribution<float> m_ChanceDistribution;
 	// Distribution spanning all common pokemon pokedex indices

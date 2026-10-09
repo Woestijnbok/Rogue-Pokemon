@@ -87,12 +87,6 @@ public:
 	*/
 	bool IsWild() const;
 	/*
-	* Sets the level of the pokemon.
-	* 
-	* @param level: The new pokemon's level.
-	*/
-	void SetLevel(uint8_t level);
-	/*
 	* Gets the pokemon's health in percentage.
 	*
 	* @return The pokemon's health.
@@ -110,6 +104,13 @@ public:
 	* @return pointer to trainer component, nullptr if wild pokemon.
 	*/
 	TrainerComponent const * GetTrainer() const;
+	/*
+	* Sets the pokemon's level, also clamps the level between 1 and 100.
+	* Finnaly updates the level text to reflect the new level.
+	* 
+	* @param level: The new pokemon's level.
+	*/
+	void SetLevel(uint16_t level);
 	
 private:
 	// Pokemon level number

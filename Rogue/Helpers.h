@@ -96,3 +96,10 @@ void SetupAudio(BattleManagerComponent* battleManager, TileManagerComponent* til
 * @param path: The path to the sound effect that finished playing.
 */
 void OnSoundEffectFinished(const std::filesystem::path& path);
+
+/*
+* Sets up the new wild pokemon level range.
+* 
+* @param battleManager: The battle manager component to set the new level range for.
+*/
+void UpdateWildPokemonLevelRange(BattleManagerComponent* battleManager);

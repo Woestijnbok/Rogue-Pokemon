@@ -158,10 +158,12 @@ void ConnectBattleEvents(BattleManagerComponent* battleManager, Minigin::Scene* 
 	battleManager->OnBattleLost().AddObserver(std::bind(&MovementComponent::Reset, movementComponent));
 	battleManager->OnBattleLost().AddObserver(std::bind(&SpriteComponent::Reset, spriteComponent));
 	battleManager->OnBattleLost().AddObserver(std::bind(&TileManagerComponent::Reset, tileManager));
+	battleManager->OnBattleLost().AddObserver(std::bind(&BattleManagerComponent::Reset, battleManager));
 
 	// Level defeated event
 	tileManager->OnLevelDefeated().AddObserver(std::bind(&MovementComponent::Reset, movementComponent));
 	tileManager->OnLevelDefeated().AddObserver(std::bind(&SpriteComponent::Reset, spriteComponent));
+	tileManager->OnLevelDefeated().AddObserver(std::bind(&UpdateWildPokemonLevelRange, battleManager));
 }
 
 void SetupAudio(BattleManagerComponent* battleManager, TileManagerComponent* tileManager)
@@ -185,14 +187,15 @@ void SetupAudio(BattleManagerComponent* battleManager, TileManagerComponent* til
 
 void OnSoundEffectFinished(const std::filesystem::path& /*path*/)
 {
-	/*if (path == "Heal.mp3")
-	{
-		AudioManager::Instance()->HandleMusic("Roam.mp3", AudioManager::Action::Resume);
-	}
-	else
-	{
-		AudioManager::Instance()->HandleMusic("Roam.mp3", AudioManager::Action::Play);
-	}*/
-
 	AudioManager::Instance()->HandleMusic("Roam.mp3", AudioManager::Action::Resume);
+}
+
+void UpdateWildPokemonLevelRange(BattleManagerComponent* battleManager)
+{
+	constexpr int newLevelIncrease{ 5 };
+
+	std::uniform_int_distribution<int>::param_type oldLevelRange{ battleManager->GetWildPokemonLevelRange() };
+	std::uniform_int_distribution<int>::param_type newLevelRange{ oldLevelRange._Min + newLevelIncrease, oldLevelRange._Max + newLevelIncrease };
+
+	battleManager->SetWildPokemonLevelRange(newLevelRange);
 }

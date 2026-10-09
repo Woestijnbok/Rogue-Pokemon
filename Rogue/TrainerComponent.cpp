@@ -104,6 +104,7 @@ PokemonComponent* TrainerComponent::CreateStartPokemon() const
 
 	GameObject* pokemonObject{ GetOwner()->GetScene()->CreateGameObject(std::format("Trainer's {}", pokemon.Name)) };
 	PokemonComponent* pokemonComponent{ pokemonObject->CreateComponent<PokemonComponent>(pokemon, this) };
+	pokemonComponent->SetLevel(100);
 
 	return pokemonComponent;
 }

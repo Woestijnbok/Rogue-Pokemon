@@ -35,7 +35,7 @@ PokemonComponent::PokemonComponent(GameObject* owner, const PODPokemon& pokemon,
 	m_Texture{ Renderer::Instance()->CreateTexture(GetPokemonTexturePath(pokemon.Name, false)) },
 	m_Trainer{ trainer }
 {
-	SetLevel(100);
+	
 }
 
 PokemonComponent::PokemonComponent(Minigin::GameObject* owner, const PODPokemon& pokemon) :
@@ -76,12 +76,6 @@ bool PokemonComponent::IsWild() const
 	return m_Trainer == nullptr;
 }
 
-void PokemonComponent::SetLevel(uint8_t level)
-{
-	m_Stats.Level = level;
-	m_LevelText->SetText(std::format("Lv {}", level));
-}
-
 float PokemonComponent::GetHealthPercentage() const
 {
 	return static_cast<float>(m_Stats.CurrentHealth) / static_cast<float>(m_Stats.MaxHealth);
@@ -95,6 +89,13 @@ bool PokemonComponent::IsDead() const
 TrainerComponent const * PokemonComponent::GetTrainer() const
 {
 	return  m_Trainer;
+}
+
+void PokemonComponent::SetLevel(uint16_t level)
+{
+	m_Stats.Level = std::clamp(level, static_cast<uint16_t>(1), static_cast<uint16_t>(100));
+
+	m_LevelText->SetText(std::format("Lv {}", m_Stats.Level));
 }
 
 PokemonStats& PokemonComponent::GetStats()
