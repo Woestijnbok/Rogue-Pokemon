@@ -6,9 +6,26 @@
 #include <cstdint>
 #include <iostream>
 
-#define MAX_NAME_LENGTH 50
-#define POKEDEX_COUNT 202
-#define POKEDEX_LEGENDARY_START 193
+#define POKEDEX_MAX_NAME_LENGTH 50
+#define POKEDEX_POKEMON_COUNT 202
+#define POKEDEX_POKEMON_LEGENDARY_START 193
+#define POKEDEX_ELEMENT_COUNT 18
+#define POKEDEX_MOVE_COUNT 62
+
+struct PODElement
+{
+	PODElement() noexcept = default;
+	~PODElement() = default;
+
+	PODElement(const PODElement& other) = default;
+	PODElement(PODElement&& other) noexcept = default;
+	PODElement& operator=(const PODElement& other) = default;
+	PODElement& operator=(PODElement&& other) noexcept = default;
+
+	char Name[POKEDEX_MAX_NAME_LENGTH];
+	uint8_t ID;
+	uint8_t EffectiveAgainst[5];
+};
 
 struct PODMove final
 {
@@ -20,8 +37,12 @@ struct PODMove final
 	PODMove& operator=(const PODMove& other) = default;
 	PODMove& operator=(PODMove&& other) noexcept = default;
 
-	char Name[MAX_NAME_LENGTH];
+	char Name[POKEDEX_MAX_NAME_LENGTH];
+	uint8_t ID;
+	uint8_t MoveType; // 1 for special 0 for physical
+	uint8_t ElementType;
 	uint8_t Power;
+	uint8_t Accuracy;
 };
 
 struct PODPokemon final
@@ -34,15 +55,29 @@ struct PODPokemon final
 	PODPokemon& operator=(const PODPokemon& other) = default;
 	PODPokemon& operator=(PODPokemon&& other) noexcept = default;
 
-	uint8_t Index;
-	char Name[MAX_NAME_LENGTH];
-	std::array<PODMove, 4> Moves;
+	char Name[POKEDEX_MAX_NAME_LENGTH];
+	uint8_t Types[2];
+	uint8_t ID;
+	uint8_t PhysicalAttack;
+	uint8_t SpecicalAttack;
+	uint8_t PhysicalDefense;
+	uint8_t SpecialDefense;
+	uint8_t Speed;
+	uint8_t Health;
+	uint8_t Moves[4];
 };
+
+inline std::ostream& operator<<(std::ostream& stream, const PODElement& element)
+{
+	return stream << std::format("Name: {}", element.Name);
+}
+
+inline std::ostream& operator<<(std::ostream& stream, const PODMove& move)
+{
+	return stream << std::format("Name: {}", move.Name);
+}
 
 inline std::ostream& operator<<(std::ostream& stream, const PODPokemon& pokemon)
 {
-	return stream << std::format
-	("Name: {}, Index: {}, Moves: {}({}) & {}({}) & {}({}) & {}({})", pokemon.Name, pokemon.Index, pokemon.Moves[0].Name, pokemon.Moves[0].Power
-	, pokemon.Moves[1].Name, pokemon.Moves[1].Power, pokemon.Moves[2].Name, pokemon.Moves[2].Power, pokemon.Moves[3].Name, pokemon.Moves[3].Power
-	);
+	return stream << std::format("Name: {}", pokemon.Name);
 }

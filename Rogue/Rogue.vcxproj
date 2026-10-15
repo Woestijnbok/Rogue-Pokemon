@@ -136,7 +136,9 @@ xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll"
 xcopy /Y /I "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\vld_$(PlatformTarget).dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\dbghelp.dll" $(OutDir)
 xcopy "$(ProjectDir)Resources" "$(OutDir)Resources" /E /I /H /K /Y
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin" $(OutDir)Resources\Files</Command>
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Elements.bin" $(OutDir)Resources\Files
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Moves.bin" $(OutDir)Resources\Files
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokemon.bin" $(OutDir)Resources\Files</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -161,7 +163,9 @@ xcopy /Y /I "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\SDL2_image.
 xcopy /Y /I "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)
 xcopy "$(ProjectDir)Resources" "$(OutDir)Resources" /E /I /H /K /Y
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin" $(OutDir)Resources\Files</Command>
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Elements.bin" $(OutDir)Resources\Files
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Moves.bin" $(OutDir)Resources\Files
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokemon.bin" $(OutDir)Resources\Files</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -186,7 +190,9 @@ xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll"
 xcopy /Y /I "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\vld_$(PlatformTarget).dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\dbghelp.dll" $(OutDir)
 xcopy "$(ProjectDir)Resources" "$(OutDir)Resources" /E /I /H /K /Y
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin" $(OutDir)Resources\Files</Command>
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Elements.bin" $(OutDir)Resources\Files
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Moves.bin" $(OutDir)Resources\Files
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokemon.bin" $(OutDir)Resources\Files</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -211,7 +217,9 @@ xcopy /Y /I "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\SDL2_image.
 xcopy /Y /I "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" $(OutDir)
 xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)
 xcopy "$(ProjectDir)Resources" "$(OutDir)Resources" /E /I /H /K /Y
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin" $(OutDir)Resources\Files</Command>
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Elements.bin" $(OutDir)Resources\Files
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Moves.bin" $(OutDir)Resources\Files
+xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokemon.bin" $(OutDir)Resources\Files</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -227,7 +235,13 @@ xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin"
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="MovementCommand.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
-    <ClCompile Include="PokemonComponent.cpp" />
+    <ClCompile Include="PokedexComponent.cpp" />
+    <ClCompile Include="PokemonComponent.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="PokemonStats.cpp" />
     <ClCompile Include="SelectMoveCommand.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -247,6 +261,7 @@ xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokedex.bin"
     <ClInclude Include="Move.h" />
     <ClInclude Include="MovementCommand.h" />
     <ClInclude Include="MovementComponent.h" />
+    <ClInclude Include="PokedexComponent.h" />
     <ClInclude Include="PokemonComponent.h" />
     <ClInclude Include="PokemonStats.h" />
     <ClInclude Include="SelectMoveCommand.h" />

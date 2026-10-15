@@ -12,6 +12,7 @@
 // Components
 #include "PokemonComponent.h"
 #include "MovementComponent.h"
+#include "PokedexComponent.h"
 
 // Core
 #include "ResourceManager.h"
@@ -98,10 +99,7 @@ void TrainerComponent::Reset()
 
 PokemonComponent* TrainerComponent::CreateStartPokemon() const
 {
-	// TODO: Create option to choose now it's always blaziken
-	PODPokemon pokemon{};
-	ReadPokemon(pokemon, 6);
-
+	PODPokemon pokemon{ SceneManager::Instance()->GetScene("Battle")->GetGameObject("Manager")->GetComponent<PokedexComponent>()->GetPokemon(6) };
 	GameObject* pokemonObject{ GetOwner()->GetScene()->CreateGameObject(std::format("Trainer's {}", pokemon.Name)) };
 	PokemonComponent* pokemonComponent{ pokemonObject->CreateComponent<PokemonComponent>(pokemon, this) };
 	pokemonComponent->SetLevel(100);

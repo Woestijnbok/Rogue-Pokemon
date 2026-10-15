@@ -3,6 +3,9 @@
 // Libraries
 #include <cstdint>
 
+// Other
+#include "Pokedex.hpp"
+
 /*
 * Struct containing all stats for pokemon.
 */
@@ -11,7 +14,7 @@ struct PokemonStats
 	/*
 	* Constructs pokemon stats.
 	*/
-	explicit PokemonStats();
+	explicit PokemonStats(const PODPokemon& pokemon);
 	~PokemonStats() = default;
 
 	PokemonStats(const PokemonStats& other) = default;

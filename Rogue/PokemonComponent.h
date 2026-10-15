@@ -113,6 +113,7 @@ public:
 	void SetLevel(uint16_t level);
 	
 private:
+	const std::array<uint8_t, 2> m_Types;
 	// Pokemon level number
 	PokemonStats m_Stats;
 	// The moves / attacks of the pokemon

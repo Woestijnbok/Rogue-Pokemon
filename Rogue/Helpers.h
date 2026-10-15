@@ -3,6 +3,7 @@
 // Libraries
 #include <cstdint>
 #include <filesystem>
+#include <fstream>
 
 namespace Minigin
 {
@@ -12,6 +13,7 @@ namespace Minigin
 }
 
 struct PODPokemon;
+struct PODMove;
 class TileManagerComponent;
 class MovementComponent;
 class BattleManagerComponent;
@@ -20,11 +22,35 @@ class MovementComponent;
 class TileManagerComponent;
 
 /*
-* Reads pokemon information from Pokedex.bin (binary pokedex file).
+* Reads a binary file and fills an array container with the infromation from the file.
 * 
-* @param pokedexIndex: The pokedex index that will be used to read the correct pokemon in the pokedex file.
+* @param EntryType: The data type of the elements in the container.
+* @param Count: The total count of data entries in the binary file.
+* @param container: The array container to fill the data with.
+* @param path: The path to the binary file.
 */
-void ReadPokemon(PODPokemon& pokemon, uint8_t pokedexIndex);
+template <typename EntryType, size_t Count>
+void ReadBinaryFile(std::array<EntryType, Count>& container, const std::filesystem::path& path)
+{
+	std::ifstream file{ path, std::ios::binary | std::ios::ate };
+	if (!file.is_open())
+	{
+		throw std::runtime_error{ std::format("ReadBinaryFile(...) failed to open {}", path.string()) };
+	}
+
+	if (static_cast<size_t>(file.tellg()) != Count * sizeof(EntryType))
+	{
+		throw std::runtime_error{ std::format("ReadBinaryFile(...) invalid count: {}", Count) };
+	}
+
+	file.seekg(0);
+	file.read(reinterpret_cast<char*>(container.data()), static_cast<std::streamsize>(Count * sizeof(EntryType)));
+	
+	if (!file.good())
+	{
+		throw std::runtime_error{ "ReadBinaryFile(...) file is corrupt" };
+	}
+}
 
 /*
 * Makes a sprite component and adds all the trainer sprites.

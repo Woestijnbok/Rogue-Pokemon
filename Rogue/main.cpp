@@ -21,6 +21,7 @@
 #include "TrainerComponent.h"
 #include "MovementComponent.h"
 #include "SpriteComponent.h"
+#include "PokedexComponent.h"
 
 // Commands
 #include "MovementCommand.h"
@@ -49,6 +50,7 @@ void Load()
 	TileManagerComponent* tileManagerComponent{ tileManagerObject->CreateComponent<TileManagerComponent>() };
 
 	GameObject* battleManagerObject{ battleScene->CreateGameObject("Manager", true) };
+	battleManagerObject->CreateComponent<PokedexComponent>();
 	BattleManagerComponent* battleManagerComponent{ battleManagerObject->CreateComponent<BattleManagerComponent>() };
 
 	tileManagerComponent->OnPokemonEncounter().AddObserver(std::bind(&BattleManagerComponent::MakeBattle, battleManagerComponent, std::placeholders::_1));

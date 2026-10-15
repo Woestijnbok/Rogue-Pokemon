@@ -19,6 +19,7 @@ namespace Minigin
 
 class PokemonComponent;
 class TrainerComponent;
+class PokedexComponent;
 
 /*
 * Manages battles between trainers and wild pokemons.
@@ -179,6 +180,8 @@ private:
 	*/
 	void SetWildPokemonLevel(PokemonComponent* pokemon);
 
+	// Pokedex Component containing all needed battle information about pokemon battles
+	PokedexComponent* m_Pokedex;
 	// Current battle pair, first one being the trainer's pokemon and latter the wild pokemon
 	std::pair<TrainerComponent*, PokemonComponent*> m_CurrentBattle;
 	// Current battle state

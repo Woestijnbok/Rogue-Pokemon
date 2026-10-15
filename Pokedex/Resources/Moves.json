@@ -1,0 +1,498 @@
+[
+  {
+    "Name": "Pound",
+    "ID": 1,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 40,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Mega Punch",
+    "ID": 2,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 80,
+    "Accuracy": 85
+  },
+  {
+    "Name": "Thunder Punch",
+    "ID": 3,
+    "MoveType": 0,
+    "ElementType": 13,
+    "Power": 75,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Razor Wind",
+    "ID": 4,
+    "MoveType": 1,
+    "ElementType": 1,
+    "Power": 80,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Swords Dance",
+    "ID": 5,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 0,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Scratch",
+    "ID": 6,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 40,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Cut",
+    "ID": 7,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 50,
+    "Accuracy": 95
+  },
+  {
+    "Name": "Fire Punch",
+    "ID": 8,
+    "MoveType": 0,
+    "ElementType": 10,
+    "Power": 75,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Stomp",
+    "ID": 9,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 65,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Headbutt",
+    "ID": 10,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 70,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Tackle",
+    "ID": 11,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 40,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Body Slam",
+    "ID": 12,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 85,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Ice Punch",
+    "ID": 13,
+    "MoveType": 0,
+    "ElementType": 15,
+    "Power": 75,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Mega Kick",
+    "ID": 14,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 120,
+    "Accuracy": 75
+  },
+  {
+    "Name": "Sand Attack",
+    "ID": 15,
+    "MoveType": 0,
+    "ElementType": 5,
+    "Power": 0,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Poison Sting",
+    "ID": 16,
+    "MoveType": 0,
+    "ElementType": 4,
+    "Power": 15,
+    "Accuracy": 100
+  },
+  {
+    "Name": "String Shot",
+    "ID": 17,
+    "MoveType": 0,
+    "ElementType": 7,
+    "Power": 0,
+    "Accuracy": 95
+  },
+  {
+    "Name": "Snore",
+    "ID": 18,
+    "MoveType": 1,
+    "ElementType": 1,
+    "Power": 50,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Harden",
+    "ID": 19,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 0,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Gust",
+    "ID": 20,
+    "MoveType": 1,
+    "ElementType": 3,
+    "Power": 40,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Whirlwind",
+    "ID": 21,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 0,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Double Edge",
+    "ID": 22,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 120,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Take Down",
+    "ID": 23,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 90,
+    "Accuracy": 85
+  },
+  {
+    "Name": "Wing Attack",
+    "ID": 24,
+    "MoveType": 0,
+    "ElementType": 3,
+    "Power": 60,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Fly",
+    "ID": 25,
+    "MoveType": 0,
+    "ElementType": 3,
+    "Power": 90,
+    "Accuracy": 95
+  },
+  {
+    "Name": "Growl",
+    "ID": 26,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 0,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Mist",
+    "ID": 27,
+    "MoveType": 0,
+    "ElementType": 15,
+    "Power": 0,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Water Gun",
+    "ID": 28,
+    "MoveType": 1,
+    "ElementType": 11,
+    "Power": 40,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Horn Attack",
+    "ID": 29,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 65,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Fury Attack",
+    "ID": 30,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 15,
+    "Accuracy": 85
+  },
+  {
+    "Name": "Hydro Pump",
+    "ID": 31,
+    "MoveType": 1,
+    "ElementType": 11,
+    "Power": 110,
+    "Accuracy": 80
+  },
+  {
+    "Name": "Splash",
+    "ID": 32,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 0,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Flail",
+    "ID": 33,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 0,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Bind",
+    "ID": 34,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 15,
+    "Accuracy": 85
+  },
+  {
+    "Name": "Slam",
+    "ID": 35,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 80,
+    "Accuracy": 75
+  },
+  {
+    "Name": "Double Slap",
+    "ID": 36,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 15,
+    "Accuracy": 85
+  },
+  {
+    "Name": "Vice Grip",
+    "ID": 37,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 55,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Karate Chop",
+    "ID": 38,
+    "MoveType": 0,
+    "ElementType": 2,
+    "Power": 50,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Acid",
+    "ID": 39,
+    "MoveType": 1,
+    "ElementType": 4,
+    "Power": 40,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Thrash",
+    "ID": 40,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 120,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Leer",
+    "ID": 41,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 0,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Bite",
+    "ID": 42,
+    "MoveType": 0,
+    "ElementType": 17,
+    "Power": 60,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Ember",
+    "ID": 43,
+    "MoveType": 1,
+    "ElementType": 10,
+    "Power": 40,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Ice Beam",
+    "ID": 44,
+    "MoveType": 1,
+    "ElementType": 15,
+    "Power": 90,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Guillotine",
+    "ID": 45,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 0,
+    "Accuracy": 30
+  },
+  {
+    "Name": "Psybeam",
+    "ID": 46,
+    "MoveType": 1,
+    "ElementType": 14,
+    "Power": 65,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Wrap",
+    "ID": 47,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 15,
+    "Accuracy": 90
+  },
+  {
+    "Name": "Surf",
+    "ID": 48,
+    "MoveType": 1,
+    "ElementType": 11,
+    "Power": 90,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Disable",
+    "ID": 49,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 0,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Pay Day",
+    "ID": 50,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 40,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Counter",
+    "ID": 51,
+    "MoveType": 0,
+    "ElementType": 2,
+    "Power": 0,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Amnesia",
+    "ID": 52,
+    "MoveType": 0,
+    "ElementType": 14,
+    "Power": 0,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Destiny Bond",
+    "ID": 53,
+    "MoveType": 0,
+    "ElementType": 8,
+    "Power": 0,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Peck",
+    "ID": 54,
+    "MoveType": 0,
+    "ElementType": 3,
+    "Power": 35,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Drill Peck",
+    "ID": 55,
+    "MoveType": 0,
+    "ElementType": 3,
+    "Power": 80,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Hyper Beam",
+    "ID": 56,
+    "MoveType": 1,
+    "ElementType": 1,
+    "Power": 150,
+    "Accuracy": 90
+  },
+  {
+    "Name": "Double Kick",
+    "ID": 57,
+    "MoveType": 0,
+    "ElementType": 2,
+    "Power": 30,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Supersonic",
+    "ID": 58,
+    "MoveType": 0,
+    "ElementType": 1,
+    "Power": 0,
+    "Accuracy": 55
+  },
+  {
+    "Name": "Iron Defense",
+    "ID": 59,
+    "MoveType": 0,
+    "ElementType": 9,
+    "Power": 0,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Psychic",
+    "ID": 60,
+    "MoveType": 1,
+    "ElementType": 14,
+    "Power": 90,
+    "Accuracy": 100
+  },
+  {
+    "Name": "Zen Headbutt",
+    "ID": 61,
+    "MoveType": 0,
+    "ElementType": 14,
+    "Power": 80,
+    "Accuracy": 90
+  },
+  {
+    "Name": "Night Shade",
+    "ID": 62,
+    "MoveType": 1,
+    "ElementType": 8,
+    "Power": 0,
+    "Accuracy": 100
+  }
+]

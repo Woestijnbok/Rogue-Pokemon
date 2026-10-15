@@ -26,18 +26,6 @@
 
 using namespace Minigin;
 
-void ReadPokemon(PODPokemon& pokemon, uint8_t pokedexIndex)
-{
-	const std::filesystem::path path{ ResourceManager::Instance()->GetFileRootPath() / "Pokedex.bin" };
-	assert(std::filesystem::exists(path));
-
-	std::ifstream file{ path, std::ios::binary };
-	assert(file.is_open());
-
-	file.seekg(sizeof(PODPokemon) * (pokedexIndex - 1));
-	file.read(reinterpret_cast<char*>(&pokemon), sizeof(PODPokemon));
-}
-
 SpriteComponent* MakeTrainerSprites(GameObject* object, TileManagerComponent* tileManager, MovementComponent* movementComponent)
 {
 	SpriteComponent* spriteComponent{ object->CreateComponent<SpriteComponent>() };

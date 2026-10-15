@@ -1,0 +1,4042 @@
+[
+  {
+    "Name": "Treecko",
+    "ID": 1,
+    "PhysicalAttack": 45,
+    "SpecialAttack": 65,
+    "PhysicalDefense": 35,
+    "SpecialDefense": 55,
+    "Speed": 70,
+    "Health": 40,
+    "MoveIDs": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "ElementTypes": [
+      12,
+      0
+    ]
+  },
+  {
+    "Name": "Grovyle",
+    "ID": 2,
+    "PhysicalAttack": 65,
+    "SpecialAttack": 85,
+    "PhysicalDefense": 45,
+    "SpecialDefense": 65,
+    "Speed": 95,
+    "Health": 50,
+    "MoveIDs": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "ElementTypes": [
+      12,
+      0
+    ]
+  },
+  {
+    "Name": "Sceptile",
+    "ID": 3,
+    "PhysicalAttack": 85,
+    "SpecialAttack": 105,
+    "PhysicalDefense": 65,
+    "SpecialDefense": 85,
+    "Speed": 120,
+    "Health": 70,
+    "MoveIDs": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "ElementTypes": [
+      12,
+      0
+    ]
+  },
+  {
+    "Name": "Torchic",
+    "ID": 4,
+    "PhysicalAttack": 60,
+    "SpecialAttack": 70,
+    "PhysicalDefense": 40,
+    "SpecialDefense": 50,
+    "Speed": 45,
+    "Health": 45,
+    "MoveIDs": [
+      2,
+      6,
+      5,
+      7
+    ],
+    "ElementTypes": [
+      10,
+      0
+    ]
+  },
+  {
+    "Name": "Combusken",
+    "ID": 5,
+    "PhysicalAttack": 85,
+    "SpecialAttack": 85,
+    "PhysicalDefense": 60,
+    "SpecialDefense": 60,
+    "Speed": 55,
+    "Health": 60,
+    "MoveIDs": [
+      2,
+      8,
+      3,
+      6
+    ],
+    "ElementTypes": [
+      10,
+      2
+    ]
+  },
+  {
+    "Name": "Blaziken",
+    "ID": 6,
+    "PhysicalAttack": 120,
+    "SpecialAttack": 110,
+    "PhysicalDefense": 70,
+    "SpecialDefense": 70,
+    "Speed": 80,
+    "Health": 80,
+    "MoveIDs": [
+      2,
+      8,
+      3,
+      6
+    ],
+    "ElementTypes": [
+      10,
+      2
+    ]
+  },
+  {
+    "Name": "Mudkip",
+    "ID": 7,
+    "PhysicalAttack": 70,
+    "SpecialAttack": 50,
+    "PhysicalDefense": 50,
+    "SpecialDefense": 50,
+    "Speed": 40,
+    "Health": 50,
+    "MoveIDs": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Marshtomp",
+    "ID": 8,
+    "PhysicalAttack": 85,
+    "SpecialAttack": 60,
+    "PhysicalDefense": 70,
+    "SpecialDefense": 70,
+    "Speed": 50,
+    "Health": 70,
+    "MoveIDs": [
+      2,
+      13,
+      9,
+      14
+    ],
+    "ElementTypes": [
+      11,
+      5
+    ]
+  },
+  {
+    "Name": "Swampert",
+    "ID": 9,
+    "PhysicalAttack": 110,
+    "SpecialAttack": 85,
+    "PhysicalDefense": 90,
+    "SpecialDefense": 90,
+    "Speed": 60,
+    "Health": 100,
+    "MoveIDs": [
+      2,
+      13,
+      9,
+      14
+    ],
+    "ElementTypes": [
+      11,
+      5
+    ]
+  },
+  {
+    "Name": "Poochyena",
+    "ID": 10,
+    "PhysicalAttack": 55,
+    "SpecialAttack": 30,
+    "PhysicalDefense": 35,
+    "SpecialDefense": 30,
+    "Speed": 35,
+    "Health": 35,
+    "MoveIDs": [
+      15,
+      10,
+      11,
+      12
+    ],
+    "ElementTypes": [
+      17,
+      0
+    ]
+  },
+  {
+    "Name": "Mightyena",
+    "ID": 11,
+    "PhysicalAttack": 90,
+    "SpecialAttack": 60,
+    "PhysicalDefense": 70,
+    "SpecialDefense": 60,
+    "Speed": 70,
+    "Health": 70,
+    "MoveIDs": [
+      15,
+      10,
+      11,
+      12
+    ],
+    "ElementTypes": [
+      17,
+      0
+    ]
+  },
+  {
+    "Name": "Zigzagoon",
+    "ID": 12,
+    "PhysicalAttack": 30,
+    "SpecialAttack": 30,
+    "PhysicalDefense": 41,
+    "SpecialDefense": 41,
+    "Speed": 60,
+    "Health": 38,
+    "MoveIDs": [
+      7,
+      15,
+      10,
+      11
+    ],
+    "ElementTypes": [
+      1,
+      0
+    ]
+  },
+  {
+    "Name": "Linoone",
+    "ID": 13,
+    "PhysicalAttack": 70,
+    "SpecialAttack": 50,
+    "PhysicalDefense": 61,
+    "SpecialDefense": 61,
+    "Speed": 100,
+    "Health": 78,
+    "MoveIDs": [
+      7,
+      15,
+      10,
+      11
+    ],
+    "ElementTypes": [
+      1,
+      0
+    ]
+  },
+  {
+    "Name": "Wurmple",
+    "ID": 14,
+    "PhysicalAttack": 45,
+    "SpecialAttack": 20,
+    "PhysicalDefense": 35,
+    "SpecialDefense": 30,
+    "Speed": 20,
+    "Health": 45,
+    "MoveIDs": [
+      11,
+      16,
+      17,
+      18
+    ],
+    "ElementTypes": [
+      7,
+      0
+    ]
+  },
+  {
+    "Name": "Silcoon",
+    "ID": 15,
+    "PhysicalAttack": 35,
+    "SpecialAttack": 25,
+    "PhysicalDefense": 55,
+    "SpecialDefense": 25,
+    "Speed": 15,
+    "Health": 50,
+    "MoveIDs": [
+      11,
+      16,
+      17,
+      19
+    ],
+    "ElementTypes": [
+      7,
+      0
+    ]
+  },
+  {
+    "Name": "Beautifly",
+    "ID": 16,
+    "PhysicalAttack": 70,
+    "SpecialAttack": 100,
+    "PhysicalDefense": 50,
+    "SpecialDefense": 50,
+    "Speed": 65,
+    "Health": 60,
+    "MoveIDs": [
+      20,
+      21,
+      11,
+      22
+    ],
+    "ElementTypes": [
+      7,
+      3
+    ]
+  },
+  {
+    "Name": "Cascoon",
+    "ID": 17,
+    "PhysicalAttack": 35,
+    "SpecialAttack": 25,
+    "PhysicalDefense": 55,
+    "SpecialDefense": 25,
+    "Speed": 15,
+    "Health": 50,
+    "MoveIDs": [
+      11,
+      16,
+      17,
+      19
+    ],
+    "ElementTypes": [
+      7,
+      0
+    ]
+  },
+  {
+    "Name": "Dustox",
+    "ID": 18,
+    "PhysicalAttack": 50,
+    "SpecialAttack": 50,
+    "PhysicalDefense": 70,
+    "SpecialDefense": 90,
+    "Speed": 65,
+    "Health": 60,
+    "MoveIDs": [
+      20,
+      21,
+      11,
+      22
+    ],
+    "ElementTypes": [
+      7,
+      4
+    ]
+  },
+  {
+    "Name": "Lotad",
+    "ID": 19,
+    "PhysicalAttack": 30,
+    "SpecialAttack": 40,
+    "PhysicalDefense": 30,
+    "SpecialDefense": 50,
+    "Speed": 30,
+    "Health": 40,
+    "MoveIDs": [
+      5,
+      10,
+      12,
+      23
+    ],
+    "ElementTypes": [
+      11,
+      12
+    ]
+  },
+  {
+    "Name": "Lombre",
+    "ID": 20,
+    "PhysicalAttack": 50,
+    "SpecialAttack": 60,
+    "PhysicalDefense": 50,
+    "SpecialDefense": 70,
+    "Speed": 50,
+    "Health": 60,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      11,
+      12
+    ]
+  },
+  {
+    "Name": "Ludicolo",
+    "ID": 21,
+    "PhysicalAttack": 70,
+    "SpecialAttack": 90,
+    "PhysicalDefense": 70,
+    "SpecialDefense": 100,
+    "Speed": 70,
+    "Health": 80,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      11,
+      12
+    ]
+  },
+  {
+    "Name": "Seedot",
+    "ID": 22,
+    "PhysicalAttack": 40,
+    "SpecialAttack": 30,
+    "PhysicalDefense": 50,
+    "SpecialDefense": 30,
+    "Speed": 30,
+    "Health": 40,
+    "MoveIDs": [
+      4,
+      5,
+      10,
+      11
+    ],
+    "ElementTypes": [
+      12,
+      0
+    ]
+  },
+  {
+    "Name": "Nuzleaf",
+    "ID": 23,
+    "PhysicalAttack": 70,
+    "SpecialAttack": 60,
+    "PhysicalDefense": 40,
+    "SpecialDefense": 40,
+    "Speed": 60,
+    "Health": 70,
+    "MoveIDs": [
+      1,
+      4,
+      5,
+      7
+    ],
+    "ElementTypes": [
+      12,
+      17
+    ]
+  },
+  {
+    "Name": "Shiftry",
+    "ID": 24,
+    "PhysicalAttack": 100,
+    "SpecialAttack": 90,
+    "PhysicalDefense": 60,
+    "SpecialDefense": 60,
+    "Speed": 80,
+    "Health": 90,
+    "MoveIDs": [
+      1,
+      5,
+      7,
+      21
+    ],
+    "ElementTypes": [
+      12,
+      17
+    ]
+  },
+  {
+    "Name": "Taillow",
+    "ID": 25,
+    "PhysicalAttack": 55,
+    "SpecialAttack": 30,
+    "PhysicalDefense": 30,
+    "SpecialDefense": 30,
+    "Speed": 85,
+    "Health": 40,
+    "MoveIDs": [
+      24,
+      21,
+      25,
+      22
+    ],
+    "ElementTypes": [
+      1,
+      3
+    ]
+  },
+  {
+    "Name": "Swellow",
+    "ID": 26,
+    "PhysicalAttack": 85,
+    "SpecialAttack": 75,
+    "PhysicalDefense": 60,
+    "SpecialDefense": 50,
+    "Speed": 125,
+    "Health": 60,
+    "MoveIDs": [
+      24,
+      25,
+      22,
+      26
+    ],
+    "ElementTypes": [
+      1,
+      3
+    ]
+  },
+  {
+    "Name": "Wingull",
+    "ID": 27,
+    "PhysicalAttack": 30,
+    "SpecialAttack": 55,
+    "PhysicalDefense": 30,
+    "SpecialDefense": 30,
+    "Speed": 85,
+    "Health": 40,
+    "MoveIDs": [
+      20,
+      24,
+      25,
+      23
+    ],
+    "ElementTypes": [
+      11,
+      3
+    ]
+  },
+  {
+    "Name": "Pelipper",
+    "ID": 28,
+    "PhysicalAttack": 50,
+    "SpecialAttack": 95,
+    "PhysicalDefense": 100,
+    "SpecialDefense": 70,
+    "Speed": 65,
+    "Health": 60,
+    "MoveIDs": [
+      24,
+      25,
+      12,
+      23
+    ],
+    "ElementTypes": [
+      11,
+      3
+    ]
+  },
+  {
+    "Name": "Ralts",
+    "ID": 29,
+    "PhysicalAttack": 25,
+    "SpecialAttack": 45,
+    "PhysicalDefense": 25,
+    "SpecialDefense": 35,
+    "Speed": 40,
+    "Health": 28,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      14,
+      18
+    ]
+  },
+  {
+    "Name": "Kirlia",
+    "ID": 30,
+    "PhysicalAttack": 35,
+    "SpecialAttack": 65,
+    "PhysicalDefense": 35,
+    "SpecialDefense": 55,
+    "Speed": 50,
+    "Health": 38,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      14,
+      18
+    ]
+  },
+  {
+    "Name": "Gardevoir",
+    "ID": 31,
+    "PhysicalAttack": 65,
+    "SpecialAttack": 125,
+    "PhysicalDefense": 65,
+    "SpecialDefense": 115,
+    "Speed": 80,
+    "Health": 68,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      14,
+      18
+    ]
+  },
+  {
+    "Name": "Surskit",
+    "ID": 32,
+    "PhysicalAttack": 30,
+    "SpecialAttack": 50,
+    "PhysicalDefense": 32,
+    "SpecialDefense": 52,
+    "Speed": 65,
+    "Health": 40,
+    "MoveIDs": [
+      23,
+      22,
+      27,
+      28
+    ],
+    "ElementTypes": [
+      7,
+      11
+    ]
+  },
+  {
+    "Name": "Masquerain",
+    "ID": 33,
+    "PhysicalAttack": 60,
+    "SpecialAttack": 100,
+    "PhysicalDefense": 62,
+    "SpecialDefense": 82,
+    "Speed": 80,
+    "Health": 70,
+    "MoveIDs": [
+      20,
+      21,
+      23,
+      22
+    ],
+    "ElementTypes": [
+      7,
+      3
+    ]
+  },
+  {
+    "Name": "Shroomish",
+    "ID": 34,
+    "PhysicalAttack": 40,
+    "SpecialAttack": 40,
+    "PhysicalDefense": 60,
+    "SpecialDefense": 60,
+    "Speed": 35,
+    "Health": 60,
+    "MoveIDs": [
+      5,
+      10,
+      11,
+      12
+    ],
+    "ElementTypes": [
+      12,
+      0
+    ]
+  },
+  {
+    "Name": "Breloom",
+    "ID": 35,
+    "PhysicalAttack": 130,
+    "SpecialAttack": 60,
+    "PhysicalDefense": 80,
+    "SpecialDefense": 60,
+    "Speed": 70,
+    "Health": 60,
+    "MoveIDs": [
+      2,
+      3,
+      5,
+      7
+    ],
+    "ElementTypes": [
+      12,
+      2
+    ]
+  },
+  {
+    "Name": "Slakoth",
+    "ID": 36,
+    "PhysicalAttack": 60,
+    "SpecialAttack": 35,
+    "PhysicalDefense": 60,
+    "SpecialDefense": 35,
+    "Speed": 30,
+    "Health": 60,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      1,
+      0
+    ]
+  },
+  {
+    "Name": "Vigoroth",
+    "ID": 37,
+    "PhysicalAttack": 80,
+    "SpecialAttack": 55,
+    "PhysicalDefense": 80,
+    "SpecialDefense": 55,
+    "Speed": 90,
+    "Health": 80,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      1,
+      0
+    ]
+  },
+  {
+    "Name": "Slaking",
+    "ID": 38,
+    "PhysicalAttack": 160,
+    "SpecialAttack": 95,
+    "PhysicalDefense": 100,
+    "SpecialDefense": 65,
+    "Speed": 100,
+    "Health": 150,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      1,
+      0
+    ]
+  },
+  {
+    "Name": "Abra",
+    "ID": 39,
+    "PhysicalAttack": 20,
+    "SpecialAttack": 105,
+    "PhysicalDefense": 15,
+    "SpecialDefense": 55,
+    "Speed": 90,
+    "Health": 25,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      14,
+      0
+    ]
+  },
+  {
+    "Name": "Kadabra",
+    "ID": 40,
+    "PhysicalAttack": 35,
+    "SpecialAttack": 120,
+    "PhysicalDefense": 30,
+    "SpecialDefense": 70,
+    "Speed": 105,
+    "Health": 40,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      14,
+      0
+    ]
+  },
+  {
+    "Name": "Alakazam",
+    "ID": 41,
+    "PhysicalAttack": 50,
+    "SpecialAttack": 135,
+    "PhysicalDefense": 45,
+    "SpecialDefense": 95,
+    "Speed": 120,
+    "Health": 55,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      14,
+      0
+    ]
+  },
+  {
+    "Name": "Nincada",
+    "ID": 42,
+    "PhysicalAttack": 45,
+    "SpecialAttack": 30,
+    "PhysicalDefense": 90,
+    "SpecialDefense": 30,
+    "Speed": 40,
+    "Health": 31,
+    "MoveIDs": [
+      6,
+      7,
+      20,
+      15
+    ],
+    "ElementTypes": [
+      7,
+      5
+    ]
+  },
+  {
+    "Name": "Ninjask",
+    "ID": 43,
+    "PhysicalAttack": 90,
+    "SpecialAttack": 50,
+    "PhysicalDefense": 45,
+    "SpecialDefense": 50,
+    "Speed": 160,
+    "Health": 61,
+    "MoveIDs": [
+      6,
+      5,
+      7,
+      15
+    ],
+    "ElementTypes": [
+      7,
+      3
+    ]
+  },
+  {
+    "Name": "Shedinja",
+    "ID": 44,
+    "PhysicalAttack": 90,
+    "SpecialAttack": 30,
+    "PhysicalDefense": 45,
+    "SpecialDefense": 30,
+    "Speed": 40,
+    "Health": 1,
+    "MoveIDs": [
+      6,
+      7,
+      15,
+      22
+    ],
+    "ElementTypes": [
+      7,
+      8
+    ]
+  },
+  {
+    "Name": "Whismur",
+    "ID": 45,
+    "PhysicalAttack": 51,
+    "SpecialAttack": 51,
+    "PhysicalDefense": 23,
+    "SpecialDefense": 23,
+    "Speed": 28,
+    "Health": 64,
+    "MoveIDs": [
+      1,
+      2,
+      8,
+      13
+    ],
+    "ElementTypes": [
+      1,
+      0
+    ]
+  },
+  {
+    "Name": "Loudred",
+    "ID": 46,
+    "PhysicalAttack": 71,
+    "SpecialAttack": 71,
+    "PhysicalDefense": 43,
+    "SpecialDefense": 43,
+    "Speed": 48,
+    "Health": 84,
+    "MoveIDs": [
+      1,
+      2,
+      8,
+      13
+    ],
+    "ElementTypes": [
+      1,
+      0
+    ]
+  },
+  {
+    "Name": "Exploud",
+    "ID": 47,
+    "PhysicalAttack": 91,
+    "SpecialAttack": 91,
+    "PhysicalDefense": 63,
+    "SpecialDefense": 73,
+    "Speed": 68,
+    "Health": 104,
+    "MoveIDs": [
+      1,
+      2,
+      8,
+      13
+    ],
+    "ElementTypes": [
+      1,
+      0
+    ]
+  },
+  {
+    "Name": "Makuhita",
+    "ID": 48,
+    "PhysicalAttack": 60,
+    "SpecialAttack": 20,
+    "PhysicalDefense": 30,
+    "SpecialDefense": 30,
+    "Speed": 25,
+    "Health": 72,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      2,
+      0
+    ]
+  },
+  {
+    "Name": "Hariyama",
+    "ID": 49,
+    "PhysicalAttack": 120,
+    "SpecialAttack": 40,
+    "PhysicalDefense": 60,
+    "SpecialDefense": 60,
+    "Speed": 50,
+    "Health": 144,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      2,
+      0
+    ]
+  },
+  {
+    "Name": "Goldeen",
+    "ID": 50,
+    "PhysicalAttack": 67,
+    "SpecialAttack": 35,
+    "PhysicalDefense": 60,
+    "SpecialDefense": 50,
+    "Speed": 63,
+    "Health": 45,
+    "MoveIDs": [
+      5,
+      10,
+      29,
+      30
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Seaking",
+    "ID": 51,
+    "PhysicalAttack": 92,
+    "SpecialAttack": 65,
+    "PhysicalDefense": 65,
+    "SpecialDefense": 80,
+    "Speed": 68,
+    "Health": 80,
+    "MoveIDs": [
+      5,
+      10,
+      29,
+      30
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Magikarp",
+    "ID": 52,
+    "PhysicalAttack": 10,
+    "SpecialAttack": 15,
+    "PhysicalDefense": 55,
+    "SpecialDefense": 20,
+    "Speed": 80,
+    "Health": 20,
+    "MoveIDs": [
+      11,
+      31,
+      32,
+      33
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Gyarados",
+    "ID": 53,
+    "PhysicalAttack": 125,
+    "SpecialAttack": 60,
+    "PhysicalDefense": 79,
+    "SpecialDefense": 100,
+    "Speed": 81,
+    "Health": 95,
+    "MoveIDs": [
+      34,
+      10,
+      11,
+      12
+    ],
+    "ElementTypes": [
+      11,
+      3
+    ]
+  },
+  {
+    "Name": "Azurill",
+    "ID": 54,
+    "PhysicalAttack": 20,
+    "SpecialAttack": 20,
+    "PhysicalDefense": 40,
+    "SpecialDefense": 40,
+    "Speed": 20,
+    "Health": 50,
+    "MoveIDs": [
+      35,
+      10,
+      12,
+      23
+    ],
+    "ElementTypes": [
+      1,
+      18
+    ]
+  },
+  {
+    "Name": "Marill",
+    "ID": 55,
+    "PhysicalAttack": 20,
+    "SpecialAttack": 20,
+    "PhysicalDefense": 50,
+    "SpecialDefense": 50,
+    "Speed": 40,
+    "Health": 70,
+    "MoveIDs": [
+      2,
+      13,
+      35,
+      14
+    ],
+    "ElementTypes": [
+      11,
+      18
+    ]
+  },
+  {
+    "Name": "Azumarill",
+    "ID": 56,
+    "PhysicalAttack": 50,
+    "SpecialAttack": 60,
+    "PhysicalDefense": 80,
+    "SpecialDefense": 80,
+    "Speed": 50,
+    "Health": 100,
+    "MoveIDs": [
+      2,
+      13,
+      35,
+      14
+    ],
+    "ElementTypes": [
+      11,
+      18
+    ]
+  },
+  {
+    "Name": "Geodude",
+    "ID": 57,
+    "PhysicalAttack": 80,
+    "SpecialAttack": 30,
+    "PhysicalDefense": 100,
+    "SpecialDefense": 30,
+    "Speed": 20,
+    "Health": 40,
+    "MoveIDs": [
+      2,
+      8,
+      3,
+      15
+    ],
+    "ElementTypes": [
+      6,
+      5
+    ]
+  },
+  {
+    "Name": "Graveler",
+    "ID": 58,
+    "PhysicalAttack": 95,
+    "SpecialAttack": 45,
+    "PhysicalDefense": 115,
+    "SpecialDefense": 45,
+    "Speed": 35,
+    "Health": 55,
+    "MoveIDs": [
+      2,
+      8,
+      3,
+      15
+    ],
+    "ElementTypes": [
+      6,
+      5
+    ]
+  },
+  {
+    "Name": "Golem",
+    "ID": 59,
+    "PhysicalAttack": 120,
+    "SpecialAttack": 55,
+    "PhysicalDefense": 130,
+    "SpecialDefense": 65,
+    "Speed": 45,
+    "Health": 80,
+    "MoveIDs": [
+      2,
+      8,
+      3,
+      14
+    ],
+    "ElementTypes": [
+      6,
+      5
+    ]
+  },
+  {
+    "Name": "Nosepass",
+    "ID": 60,
+    "PhysicalAttack": 45,
+    "SpecialAttack": 45,
+    "PhysicalDefense": 135,
+    "SpecialDefense": 90,
+    "Speed": 30,
+    "Health": 30,
+    "MoveIDs": [
+      8,
+      13,
+      3,
+      10
+    ],
+    "ElementTypes": [
+      6,
+      0
+    ]
+  },
+  {
+    "Name": "Skitty",
+    "ID": 61,
+    "PhysicalAttack": 45,
+    "SpecialAttack": 35,
+    "PhysicalDefense": 45,
+    "SpecialDefense": 35,
+    "Speed": 50,
+    "Health": 50,
+    "MoveIDs": [
+      36,
+      10,
+      11,
+      12
+    ],
+    "ElementTypes": [
+      1,
+      0
+    ]
+  },
+  {
+    "Name": "Delcatty",
+    "ID": 62,
+    "PhysicalAttack": 65,
+    "SpecialAttack": 55,
+    "PhysicalDefense": 65,
+    "SpecialDefense": 55,
+    "Speed": 90,
+    "Health": 70,
+    "MoveIDs": [
+      36,
+      10,
+      11,
+      12
+    ],
+    "ElementTypes": [
+      1,
+      0
+    ]
+  },
+  {
+    "Name": "Zubat",
+    "ID": 63,
+    "PhysicalAttack": 45,
+    "SpecialAttack": 30,
+    "PhysicalDefense": 35,
+    "SpecialDefense": 40,
+    "Speed": 55,
+    "Health": 40,
+    "MoveIDs": [
+      4,
+      20,
+      24,
+      21
+    ],
+    "ElementTypes": [
+      4,
+      3
+    ]
+  },
+  {
+    "Name": "Golbat",
+    "ID": 64,
+    "PhysicalAttack": 80,
+    "SpecialAttack": 65,
+    "PhysicalDefense": 70,
+    "SpecialDefense": 75,
+    "Speed": 90,
+    "Health": 75,
+    "MoveIDs": [
+      4,
+      20,
+      24,
+      21
+    ],
+    "ElementTypes": [
+      4,
+      3
+    ]
+  },
+  {
+    "Name": "Crobat",
+    "ID": 65,
+    "PhysicalAttack": 90,
+    "SpecialAttack": 70,
+    "PhysicalDefense": 80,
+    "SpecialDefense": 80,
+    "Speed": 130,
+    "Health": 85,
+    "MoveIDs": [
+      20,
+      24,
+      25,
+      22
+    ],
+    "ElementTypes": [
+      4,
+      3
+    ]
+  },
+  {
+    "Name": "Tentacool",
+    "ID": 66,
+    "PhysicalAttack": 40,
+    "SpecialAttack": 50,
+    "PhysicalDefense": 35,
+    "SpecialDefense": 100,
+    "Speed": 70,
+    "Health": 40,
+    "MoveIDs": [
+      5,
+      7,
+      34,
+      10
+    ],
+    "ElementTypes": [
+      11,
+      4
+    ]
+  },
+  {
+    "Name": "Tentacruel",
+    "ID": 67,
+    "PhysicalAttack": 70,
+    "SpecialAttack": 80,
+    "PhysicalDefense": 65,
+    "SpecialDefense": 120,
+    "Speed": 100,
+    "Health": 80,
+    "MoveIDs": [
+      5,
+      7,
+      34,
+      10
+    ],
+    "ElementTypes": [
+      11,
+      4
+    ]
+  },
+  {
+    "Name": "Sableye",
+    "ID": 68,
+    "PhysicalAttack": 75,
+    "SpecialAttack": 65,
+    "PhysicalDefense": 75,
+    "SpecialDefense": 65,
+    "Speed": 50,
+    "Health": 50,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      17,
+      8
+    ]
+  },
+  {
+    "Name": "Mawile",
+    "ID": 69,
+    "PhysicalAttack": 85,
+    "SpecialAttack": 55,
+    "PhysicalDefense": 85,
+    "SpecialDefense": 55,
+    "Speed": 50,
+    "Health": 50,
+    "MoveIDs": [
+      2,
+      13,
+      3,
+      37
+    ],
+    "ElementTypes": [
+      9,
+      18
+    ]
+  },
+  {
+    "Name": "Aron",
+    "ID": 70,
+    "PhysicalAttack": 70,
+    "SpecialAttack": 40,
+    "PhysicalDefense": 100,
+    "SpecialDefense": 40,
+    "Speed": 30,
+    "Health": 50,
+    "MoveIDs": [
+      7,
+      9,
+      10,
+      11
+    ],
+    "ElementTypes": [
+      9,
+      6
+    ]
+  },
+  {
+    "Name": "Lairon",
+    "ID": 71,
+    "PhysicalAttack": 90,
+    "SpecialAttack": 50,
+    "PhysicalDefense": 140,
+    "SpecialDefense": 50,
+    "Speed": 40,
+    "Health": 60,
+    "MoveIDs": [
+      7,
+      10,
+      11,
+      12
+    ],
+    "ElementTypes": [
+      9,
+      6
+    ]
+  },
+  {
+    "Name": "Aggron",
+    "ID": 72,
+    "PhysicalAttack": 110,
+    "SpecialAttack": 60,
+    "PhysicalDefense": 180,
+    "SpecialDefense": 60,
+    "Speed": 50,
+    "Health": 70,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      9,
+      6
+    ]
+  },
+  {
+    "Name": "Machop",
+    "ID": 73,
+    "PhysicalAttack": 80,
+    "SpecialAttack": 35,
+    "PhysicalDefense": 50,
+    "SpecialDefense": 35,
+    "Speed": 35,
+    "Health": 70,
+    "MoveIDs": [
+      38,
+      2,
+      8,
+      13
+    ],
+    "ElementTypes": [
+      2,
+      0
+    ]
+  },
+  {
+    "Name": "Machoke",
+    "ID": 74,
+    "PhysicalAttack": 100,
+    "SpecialAttack": 50,
+    "PhysicalDefense": 70,
+    "SpecialDefense": 60,
+    "Speed": 45,
+    "Health": 80,
+    "MoveIDs": [
+      38,
+      2,
+      8,
+      13
+    ],
+    "ElementTypes": [
+      2,
+      0
+    ]
+  },
+  {
+    "Name": "Machamp",
+    "ID": 75,
+    "PhysicalAttack": 130,
+    "SpecialAttack": 65,
+    "PhysicalDefense": 80,
+    "SpecialDefense": 85,
+    "Speed": 55,
+    "Health": 90,
+    "MoveIDs": [
+      38,
+      2,
+      8,
+      13
+    ],
+    "ElementTypes": [
+      2,
+      0
+    ]
+  },
+  {
+    "Name": "Meditite",
+    "ID": 76,
+    "PhysicalAttack": 40,
+    "SpecialAttack": 40,
+    "PhysicalDefense": 55,
+    "SpecialDefense": 55,
+    "Speed": 60,
+    "Health": 30,
+    "MoveIDs": [
+      1,
+      2,
+      8,
+      13
+    ],
+    "ElementTypes": [
+      2,
+      14
+    ]
+  },
+  {
+    "Name": "Medicham",
+    "ID": 77,
+    "PhysicalAttack": 60,
+    "SpecialAttack": 60,
+    "PhysicalDefense": 75,
+    "SpecialDefense": 75,
+    "Speed": 80,
+    "Health": 60,
+    "MoveIDs": [
+      1,
+      2,
+      8,
+      13
+    ],
+    "ElementTypes": [
+      2,
+      14
+    ]
+  },
+  {
+    "Name": "Electrike",
+    "ID": 78,
+    "PhysicalAttack": 45,
+    "SpecialAttack": 65,
+    "PhysicalDefense": 40,
+    "SpecialDefense": 40,
+    "Speed": 65,
+    "Health": 40,
+    "MoveIDs": [
+      10,
+      11,
+      12,
+      22
+    ],
+    "ElementTypes": [
+      13,
+      0
+    ]
+  },
+  {
+    "Name": "Manectric",
+    "ID": 79,
+    "PhysicalAttack": 75,
+    "SpecialAttack": 105,
+    "PhysicalDefense": 60,
+    "SpecialDefense": 60,
+    "Speed": 105,
+    "Health": 70,
+    "MoveIDs": [
+      10,
+      11,
+      12,
+      22
+    ],
+    "ElementTypes": [
+      13,
+      0
+    ]
+  },
+  {
+    "Name": "Plusle",
+    "ID": 80,
+    "PhysicalAttack": 50,
+    "SpecialAttack": 85,
+    "PhysicalDefense": 40,
+    "SpecialDefense": 75,
+    "Speed": 95,
+    "Health": 60,
+    "MoveIDs": [
+      2,
+      3,
+      14,
+      10
+    ],
+    "ElementTypes": [
+      13,
+      0
+    ]
+  },
+  {
+    "Name": "Minun",
+    "ID": 81,
+    "PhysicalAttack": 40,
+    "SpecialAttack": 75,
+    "PhysicalDefense": 50,
+    "SpecialDefense": 85,
+    "Speed": 95,
+    "Health": 60,
+    "MoveIDs": [
+      2,
+      3,
+      14,
+      10
+    ],
+    "ElementTypes": [
+      13,
+      0
+    ]
+  },
+  {
+    "Name": "Magnemite",
+    "ID": 82,
+    "PhysicalAttack": 35,
+    "SpecialAttack": 95,
+    "PhysicalDefense": 70,
+    "SpecialDefense": 55,
+    "Speed": 45,
+    "Health": 25,
+    "MoveIDs": [
+      10,
+      11,
+      23,
+      22
+    ],
+    "ElementTypes": [
+      13,
+      9
+    ]
+  },
+  {
+    "Name": "Magneton",
+    "ID": 83,
+    "PhysicalAttack": 60,
+    "SpecialAttack": 120,
+    "PhysicalDefense": 95,
+    "SpecialDefense": 70,
+    "Speed": 70,
+    "Health": 50,
+    "MoveIDs": [
+      10,
+      11,
+      23,
+      22
+    ],
+    "ElementTypes": [
+      13,
+      9
+    ]
+  },
+  {
+    "Name": "Voltorb",
+    "ID": 84,
+    "PhysicalAttack": 30,
+    "SpecialAttack": 55,
+    "PhysicalDefense": 50,
+    "SpecialDefense": 55,
+    "Speed": 100,
+    "Health": 40,
+    "MoveIDs": [
+      10,
+      11,
+      23,
+      22
+    ],
+    "ElementTypes": [
+      13,
+      0
+    ]
+  },
+  {
+    "Name": "Electrode",
+    "ID": 85,
+    "PhysicalAttack": 50,
+    "SpecialAttack": 80,
+    "PhysicalDefense": 70,
+    "SpecialDefense": 80,
+    "Speed": 150,
+    "Health": 60,
+    "MoveIDs": [
+      10,
+      11,
+      23,
+      22
+    ],
+    "ElementTypes": [
+      13,
+      0
+    ]
+  },
+  {
+    "Name": "Volbeat",
+    "ID": 86,
+    "PhysicalAttack": 73,
+    "SpecialAttack": 47,
+    "PhysicalDefense": 75,
+    "SpecialDefense": 85,
+    "Speed": 85,
+    "Health": 65,
+    "MoveIDs": [
+      2,
+      13,
+      3,
+      14
+    ],
+    "ElementTypes": [
+      7,
+      0
+    ]
+  },
+  {
+    "Name": "Illumise",
+    "ID": 87,
+    "PhysicalAttack": 47,
+    "SpecialAttack": 73,
+    "PhysicalDefense": 75,
+    "SpecialDefense": 85,
+    "Speed": 85,
+    "Health": 65,
+    "MoveIDs": [
+      2,
+      13,
+      3,
+      14
+    ],
+    "ElementTypes": [
+      7,
+      0
+    ]
+  },
+  {
+    "Name": "Oddish",
+    "ID": 88,
+    "PhysicalAttack": 50,
+    "SpecialAttack": 75,
+    "PhysicalDefense": 55,
+    "SpecialDefense": 65,
+    "Speed": 30,
+    "Health": 45,
+    "MoveIDs": [
+      5,
+      7,
+      10,
+      23
+    ],
+    "ElementTypes": [
+      12,
+      4
+    ]
+  },
+  {
+    "Name": "Gloom",
+    "ID": 89,
+    "PhysicalAttack": 65,
+    "SpecialAttack": 85,
+    "PhysicalDefense": 70,
+    "SpecialDefense": 75,
+    "Speed": 40,
+    "Health": 60,
+    "MoveIDs": [
+      5,
+      7,
+      10,
+      23
+    ],
+    "ElementTypes": [
+      12,
+      4
+    ]
+  },
+  {
+    "Name": "Vileplume",
+    "ID": 90,
+    "PhysicalAttack": 80,
+    "SpecialAttack": 110,
+    "PhysicalDefense": 85,
+    "SpecialDefense": 90,
+    "Speed": 50,
+    "Health": 75,
+    "MoveIDs": [
+      5,
+      7,
+      10,
+      12
+    ],
+    "ElementTypes": [
+      12,
+      4
+    ]
+  },
+  {
+    "Name": "Bellossom",
+    "ID": 91,
+    "PhysicalAttack": 80,
+    "SpecialAttack": 90,
+    "PhysicalDefense": 95,
+    "SpecialDefense": 100,
+    "Speed": 50,
+    "Health": 75,
+    "MoveIDs": [
+      5,
+      7,
+      22,
+      39
+    ],
+    "ElementTypes": [
+      12,
+      0
+    ]
+  },
+  {
+    "Name": "Doduo",
+    "ID": 92,
+    "PhysicalAttack": 85,
+    "SpecialAttack": 35,
+    "PhysicalDefense": 45,
+    "SpecialDefense": 35,
+    "Speed": 75,
+    "Health": 35,
+    "MoveIDs": [
+      5,
+      24,
+      21,
+      25
+    ],
+    "ElementTypes": [
+      1,
+      3
+    ]
+  },
+  {
+    "Name": "Dodrio",
+    "ID": 93,
+    "PhysicalAttack": 110,
+    "SpecialAttack": 60,
+    "PhysicalDefense": 70,
+    "SpecialDefense": 60,
+    "Speed": 110,
+    "Health": 60,
+    "MoveIDs": [
+      5,
+      24,
+      21,
+      25
+    ],
+    "ElementTypes": [
+      1,
+      3
+    ]
+  },
+  {
+    "Name": "Roselia",
+    "ID": 94,
+    "PhysicalAttack": 60,
+    "SpecialAttack": 100,
+    "PhysicalDefense": 45,
+    "SpecialDefense": 80,
+    "Speed": 65,
+    "Health": 50,
+    "MoveIDs": [
+      5,
+      7,
+      12,
+      22
+    ],
+    "ElementTypes": [
+      12,
+      4
+    ]
+  },
+  {
+    "Name": "Gulpin",
+    "ID": 95,
+    "PhysicalAttack": 43,
+    "SpecialAttack": 43,
+    "PhysicalDefense": 53,
+    "SpecialDefense": 53,
+    "Speed": 40,
+    "Health": 70,
+    "MoveIDs": [
+      1,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      4,
+      0
+    ]
+  },
+  {
+    "Name": "Swalot",
+    "ID": 96,
+    "PhysicalAttack": 73,
+    "SpecialAttack": 73,
+    "PhysicalDefense": 83,
+    "SpecialDefense": 83,
+    "Speed": 55,
+    "Health": 100,
+    "MoveIDs": [
+      1,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      4,
+      0
+    ]
+  },
+  {
+    "Name": "Carvanha",
+    "ID": 97,
+    "PhysicalAttack": 90,
+    "SpecialAttack": 65,
+    "PhysicalDefense": 20,
+    "SpecialDefense": 20,
+    "Speed": 65,
+    "Health": 45,
+    "MoveIDs": [
+      23,
+      40,
+      22,
+      41
+    ],
+    "ElementTypes": [
+      11,
+      17
+    ]
+  },
+  {
+    "Name": "Sharpedo",
+    "ID": 98,
+    "PhysicalAttack": 120,
+    "SpecialAttack": 95,
+    "PhysicalDefense": 40,
+    "SpecialDefense": 40,
+    "Speed": 95,
+    "Health": 70,
+    "MoveIDs": [
+      23,
+      22,
+      41,
+      42
+    ],
+    "ElementTypes": [
+      11,
+      17
+    ]
+  },
+  {
+    "Name": "Wailmer",
+    "ID": 99,
+    "PhysicalAttack": 70,
+    "SpecialAttack": 70,
+    "PhysicalDefense": 35,
+    "SpecialDefense": 35,
+    "Speed": 60,
+    "Health": 130,
+    "MoveIDs": [
+      10,
+      12,
+      40,
+      22
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Wailord",
+    "ID": 100,
+    "PhysicalAttack": 90,
+    "SpecialAttack": 90,
+    "PhysicalDefense": 45,
+    "SpecialDefense": 45,
+    "Speed": 60,
+    "Health": 170,
+    "MoveIDs": [
+      10,
+      12,
+      22,
+      26
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Numel",
+    "ID": 101,
+    "PhysicalAttack": 60,
+    "SpecialAttack": 65,
+    "PhysicalDefense": 40,
+    "SpecialDefense": 45,
+    "Speed": 35,
+    "Health": 60,
+    "MoveIDs": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "ElementTypes": [
+      10,
+      5
+    ]
+  },
+  {
+    "Name": "Camerupt",
+    "ID": 102,
+    "PhysicalAttack": 100,
+    "SpecialAttack": 105,
+    "PhysicalDefense": 70,
+    "SpecialDefense": 75,
+    "Speed": 40,
+    "Health": 70,
+    "MoveIDs": [
+      10,
+      11,
+      12,
+      23
+    ],
+    "ElementTypes": [
+      10,
+      5
+    ]
+  },
+  {
+    "Name": "Slugma",
+    "ID": 103,
+    "PhysicalAttack": 40,
+    "SpecialAttack": 70,
+    "PhysicalDefense": 40,
+    "SpecialDefense": 40,
+    "Speed": 20,
+    "Health": 40,
+    "MoveIDs": [
+      12,
+      23,
+      22,
+      43
+    ],
+    "ElementTypes": [
+      10,
+      0
+    ]
+  },
+  {
+    "Name": "Magcargo",
+    "ID": 104,
+    "PhysicalAttack": 50,
+    "SpecialAttack": 90,
+    "PhysicalDefense": 120,
+    "SpecialDefense": 80,
+    "Speed": 30,
+    "Health": 60,
+    "MoveIDs": [
+      12,
+      23,
+      22,
+      43
+    ],
+    "ElementTypes": [
+      10,
+      6
+    ]
+  },
+  {
+    "Name": "Torkoal",
+    "ID": 105,
+    "PhysicalAttack": 85,
+    "SpecialAttack": 85,
+    "PhysicalDefense": 140,
+    "SpecialDefense": 70,
+    "Speed": 20,
+    "Health": 70,
+    "MoveIDs": [
+      10,
+      12,
+      23,
+      22
+    ],
+    "ElementTypes": [
+      10,
+      0
+    ]
+  },
+  {
+    "Name": "Grimer",
+    "ID": 106,
+    "PhysicalAttack": 80,
+    "SpecialAttack": 40,
+    "PhysicalDefense": 50,
+    "SpecialDefense": 50,
+    "Speed": 25,
+    "Health": 80,
+    "MoveIDs": [
+      1,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      4,
+      0
+    ]
+  },
+  {
+    "Name": "Muk",
+    "ID": 107,
+    "PhysicalAttack": 105,
+    "SpecialAttack": 65,
+    "PhysicalDefense": 75,
+    "SpecialDefense": 100,
+    "Speed": 50,
+    "Health": 105,
+    "MoveIDs": [
+      1,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      4,
+      0
+    ]
+  },
+  {
+    "Name": "Koffing",
+    "ID": 108,
+    "PhysicalAttack": 65,
+    "SpecialAttack": 60,
+    "PhysicalDefense": 95,
+    "SpecialDefense": 45,
+    "Speed": 35,
+    "Health": 40,
+    "MoveIDs": [
+      10,
+      11,
+      12,
+      23
+    ],
+    "ElementTypes": [
+      4,
+      0
+    ]
+  },
+  {
+    "Name": "Weezing",
+    "ID": 109,
+    "PhysicalAttack": 90,
+    "SpecialAttack": 85,
+    "PhysicalDefense": 120,
+    "SpecialDefense": 70,
+    "Speed": 60,
+    "Health": 65,
+    "MoveIDs": [
+      10,
+      11,
+      12,
+      23
+    ],
+    "ElementTypes": [
+      4,
+      0
+    ]
+  },
+  {
+    "Name": "Spoink",
+    "ID": 110,
+    "PhysicalAttack": 25,
+    "SpecialAttack": 70,
+    "PhysicalDefense": 35,
+    "SpecialDefense": 80,
+    "Speed": 60,
+    "Health": 60,
+    "MoveIDs": [
+      21,
+      10,
+      12,
+      23
+    ],
+    "ElementTypes": [
+      14,
+      0
+    ]
+  },
+  {
+    "Name": "Grumpig",
+    "ID": 111,
+    "PhysicalAttack": 45,
+    "SpecialAttack": 90,
+    "PhysicalDefense": 65,
+    "SpecialDefense": 110,
+    "Speed": 80,
+    "Health": 80,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      14,
+      0
+    ]
+  },
+  {
+    "Name": "Sandshrew",
+    "ID": 112,
+    "PhysicalAttack": 75,
+    "SpecialAttack": 20,
+    "PhysicalDefense": 85,
+    "SpecialDefense": 30,
+    "Speed": 40,
+    "Health": 50,
+    "MoveIDs": [
+      6,
+      5,
+      7,
+      15
+    ],
+    "ElementTypes": [
+      5,
+      0
+    ]
+  },
+  {
+    "Name": "Sandslash",
+    "ID": 113,
+    "PhysicalAttack": 100,
+    "SpecialAttack": 45,
+    "PhysicalDefense": 110,
+    "SpecialDefense": 55,
+    "Speed": 65,
+    "Health": 75,
+    "MoveIDs": [
+      6,
+      5,
+      7,
+      15
+    ],
+    "ElementTypes": [
+      5,
+      0
+    ]
+  },
+  {
+    "Name": "Spinda",
+    "ID": 114,
+    "PhysicalAttack": 60,
+    "SpecialAttack": 60,
+    "PhysicalDefense": 60,
+    "SpecialDefense": 60,
+    "Speed": 60,
+    "Health": 60,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      1,
+      0
+    ]
+  },
+  {
+    "Name": "Skarmory",
+    "ID": 115,
+    "PhysicalAttack": 80,
+    "SpecialAttack": 40,
+    "PhysicalDefense": 140,
+    "SpecialDefense": 70,
+    "Speed": 70,
+    "Health": 65,
+    "MoveIDs": [
+      5,
+      7,
+      24,
+      21
+    ],
+    "ElementTypes": [
+      9,
+      3
+    ]
+  },
+  {
+    "Name": "Trapinch",
+    "ID": 116,
+    "PhysicalAttack": 100,
+    "SpecialAttack": 45,
+    "PhysicalDefense": 45,
+    "SpecialDefense": 45,
+    "Speed": 10,
+    "Health": 45,
+    "MoveIDs": [
+      20,
+      15,
+      10,
+      12
+    ],
+    "ElementTypes": [
+      5,
+      0
+    ]
+  },
+  {
+    "Name": "Vibrava",
+    "ID": 117,
+    "PhysicalAttack": 70,
+    "SpecialAttack": 50,
+    "PhysicalDefense": 50,
+    "SpecialDefense": 50,
+    "Speed": 70,
+    "Health": 50,
+    "MoveIDs": [
+      20,
+      25,
+      15,
+      10
+    ],
+    "ElementTypes": [
+      5,
+      16
+    ]
+  },
+  {
+    "Name": "Flygon",
+    "ID": 118,
+    "PhysicalAttack": 100,
+    "SpecialAttack": 80,
+    "PhysicalDefense": 80,
+    "SpecialDefense": 80,
+    "Speed": 100,
+    "Health": 80,
+    "MoveIDs": [
+      2,
+      8,
+      3,
+      20
+    ],
+    "ElementTypes": [
+      5,
+      16
+    ]
+  },
+  {
+    "Name": "Cacnea",
+    "ID": 119,
+    "PhysicalAttack": 85,
+    "SpecialAttack": 85,
+    "PhysicalDefense": 40,
+    "SpecialDefense": 40,
+    "Speed": 35,
+    "Health": 50,
+    "MoveIDs": [
+      2,
+      3,
+      5,
+      7
+    ],
+    "ElementTypes": [
+      12,
+      0
+    ]
+  },
+  {
+    "Name": "Cacturne",
+    "ID": 120,
+    "PhysicalAttack": 115,
+    "SpecialAttack": 115,
+    "PhysicalDefense": 60,
+    "SpecialDefense": 60,
+    "Speed": 55,
+    "Health": 70,
+    "MoveIDs": [
+      2,
+      3,
+      5,
+      7
+    ],
+    "ElementTypes": [
+      12,
+      17
+    ]
+  },
+  {
+    "Name": "Swablu",
+    "ID": 121,
+    "PhysicalAttack": 40,
+    "SpecialAttack": 40,
+    "PhysicalDefense": 60,
+    "SpecialDefense": 75,
+    "Speed": 50,
+    "Health": 45,
+    "MoveIDs": [
+      25,
+      30,
+      12,
+      23
+    ],
+    "ElementTypes": [
+      1,
+      3
+    ]
+  },
+  {
+    "Name": "Altaria",
+    "ID": 122,
+    "PhysicalAttack": 70,
+    "SpecialAttack": 70,
+    "PhysicalDefense": 90,
+    "SpecialDefense": 105,
+    "Speed": 80,
+    "Health": 75,
+    "MoveIDs": [
+      25,
+      30,
+      12,
+      23
+    ],
+    "ElementTypes": [
+      16,
+      3
+    ]
+  },
+  {
+    "Name": "Zangoose",
+    "ID": 123,
+    "PhysicalAttack": 115,
+    "SpecialAttack": 60,
+    "PhysicalDefense": 60,
+    "SpecialDefense": 60,
+    "Speed": 90,
+    "Health": 73,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      1,
+      0
+    ]
+  },
+  {
+    "Name": "Seviper",
+    "ID": 124,
+    "PhysicalAttack": 100,
+    "SpecialAttack": 100,
+    "PhysicalDefense": 60,
+    "SpecialDefense": 60,
+    "Speed": 65,
+    "Health": 73,
+    "MoveIDs": [
+      5,
+      34,
+      10,
+      12
+    ],
+    "ElementTypes": [
+      4,
+      0
+    ]
+  },
+  {
+    "Name": "Lunatone",
+    "ID": 125,
+    "PhysicalAttack": 55,
+    "SpecialAttack": 95,
+    "PhysicalDefense": 65,
+    "SpecialDefense": 85,
+    "Speed": 70,
+    "Health": 90,
+    "MoveIDs": [
+      11,
+      12,
+      22,
+      44
+    ],
+    "ElementTypes": [
+      6,
+      14
+    ]
+  },
+  {
+    "Name": "Solrock",
+    "ID": 126,
+    "PhysicalAttack": 95,
+    "SpecialAttack": 55,
+    "PhysicalDefense": 85,
+    "SpecialDefense": 65,
+    "Speed": 70,
+    "Health": 90,
+    "MoveIDs": [
+      5,
+      11,
+      12,
+      22
+    ],
+    "ElementTypes": [
+      6,
+      14
+    ]
+  },
+  {
+    "Name": "Barboach",
+    "ID": 127,
+    "PhysicalAttack": 48,
+    "SpecialAttack": 46,
+    "PhysicalDefense": 43,
+    "SpecialDefense": 41,
+    "Speed": 60,
+    "Health": 50,
+    "MoveIDs": [
+      10,
+      23,
+      40,
+      22
+    ],
+    "ElementTypes": [
+      11,
+      5
+    ]
+  },
+  {
+    "Name": "Whiscash",
+    "ID": 128,
+    "PhysicalAttack": 78,
+    "SpecialAttack": 76,
+    "PhysicalDefense": 73,
+    "SpecialDefense": 71,
+    "Speed": 60,
+    "Health": 110,
+    "MoveIDs": [
+      10,
+      12,
+      23,
+      40
+    ],
+    "ElementTypes": [
+      11,
+      5
+    ]
+  },
+  {
+    "Name": "Corphish",
+    "ID": 129,
+    "PhysicalAttack": 80,
+    "SpecialAttack": 50,
+    "PhysicalDefense": 65,
+    "SpecialDefense": 35,
+    "Speed": 35,
+    "Health": 43,
+    "MoveIDs": [
+      37,
+      45,
+      5,
+      7
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Crawdaunt",
+    "ID": 130,
+    "PhysicalAttack": 120,
+    "SpecialAttack": 90,
+    "PhysicalDefense": 85,
+    "SpecialDefense": 55,
+    "Speed": 55,
+    "Health": 63,
+    "MoveIDs": [
+      37,
+      45,
+      5,
+      7
+    ],
+    "ElementTypes": [
+      11,
+      17
+    ]
+  },
+  {
+    "Name": "Baltoy",
+    "ID": 131,
+    "PhysicalAttack": 40,
+    "SpecialAttack": 40,
+    "PhysicalDefense": 55,
+    "SpecialDefense": 70,
+    "Speed": 55,
+    "Health": 40,
+    "MoveIDs": [
+      10,
+      22,
+      44,
+      46
+    ],
+    "ElementTypes": [
+      5,
+      14
+    ]
+  },
+  {
+    "Name": "Claydol",
+    "ID": 132,
+    "PhysicalAttack": 70,
+    "SpecialAttack": 70,
+    "PhysicalDefense": 105,
+    "SpecialDefense": 120,
+    "Speed": 75,
+    "Health": 60,
+    "MoveIDs": [
+      10,
+      22,
+      44,
+      46
+    ],
+    "ElementTypes": [
+      5,
+      14
+    ]
+  },
+  {
+    "Name": "Lileep",
+    "ID": 133,
+    "PhysicalAttack": 41,
+    "SpecialAttack": 61,
+    "PhysicalDefense": 77,
+    "SpecialDefense": 87,
+    "Speed": 23,
+    "Health": 66,
+    "MoveIDs": [
+      5,
+      34,
+      12,
+      47
+    ],
+    "ElementTypes": [
+      6,
+      12
+    ]
+  },
+  {
+    "Name": "Cradily",
+    "ID": 134,
+    "PhysicalAttack": 81,
+    "SpecialAttack": 81,
+    "PhysicalDefense": 97,
+    "SpecialDefense": 107,
+    "Speed": 43,
+    "Health": 86,
+    "MoveIDs": [
+      5,
+      34,
+      10,
+      12
+    ],
+    "ElementTypes": [
+      6,
+      12
+    ]
+  },
+  {
+    "Name": "Anorith",
+    "ID": 135,
+    "PhysicalAttack": 95,
+    "SpecialAttack": 40,
+    "PhysicalDefense": 50,
+    "SpecialDefense": 50,
+    "Speed": 75,
+    "Health": 45,
+    "MoveIDs": [
+      6,
+      5,
+      7,
+      15
+    ],
+    "ElementTypes": [
+      6,
+      7
+    ]
+  },
+  {
+    "Name": "Armaldo",
+    "ID": 136,
+    "PhysicalAttack": 125,
+    "SpecialAttack": 70,
+    "PhysicalDefense": 100,
+    "SpecialDefense": 80,
+    "Speed": 45,
+    "Health": 75,
+    "MoveIDs": [
+      6,
+      5,
+      7,
+      10
+    ],
+    "ElementTypes": [
+      6,
+      7
+    ]
+  },
+  {
+    "Name": "Igglybuff",
+    "ID": 137,
+    "PhysicalAttack": 30,
+    "SpecialAttack": 40,
+    "PhysicalDefense": 15,
+    "SpecialDefense": 20,
+    "Speed": 15,
+    "Health": 90,
+    "MoveIDs": [
+      1,
+      2,
+      14,
+      10
+    ],
+    "ElementTypes": [
+      1,
+      18
+    ]
+  },
+  {
+    "Name": "Jigglypuff",
+    "ID": 138,
+    "PhysicalAttack": 45,
+    "SpecialAttack": 45,
+    "PhysicalDefense": 20,
+    "SpecialDefense": 25,
+    "Speed": 20,
+    "Health": 115,
+    "MoveIDs": [
+      1,
+      36,
+      2,
+      8
+    ],
+    "ElementTypes": [
+      1,
+      18
+    ]
+  },
+  {
+    "Name": "Wigglytuff",
+    "ID": 139,
+    "PhysicalAttack": 70,
+    "SpecialAttack": 85,
+    "PhysicalDefense": 45,
+    "SpecialDefense": 50,
+    "Speed": 45,
+    "Health": 140,
+    "MoveIDs": [
+      1,
+      36,
+      2,
+      8
+    ],
+    "ElementTypes": [
+      1,
+      18
+    ]
+  },
+  {
+    "Name": "Feebas",
+    "ID": 140,
+    "PhysicalAttack": 15,
+    "SpecialAttack": 10,
+    "PhysicalDefense": 20,
+    "SpecialDefense": 55,
+    "Speed": 80,
+    "Health": 20,
+    "MoveIDs": [
+      11,
+      22,
+      27,
+      48
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Milotic",
+    "ID": 141,
+    "PhysicalAttack": 60,
+    "SpecialAttack": 100,
+    "PhysicalDefense": 79,
+    "SpecialDefense": 125,
+    "Speed": 81,
+    "Health": 95,
+    "MoveIDs": [
+      34,
+      11,
+      12,
+      47
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Castform",
+    "ID": 142,
+    "PhysicalAttack": 70,
+    "SpecialAttack": 70,
+    "PhysicalDefense": 70,
+    "SpecialDefense": 70,
+    "Speed": 70,
+    "Health": 70,
+    "MoveIDs": [
+      10,
+      11,
+      12,
+      22
+    ],
+    "ElementTypes": [
+      1,
+      0
+    ]
+  },
+  {
+    "Name": "Staryu",
+    "ID": 143,
+    "PhysicalAttack": 45,
+    "SpecialAttack": 70,
+    "PhysicalDefense": 55,
+    "SpecialDefense": 55,
+    "Speed": 85,
+    "Health": 30,
+    "MoveIDs": [
+      10,
+      11,
+      23,
+      22
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Starmie",
+    "ID": 144,
+    "PhysicalAttack": 75,
+    "SpecialAttack": 100,
+    "PhysicalDefense": 85,
+    "SpecialDefense": 85,
+    "Speed": 115,
+    "Health": 60,
+    "MoveIDs": [
+      10,
+      11,
+      23,
+      22
+    ],
+    "ElementTypes": [
+      11,
+      14
+    ]
+  },
+  {
+    "Name": "Kecleon",
+    "ID": 145,
+    "PhysicalAttack": 90,
+    "SpecialAttack": 60,
+    "PhysicalDefense": 70,
+    "SpecialDefense": 120,
+    "Speed": 40,
+    "Health": 60,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      1,
+      0
+    ]
+  },
+  {
+    "Name": "Shuppet",
+    "ID": 146,
+    "PhysicalAttack": 75,
+    "SpecialAttack": 63,
+    "PhysicalDefense": 35,
+    "SpecialDefense": 33,
+    "Speed": 45,
+    "Health": 44,
+    "MoveIDs": [
+      10,
+      12,
+      22,
+      49
+    ],
+    "ElementTypes": [
+      8,
+      0
+    ]
+  },
+  {
+    "Name": "Banette",
+    "ID": 147,
+    "PhysicalAttack": 115,
+    "SpecialAttack": 83,
+    "PhysicalDefense": 65,
+    "SpecialDefense": 63,
+    "Speed": 65,
+    "Health": 64,
+    "MoveIDs": [
+      5,
+      10,
+      12,
+      22
+    ],
+    "ElementTypes": [
+      8,
+      0
+    ]
+  },
+  {
+    "Name": "Duskull",
+    "ID": 148,
+    "PhysicalAttack": 40,
+    "SpecialAttack": 30,
+    "PhysicalDefense": 90,
+    "SpecialDefense": 90,
+    "Speed": 25,
+    "Health": 20,
+    "MoveIDs": [
+      10,
+      12,
+      22,
+      41
+    ],
+    "ElementTypes": [
+      8,
+      0
+    ]
+  },
+  {
+    "Name": "Dusclops",
+    "ID": 149,
+    "PhysicalAttack": 70,
+    "SpecialAttack": 60,
+    "PhysicalDefense": 130,
+    "SpecialDefense": 130,
+    "Speed": 25,
+    "Health": 40,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      8,
+      0
+    ]
+  },
+  {
+    "Name": "Tropius",
+    "ID": 150,
+    "PhysicalAttack": 68,
+    "SpecialAttack": 72,
+    "PhysicalDefense": 83,
+    "SpecialDefense": 87,
+    "Speed": 51,
+    "Health": 99,
+    "MoveIDs": [
+      4,
+      5,
+      7,
+      20
+    ],
+    "ElementTypes": [
+      12,
+      3
+    ]
+  },
+  {
+    "Name": "Chimecho",
+    "ID": 151,
+    "PhysicalAttack": 50,
+    "SpecialAttack": 95,
+    "PhysicalDefense": 80,
+    "SpecialDefense": 90,
+    "Speed": 65,
+    "Health": 75,
+    "MoveIDs": [
+      34,
+      11,
+      47,
+      23
+    ],
+    "ElementTypes": [
+      14,
+      0
+    ]
+  },
+  {
+    "Name": "Absol",
+    "ID": 152,
+    "PhysicalAttack": 130,
+    "SpecialAttack": 75,
+    "PhysicalDefense": 60,
+    "SpecialDefense": 60,
+    "Speed": 75,
+    "Health": 65,
+    "MoveIDs": [
+      6,
+      4,
+      5,
+      7
+    ],
+    "ElementTypes": [
+      17,
+      0
+    ]
+  },
+  {
+    "Name": "Vulpix",
+    "ID": 153,
+    "PhysicalAttack": 41,
+    "SpecialAttack": 50,
+    "PhysicalDefense": 40,
+    "SpecialDefense": 65,
+    "Speed": 65,
+    "Health": 38,
+    "MoveIDs": [
+      10,
+      11,
+      12,
+      23
+    ],
+    "ElementTypes": [
+      10,
+      0
+    ]
+  },
+  {
+    "Name": "Ninetales",
+    "ID": 154,
+    "PhysicalAttack": 76,
+    "SpecialAttack": 81,
+    "PhysicalDefense": 75,
+    "SpecialDefense": 100,
+    "Speed": 100,
+    "Health": 73,
+    "MoveIDs": [
+      10,
+      11,
+      12,
+      23
+    ],
+    "ElementTypes": [
+      10,
+      0
+    ]
+  },
+  {
+    "Name": "Pichu",
+    "ID": 155,
+    "PhysicalAttack": 40,
+    "SpecialAttack": 35,
+    "PhysicalDefense": 15,
+    "SpecialDefense": 35,
+    "Speed": 60,
+    "Health": 20,
+    "MoveIDs": [
+      36,
+      2,
+      3,
+      14
+    ],
+    "ElementTypes": [
+      13,
+      0
+    ]
+  },
+  {
+    "Name": "Pikachu",
+    "ID": 156,
+    "PhysicalAttack": 55,
+    "SpecialAttack": 50,
+    "PhysicalDefense": 40,
+    "SpecialDefense": 50,
+    "Speed": 90,
+    "Health": 35,
+    "MoveIDs": [
+      2,
+      50,
+      3,
+      35
+    ],
+    "ElementTypes": [
+      13,
+      0
+    ]
+  },
+  {
+    "Name": "Raichu",
+    "ID": 157,
+    "PhysicalAttack": 90,
+    "SpecialAttack": 90,
+    "PhysicalDefense": 55,
+    "SpecialDefense": 80,
+    "Speed": 110,
+    "Health": 60,
+    "MoveIDs": [
+      2,
+      50,
+      3,
+      35
+    ],
+    "ElementTypes": [
+      13,
+      0
+    ]
+  },
+  {
+    "Name": "Psyduck",
+    "ID": 158,
+    "PhysicalAttack": 52,
+    "SpecialAttack": 65,
+    "PhysicalDefense": 48,
+    "SpecialDefense": 50,
+    "Speed": 55,
+    "Health": 50,
+    "MoveIDs": [
+      2,
+      50,
+      13,
+      6
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Golduck",
+    "ID": 159,
+    "PhysicalAttack": 82,
+    "SpecialAttack": 95,
+    "PhysicalDefense": 78,
+    "SpecialDefense": 80,
+    "Speed": 85,
+    "Health": 80,
+    "MoveIDs": [
+      2,
+      50,
+      13,
+      6
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Wynaut",
+    "ID": 160,
+    "PhysicalAttack": 23,
+    "SpecialAttack": 23,
+    "PhysicalDefense": 48,
+    "SpecialDefense": 48,
+    "Speed": 23,
+    "Health": 95,
+    "MoveIDs": [
+      51,
+      52,
+      32,
+      53
+    ],
+    "ElementTypes": [
+      14,
+      0
+    ]
+  },
+  {
+    "Name": "Wobbuffet",
+    "ID": 161,
+    "PhysicalAttack": 33,
+    "SpecialAttack": 33,
+    "PhysicalDefense": 58,
+    "SpecialDefense": 58,
+    "Speed": 33,
+    "Health": 190,
+    "MoveIDs": [
+      51,
+      52,
+      32,
+      53
+    ],
+    "ElementTypes": [
+      14,
+      0
+    ]
+  },
+  {
+    "Name": "Natu",
+    "ID": 162,
+    "PhysicalAttack": 50,
+    "SpecialAttack": 70,
+    "PhysicalDefense": 45,
+    "SpecialDefense": 45,
+    "Speed": 70,
+    "Health": 40,
+    "MoveIDs": [
+      22,
+      41,
+      54,
+      55
+    ],
+    "ElementTypes": [
+      14,
+      3
+    ]
+  },
+  {
+    "Name": "Xatu",
+    "ID": 163,
+    "PhysicalAttack": 75,
+    "SpecialAttack": 95,
+    "PhysicalDefense": 70,
+    "SpecialDefense": 70,
+    "Speed": 95,
+    "Health": 65,
+    "MoveIDs": [
+      25,
+      22,
+      41,
+      56
+    ],
+    "ElementTypes": [
+      14,
+      3
+    ]
+  },
+  {
+    "Name": "Girafarig",
+    "ID": 164,
+    "PhysicalAttack": 80,
+    "SpecialAttack": 90,
+    "PhysicalDefense": 65,
+    "SpecialDefense": 65,
+    "Speed": 85,
+    "Health": 70,
+    "MoveIDs": [
+      4,
+      9,
+      57,
+      10
+    ],
+    "ElementTypes": [
+      1,
+      14
+    ]
+  },
+  {
+    "Name": "Phanpy",
+    "ID": 165,
+    "PhysicalAttack": 60,
+    "SpecialAttack": 40,
+    "PhysicalDefense": 60,
+    "SpecialDefense": 40,
+    "Speed": 40,
+    "Health": 90,
+    "MoveIDs": [
+      35,
+      10,
+      11,
+      12
+    ],
+    "ElementTypes": [
+      5,
+      0
+    ]
+  },
+  {
+    "Name": "Donphan",
+    "ID": 166,
+    "PhysicalAttack": 120,
+    "SpecialAttack": 60,
+    "PhysicalDefense": 120,
+    "SpecialDefense": 60,
+    "Speed": 50,
+    "Health": 90,
+    "MoveIDs": [
+      35,
+      10,
+      29,
+      30
+    ],
+    "ElementTypes": [
+      5,
+      0
+    ]
+  },
+  {
+    "Name": "Pinsir",
+    "ID": 167,
+    "PhysicalAttack": 125,
+    "SpecialAttack": 55,
+    "PhysicalDefense": 100,
+    "SpecialDefense": 70,
+    "Speed": 85,
+    "Health": 65,
+    "MoveIDs": [
+      37,
+      45,
+      5,
+      7
+    ],
+    "ElementTypes": [
+      7,
+      0
+    ]
+  },
+  {
+    "Name": "Heracross",
+    "ID": 168,
+    "PhysicalAttack": 125,
+    "SpecialAttack": 40,
+    "PhysicalDefense": 75,
+    "SpecialDefense": 95,
+    "Speed": 85,
+    "Health": 80,
+    "MoveIDs": [
+      5,
+      7,
+      10,
+      29
+    ],
+    "ElementTypes": [
+      7,
+      2
+    ]
+  },
+  {
+    "Name": "Rhyhorn",
+    "ID": 169,
+    "PhysicalAttack": 85,
+    "SpecialAttack": 30,
+    "PhysicalDefense": 95,
+    "SpecialDefense": 30,
+    "Speed": 25,
+    "Health": 80,
+    "MoveIDs": [
+      5,
+      9,
+      15,
+      10
+    ],
+    "ElementTypes": [
+      5,
+      6
+    ]
+  },
+  {
+    "Name": "Rhydon",
+    "ID": 170,
+    "PhysicalAttack": 130,
+    "SpecialAttack": 45,
+    "PhysicalDefense": 120,
+    "SpecialDefense": 45,
+    "Speed": 40,
+    "Health": 105,
+    "MoveIDs": [
+      2,
+      50,
+      8,
+      13
+    ],
+    "ElementTypes": [
+      5,
+      6
+    ]
+  },
+  {
+    "Name": "Snorunt",
+    "ID": 171,
+    "PhysicalAttack": 50,
+    "SpecialAttack": 50,
+    "PhysicalDefense": 50,
+    "SpecialDefense": 50,
+    "Speed": 50,
+    "Health": 50,
+    "MoveIDs": [
+      10,
+      12,
+      23,
+      22
+    ],
+    "ElementTypes": [
+      15,
+      0
+    ]
+  },
+  {
+    "Name": "Glalie",
+    "ID": 172,
+    "PhysicalAttack": 80,
+    "SpecialAttack": 80,
+    "PhysicalDefense": 80,
+    "SpecialDefense": 80,
+    "Speed": 80,
+    "Health": 80,
+    "MoveIDs": [
+      10,
+      12,
+      23,
+      22
+    ],
+    "ElementTypes": [
+      15,
+      0
+    ]
+  },
+  {
+    "Name": "Spheal",
+    "ID": 173,
+    "PhysicalAttack": 40,
+    "SpecialAttack": 55,
+    "PhysicalDefense": 50,
+    "SpecialDefense": 50,
+    "Speed": 25,
+    "Health": 70,
+    "MoveIDs": [
+      10,
+      12,
+      22,
+      26
+    ],
+    "ElementTypes": [
+      15,
+      11
+    ]
+  },
+  {
+    "Name": "Sealeo",
+    "ID": 174,
+    "PhysicalAttack": 60,
+    "SpecialAttack": 75,
+    "PhysicalDefense": 70,
+    "SpecialDefense": 70,
+    "Speed": 45,
+    "Health": 90,
+    "MoveIDs": [
+      10,
+      12,
+      22,
+      26
+    ],
+    "ElementTypes": [
+      15,
+      11
+    ]
+  },
+  {
+    "Name": "Walrein",
+    "ID": 175,
+    "PhysicalAttack": 80,
+    "SpecialAttack": 95,
+    "PhysicalDefense": 90,
+    "SpecialDefense": 90,
+    "Speed": 65,
+    "Health": 110,
+    "MoveIDs": [
+      5,
+      10,
+      12,
+      22
+    ],
+    "ElementTypes": [
+      15,
+      11
+    ]
+  },
+  {
+    "Name": "Clamperl",
+    "ID": 176,
+    "PhysicalAttack": 64,
+    "SpecialAttack": 74,
+    "PhysicalDefense": 85,
+    "SpecialDefense": 55,
+    "Speed": 32,
+    "Health": 35,
+    "MoveIDs": [
+      12,
+      22,
+      58,
+      28
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Huntail",
+    "ID": 177,
+    "PhysicalAttack": 104,
+    "SpecialAttack": 94,
+    "PhysicalDefense": 105,
+    "SpecialDefense": 75,
+    "Speed": 52,
+    "Health": 55,
+    "MoveIDs": [
+      34,
+      12,
+      22,
+      42
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Gorebyss",
+    "ID": 178,
+    "PhysicalAttack": 84,
+    "SpecialAttack": 114,
+    "PhysicalDefense": 105,
+    "SpecialDefense": 75,
+    "Speed": 52,
+    "Health": 55,
+    "MoveIDs": [
+      34,
+      12,
+      22,
+      28
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Relicanth",
+    "ID": 179,
+    "PhysicalAttack": 90,
+    "SpecialAttack": 45,
+    "PhysicalDefense": 130,
+    "SpecialDefense": 65,
+    "Speed": 55,
+    "Health": 100,
+    "MoveIDs": [
+      10,
+      11,
+      12,
+      23
+    ],
+    "ElementTypes": [
+      11,
+      6
+    ]
+  },
+  {
+    "Name": "Corsola",
+    "ID": 180,
+    "PhysicalAttack": 55,
+    "SpecialAttack": 65,
+    "PhysicalDefense": 95,
+    "SpecialDefense": 95,
+    "Speed": 35,
+    "Health": 65,
+    "MoveIDs": [
+      10,
+      11,
+      12,
+      22
+    ],
+    "ElementTypes": [
+      11,
+      6
+    ]
+  },
+  {
+    "Name": "Chinchou",
+    "ID": 181,
+    "PhysicalAttack": 38,
+    "SpecialAttack": 56,
+    "PhysicalDefense": 38,
+    "SpecialDefense": 56,
+    "Speed": 67,
+    "Health": 75,
+    "MoveIDs": [
+      23,
+      22,
+      58,
+      27
+    ],
+    "ElementTypes": [
+      11,
+      13
+    ]
+  },
+  {
+    "Name": "Lanturn",
+    "ID": 182,
+    "PhysicalAttack": 58,
+    "SpecialAttack": 76,
+    "PhysicalDefense": 58,
+    "SpecialDefense": 76,
+    "Speed": 67,
+    "Health": 125,
+    "MoveIDs": [
+      23,
+      22,
+      58,
+      27
+    ],
+    "ElementTypes": [
+      11,
+      13
+    ]
+  },
+  {
+    "Name": "Luvdisc",
+    "ID": 183,
+    "PhysicalAttack": 30,
+    "SpecialAttack": 40,
+    "PhysicalDefense": 55,
+    "SpecialDefense": 65,
+    "Speed": 97,
+    "Health": 43,
+    "MoveIDs": [
+      11,
+      23,
+      22,
+      58
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Horsea",
+    "ID": 184,
+    "PhysicalAttack": 40,
+    "SpecialAttack": 70,
+    "PhysicalDefense": 70,
+    "SpecialDefense": 25,
+    "Speed": 60,
+    "Health": 30,
+    "MoveIDs": [
+      4,
+      10,
+      23,
+      22
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Seadra",
+    "ID": 185,
+    "PhysicalAttack": 65,
+    "SpecialAttack": 95,
+    "PhysicalDefense": 95,
+    "SpecialDefense": 45,
+    "Speed": 85,
+    "Health": 55,
+    "MoveIDs": [
+      10,
+      23,
+      22,
+      41
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Kingdra",
+    "ID": 186,
+    "PhysicalAttack": 95,
+    "SpecialAttack": 95,
+    "PhysicalDefense": 95,
+    "SpecialDefense": 95,
+    "Speed": 85,
+    "Health": 75,
+    "MoveIDs": [
+      10,
+      12,
+      23,
+      22
+    ],
+    "ElementTypes": [
+      11,
+      16
+    ]
+  },
+  {
+    "Name": "Bagon",
+    "ID": 187,
+    "PhysicalAttack": 75,
+    "SpecialAttack": 40,
+    "PhysicalDefense": 60,
+    "SpecialDefense": 30,
+    "Speed": 50,
+    "Health": 45,
+    "MoveIDs": [
+      7,
+      10,
+      12,
+      23
+    ],
+    "ElementTypes": [
+      16,
+      0
+    ]
+  },
+  {
+    "Name": "Shelgon",
+    "ID": 188,
+    "PhysicalAttack": 95,
+    "SpecialAttack": 60,
+    "PhysicalDefense": 100,
+    "SpecialDefense": 50,
+    "Speed": 50,
+    "Health": 65,
+    "MoveIDs": [
+      7,
+      10,
+      12,
+      23
+    ],
+    "ElementTypes": [
+      16,
+      0
+    ]
+  },
+  {
+    "Name": "Salamence",
+    "ID": 189,
+    "PhysicalAttack": 135,
+    "SpecialAttack": 110,
+    "PhysicalDefense": 80,
+    "SpecialDefense": 80,
+    "Speed": 100,
+    "Health": 95,
+    "MoveIDs": [
+      7,
+      25,
+      10,
+      12
+    ],
+    "ElementTypes": [
+      16,
+      3
+    ]
+  },
+  {
+    "Name": "Beldum",
+    "ID": 190,
+    "PhysicalAttack": 55,
+    "SpecialAttack": 35,
+    "PhysicalDefense": 80,
+    "SpecialDefense": 60,
+    "Speed": 30,
+    "Health": 40,
+    "MoveIDs": [
+      10,
+      11,
+      23,
+      59
+    ],
+    "ElementTypes": [
+      9,
+      14
+    ]
+  },
+  {
+    "Name": "Metang",
+    "ID": 191,
+    "PhysicalAttack": 75,
+    "SpecialAttack": 55,
+    "PhysicalDefense": 100,
+    "SpecialDefense": 80,
+    "Speed": 50,
+    "Health": 60,
+    "MoveIDs": [
+      13,
+      3,
+      7,
+      10
+    ],
+    "ElementTypes": [
+      9,
+      14
+    ]
+  },
+  {
+    "Name": "Metagross",
+    "ID": 192,
+    "PhysicalAttack": 135,
+    "SpecialAttack": 95,
+    "PhysicalDefense": 130,
+    "SpecialDefense": 90,
+    "Speed": 70,
+    "Health": 80,
+    "MoveIDs": [
+      13,
+      3,
+      7,
+      10
+    ],
+    "ElementTypes": [
+      9,
+      14
+    ]
+  },
+  {
+    "Name": "Regirock",
+    "ID": 193,
+    "PhysicalAttack": 100,
+    "SpecialAttack": 50,
+    "PhysicalDefense": 200,
+    "SpecialDefense": 100,
+    "Speed": 50,
+    "Health": 80,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      6,
+      0
+    ]
+  },
+  {
+    "Name": "Regice",
+    "ID": 194,
+    "PhysicalAttack": 50,
+    "SpecialAttack": 100,
+    "PhysicalDefense": 100,
+    "SpecialDefense": 200,
+    "Speed": 50,
+    "Health": 80,
+    "MoveIDs": [
+      2,
+      13,
+      3,
+      9
+    ],
+    "ElementTypes": [
+      15,
+      0
+    ]
+  },
+  {
+    "Name": "Registeel",
+    "ID": 195,
+    "PhysicalAttack": 75,
+    "SpecialAttack": 75,
+    "PhysicalDefense": 150,
+    "SpecialDefense": 150,
+    "Speed": 50,
+    "Health": 80,
+    "MoveIDs": [
+      2,
+      13,
+      3,
+      9
+    ],
+    "ElementTypes": [
+      9,
+      0
+    ]
+  },
+  {
+    "Name": "Latias",
+    "ID": 196,
+    "PhysicalAttack": 80,
+    "SpecialAttack": 110,
+    "PhysicalDefense": 90,
+    "SpecialDefense": 130,
+    "Speed": 110,
+    "Health": 80,
+    "MoveIDs": [
+      7,
+      25,
+      12,
+      23
+    ],
+    "ElementTypes": [
+      16,
+      14
+    ]
+  },
+  {
+    "Name": "Latios",
+    "ID": 197,
+    "PhysicalAttack": 90,
+    "SpecialAttack": 130,
+    "PhysicalDefense": 80,
+    "SpecialDefense": 110,
+    "Speed": 110,
+    "Health": 80,
+    "MoveIDs": [
+      7,
+      25,
+      12,
+      23
+    ],
+    "ElementTypes": [
+      16,
+      14
+    ]
+  },
+  {
+    "Name": "Kyogre",
+    "ID": 198,
+    "PhysicalAttack": 100,
+    "SpecialAttack": 150,
+    "PhysicalDefense": 90,
+    "SpecialDefense": 140,
+    "Speed": 90,
+    "Health": 100,
+    "MoveIDs": [
+      10,
+      12,
+      23,
+      22
+    ],
+    "ElementTypes": [
+      11,
+      0
+    ]
+  },
+  {
+    "Name": "Groudon",
+    "ID": 199,
+    "PhysicalAttack": 150,
+    "SpecialAttack": 100,
+    "PhysicalDefense": 140,
+    "SpecialDefense": 90,
+    "Speed": 90,
+    "Health": 100,
+    "MoveIDs": [
+      2,
+      8,
+      3,
+      5
+    ],
+    "ElementTypes": [
+      5,
+      0
+    ]
+  },
+  {
+    "Name": "Rayquaza",
+    "ID": 200,
+    "PhysicalAttack": 150,
+    "SpecialAttack": 150,
+    "PhysicalDefense": 90,
+    "SpecialDefense": 90,
+    "Speed": 95,
+    "Health": 105,
+    "MoveIDs": [
+      5,
+      25,
+      34,
+      10
+    ],
+    "ElementTypes": [
+      16,
+      3
+    ]
+  },
+  {
+    "Name": "Jirachi",
+    "ID": 201,
+    "PhysicalAttack": 100,
+    "SpecialAttack": 100,
+    "PhysicalDefense": 100,
+    "SpecialDefense": 100,
+    "Speed": 100,
+    "Health": 100,
+    "MoveIDs": [
+      2,
+      8,
+      13,
+      3
+    ],
+    "ElementTypes": [
+      9,
+      14
+    ]
+  },
+  {
+    "Name": "Deoxys",
+    "ID": 202,
+    "PhysicalAttack": 150,
+    "SpecialAttack": 150,
+    "PhysicalDefense": 50,
+    "SpecialDefense": 50,
+    "Speed": 150,
+    "Health": 50,
+    "MoveIDs": [
+      60,
+      61,
+      62,
+      56
+    ],
+    "ElementTypes": [
+      14,
+      0
+    ]
+  }
+]

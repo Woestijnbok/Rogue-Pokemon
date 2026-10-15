@@ -1,0 +1,2728 @@
+{
+  "Treecko": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 45,
+      "PhysicalDefense": 35,
+      "SpecialAttack": 65,
+      "SpecialDefense": 55,
+      "Speed": 70
+    },
+    "types": [
+      "grass"
+    ]
+  },
+  "Grovyle": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 65,
+      "PhysicalDefense": 45,
+      "SpecialAttack": 85,
+      "SpecialDefense": 65,
+      "Speed": 95
+    },
+    "types": [
+      "grass"
+    ]
+  },
+  "Sceptile": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 85,
+      "PhysicalDefense": 65,
+      "SpecialAttack": 105,
+      "SpecialDefense": 85,
+      "Speed": 120
+    },
+    "types": [
+      "grass"
+    ]
+  },
+  "Torchic": {
+    "stats": {
+      "Health": 45,
+      "PhysicalAttack": 60,
+      "PhysicalDefense": 40,
+      "SpecialAttack": 70,
+      "SpecialDefense": 50,
+      "Speed": 45
+    },
+    "types": [
+      "fire"
+    ]
+  },
+  "Combusken": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 85,
+      "PhysicalDefense": 60,
+      "SpecialAttack": 85,
+      "SpecialDefense": 60,
+      "Speed": 55
+    },
+    "types": [
+      "fire",
+      "fighting"
+    ]
+  },
+  "Blaziken": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 120,
+      "PhysicalDefense": 70,
+      "SpecialAttack": 110,
+      "SpecialDefense": 70,
+      "Speed": 80
+    },
+    "types": [
+      "fire",
+      "fighting"
+    ]
+  },
+  "Mudkip": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 70,
+      "PhysicalDefense": 50,
+      "SpecialAttack": 50,
+      "SpecialDefense": 50,
+      "Speed": 40
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Marshtomp": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 85,
+      "PhysicalDefense": 70,
+      "SpecialAttack": 60,
+      "SpecialDefense": 70,
+      "Speed": 50
+    },
+    "types": [
+      "water",
+      "ground"
+    ]
+  },
+  "Swampert": {
+    "stats": {
+      "Health": 100,
+      "PhysicalAttack": 110,
+      "PhysicalDefense": 90,
+      "SpecialAttack": 85,
+      "SpecialDefense": 90,
+      "Speed": 60
+    },
+    "types": [
+      "water",
+      "ground"
+    ]
+  },
+  "Poochyena": {
+    "stats": {
+      "Health": 35,
+      "PhysicalAttack": 55,
+      "PhysicalDefense": 35,
+      "SpecialAttack": 30,
+      "SpecialDefense": 30,
+      "Speed": 35
+    },
+    "types": [
+      "dark"
+    ]
+  },
+  "Mightyena": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 90,
+      "PhysicalDefense": 70,
+      "SpecialAttack": 60,
+      "SpecialDefense": 60,
+      "Speed": 70
+    },
+    "types": [
+      "dark"
+    ]
+  },
+  "Zigzagoon": {
+    "stats": {
+      "Health": 38,
+      "PhysicalAttack": 30,
+      "PhysicalDefense": 41,
+      "SpecialAttack": 30,
+      "SpecialDefense": 41,
+      "Speed": 60
+    },
+    "types": [
+      "normal"
+    ]
+  },
+  "Linoone": {
+    "stats": {
+      "Health": 78,
+      "PhysicalAttack": 70,
+      "PhysicalDefense": 61,
+      "SpecialAttack": 50,
+      "SpecialDefense": 61,
+      "Speed": 100
+    },
+    "types": [
+      "normal"
+    ]
+  },
+  "Wurmple": {
+    "stats": {
+      "Health": 45,
+      "PhysicalAttack": 45,
+      "PhysicalDefense": 35,
+      "SpecialAttack": 20,
+      "SpecialDefense": 30,
+      "Speed": 20
+    },
+    "types": [
+      "bug"
+    ]
+  },
+  "Silcoon": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 35,
+      "PhysicalDefense": 55,
+      "SpecialAttack": 25,
+      "SpecialDefense": 25,
+      "Speed": 15
+    },
+    "types": [
+      "bug"
+    ]
+  },
+  "Beautifly": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 70,
+      "PhysicalDefense": 50,
+      "SpecialAttack": 100,
+      "SpecialDefense": 50,
+      "Speed": 65
+    },
+    "types": [
+      "bug",
+      "flying"
+    ]
+  },
+  "Cascoon": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 35,
+      "PhysicalDefense": 55,
+      "SpecialAttack": 25,
+      "SpecialDefense": 25,
+      "Speed": 15
+    },
+    "types": [
+      "bug"
+    ]
+  },
+  "Dustox": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 50,
+      "PhysicalDefense": 70,
+      "SpecialAttack": 50,
+      "SpecialDefense": 90,
+      "Speed": 65
+    },
+    "types": [
+      "bug",
+      "poison"
+    ]
+  },
+  "Lotad": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 30,
+      "PhysicalDefense": 30,
+      "SpecialAttack": 40,
+      "SpecialDefense": 50,
+      "Speed": 30
+    },
+    "types": [
+      "water",
+      "grass"
+    ]
+  },
+  "Lombre": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 50,
+      "PhysicalDefense": 50,
+      "SpecialAttack": 60,
+      "SpecialDefense": 70,
+      "Speed": 50
+    },
+    "types": [
+      "water",
+      "grass"
+    ]
+  },
+  "Ludicolo": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 70,
+      "PhysicalDefense": 70,
+      "SpecialAttack": 90,
+      "SpecialDefense": 100,
+      "Speed": 70
+    },
+    "types": [
+      "water",
+      "grass"
+    ]
+  },
+  "Seedot": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 40,
+      "PhysicalDefense": 50,
+      "SpecialAttack": 30,
+      "SpecialDefense": 30,
+      "Speed": 30
+    },
+    "types": [
+      "grass"
+    ]
+  },
+  "Nuzleaf": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 70,
+      "PhysicalDefense": 40,
+      "SpecialAttack": 60,
+      "SpecialDefense": 40,
+      "Speed": 60
+    },
+    "types": [
+      "grass",
+      "dark"
+    ]
+  },
+  "Shiftry": {
+    "stats": {
+      "Health": 90,
+      "PhysicalAttack": 100,
+      "PhysicalDefense": 60,
+      "SpecialAttack": 90,
+      "SpecialDefense": 60,
+      "Speed": 80
+    },
+    "types": [
+      "grass",
+      "dark"
+    ]
+  },
+  "Taillow": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 55,
+      "PhysicalDefense": 30,
+      "SpecialAttack": 30,
+      "SpecialDefense": 30,
+      "Speed": 85
+    },
+    "types": [
+      "normal",
+      "flying"
+    ]
+  },
+  "Swellow": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 85,
+      "PhysicalDefense": 60,
+      "SpecialAttack": 75,
+      "SpecialDefense": 50,
+      "Speed": 125
+    },
+    "types": [
+      "normal",
+      "flying"
+    ]
+  },
+  "Wingull": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 30,
+      "PhysicalDefense": 30,
+      "SpecialAttack": 55,
+      "SpecialDefense": 30,
+      "Speed": 85
+    },
+    "types": [
+      "water",
+      "flying"
+    ]
+  },
+  "Pelipper": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 50,
+      "PhysicalDefense": 100,
+      "SpecialAttack": 95,
+      "SpecialDefense": 70,
+      "Speed": 65
+    },
+    "types": [
+      "water",
+      "flying"
+    ]
+  },
+  "Ralts": {
+    "stats": {
+      "Health": 28,
+      "PhysicalAttack": 25,
+      "PhysicalDefense": 25,
+      "SpecialAttack": 45,
+      "SpecialDefense": 35,
+      "Speed": 40
+    },
+    "types": [
+      "psychic",
+      "fairy"
+    ]
+  },
+  "Kirlia": {
+    "stats": {
+      "Health": 38,
+      "PhysicalAttack": 35,
+      "PhysicalDefense": 35,
+      "SpecialAttack": 65,
+      "SpecialDefense": 55,
+      "Speed": 50
+    },
+    "types": [
+      "psychic",
+      "fairy"
+    ]
+  },
+  "Gardevoir": {
+    "stats": {
+      "Health": 68,
+      "PhysicalAttack": 65,
+      "PhysicalDefense": 65,
+      "SpecialAttack": 125,
+      "SpecialDefense": 115,
+      "Speed": 80
+    },
+    "types": [
+      "psychic",
+      "fairy"
+    ]
+  },
+  "Surskit": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 30,
+      "PhysicalDefense": 32,
+      "SpecialAttack": 50,
+      "SpecialDefense": 52,
+      "Speed": 65
+    },
+    "types": [
+      "bug",
+      "water"
+    ]
+  },
+  "Masquerain": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 60,
+      "PhysicalDefense": 62,
+      "SpecialAttack": 100,
+      "SpecialDefense": 82,
+      "Speed": 80
+    },
+    "types": [
+      "bug",
+      "flying"
+    ]
+  },
+  "Shroomish": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 40,
+      "PhysicalDefense": 60,
+      "SpecialAttack": 40,
+      "SpecialDefense": 60,
+      "Speed": 35
+    },
+    "types": [
+      "grass"
+    ]
+  },
+  "Breloom": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 130,
+      "PhysicalDefense": 80,
+      "SpecialAttack": 60,
+      "SpecialDefense": 60,
+      "Speed": 70
+    },
+    "types": [
+      "grass",
+      "fighting"
+    ]
+  },
+  "Slakoth": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 60,
+      "PhysicalDefense": 60,
+      "SpecialAttack": 35,
+      "SpecialDefense": 35,
+      "Speed": 30
+    },
+    "types": [
+      "normal"
+    ]
+  },
+  "Vigoroth": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 80,
+      "PhysicalDefense": 80,
+      "SpecialAttack": 55,
+      "SpecialDefense": 55,
+      "Speed": 90
+    },
+    "types": [
+      "normal"
+    ]
+  },
+  "Slaking": {
+    "stats": {
+      "Health": 150,
+      "PhysicalAttack": 160,
+      "PhysicalDefense": 100,
+      "SpecialAttack": 95,
+      "SpecialDefense": 65,
+      "Speed": 100
+    },
+    "types": [
+      "normal"
+    ]
+  },
+  "Abra": {
+    "stats": {
+      "Health": 25,
+      "PhysicalAttack": 20,
+      "PhysicalDefense": 15,
+      "SpecialAttack": 105,
+      "SpecialDefense": 55,
+      "Speed": 90
+    },
+    "types": [
+      "psychic"
+    ]
+  },
+  "Kadabra": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 35,
+      "PhysicalDefense": 30,
+      "SpecialAttack": 120,
+      "SpecialDefense": 70,
+      "Speed": 105
+    },
+    "types": [
+      "psychic"
+    ]
+  },
+  "Alakazam": {
+    "stats": {
+      "Health": 55,
+      "PhysicalAttack": 50,
+      "PhysicalDefense": 45,
+      "SpecialAttack": 135,
+      "SpecialDefense": 95,
+      "Speed": 120
+    },
+    "types": [
+      "psychic"
+    ]
+  },
+  "Nincada": {
+    "stats": {
+      "Health": 31,
+      "PhysicalAttack": 45,
+      "PhysicalDefense": 90,
+      "SpecialAttack": 30,
+      "SpecialDefense": 30,
+      "Speed": 40
+    },
+    "types": [
+      "bug",
+      "ground"
+    ]
+  },
+  "Ninjask": {
+    "stats": {
+      "Health": 61,
+      "PhysicalAttack": 90,
+      "PhysicalDefense": 45,
+      "SpecialAttack": 50,
+      "SpecialDefense": 50,
+      "Speed": 160
+    },
+    "types": [
+      "bug",
+      "flying"
+    ]
+  },
+  "Shedinja": {
+    "stats": {
+      "Health": 1,
+      "PhysicalAttack": 90,
+      "PhysicalDefense": 45,
+      "SpecialAttack": 30,
+      "SpecialDefense": 30,
+      "Speed": 40
+    },
+    "types": [
+      "bug",
+      "ghost"
+    ]
+  },
+  "Whismur": {
+    "stats": {
+      "Health": 64,
+      "PhysicalAttack": 51,
+      "PhysicalDefense": 23,
+      "SpecialAttack": 51,
+      "SpecialDefense": 23,
+      "Speed": 28
+    },
+    "types": [
+      "normal"
+    ]
+  },
+  "Loudred": {
+    "stats": {
+      "Health": 84,
+      "PhysicalAttack": 71,
+      "PhysicalDefense": 43,
+      "SpecialAttack": 71,
+      "SpecialDefense": 43,
+      "Speed": 48
+    },
+    "types": [
+      "normal"
+    ]
+  },
+  "Exploud": {
+    "stats": {
+      "Health": 104,
+      "PhysicalAttack": 91,
+      "PhysicalDefense": 63,
+      "SpecialAttack": 91,
+      "SpecialDefense": 73,
+      "Speed": 68
+    },
+    "types": [
+      "normal"
+    ]
+  },
+  "Makuhita": {
+    "stats": {
+      "Health": 72,
+      "PhysicalAttack": 60,
+      "PhysicalDefense": 30,
+      "SpecialAttack": 20,
+      "SpecialDefense": 30,
+      "Speed": 25
+    },
+    "types": [
+      "fighting"
+    ]
+  },
+  "Hariyama": {
+    "stats": {
+      "Health": 144,
+      "PhysicalAttack": 120,
+      "PhysicalDefense": 60,
+      "SpecialAttack": 40,
+      "SpecialDefense": 60,
+      "Speed": 50
+    },
+    "types": [
+      "fighting"
+    ]
+  },
+  "Goldeen": {
+    "stats": {
+      "Health": 45,
+      "PhysicalAttack": 67,
+      "PhysicalDefense": 60,
+      "SpecialAttack": 35,
+      "SpecialDefense": 50,
+      "Speed": 63
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Seaking": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 92,
+      "PhysicalDefense": 65,
+      "SpecialAttack": 65,
+      "SpecialDefense": 80,
+      "Speed": 68
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Magikarp": {
+    "stats": {
+      "Health": 20,
+      "PhysicalAttack": 10,
+      "PhysicalDefense": 55,
+      "SpecialAttack": 15,
+      "SpecialDefense": 20,
+      "Speed": 80
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Gyarados": {
+    "stats": {
+      "Health": 95,
+      "PhysicalAttack": 125,
+      "PhysicalDefense": 79,
+      "SpecialAttack": 60,
+      "SpecialDefense": 100,
+      "Speed": 81
+    },
+    "types": [
+      "water",
+      "flying"
+    ]
+  },
+  "Azurill": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 20,
+      "PhysicalDefense": 40,
+      "SpecialAttack": 20,
+      "SpecialDefense": 40,
+      "Speed": 20
+    },
+    "types": [
+      "normal",
+      "fairy"
+    ]
+  },
+  "Marill": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 20,
+      "PhysicalDefense": 50,
+      "SpecialAttack": 20,
+      "SpecialDefense": 50,
+      "Speed": 40
+    },
+    "types": [
+      "water",
+      "fairy"
+    ]
+  },
+  "Azumarill": {
+    "stats": {
+      "Health": 100,
+      "PhysicalAttack": 50,
+      "PhysicalDefense": 80,
+      "SpecialAttack": 60,
+      "SpecialDefense": 80,
+      "Speed": 50
+    },
+    "types": [
+      "water",
+      "fairy"
+    ]
+  },
+  "Geodude": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 80,
+      "PhysicalDefense": 100,
+      "SpecialAttack": 30,
+      "SpecialDefense": 30,
+      "Speed": 20
+    },
+    "types": [
+      "rock",
+      "ground"
+    ]
+  },
+  "Graveler": {
+    "stats": {
+      "Health": 55,
+      "PhysicalAttack": 95,
+      "PhysicalDefense": 115,
+      "SpecialAttack": 45,
+      "SpecialDefense": 45,
+      "Speed": 35
+    },
+    "types": [
+      "rock",
+      "ground"
+    ]
+  },
+  "Golem": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 120,
+      "PhysicalDefense": 130,
+      "SpecialAttack": 55,
+      "SpecialDefense": 65,
+      "Speed": 45
+    },
+    "types": [
+      "rock",
+      "ground"
+    ]
+  },
+  "Nosepass": {
+    "stats": {
+      "Health": 30,
+      "PhysicalAttack": 45,
+      "PhysicalDefense": 135,
+      "SpecialAttack": 45,
+      "SpecialDefense": 90,
+      "Speed": 30
+    },
+    "types": [
+      "rock"
+    ]
+  },
+  "Skitty": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 45,
+      "PhysicalDefense": 45,
+      "SpecialAttack": 35,
+      "SpecialDefense": 35,
+      "Speed": 50
+    },
+    "types": [
+      "normal"
+    ]
+  },
+  "Delcatty": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 65,
+      "PhysicalDefense": 65,
+      "SpecialAttack": 55,
+      "SpecialDefense": 55,
+      "Speed": 90
+    },
+    "types": [
+      "normal"
+    ]
+  },
+  "Zubat": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 45,
+      "PhysicalDefense": 35,
+      "SpecialAttack": 30,
+      "SpecialDefense": 40,
+      "Speed": 55
+    },
+    "types": [
+      "poison",
+      "flying"
+    ]
+  },
+  "Golbat": {
+    "stats": {
+      "Health": 75,
+      "PhysicalAttack": 80,
+      "PhysicalDefense": 70,
+      "SpecialAttack": 65,
+      "SpecialDefense": 75,
+      "Speed": 90
+    },
+    "types": [
+      "poison",
+      "flying"
+    ]
+  },
+  "Crobat": {
+    "stats": {
+      "Health": 85,
+      "PhysicalAttack": 90,
+      "PhysicalDefense": 80,
+      "SpecialAttack": 70,
+      "SpecialDefense": 80,
+      "Speed": 130
+    },
+    "types": [
+      "poison",
+      "flying"
+    ]
+  },
+  "Tentacool": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 40,
+      "PhysicalDefense": 35,
+      "SpecialAttack": 50,
+      "SpecialDefense": 100,
+      "Speed": 70
+    },
+    "types": [
+      "water",
+      "poison"
+    ]
+  },
+  "Tentacruel": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 70,
+      "PhysicalDefense": 65,
+      "SpecialAttack": 80,
+      "SpecialDefense": 120,
+      "Speed": 100
+    },
+    "types": [
+      "water",
+      "poison"
+    ]
+  },
+  "Sableye": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 75,
+      "PhysicalDefense": 75,
+      "SpecialAttack": 65,
+      "SpecialDefense": 65,
+      "Speed": 50
+    },
+    "types": [
+      "dark",
+      "ghost"
+    ]
+  },
+  "Mawile": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 85,
+      "PhysicalDefense": 85,
+      "SpecialAttack": 55,
+      "SpecialDefense": 55,
+      "Speed": 50
+    },
+    "types": [
+      "steel",
+      "fairy"
+    ]
+  },
+  "Aron": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 70,
+      "PhysicalDefense": 100,
+      "SpecialAttack": 40,
+      "SpecialDefense": 40,
+      "Speed": 30
+    },
+    "types": [
+      "steel",
+      "rock"
+    ]
+  },
+  "Lairon": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 90,
+      "PhysicalDefense": 140,
+      "SpecialAttack": 50,
+      "SpecialDefense": 50,
+      "Speed": 40
+    },
+    "types": [
+      "steel",
+      "rock"
+    ]
+  },
+  "Aggron": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 110,
+      "PhysicalDefense": 180,
+      "SpecialAttack": 60,
+      "SpecialDefense": 60,
+      "Speed": 50
+    },
+    "types": [
+      "steel",
+      "rock"
+    ]
+  },
+  "Machop": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 80,
+      "PhysicalDefense": 50,
+      "SpecialAttack": 35,
+      "SpecialDefense": 35,
+      "Speed": 35
+    },
+    "types": [
+      "fighting"
+    ]
+  },
+  "Machoke": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 100,
+      "PhysicalDefense": 70,
+      "SpecialAttack": 50,
+      "SpecialDefense": 60,
+      "Speed": 45
+    },
+    "types": [
+      "fighting"
+    ]
+  },
+  "Machamp": {
+    "stats": {
+      "Health": 90,
+      "PhysicalAttack": 130,
+      "PhysicalDefense": 80,
+      "SpecialAttack": 65,
+      "SpecialDefense": 85,
+      "Speed": 55
+    },
+    "types": [
+      "fighting"
+    ]
+  },
+  "Meditite": {
+    "stats": {
+      "Health": 30,
+      "PhysicalAttack": 40,
+      "PhysicalDefense": 55,
+      "SpecialAttack": 40,
+      "SpecialDefense": 55,
+      "Speed": 60
+    },
+    "types": [
+      "fighting",
+      "psychic"
+    ]
+  },
+  "Medicham": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 60,
+      "PhysicalDefense": 75,
+      "SpecialAttack": 60,
+      "SpecialDefense": 75,
+      "Speed": 80
+    },
+    "types": [
+      "fighting",
+      "psychic"
+    ]
+  },
+  "Electrike": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 45,
+      "PhysicalDefense": 40,
+      "SpecialAttack": 65,
+      "SpecialDefense": 40,
+      "Speed": 65
+    },
+    "types": [
+      "electric"
+    ]
+  },
+  "Manectric": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 75,
+      "PhysicalDefense": 60,
+      "SpecialAttack": 105,
+      "SpecialDefense": 60,
+      "Speed": 105
+    },
+    "types": [
+      "electric"
+    ]
+  },
+  "Plusle": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 50,
+      "PhysicalDefense": 40,
+      "SpecialAttack": 85,
+      "SpecialDefense": 75,
+      "Speed": 95
+    },
+    "types": [
+      "electric"
+    ]
+  },
+  "Minun": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 40,
+      "PhysicalDefense": 50,
+      "SpecialAttack": 75,
+      "SpecialDefense": 85,
+      "Speed": 95
+    },
+    "types": [
+      "electric"
+    ]
+  },
+  "Magnemite": {
+    "stats": {
+      "Health": 25,
+      "PhysicalAttack": 35,
+      "PhysicalDefense": 70,
+      "SpecialAttack": 95,
+      "SpecialDefense": 55,
+      "Speed": 45
+    },
+    "types": [
+      "electric",
+      "steel"
+    ]
+  },
+  "Magneton": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 60,
+      "PhysicalDefense": 95,
+      "SpecialAttack": 120,
+      "SpecialDefense": 70,
+      "Speed": 70
+    },
+    "types": [
+      "electric",
+      "steel"
+    ]
+  },
+  "Voltorb": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 30,
+      "PhysicalDefense": 50,
+      "SpecialAttack": 55,
+      "SpecialDefense": 55,
+      "Speed": 100
+    },
+    "types": [
+      "electric"
+    ]
+  },
+  "Electrode": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 50,
+      "PhysicalDefense": 70,
+      "SpecialAttack": 80,
+      "SpecialDefense": 80,
+      "Speed": 150
+    },
+    "types": [
+      "electric"
+    ]
+  },
+  "Volbeat": {
+    "stats": {
+      "Health": 65,
+      "PhysicalAttack": 73,
+      "PhysicalDefense": 75,
+      "SpecialAttack": 47,
+      "SpecialDefense": 85,
+      "Speed": 85
+    },
+    "types": [
+      "bug"
+    ]
+  },
+  "Illumise": {
+    "stats": {
+      "Health": 65,
+      "PhysicalAttack": 47,
+      "PhysicalDefense": 75,
+      "SpecialAttack": 73,
+      "SpecialDefense": 85,
+      "Speed": 85
+    },
+    "types": [
+      "bug"
+    ]
+  },
+  "Oddish": {
+    "stats": {
+      "Health": 45,
+      "PhysicalAttack": 50,
+      "PhysicalDefense": 55,
+      "SpecialAttack": 75,
+      "SpecialDefense": 65,
+      "Speed": 30
+    },
+    "types": [
+      "grass",
+      "poison"
+    ]
+  },
+  "Gloom": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 65,
+      "PhysicalDefense": 70,
+      "SpecialAttack": 85,
+      "SpecialDefense": 75,
+      "Speed": 40
+    },
+    "types": [
+      "grass",
+      "poison"
+    ]
+  },
+  "Vileplume": {
+    "stats": {
+      "Health": 75,
+      "PhysicalAttack": 80,
+      "PhysicalDefense": 85,
+      "SpecialAttack": 110,
+      "SpecialDefense": 90,
+      "Speed": 50
+    },
+    "types": [
+      "grass",
+      "poison"
+    ]
+  },
+  "Bellossom": {
+    "stats": {
+      "Health": 75,
+      "PhysicalAttack": 80,
+      "PhysicalDefense": 95,
+      "SpecialAttack": 90,
+      "SpecialDefense": 100,
+      "Speed": 50
+    },
+    "types": [
+      "grass"
+    ]
+  },
+  "Doduo": {
+    "stats": {
+      "Health": 35,
+      "PhysicalAttack": 85,
+      "PhysicalDefense": 45,
+      "SpecialAttack": 35,
+      "SpecialDefense": 35,
+      "Speed": 75
+    },
+    "types": [
+      "normal",
+      "flying"
+    ]
+  },
+  "Dodrio": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 110,
+      "PhysicalDefense": 70,
+      "SpecialAttack": 60,
+      "SpecialDefense": 60,
+      "Speed": 110
+    },
+    "types": [
+      "normal",
+      "flying"
+    ]
+  },
+  "Roselia": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 60,
+      "PhysicalDefense": 45,
+      "SpecialAttack": 100,
+      "SpecialDefense": 80,
+      "Speed": 65
+    },
+    "types": [
+      "grass",
+      "poison"
+    ]
+  },
+  "Gulpin": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 43,
+      "PhysicalDefense": 53,
+      "SpecialAttack": 43,
+      "SpecialDefense": 53,
+      "Speed": 40
+    },
+    "types": [
+      "poison"
+    ]
+  },
+  "Swalot": {
+    "stats": {
+      "Health": 100,
+      "PhysicalAttack": 73,
+      "PhysicalDefense": 83,
+      "SpecialAttack": 73,
+      "SpecialDefense": 83,
+      "Speed": 55
+    },
+    "types": [
+      "poison"
+    ]
+  },
+  "Carvanha": {
+    "stats": {
+      "Health": 45,
+      "PhysicalAttack": 90,
+      "PhysicalDefense": 20,
+      "SpecialAttack": 65,
+      "SpecialDefense": 20,
+      "Speed": 65
+    },
+    "types": [
+      "water",
+      "dark"
+    ]
+  },
+  "Sharpedo": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 120,
+      "PhysicalDefense": 40,
+      "SpecialAttack": 95,
+      "SpecialDefense": 40,
+      "Speed": 95
+    },
+    "types": [
+      "water",
+      "dark"
+    ]
+  },
+  "Wailmer": {
+    "stats": {
+      "Health": 130,
+      "PhysicalAttack": 70,
+      "PhysicalDefense": 35,
+      "SpecialAttack": 70,
+      "SpecialDefense": 35,
+      "Speed": 60
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Wailord": {
+    "stats": {
+      "Health": 170,
+      "PhysicalAttack": 90,
+      "PhysicalDefense": 45,
+      "SpecialAttack": 90,
+      "SpecialDefense": 45,
+      "Speed": 60
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Numel": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 60,
+      "PhysicalDefense": 40,
+      "SpecialAttack": 65,
+      "SpecialDefense": 45,
+      "Speed": 35
+    },
+    "types": [
+      "fire",
+      "ground"
+    ]
+  },
+  "Camerupt": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 100,
+      "PhysicalDefense": 70,
+      "SpecialAttack": 105,
+      "SpecialDefense": 75,
+      "Speed": 40
+    },
+    "types": [
+      "fire",
+      "ground"
+    ]
+  },
+  "Slugma": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 40,
+      "PhysicalDefense": 40,
+      "SpecialAttack": 70,
+      "SpecialDefense": 40,
+      "Speed": 20
+    },
+    "types": [
+      "fire"
+    ]
+  },
+  "Magcargo": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 50,
+      "PhysicalDefense": 120,
+      "SpecialAttack": 90,
+      "SpecialDefense": 80,
+      "Speed": 30
+    },
+    "types": [
+      "fire",
+      "rock"
+    ]
+  },
+  "Torkoal": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 85,
+      "PhysicalDefense": 140,
+      "SpecialAttack": 85,
+      "SpecialDefense": 70,
+      "Speed": 20
+    },
+    "types": [
+      "fire"
+    ]
+  },
+  "Grimer": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 80,
+      "PhysicalDefense": 50,
+      "SpecialAttack": 40,
+      "SpecialDefense": 50,
+      "Speed": 25
+    },
+    "types": [
+      "poison"
+    ]
+  },
+  "Muk": {
+    "stats": {
+      "Health": 105,
+      "PhysicalAttack": 105,
+      "PhysicalDefense": 75,
+      "SpecialAttack": 65,
+      "SpecialDefense": 100,
+      "Speed": 50
+    },
+    "types": [
+      "poison"
+    ]
+  },
+  "Koffing": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 65,
+      "PhysicalDefense": 95,
+      "SpecialAttack": 60,
+      "SpecialDefense": 45,
+      "Speed": 35
+    },
+    "types": [
+      "poison"
+    ]
+  },
+  "Weezing": {
+    "stats": {
+      "Health": 65,
+      "PhysicalAttack": 90,
+      "PhysicalDefense": 120,
+      "SpecialAttack": 85,
+      "SpecialDefense": 70,
+      "Speed": 60
+    },
+    "types": [
+      "poison"
+    ]
+  },
+  "Spoink": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 25,
+      "PhysicalDefense": 35,
+      "SpecialAttack": 70,
+      "SpecialDefense": 80,
+      "Speed": 60
+    },
+    "types": [
+      "psychic"
+    ]
+  },
+  "Grumpig": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 45,
+      "PhysicalDefense": 65,
+      "SpecialAttack": 90,
+      "SpecialDefense": 110,
+      "Speed": 80
+    },
+    "types": [
+      "psychic"
+    ]
+  },
+  "Sandshrew": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 75,
+      "PhysicalDefense": 85,
+      "SpecialAttack": 20,
+      "SpecialDefense": 30,
+      "Speed": 40
+    },
+    "types": [
+      "ground"
+    ]
+  },
+  "Sandslash": {
+    "stats": {
+      "Health": 75,
+      "PhysicalAttack": 100,
+      "PhysicalDefense": 110,
+      "SpecialAttack": 45,
+      "SpecialDefense": 55,
+      "Speed": 65
+    },
+    "types": [
+      "ground"
+    ]
+  },
+  "Spinda": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 60,
+      "PhysicalDefense": 60,
+      "SpecialAttack": 60,
+      "SpecialDefense": 60,
+      "Speed": 60
+    },
+    "types": [
+      "normal"
+    ]
+  },
+  "Skarmory": {
+    "stats": {
+      "Health": 65,
+      "PhysicalAttack": 80,
+      "PhysicalDefense": 140,
+      "SpecialAttack": 40,
+      "SpecialDefense": 70,
+      "Speed": 70
+    },
+    "types": [
+      "steel",
+      "flying"
+    ]
+  },
+  "Trapinch": {
+    "stats": {
+      "Health": 45,
+      "PhysicalAttack": 100,
+      "PhysicalDefense": 45,
+      "SpecialAttack": 45,
+      "SpecialDefense": 45,
+      "Speed": 10
+    },
+    "types": [
+      "ground"
+    ]
+  },
+  "Vibrava": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 70,
+      "PhysicalDefense": 50,
+      "SpecialAttack": 50,
+      "SpecialDefense": 50,
+      "Speed": 70
+    },
+    "types": [
+      "ground",
+      "dragon"
+    ]
+  },
+  "Flygon": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 100,
+      "PhysicalDefense": 80,
+      "SpecialAttack": 80,
+      "SpecialDefense": 80,
+      "Speed": 100
+    },
+    "types": [
+      "ground",
+      "dragon"
+    ]
+  },
+  "Cacnea": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 85,
+      "PhysicalDefense": 40,
+      "SpecialAttack": 85,
+      "SpecialDefense": 40,
+      "Speed": 35
+    },
+    "types": [
+      "grass"
+    ]
+  },
+  "Cacturne": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 115,
+      "PhysicalDefense": 60,
+      "SpecialAttack": 115,
+      "SpecialDefense": 60,
+      "Speed": 55
+    },
+    "types": [
+      "grass",
+      "dark"
+    ]
+  },
+  "Swablu": {
+    "stats": {
+      "Health": 45,
+      "PhysicalAttack": 40,
+      "PhysicalDefense": 60,
+      "SpecialAttack": 40,
+      "SpecialDefense": 75,
+      "Speed": 50
+    },
+    "types": [
+      "normal",
+      "flying"
+    ]
+  },
+  "Altaria": {
+    "stats": {
+      "Health": 75,
+      "PhysicalAttack": 70,
+      "PhysicalDefense": 90,
+      "SpecialAttack": 70,
+      "SpecialDefense": 105,
+      "Speed": 80
+    },
+    "types": [
+      "dragon",
+      "flying"
+    ]
+  },
+  "Zangoose": {
+    "stats": {
+      "Health": 73,
+      "PhysicalAttack": 115,
+      "PhysicalDefense": 60,
+      "SpecialAttack": 60,
+      "SpecialDefense": 60,
+      "Speed": 90
+    },
+    "types": [
+      "normal"
+    ]
+  },
+  "Seviper": {
+    "stats": {
+      "Health": 73,
+      "PhysicalAttack": 100,
+      "PhysicalDefense": 60,
+      "SpecialAttack": 100,
+      "SpecialDefense": 60,
+      "Speed": 65
+    },
+    "types": [
+      "poison"
+    ]
+  },
+  "Lunatone": {
+    "stats": {
+      "Health": 90,
+      "PhysicalAttack": 55,
+      "PhysicalDefense": 65,
+      "SpecialAttack": 95,
+      "SpecialDefense": 85,
+      "Speed": 70
+    },
+    "types": [
+      "rock",
+      "psychic"
+    ]
+  },
+  "Solrock": {
+    "stats": {
+      "Health": 90,
+      "PhysicalAttack": 95,
+      "PhysicalDefense": 85,
+      "SpecialAttack": 55,
+      "SpecialDefense": 65,
+      "Speed": 70
+    },
+    "types": [
+      "rock",
+      "psychic"
+    ]
+  },
+  "Barboach": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 48,
+      "PhysicalDefense": 43,
+      "SpecialAttack": 46,
+      "SpecialDefense": 41,
+      "Speed": 60
+    },
+    "types": [
+      "water",
+      "ground"
+    ]
+  },
+  "Whiscash": {
+    "stats": {
+      "Health": 110,
+      "PhysicalAttack": 78,
+      "PhysicalDefense": 73,
+      "SpecialAttack": 76,
+      "SpecialDefense": 71,
+      "Speed": 60
+    },
+    "types": [
+      "water",
+      "ground"
+    ]
+  },
+  "Corphish": {
+    "stats": {
+      "Health": 43,
+      "PhysicalAttack": 80,
+      "PhysicalDefense": 65,
+      "SpecialAttack": 50,
+      "SpecialDefense": 35,
+      "Speed": 35
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Crawdaunt": {
+    "stats": {
+      "Health": 63,
+      "PhysicalAttack": 120,
+      "PhysicalDefense": 85,
+      "SpecialAttack": 90,
+      "SpecialDefense": 55,
+      "Speed": 55
+    },
+    "types": [
+      "water",
+      "dark"
+    ]
+  },
+  "Baltoy": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 40,
+      "PhysicalDefense": 55,
+      "SpecialAttack": 40,
+      "SpecialDefense": 70,
+      "Speed": 55
+    },
+    "types": [
+      "ground",
+      "psychic"
+    ]
+  },
+  "Claydol": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 70,
+      "PhysicalDefense": 105,
+      "SpecialAttack": 70,
+      "SpecialDefense": 120,
+      "Speed": 75
+    },
+    "types": [
+      "ground",
+      "psychic"
+    ]
+  },
+  "Lileep": {
+    "stats": {
+      "Health": 66,
+      "PhysicalAttack": 41,
+      "PhysicalDefense": 77,
+      "SpecialAttack": 61,
+      "SpecialDefense": 87,
+      "Speed": 23
+    },
+    "types": [
+      "rock",
+      "grass"
+    ]
+  },
+  "Cradily": {
+    "stats": {
+      "Health": 86,
+      "PhysicalAttack": 81,
+      "PhysicalDefense": 97,
+      "SpecialAttack": 81,
+      "SpecialDefense": 107,
+      "Speed": 43
+    },
+    "types": [
+      "rock",
+      "grass"
+    ]
+  },
+  "Anorith": {
+    "stats": {
+      "Health": 45,
+      "PhysicalAttack": 95,
+      "PhysicalDefense": 50,
+      "SpecialAttack": 40,
+      "SpecialDefense": 50,
+      "Speed": 75
+    },
+    "types": [
+      "rock",
+      "bug"
+    ]
+  },
+  "Armaldo": {
+    "stats": {
+      "Health": 75,
+      "PhysicalAttack": 125,
+      "PhysicalDefense": 100,
+      "SpecialAttack": 70,
+      "SpecialDefense": 80,
+      "Speed": 45
+    },
+    "types": [
+      "rock",
+      "bug"
+    ]
+  },
+  "Igglybuff": {
+    "stats": {
+      "Health": 90,
+      "PhysicalAttack": 30,
+      "PhysicalDefense": 15,
+      "SpecialAttack": 40,
+      "SpecialDefense": 20,
+      "Speed": 15
+    },
+    "types": [
+      "normal",
+      "fairy"
+    ]
+  },
+  "Jigglypuff": {
+    "stats": {
+      "Health": 115,
+      "PhysicalAttack": 45,
+      "PhysicalDefense": 20,
+      "SpecialAttack": 45,
+      "SpecialDefense": 25,
+      "Speed": 20
+    },
+    "types": [
+      "normal",
+      "fairy"
+    ]
+  },
+  "Wigglytuff": {
+    "stats": {
+      "Health": 140,
+      "PhysicalAttack": 70,
+      "PhysicalDefense": 45,
+      "SpecialAttack": 85,
+      "SpecialDefense": 50,
+      "Speed": 45
+    },
+    "types": [
+      "normal",
+      "fairy"
+    ]
+  },
+  "Feebas": {
+    "stats": {
+      "Health": 20,
+      "PhysicalAttack": 15,
+      "PhysicalDefense": 20,
+      "SpecialAttack": 10,
+      "SpecialDefense": 55,
+      "Speed": 80
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Milotic": {
+    "stats": {
+      "Health": 95,
+      "PhysicalAttack": 60,
+      "PhysicalDefense": 79,
+      "SpecialAttack": 100,
+      "SpecialDefense": 125,
+      "Speed": 81
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Castform": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 70,
+      "PhysicalDefense": 70,
+      "SpecialAttack": 70,
+      "SpecialDefense": 70,
+      "Speed": 70
+    },
+    "types": [
+      "normal"
+    ]
+  },
+  "Staryu": {
+    "stats": {
+      "Health": 30,
+      "PhysicalAttack": 45,
+      "PhysicalDefense": 55,
+      "SpecialAttack": 70,
+      "SpecialDefense": 55,
+      "Speed": 85
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Starmie": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 75,
+      "PhysicalDefense": 85,
+      "SpecialAttack": 100,
+      "SpecialDefense": 85,
+      "Speed": 115
+    },
+    "types": [
+      "water",
+      "psychic"
+    ]
+  },
+  "Kecleon": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 90,
+      "PhysicalDefense": 70,
+      "SpecialAttack": 60,
+      "SpecialDefense": 120,
+      "Speed": 40
+    },
+    "types": [
+      "normal"
+    ]
+  },
+  "Shuppet": {
+    "stats": {
+      "Health": 44,
+      "PhysicalAttack": 75,
+      "PhysicalDefense": 35,
+      "SpecialAttack": 63,
+      "SpecialDefense": 33,
+      "Speed": 45
+    },
+    "types": [
+      "ghost"
+    ]
+  },
+  "Banette": {
+    "stats": {
+      "Health": 64,
+      "PhysicalAttack": 115,
+      "PhysicalDefense": 65,
+      "SpecialAttack": 83,
+      "SpecialDefense": 63,
+      "Speed": 65
+    },
+    "types": [
+      "ghost"
+    ]
+  },
+  "Duskull": {
+    "stats": {
+      "Health": 20,
+      "PhysicalAttack": 40,
+      "PhysicalDefense": 90,
+      "SpecialAttack": 30,
+      "SpecialDefense": 90,
+      "Speed": 25
+    },
+    "types": [
+      "ghost"
+    ]
+  },
+  "Dusclops": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 70,
+      "PhysicalDefense": 130,
+      "SpecialAttack": 60,
+      "SpecialDefense": 130,
+      "Speed": 25
+    },
+    "types": [
+      "ghost"
+    ]
+  },
+  "Tropius": {
+    "stats": {
+      "Health": 99,
+      "PhysicalAttack": 68,
+      "PhysicalDefense": 83,
+      "SpecialAttack": 72,
+      "SpecialDefense": 87,
+      "Speed": 51
+    },
+    "types": [
+      "grass",
+      "flying"
+    ]
+  },
+  "Chimecho": {
+    "stats": {
+      "Health": 75,
+      "PhysicalAttack": 50,
+      "PhysicalDefense": 80,
+      "SpecialAttack": 95,
+      "SpecialDefense": 90,
+      "Speed": 65
+    },
+    "types": [
+      "psychic"
+    ]
+  },
+  "Absol": {
+    "stats": {
+      "Health": 65,
+      "PhysicalAttack": 130,
+      "PhysicalDefense": 60,
+      "SpecialAttack": 75,
+      "SpecialDefense": 60,
+      "Speed": 75
+    },
+    "types": [
+      "dark"
+    ]
+  },
+  "Vulpix": {
+    "stats": {
+      "Health": 38,
+      "PhysicalAttack": 41,
+      "PhysicalDefense": 40,
+      "SpecialAttack": 50,
+      "SpecialDefense": 65,
+      "Speed": 65
+    },
+    "types": [
+      "fire"
+    ]
+  },
+  "Ninetales": {
+    "stats": {
+      "Health": 73,
+      "PhysicalAttack": 76,
+      "PhysicalDefense": 75,
+      "SpecialAttack": 81,
+      "SpecialDefense": 100,
+      "Speed": 100
+    },
+    "types": [
+      "fire"
+    ]
+  },
+  "Pichu": {
+    "stats": {
+      "Health": 20,
+      "PhysicalAttack": 40,
+      "PhysicalDefense": 15,
+      "SpecialAttack": 35,
+      "SpecialDefense": 35,
+      "Speed": 60
+    },
+    "types": [
+      "electric"
+    ]
+  },
+  "Pikachu": {
+    "stats": {
+      "Health": 35,
+      "PhysicalAttack": 55,
+      "PhysicalDefense": 40,
+      "SpecialAttack": 50,
+      "SpecialDefense": 50,
+      "Speed": 90
+    },
+    "types": [
+      "electric"
+    ]
+  },
+  "Raichu": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 90,
+      "PhysicalDefense": 55,
+      "SpecialAttack": 90,
+      "SpecialDefense": 80,
+      "Speed": 110
+    },
+    "types": [
+      "electric"
+    ]
+  },
+  "Psyduck": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 52,
+      "PhysicalDefense": 48,
+      "SpecialAttack": 65,
+      "SpecialDefense": 50,
+      "Speed": 55
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Golduck": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 82,
+      "PhysicalDefense": 78,
+      "SpecialAttack": 95,
+      "SpecialDefense": 80,
+      "Speed": 85
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Wynaut": {
+    "stats": {
+      "Health": 95,
+      "PhysicalAttack": 23,
+      "PhysicalDefense": 48,
+      "SpecialAttack": 23,
+      "SpecialDefense": 48,
+      "Speed": 23
+    },
+    "types": [
+      "psychic"
+    ]
+  },
+  "Wobbuffet": {
+    "stats": {
+      "Health": 190,
+      "PhysicalAttack": 33,
+      "PhysicalDefense": 58,
+      "SpecialAttack": 33,
+      "SpecialDefense": 58,
+      "Speed": 33
+    },
+    "types": [
+      "psychic"
+    ]
+  },
+  "Natu": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 50,
+      "PhysicalDefense": 45,
+      "SpecialAttack": 70,
+      "SpecialDefense": 45,
+      "Speed": 70
+    },
+    "types": [
+      "psychic",
+      "flying"
+    ]
+  },
+  "Xatu": {
+    "stats": {
+      "Health": 65,
+      "PhysicalAttack": 75,
+      "PhysicalDefense": 70,
+      "SpecialAttack": 95,
+      "SpecialDefense": 70,
+      "Speed": 95
+    },
+    "types": [
+      "psychic",
+      "flying"
+    ]
+  },
+  "Girafarig": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 80,
+      "PhysicalDefense": 65,
+      "SpecialAttack": 90,
+      "SpecialDefense": 65,
+      "Speed": 85
+    },
+    "types": [
+      "normal",
+      "psychic"
+    ]
+  },
+  "Phanpy": {
+    "stats": {
+      "Health": 90,
+      "PhysicalAttack": 60,
+      "PhysicalDefense": 60,
+      "SpecialAttack": 40,
+      "SpecialDefense": 40,
+      "Speed": 40
+    },
+    "types": [
+      "ground"
+    ]
+  },
+  "Donphan": {
+    "stats": {
+      "Health": 90,
+      "PhysicalAttack": 120,
+      "PhysicalDefense": 120,
+      "SpecialAttack": 60,
+      "SpecialDefense": 60,
+      "Speed": 50
+    },
+    "types": [
+      "ground"
+    ]
+  },
+  "Pinsir": {
+    "stats": {
+      "Health": 65,
+      "PhysicalAttack": 125,
+      "PhysicalDefense": 100,
+      "SpecialAttack": 55,
+      "SpecialDefense": 70,
+      "Speed": 85
+    },
+    "types": [
+      "bug"
+    ]
+  },
+  "Heracross": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 125,
+      "PhysicalDefense": 75,
+      "SpecialAttack": 40,
+      "SpecialDefense": 95,
+      "Speed": 85
+    },
+    "types": [
+      "bug",
+      "fighting"
+    ]
+  },
+  "Rhyhorn": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 85,
+      "PhysicalDefense": 95,
+      "SpecialAttack": 30,
+      "SpecialDefense": 30,
+      "Speed": 25
+    },
+    "types": [
+      "ground",
+      "rock"
+    ]
+  },
+  "Rhydon": {
+    "stats": {
+      "Health": 105,
+      "PhysicalAttack": 130,
+      "PhysicalDefense": 120,
+      "SpecialAttack": 45,
+      "SpecialDefense": 45,
+      "Speed": 40
+    },
+    "types": [
+      "ground",
+      "rock"
+    ]
+  },
+  "Snorunt": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 50,
+      "PhysicalDefense": 50,
+      "SpecialAttack": 50,
+      "SpecialDefense": 50,
+      "Speed": 50
+    },
+    "types": [
+      "ice"
+    ]
+  },
+  "Glalie": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 80,
+      "PhysicalDefense": 80,
+      "SpecialAttack": 80,
+      "SpecialDefense": 80,
+      "Speed": 80
+    },
+    "types": [
+      "ice"
+    ]
+  },
+  "Spheal": {
+    "stats": {
+      "Health": 70,
+      "PhysicalAttack": 40,
+      "PhysicalDefense": 50,
+      "SpecialAttack": 55,
+      "SpecialDefense": 50,
+      "Speed": 25
+    },
+    "types": [
+      "ice",
+      "water"
+    ]
+  },
+  "Sealeo": {
+    "stats": {
+      "Health": 90,
+      "PhysicalAttack": 60,
+      "PhysicalDefense": 70,
+      "SpecialAttack": 75,
+      "SpecialDefense": 70,
+      "Speed": 45
+    },
+    "types": [
+      "ice",
+      "water"
+    ]
+  },
+  "Walrein": {
+    "stats": {
+      "Health": 110,
+      "PhysicalAttack": 80,
+      "PhysicalDefense": 90,
+      "SpecialAttack": 95,
+      "SpecialDefense": 90,
+      "Speed": 65
+    },
+    "types": [
+      "ice",
+      "water"
+    ]
+  },
+  "Clamperl": {
+    "stats": {
+      "Health": 35,
+      "PhysicalAttack": 64,
+      "PhysicalDefense": 85,
+      "SpecialAttack": 74,
+      "SpecialDefense": 55,
+      "Speed": 32
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Huntail": {
+    "stats": {
+      "Health": 55,
+      "PhysicalAttack": 104,
+      "PhysicalDefense": 105,
+      "SpecialAttack": 94,
+      "SpecialDefense": 75,
+      "Speed": 52
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Gorebyss": {
+    "stats": {
+      "Health": 55,
+      "PhysicalAttack": 84,
+      "PhysicalDefense": 105,
+      "SpecialAttack": 114,
+      "SpecialDefense": 75,
+      "Speed": 52
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Relicanth": {
+    "stats": {
+      "Health": 100,
+      "PhysicalAttack": 90,
+      "PhysicalDefense": 130,
+      "SpecialAttack": 45,
+      "SpecialDefense": 65,
+      "Speed": 55
+    },
+    "types": [
+      "water",
+      "rock"
+    ]
+  },
+  "Corsola": {
+    "stats": {
+      "Health": 65,
+      "PhysicalAttack": 55,
+      "PhysicalDefense": 95,
+      "SpecialAttack": 65,
+      "SpecialDefense": 95,
+      "Speed": 35
+    },
+    "types": [
+      "water",
+      "rock"
+    ]
+  },
+  "Chinchou": {
+    "stats": {
+      "Health": 75,
+      "PhysicalAttack": 38,
+      "PhysicalDefense": 38,
+      "SpecialAttack": 56,
+      "SpecialDefense": 56,
+      "Speed": 67
+    },
+    "types": [
+      "water",
+      "electric"
+    ]
+  },
+  "Lanturn": {
+    "stats": {
+      "Health": 125,
+      "PhysicalAttack": 58,
+      "PhysicalDefense": 58,
+      "SpecialAttack": 76,
+      "SpecialDefense": 76,
+      "Speed": 67
+    },
+    "types": [
+      "water",
+      "electric"
+    ]
+  },
+  "Luvdisc": {
+    "stats": {
+      "Health": 43,
+      "PhysicalAttack": 30,
+      "PhysicalDefense": 55,
+      "SpecialAttack": 40,
+      "SpecialDefense": 65,
+      "Speed": 97
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Horsea": {
+    "stats": {
+      "Health": 30,
+      "PhysicalAttack": 40,
+      "PhysicalDefense": 70,
+      "SpecialAttack": 70,
+      "SpecialDefense": 25,
+      "Speed": 60
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Seadra": {
+    "stats": {
+      "Health": 55,
+      "PhysicalAttack": 65,
+      "PhysicalDefense": 95,
+      "SpecialAttack": 95,
+      "SpecialDefense": 45,
+      "Speed": 85
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Kingdra": {
+    "stats": {
+      "Health": 75,
+      "PhysicalAttack": 95,
+      "PhysicalDefense": 95,
+      "SpecialAttack": 95,
+      "SpecialDefense": 95,
+      "Speed": 85
+    },
+    "types": [
+      "water",
+      "dragon"
+    ]
+  },
+  "Bagon": {
+    "stats": {
+      "Health": 45,
+      "PhysicalAttack": 75,
+      "PhysicalDefense": 60,
+      "SpecialAttack": 40,
+      "SpecialDefense": 30,
+      "Speed": 50
+    },
+    "types": [
+      "dragon"
+    ]
+  },
+  "Shelgon": {
+    "stats": {
+      "Health": 65,
+      "PhysicalAttack": 95,
+      "PhysicalDefense": 100,
+      "SpecialAttack": 60,
+      "SpecialDefense": 50,
+      "Speed": 50
+    },
+    "types": [
+      "dragon"
+    ]
+  },
+  "Salamence": {
+    "stats": {
+      "Health": 95,
+      "PhysicalAttack": 135,
+      "PhysicalDefense": 80,
+      "SpecialAttack": 110,
+      "SpecialDefense": 80,
+      "Speed": 100
+    },
+    "types": [
+      "dragon",
+      "flying"
+    ]
+  },
+  "Beldum": {
+    "stats": {
+      "Health": 40,
+      "PhysicalAttack": 55,
+      "PhysicalDefense": 80,
+      "SpecialAttack": 35,
+      "SpecialDefense": 60,
+      "Speed": 30
+    },
+    "types": [
+      "steel",
+      "psychic"
+    ]
+  },
+  "Metang": {
+    "stats": {
+      "Health": 60,
+      "PhysicalAttack": 75,
+      "PhysicalDefense": 100,
+      "SpecialAttack": 55,
+      "SpecialDefense": 80,
+      "Speed": 50
+    },
+    "types": [
+      "steel",
+      "psychic"
+    ]
+  },
+  "Metagross": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 135,
+      "PhysicalDefense": 130,
+      "SpecialAttack": 95,
+      "SpecialDefense": 90,
+      "Speed": 70
+    },
+    "types": [
+      "steel",
+      "psychic"
+    ]
+  },
+  "Regirock": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 100,
+      "PhysicalDefense": 200,
+      "SpecialAttack": 50,
+      "SpecialDefense": 100,
+      "Speed": 50
+    },
+    "types": [
+      "rock"
+    ]
+  },
+  "Regice": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 50,
+      "PhysicalDefense": 100,
+      "SpecialAttack": 100,
+      "SpecialDefense": 200,
+      "Speed": 50
+    },
+    "types": [
+      "ice"
+    ]
+  },
+  "Registeel": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 75,
+      "PhysicalDefense": 150,
+      "SpecialAttack": 75,
+      "SpecialDefense": 150,
+      "Speed": 50
+    },
+    "types": [
+      "steel"
+    ]
+  },
+  "Latias": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 80,
+      "PhysicalDefense": 90,
+      "SpecialAttack": 110,
+      "SpecialDefense": 130,
+      "Speed": 110
+    },
+    "types": [
+      "dragon",
+      "psychic"
+    ]
+  },
+  "Latios": {
+    "stats": {
+      "Health": 80,
+      "PhysicalAttack": 90,
+      "PhysicalDefense": 80,
+      "SpecialAttack": 130,
+      "SpecialDefense": 110,
+      "Speed": 110
+    },
+    "types": [
+      "dragon",
+      "psychic"
+    ]
+  },
+  "Kyogre": {
+    "stats": {
+      "Health": 100,
+      "PhysicalAttack": 100,
+      "PhysicalDefense": 90,
+      "SpecialAttack": 150,
+      "SpecialDefense": 140,
+      "Speed": 90
+    },
+    "types": [
+      "water"
+    ]
+  },
+  "Groudon": {
+    "stats": {
+      "Health": 100,
+      "PhysicalAttack": 150,
+      "PhysicalDefense": 140,
+      "SpecialAttack": 100,
+      "SpecialDefense": 90,
+      "Speed": 90
+    },
+    "types": [
+      "ground"
+    ]
+  },
+  "Rayquaza": {
+    "stats": {
+      "Health": 105,
+      "PhysicalAttack": 150,
+      "PhysicalDefense": 90,
+      "SpecialAttack": 150,
+      "SpecialDefense": 90,
+      "Speed": 95
+    },
+    "types": [
+      "dragon",
+      "flying"
+    ]
+  },
+  "Jirachi": {
+    "stats": {
+      "Health": 100,
+      "PhysicalAttack": 100,
+      "PhysicalDefense": 100,
+      "SpecialAttack": 100,
+      "SpecialDefense": 100,
+      "Speed": 100
+    },
+    "types": [
+      "steel",
+      "psychic"
+    ]
+  },
+  "Deoxys": {
+    "stats": {
+      "Health": 50,
+      "PhysicalAttack": 150,
+      "PhysicalDefense": 50,
+      "SpecialAttack": 150,
+      "SpecialDefense": 50,
+      "Speed": 150
+    },
+    "types": [
+      "psychic"
+    ]
+  }
+}

@@ -44,6 +44,9 @@
     <ClCompile Include="MenuConfirmCommand.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
+    <ClCompile Include="PokedexComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -101,6 +104,9 @@
     </ClInclude>
     <ClInclude Include="MenuConfirmCommand.h">
       <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="PokedexComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

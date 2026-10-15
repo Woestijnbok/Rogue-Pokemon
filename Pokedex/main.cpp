@@ -1,112 +1,219 @@
 #include <filesystem>
 #include <istream>
 #include <fstream>
-#include <regex>
 #include <cassert>
 #include <json.hpp>
 #include <array>
 
 #include "Pokedex.hpp"
 
-int ReadPokedex(std::array<PODPokemon, POKEDEX_COUNT>& pokedex, const std::filesystem::path& path);
-int WritePokedex(const std::array<PODPokemon, POKEDEX_COUNT>& pokedex, const std::filesystem::path& path);
-#ifdef _DEBUG
-void TestReadPokedex(const std::filesystem::path& path, uint8_t startIndex, uint8_t amount);
-#endif
+void ReadElements(std::array<PODElement, POKEDEX_ELEMENT_COUNT>& elements, const std::filesystem::path& path);
+void WriteElements(const std::array<PODElement, POKEDEX_ELEMENT_COUNT>& elements, const std::filesystem::path& path);
+void ReadMoves(std::array<PODMove, POKEDEX_MOVE_COUNT>& moves, const std::filesystem::path& path);
+void WriteMoves(const std::array<PODMove, POKEDEX_MOVE_COUNT>& moves, const std::filesystem::path& path);
+void ReadPokemon(std::array<PODPokemon, POKEDEX_POKEMON_COUNT>& pokemon, const std::filesystem::path& path);
+void WritePokemon(const std::array<PODPokemon, POKEDEX_POKEMON_COUNT>& pokemon, const std::filesystem::path& path);
 
 int main(int, char* [])
 {
-	const std::filesystem::path inputFilePath{ "Pokedex.json" };
-	assert(std::filesystem::exists(inputFilePath));
+	// Read Write elements
+	const std::filesystem::path elementsInputFilePath{ "Elements.json" };
+	assert(std::filesystem::exists(elementsInputFilePath));
+	const std::filesystem::path elementsOutputFilePath{ "Elements.bin" };
+	std::array<PODElement, POKEDEX_ELEMENT_COUNT> elements{};
+	ReadElements(elements, elementsInputFilePath);
+	WriteElements(elements, elementsOutputFilePath);
 
-	const std::filesystem::path outputFilePath{ "Pokedex.bin" };
+	// Read Write moves
+	const std::filesystem::path movesInputFilePath{ "Moves.json" };
+	assert(std::filesystem::exists(movesInputFilePath));
+	const std::filesystem::path movesOutputFilePath{ "Moves.bin" };
+	std::array<PODMove, POKEDEX_MOVE_COUNT> moves{};
+	ReadMoves(moves, movesInputFilePath);
+	WriteMoves(moves, movesOutputFilePath);
 
-	std::array<PODPokemon, POKEDEX_COUNT> pokedex{}; // TODO: this is all on the stack !!!!!!!! fix urgent
-
-	ReadPokedex(pokedex, inputFilePath);
-	WritePokedex(pokedex, outputFilePath);
-#ifdef _DEBUG
-	TestReadPokedex(outputFilePath, 5, 5);
-#endif
+	// Read Write pokemon
+	const std::filesystem::path pokemonInputFilePath{ "Pokemon.json" };
+	assert(std::filesystem::exists(pokemonInputFilePath));
+	const std::filesystem::path pokemonOutputFilePath{ "Pokemon.bin" };
+	std::array<PODPokemon, POKEDEX_POKEMON_COUNT> pokemon{};
+	ReadPokemon(pokemon, pokemonInputFilePath);
+	WritePokemon(pokemon, pokemonOutputFilePath);
 
 	return 0;
 }
 
-int ReadPokedex(std::array<PODPokemon, POKEDEX_COUNT>& pokedex, const std::filesystem::path& path)
+void ReadElements(std::array<PODElement, POKEDEX_ELEMENT_COUNT>& elements, const std::filesystem::path& path)
 {
 	std::ifstream inputFile{ path };
-	assert(inputFile.is_open());
+	if (!inputFile.is_open())
+	{
+		assert(false);
+	}
 
 	nlohmann::json jsonData{};
 	inputFile >> jsonData;
 
-	size_t pokedexIndex{ 0 };
+	size_t elementIndex{ 0 };
+
+	for (const auto& elementObject : jsonData)
+	{
+		PODElement* currentElement{ &elements.at(elementIndex) };
+
+		// Name
+		const std::string name{ elementObject.at("Name").get<std::string>() };
+		strncpy_s(currentElement->Name, name.c_str(), _TRUNCATE);
+
+		// ID
+		currentElement->ID = elementObject.at("ID").get<uint8_t>();
+		
+		// EffectiveAgainst
+		const auto& effectiveAgainstData{ elementObject.at("SuperEffectiveAgainst") };
+		for (size_t i = 0; i < 5; ++i)
+		{
+			currentElement->EffectiveAgainst[i] = effectiveAgainstData[i].get<uint8_t>();
+		}
+
+		++elementIndex;
+
+		std::cout << *currentElement << std::endl;
+	}
+}
+
+void WriteElements(const std::array<PODElement, POKEDEX_ELEMENT_COUNT>& elements, const std::filesystem::path& path)
+{
+	std::ofstream outputFile{ path, std::ios_base::binary };
+	if (!outputFile.is_open())
+	{
+		assert(false);
+	}
+
+	outputFile.write(reinterpret_cast<const char*>(elements.data()), static_cast<std::streamsize>(elements.size() * sizeof(PODElement)));
+}
+
+void ReadMoves(std::array<PODMove, POKEDEX_MOVE_COUNT>& moves, const std::filesystem::path& path)
+{
+	std::ifstream inputFile{ path };
+	if (!inputFile.is_open())
+	{
+		assert(false);
+	}
+
+	nlohmann::json jsonData{};
+	inputFile >> jsonData;
+
+	size_t moveIndex{ 0 };
+
+	for (const auto& moveObject : jsonData)
+	{
+		PODMove* currentMove{ &moves.at(moveIndex) };
+
+		// Name
+		const std::string name{ moveObject.at("Name").get<std::string>() };
+		strncpy_s(currentMove->Name, name.c_str(), _TRUNCATE);
+
+		// ID
+		currentMove->ID = moveObject.at("ID").get<uint8_t>();
+
+		// MoveType
+		currentMove->MoveType = moveObject.at("MoveType").get<uint8_t>();
+
+		// ElementType
+		currentMove->ElementType = moveObject.at("ElementType").get<uint8_t>();
+
+		// Power
+		currentMove->Power = moveObject.at("Power").get<uint8_t>();
+
+		// Accuracy
+		currentMove->Accuracy = moveObject.at("Accuracy").get<uint8_t>();
+
+		++moveIndex;
+
+		std::cout << *currentMove << std::endl;
+	}
+}
+
+void WriteMoves(const std::array<PODMove, POKEDEX_MOVE_COUNT>& moves, const std::filesystem::path& path)
+{
+	std::ofstream outputFile{ path, std::ios_base::binary };
+	if (!outputFile.is_open())
+	{
+		assert(false);
+	}
+
+	outputFile.write(reinterpret_cast<const char*>(moves.data()), static_cast<std::streamsize>(moves.size() * sizeof(PODMove)));
+}
+
+void ReadPokemon(std::array<PODPokemon, POKEDEX_POKEMON_COUNT>& pokemon, const std::filesystem::path& path)
+{
+	
+	std::ifstream inputFile{ path };
+	if (!inputFile.is_open())
+	{
+		assert(false);
+	}
+
+	nlohmann::json jsonData{};
+	inputFile >> jsonData;
+
+	size_t pokemonIndex{ 0 };
 
 	for (const auto& pokemonObject : jsonData)
 	{
-		PODPokemon* currentPokemon{ &pokedex.at(pokedexIndex) };
+		PODPokemon* currentPokemon{ &pokemon.at(pokemonIndex) };
 
-		currentPokemon->Index = pokemonObject.at("index").get<uint8_t>();
-		const std::string name{ pokemonObject.at("name").get<std::string>() };
+		// Name
+		const std::string name{ pokemonObject.at("Name").get<std::string>() };
 		strncpy_s(currentPokemon->Name, name.c_str(), _TRUNCATE);
 
-		const auto& movesData{ pokemonObject.at("moves") };
+		// ID
+		currentPokemon->ID = pokemonObject.at("ID").get<uint8_t>();
+
+		// PhysicalAttack
+		currentPokemon->PhysicalAttack = pokemonObject.at("PhysicalAttack").get<uint8_t>();
+
+		// SpecialAttack
+		currentPokemon->SpecicalAttack = pokemonObject.at("SpecialAttack").get<uint8_t>();
+
+		// PhysicalDefense
+		currentPokemon->PhysicalDefense = pokemonObject.at("PhysicalDefense").get<uint8_t>();
+
+		// SpecialDefense
+		currentPokemon->SpecialDefense = pokemonObject.at("SpecialDefense").get<uint8_t>();
+
+		// Speed
+		currentPokemon->Speed = pokemonObject.at("Speed").get<uint8_t>();
+
+		// Health
+		currentPokemon->Health = pokemonObject.at("Health").get<uint8_t>();
+
+		// Moves
+		const auto& movesData{ pokemonObject.at("MoveIDs") };
 		for (size_t i = 0; i < 4; ++i)
 		{
-			const std::string moveName{ movesData[i].at("name").get<std::string>() };
-			strncpy_s(currentPokemon->Moves[i].Name, moveName.c_str(), _TRUNCATE);
-			currentPokemon->Moves[i].Power = movesData[i].at("power").get<uint8_t>();
+			currentPokemon->Moves[i] = movesData[i].get<uint8_t>();
 		}
 
-		++pokedexIndex;
+		// Types
+		const auto& typesData{ pokemonObject.at("ElementTypes") };
+		for (size_t i = 0; i < 2; ++i)
+		{
+			currentPokemon->Types[i] = typesData[i].get<uint8_t>();
+		}
+
+		++pokemonIndex;
 
 		std::cout << *currentPokemon << std::endl;
 	}
-
-	return 0;
 }
 
-int WritePokedex(const std::array<PODPokemon, POKEDEX_COUNT>& pokedex, const std::filesystem::path& path)
+void WritePokemon(const std::array<PODPokemon, POKEDEX_POKEMON_COUNT>& pokemon, const std::filesystem::path& path)
 {
 	std::ofstream outputFile{ path, std::ios_base::binary };
-	assert(outputFile.is_open());
-
-	for (const auto& pokemon : pokedex)
+	if (!outputFile.is_open())
 	{
-		outputFile.write(reinterpret_cast<const char*>(&pokemon), sizeof(PODPokemon));
+		assert(false);
 	}
 
-#ifdef _DEBUG
-	std::cout << std::endl << "Finished Writing" << path;
-	std::cout << std::endl << std::format("Each pokemon entry is {} bytes", sizeof(PODPokemon));
-	std::cout << std::endl << std::format("Each move entry is {} bytes", sizeof(PODMove));
-#endif
-
-	return 0;
+	outputFile.write(reinterpret_cast<const char*>(pokemon.data()), static_cast<std::streamsize>(pokemon.size() * sizeof(PODPokemon)));
 }
-
-#ifdef _DEBUG
-void TestReadPokedex(const std::filesystem::path& path, uint8_t startIndex, uint8_t amount)
-{
-	std::ifstream inputFile{ path, std::ios::binary };
-	if (!inputFile)
-	{
-		std::cerr << "Failed to open file: " << path << "\n";
-		return;
-	}
-
-	std::cout << std::endl << "Test " << path << std::endl;
-
-	inputFile.seekg(sizeof(PODPokemon) * startIndex);
-
-	for (std::size_t i = 0; i < amount; ++i)
-	{
-		PODPokemon currentPokemon{};
-		inputFile.read(reinterpret_cast<char*>(&currentPokemon), sizeof(PODPokemon));
-
-		if (!inputFile) break; // End of file
-
-		std::cout << currentPokemon << std::endl;
-	}
-}
-#endif

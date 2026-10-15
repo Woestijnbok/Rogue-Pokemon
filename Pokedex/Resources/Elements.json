@@ -1,0 +1,200 @@
+[
+  {
+    "Name": "Normal",
+    "ID": 1,
+    "SuperEffectiveAgainst": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "Name": "Fighting",
+    "ID": 2,
+    "SuperEffectiveAgainst": [
+      1,
+      15,
+      6,
+      17,
+      9
+    ]
+  },
+  {
+    "Name": "Flying",
+    "ID": 3,
+    "SuperEffectiveAgainst": [
+      2,
+      7,
+      12,
+      0,
+      0
+    ]
+  },
+  {
+    "Name": "Poison",
+    "ID": 4,
+    "SuperEffectiveAgainst": [
+      12,
+      18,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "Name": "Ground",
+    "ID": 5,
+    "SuperEffectiveAgainst": [
+      10,
+      13,
+      4,
+      6,
+      9
+    ]
+  },
+  {
+    "Name": "Rock",
+    "ID": 6,
+    "SuperEffectiveAgainst": [
+      10,
+      15,
+      3,
+      7,
+      0
+    ]
+  },
+  {
+    "Name": "Bug",
+    "ID": 7,
+    "SuperEffectiveAgainst": [
+      12,
+      14,
+      17,
+      0,
+      0
+    ]
+  },
+  {
+    "Name": "Ghost",
+    "ID": 8,
+    "SuperEffectiveAgainst": [
+      8,
+      14,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "Name": "Steel",
+    "ID": 9,
+    "SuperEffectiveAgainst": [
+      15,
+      6,
+      18,
+      0,
+      0
+    ]
+  },
+  {
+    "Name": "Fire",
+    "ID": 10,
+    "SuperEffectiveAgainst": [
+      12,
+      15,
+      7,
+      9,
+      0
+    ]
+  },
+  {
+    "Name": "Water",
+    "ID": 11,
+    "SuperEffectiveAgainst": [
+      10,
+      5,
+      6,
+      0,
+      0
+    ]
+  },
+  {
+    "Name": "Grass",
+    "ID": 12,
+    "SuperEffectiveAgainst": [
+      11,
+      5,
+      6,
+      0,
+      0
+    ]
+  },
+  {
+    "Name": "Electric",
+    "ID": 13,
+    "SuperEffectiveAgainst": [
+      11,
+      3,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "Name": "Psychic",
+    "ID": 14,
+    "SuperEffectiveAgainst": [
+      2,
+      4,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "Name": "Ice",
+    "ID": 15,
+    "SuperEffectiveAgainst": [
+      12,
+      5,
+      3,
+      16,
+      0
+    ]
+  },
+  {
+    "Name": "Dragon",
+    "ID": 16,
+    "SuperEffectiveAgainst": [
+      16,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "Name": "Dark",
+    "ID": 17,
+    "SuperEffectiveAgainst": [
+      8,
+      14,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "Name": "Fairy",
+    "ID": 18,
+    "SuperEffectiveAgainst": [
+      2,
+      16,
+      17,
+      0,
+      0
+    ]
+  }
+]

@@ -10,9 +10,11 @@
 #include "ResourceManager.h"
 #include "Renderer.h"
 #include "Color.h"
+#include "SceneManager.h"
 
 // Components
 #include "TrainerComponent.h"
+#include "PokedexComponent.h"
 
 // Other
 #include "Pokedex.hpp"
@@ -22,16 +24,17 @@ using namespace Minigin;
 
 PokemonComponent::PokemonComponent(GameObject* owner, const PODPokemon& pokemon, TrainerComponent const * trainer) :
 	Component{ owner },
-	m_Stats{},
+	m_Types{ pokemon.Types[0], pokemon.Types[1] },
+	m_Stats{ pokemon },
 	m_Moves
 	{
-		Move{ pokemon.Moves[0], ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30) },
-		Move{ pokemon.Moves[1], ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30) },
-		Move{ pokemon.Moves[2], ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30) },
-		Move{ pokemon.Moves[3], ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30) }
+		Move{ SceneManager::Instance()->GetScene("Battle")->GetGameObject("Manager")->GetComponent<PokedexComponent>()->GetMove(pokemon.Moves[0]), ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30) },
+		Move{ SceneManager::Instance()->GetScene("Battle")->GetGameObject("Manager")->GetComponent<PokedexComponent>()->GetMove(pokemon.Moves[1]), ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30) },
+		Move{ SceneManager::Instance()->GetScene("Battle")->GetGameObject("Manager")->GetComponent<PokedexComponent>()->GetMove(pokemon.Moves[2]), ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30) },
+		Move{ SceneManager::Instance()->GetScene("Battle")->GetGameObject("Manager")->GetComponent<PokedexComponent>()->GetMove(pokemon.Moves[3]), ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30) }
 	},
 	m_Name{ new Text{ pokemon.Name, ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
-	m_LevelText{ new Text{ "Lv ", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
+	m_LevelText{ new Text{ "Lv", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_Texture{ Renderer::Instance()->CreateTexture(GetPokemonTexturePath(pokemon.Name, false)) },
 	m_Trainer{ trainer }
 {
@@ -40,16 +43,17 @@ PokemonComponent::PokemonComponent(GameObject* owner, const PODPokemon& pokemon,
 
 PokemonComponent::PokemonComponent(Minigin::GameObject* owner, const PODPokemon& pokemon) :
 	Component{ owner },
-	m_Stats{},
+	m_Types{ pokemon.Types[0], pokemon.Types[1] },
+	m_Stats{ pokemon },
 	m_Moves
 	{
-		Move{ pokemon.Moves[0], ResourceManager::Instance()->GetFont("Emerald", 30) },
-		Move{ pokemon.Moves[1], ResourceManager::Instance()->GetFont("Emerald", 30) },
-		Move{ pokemon.Moves[2], ResourceManager::Instance()->GetFont("Emerald", 30) },
-		Move{ pokemon.Moves[3], ResourceManager::Instance()->GetFont("Emerald", 30) }
+		Move{ SceneManager::Instance()->GetScene("Battle")->GetGameObject("Manager")->GetComponent<PokedexComponent>()->GetMove(pokemon.Moves[0]), ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30) },
+		Move{ SceneManager::Instance()->GetScene("Battle")->GetGameObject("Manager")->GetComponent<PokedexComponent>()->GetMove(pokemon.Moves[1]), ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30) },
+		Move{ SceneManager::Instance()->GetScene("Battle")->GetGameObject("Manager")->GetComponent<PokedexComponent>()->GetMove(pokemon.Moves[2]), ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30) },
+		Move{ SceneManager::Instance()->GetScene("Battle")->GetGameObject("Manager")->GetComponent<PokedexComponent>()->GetMove(pokemon.Moves[3]), ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30) }
 	},
 	m_Name{ new Text{ pokemon.Name, ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
-	m_LevelText{ new Text{ "Lv ", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
+	m_LevelText{ new Text{ "Lv", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_Texture{ Renderer::Instance()->CreateTexture(GetPokemonTexturePath(pokemon.Name, true)) },
 	m_Trainer{ nullptr }
 {

@@ -17,6 +17,7 @@
 #include "PokemonComponent.h"
 #include "TrainerComponent.h"
 #include "MovementComponent.h"
+#include "PokedexComponent.h"
 
 // Other
 #include "Helpers.h"
@@ -26,6 +27,7 @@ using namespace Minigin;
 
 BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	Component{ owner },
+	m_Pokedex{ owner->GetComponent<PokedexComponent>() },
 	m_CurrentBattle{ nullptr, nullptr },
 	m_CurrentBattleState{ BattleState::None },
 	m_OnBattleStarted{},
@@ -45,8 +47,8 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_StartWildPokemonLevelDistribution{ 1, 5 },
 	m_CurrentWildPokemonLevelDistribution{ m_StartWildPokemonLevelDistribution },
 	m_ChanceDistribution{ 0.0f, 100.0f },
-	m_CommonDistribution{ 1, POKEDEX_LEGENDARY_START - 1 },
-	m_LegendaryDistribution{ POKEDEX_LEGENDARY_START, POKEDEX_COUNT },
+	m_CommonDistribution{ 1, POKEDEX_POKEMON_LEGENDARY_START - 1 },
+	m_LegendaryDistribution{ POKEDEX_POKEMON_LEGENDARY_START, POKEDEX_POKEMON_COUNT },
 	m_LegendaryChance{ 5 },
 	m_CurrentMove{ 0 }
 {
@@ -94,9 +96,7 @@ void BattleManagerComponent::MakeBattle(TrainerComponent* trainer)
 		enemyPokemonIndex = static_cast<uint8_t>(m_CommonDistribution(m_RandomEngine));
 	}
 
-	PODPokemon pokemon{};
-	ReadPokemon(pokemon, enemyPokemonIndex);
-
+	PODPokemon pokemon{ m_Pokedex->GetPokemon(enemyPokemonIndex) };
 	GameObject* wildPokemonObject{ GetOwner()->GetScene()->CreateGameObject(std::format("Wild {}", pokemon.Name)) };
 	PokemonComponent* wildPokemonComponent{ wildPokemonObject->CreateComponent<PokemonComponent>(pokemon) };
 	SetWildPokemonLevel(wildPokemonComponent);

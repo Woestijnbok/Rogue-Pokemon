@@ -39,13 +39,11 @@ struct Move
 	// Move Type
 	MoveType Type;
 	// Element Type
-	ElementType Element;
+	uint8_t Element;
 	// Power
 	const uint8_t Power;
 	// Accuracy
 	const uint8_t Accuracy;
-	// Crit chance
-	const uint8_t CritChance;
 
 private:
 	/*

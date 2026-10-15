@@ -1,0 +1,374 @@
+{
+  "pound": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 40
+  },
+  "mega-punch": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 85,
+    "power": 80
+  },
+  "thunder-punch": {
+    "type": "electric",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 75
+  },
+  "razor-wind": {
+    "type": "normal",
+    "class": "special",
+    "accuracy": 100,
+    "power": 80
+  },
+  "swords-dance": {
+    "type": "normal",
+    "class": "status",
+    "accuracy": null,
+    "power": null
+  },
+  "scratch": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 40
+  },
+  "cut": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 95,
+    "power": 50
+  },
+  "fire-punch": {
+    "type": "fire",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 75
+  },
+  "stomp": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 65
+  },
+  "headbutt": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 70
+  },
+  "tackle": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 40
+  },
+  "body-slam": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 85
+  },
+  "ice-punch": {
+    "type": "ice",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 75
+  },
+  "mega-kick": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 75,
+    "power": 120
+  },
+  "sand-attack": {
+    "type": "ground",
+    "class": "status",
+    "accuracy": 100,
+    "power": null
+  },
+  "poison-sting": {
+    "type": "poison",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 15
+  },
+  "string-shot": {
+    "type": "bug",
+    "class": "status",
+    "accuracy": 95,
+    "power": null
+  },
+  "snore": {
+    "type": "normal",
+    "class": "special",
+    "accuracy": 100,
+    "power": 50
+  },
+  "harden": {
+    "type": "normal",
+    "class": "status",
+    "accuracy": null,
+    "power": null
+  },
+  "gust": {
+    "type": "flying",
+    "class": "special",
+    "accuracy": 100,
+    "power": 40
+  },
+  "whirlwind": {
+    "type": "normal",
+    "class": "status",
+    "accuracy": null,
+    "power": null
+  },
+  "double-edge": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 120
+  },
+  "take-down": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 85,
+    "power": 90
+  },
+  "wing-attack": {
+    "type": "flying",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 60
+  },
+  "fly": {
+    "type": "flying",
+    "class": "physical",
+    "accuracy": 95,
+    "power": 90
+  },
+  "growl": {
+    "type": "normal",
+    "class": "status",
+    "accuracy": 100,
+    "power": null
+  },
+  "mist": {
+    "type": "ice",
+    "class": "status",
+    "accuracy": null,
+    "power": null
+  },
+  "water-gun": {
+    "type": "water",
+    "class": "special",
+    "accuracy": 100,
+    "power": 40
+  },
+  "horn-attack": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 65
+  },
+  "fury-attack": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 85,
+    "power": 15
+  },
+  "hydro-pump": {
+    "type": "water",
+    "class": "special",
+    "accuracy": 80,
+    "power": 110
+  },
+  "splash": {
+    "type": "normal",
+    "class": "status",
+    "accuracy": null,
+    "power": null
+  },
+  "flail": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 100,
+    "power": null
+  },
+  "bind": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 85,
+    "power": 15
+  },
+  "slam": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 75,
+    "power": 80
+  },
+  "double-slap": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 85,
+    "power": 15
+  },
+  "vice-grip": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 55
+  },
+  "karate-chop": {
+    "type": "fighting",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 50
+  },
+  "acid": {
+    "type": "poison",
+    "class": "special",
+    "accuracy": 100,
+    "power": 40
+  },
+  "thrash": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 120
+  },
+  "leer": {
+    "type": "normal",
+    "class": "status",
+    "accuracy": 100,
+    "power": null
+  },
+  "bite": {
+    "type": "dark",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 60
+  },
+  "ember": {
+    "type": "fire",
+    "class": "special",
+    "accuracy": 100,
+    "power": 40
+  },
+  "ice-beam": {
+    "type": "ice",
+    "class": "special",
+    "accuracy": 100,
+    "power": 90
+  },
+  "guillotine": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 30,
+    "power": null
+  },
+  "psybeam": {
+    "type": "psychic",
+    "class": "special",
+    "accuracy": 100,
+    "power": 65
+  },
+  "wrap": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 90,
+    "power": 15
+  },
+  "surf": {
+    "type": "water",
+    "class": "special",
+    "accuracy": 100,
+    "power": 90
+  },
+  "disable": {
+    "type": "normal",
+    "class": "status",
+    "accuracy": 100,
+    "power": null
+  },
+  "pay-day": {
+    "type": "normal",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 40
+  },
+  "counter": {
+    "type": "fighting",
+    "class": "physical",
+    "accuracy": 100,
+    "power": null
+  },
+  "amnesia": {
+    "type": "psychic",
+    "class": "status",
+    "accuracy": null,
+    "power": null
+  },
+  "destiny-bond": {
+    "type": "ghost",
+    "class": "status",
+    "accuracy": null,
+    "power": null
+  },
+  "peck": {
+    "type": "flying",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 35
+  },
+  "drill-peck": {
+    "type": "flying",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 80
+  },
+  "hyper-beam": {
+    "type": "normal",
+    "class": "special",
+    "accuracy": 90,
+    "power": 150
+  },
+  "double-kick": {
+    "type": "fighting",
+    "class": "physical",
+    "accuracy": 100,
+    "power": 30
+  },
+  "supersonic": {
+    "type": "normal",
+    "class": "status",
+    "accuracy": 55,
+    "power": null
+  },
+  "iron-defense": {
+    "type": "steel",
+    "class": "status",
+    "accuracy": null,
+    "power": null
+  },
+  "psychic": {
+    "type": "psychic",
+    "class": "special",
+    "accuracy": 100,
+    "power": 90
+  },
+  "zen-headbutt": {
+    "type": "psychic",
+    "class": "physical",
+    "accuracy": 90,
+    "power": 80
+  },
+  "night-shade": {
+    "type": "ghost",
+    "class": "special",
+    "accuracy": 100,
+    "power": null
+  }
+}
