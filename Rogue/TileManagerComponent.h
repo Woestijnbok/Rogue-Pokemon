@@ -184,6 +184,8 @@ private:
 	std::uniform_real_distribution<float> m_ChanceDistribution;
 	// On pokemon encounter event
 	Minigin::Subject<TrainerComponent*> m_OnPokemonEncounter;
+	// Distributon for random tile
+	std::uniform_int_distribution<size_t> m_TileChanceDistribution;
 	// On item pickup event
 	Minigin::Subject<> m_OnItemPickup;
 	// Number of spawned pokemon this tileset in the begining

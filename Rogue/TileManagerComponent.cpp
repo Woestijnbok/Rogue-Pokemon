@@ -39,6 +39,7 @@ TileManagerComponent::TileManagerComponent(Minigin::GameObject* owner) :
 	m_RandomEngine{ m_RandomDevice() },
 	m_ChanceDistribution{ 0.0f, 100.0f },
 	m_OnPokemonEncounter{},
+	m_TileChanceDistribution{ 0, (m_Rows * m_Collumns) - 1 },
 	m_OnItemPickup{},
 	m_SpawnedPokemon{},
 	m_DefeatedPokemon{},
@@ -172,44 +173,56 @@ void TileManagerComponent::RenderTile(const size_t row, const size_t collumn) co
 
 void TileManagerComponent::RandomizeTiles()
 {
-	do
+	m_SpawnedPokemon = 0;
+
+	for (size_t row{}; row < m_Rows; ++row)
 	{
-		m_SpawnedPokemon = 0;
-
-		for (size_t row{}; row < m_Rows; ++row)
+		for (size_t collumn{}; collumn < m_Collumns; ++collumn)
 		{
-			for (size_t collumn{}; collumn < m_Collumns; ++collumn)
-			{
-				const float randomValue{ m_ChanceDistribution(m_RandomEngine) };
+			const float randomValue{ m_ChanceDistribution(m_RandomEngine) };
 
-				if (randomValue < m_TileChanceGrass)
-				{
-					m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Grass;
-				}
-				else if (randomValue < m_TileChanceGrass + m_TileChancePokemon)
-				{
-					m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Pokemon;
-					++m_SpawnedPokemon;
-				}
-				else if (randomValue < m_TileChanceGrass + m_TileChancePokemon + m_TileChanceItem)
-				{
-					m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Item;
-				}
-				else
-				{
-					m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Dirt;
-				}
+			if (randomValue < m_TileChanceGrass)
+			{
+				m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Grass;
+			}
+			else if (randomValue < m_TileChanceGrass + m_TileChancePokemon)
+			{
+				m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Pokemon;
+				++m_SpawnedPokemon;
+			}
+			else if (randomValue < m_TileChanceGrass + m_TileChancePokemon + m_TileChanceItem)
+			{
+				m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Item;
+			}
+			else
+			{
+				m_Tiles.at((row * m_Collumns) + collumn).Type = Terrain::Dirt;
 			}
 		}
-
-		// If start tile was a pokemon decrease pokemon count
-		if (m_Tiles.at((m_StartTile.x * m_Collumns) + m_StartTile.y).Type == Terrain::Pokemon)
-		{
-			--m_SpawnedPokemon;
-		}
-		m_Tiles.at((m_StartTile.x * m_Collumns) + m_StartTile.y).Type = Terrain::Dirt;
 	}
-	while (m_SpawnedPokemon == 0);
+
+	// If start tile was a pokemon decrease pokemon count
+	size_t startTileIndex{ static_cast<size_t>((m_StartTile.x * m_Collumns) + m_StartTile.y) };
+	if (m_Tiles.at(startTileIndex).Type == Terrain::Pokemon)
+	{
+		--m_SpawnedPokemon;
+	}
+	m_Tiles.at((m_StartTile.x * m_Collumns) + m_StartTile.y).Type = Terrain::Dirt;
+	
+	// The unique case that a tileset was generated with no pokemon
+	if (m_SpawnedPokemon == 0)
+	{
+		size_t randomTileIndex{};
+		
+		do
+		{
+			randomTileIndex = m_TileChanceDistribution(m_RandomEngine);
+		} 
+		while (randomTileIndex == startTileIndex);
+
+		m_Tiles.at(randomTileIndex).Type = Terrain::Pokemon;
+		m_SpawnedPokemon++;
+	}
 }
 
 void TileManagerComponent::SetupNextLevel()
@@ -217,6 +230,11 @@ void TileManagerComponent::SetupNextLevel()
 	m_TileChanceGrass *= (m_MultiplierTileChanceGrass / 100.0f);
 	m_TileChancePokemon *= (m_MultiplierTileChancePokemon / 100.0f);
 	m_TileChanceItem *= (m_MultiplierTileChanceItem / 100.0f);
+
+	m_TileChancePokemon = std::min(m_TileChancePokemon, 100.0f);
+	m_TileChanceItem = std::min(m_TileChanceItem, 100.0f - m_TileChancePokemon);
+	m_TileChanceGrass = std::min(m_TileChanceGrass, 100.0f - m_TileChancePokemon - m_TileChanceItem);
+
 	RandomizeTiles();
 }
 
