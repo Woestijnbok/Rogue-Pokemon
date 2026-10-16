@@ -24,7 +24,9 @@ struct PODElement
 
 	char Name[POKEDEX_MAX_NAME_LENGTH];
 	uint8_t ID;
-	uint8_t EffectiveAgainst[5];
+	uint8_t SuperEffectiveAgainst[5];
+	uint8_t NotVeryEffectiveAgainst[7];
+	uint8_t IneffectiveAgainst;
 };
 
 struct PODMove final

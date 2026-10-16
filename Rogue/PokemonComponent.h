@@ -51,11 +51,29 @@ public:
 	PokemonComponent& operator=(PokemonComponent&& other) noexcept = delete;
 
 	/*
-	* Gets all the stats of the pokemon.
+	* Gets some the stats of the pokemon.
 	* 
 	* @return The stats of the pokemon.
 	*/
-	PokemonStats& GetStats();
+	const PokemonStats& GetStats();
+	/*
+	* Gets the current pokemon health.
+	*
+	* @return The current health of the pokemon.
+	*/
+	uint16_t GetCurrentHealth();
+	/*
+	* Sets the current pokemon health.
+	*
+	* @param health: The new health of the pokemon.
+	*/
+	void SetCurrentHealth(uint16_t health);
+	/*
+	* Makes the pokemon take damage.
+	*
+	* @param damage: The damage to take.
+	*/
+	void TakeDamage(uint16_t damage);
 	/*
 	* Returns all moves this pokemon has, aka 4.
 	*
@@ -111,14 +129,27 @@ public:
 	* @param level: The new pokemon's level.
 	*/
 	void SetLevel(uint16_t level);
+	/*
+	* Getter for the pokemon ID.
+	* 
+	* @return The ID to look up the pokemon in the pokedex.
+	*/
+	size_t GetPokedexID();
 	
 private:
+	// ID used to search in the pokemon in the pokedex
+	size_t m_ID;
+	// Current level of the pokemon
+	uint16_t m_Level;
+	// Current health of the pokemon different from m_Stats.Health which is max health
+	uint16_t m_CurrentHealth;
+	// Type indices of the pokemon, zero means no type
 	const std::array<uint8_t, 2> m_Types;
-	// Pokemon level number
+	// Various pokemon stats
 	PokemonStats m_Stats;
-	// The moves / attacks of the pokemon
+	// The move indices of the pokemon
 	const std::array<Move, 4> m_Moves;
-	// Pokemon name
+	// Pokemon name in text
 	const std::unique_ptr<Minigin::Text> m_Name;
 	// Pokemon level in text
 	const std::unique_ptr<Minigin::Text> m_LevelText;

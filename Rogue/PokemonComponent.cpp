@@ -24,6 +24,9 @@ using namespace Minigin;
 
 PokemonComponent::PokemonComponent(GameObject* owner, const PODPokemon& pokemon, TrainerComponent const * trainer) :
 	Component{ owner },
+	m_ID{ pokemon.ID },
+	m_Level{ 1 },
+	m_CurrentHealth{ pokemon.Health },
 	m_Types{ pokemon.Types[0], pokemon.Types[1] },
 	m_Stats{ pokemon },
 	m_Moves
@@ -43,6 +46,9 @@ PokemonComponent::PokemonComponent(GameObject* owner, const PODPokemon& pokemon,
 
 PokemonComponent::PokemonComponent(Minigin::GameObject* owner, const PODPokemon& pokemon) :
 	Component{ owner },
+	m_ID{ pokemon.ID },
+	m_Level{ 1 },
+	m_CurrentHealth{ pokemon.Health },
 	m_Types{ pokemon.Types[0], pokemon.Types[1] },
 	m_Stats{ pokemon },
 	m_Moves
@@ -82,12 +88,12 @@ bool PokemonComponent::IsWild() const
 
 float PokemonComponent::GetHealthPercentage() const
 {
-	return static_cast<float>(m_Stats.CurrentHealth) / static_cast<float>(m_Stats.MaxHealth);
+	return static_cast<float>(m_CurrentHealth) / static_cast<float>(m_Stats.Health);
 }
 
 bool PokemonComponent::IsDead() const
 {
-	return m_Stats.CurrentHealth <= 0;
+	return m_CurrentHealth <= 0;
 }
 
 TrainerComponent const * PokemonComponent::GetTrainer() const
@@ -97,14 +103,41 @@ TrainerComponent const * PokemonComponent::GetTrainer() const
 
 void PokemonComponent::SetLevel(uint16_t level)
 {
-	m_Stats.Level = std::clamp(level, static_cast<uint16_t>(1), static_cast<uint16_t>(100));
+	m_Level = std::clamp(level, static_cast<uint16_t>(1), static_cast<uint16_t>(100));
 
-	m_LevelText->SetText(std::format("Lv {}", m_Stats.Level));
+	m_LevelText->SetText(std::format("Lv {}", m_Level));
 }
 
-PokemonStats& PokemonComponent::GetStats()
+size_t PokemonComponent::GetPokedexID()
+{
+	return m_ID;
+}
+
+const PokemonStats& PokemonComponent::GetStats()
 {
 	return m_Stats;
+}
+
+uint16_t PokemonComponent::GetCurrentHealth()
+{
+	return m_CurrentHealth;
+}
+
+void PokemonComponent::SetCurrentHealth(uint16_t health)
+{
+	m_CurrentHealth = std::clamp(health, static_cast<uint16_t>(0), m_Stats.Health);
+}
+
+void PokemonComponent::TakeDamage(uint16_t damage)
+{
+	if (m_CurrentHealth < damage)
+	{
+		SetCurrentHealth(0);
+	}
+	else
+	{
+		SetCurrentHealth(m_CurrentHealth - damage);
+	}
 }
 
 const std::array<Move, 4>& PokemonComponent::GetMoves() const

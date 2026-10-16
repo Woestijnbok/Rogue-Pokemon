@@ -447,26 +447,12 @@ void BattleManagerComponent::UseSelectedMove()
 	if (m_CurrentBattleState == BattleState::PerformPlayerMove)
 	{
 		uint8_t attackPower{ trainerPokemon->GetMoves()[m_CurrentMove].Power};
-		if (wildPokemon->GetStats().CurrentHealth < attackPower)
-		{
-			wildPokemon->GetStats().CurrentHealth = 0;
-		}
-		else
-		{
-			wildPokemon->GetStats().CurrentHealth -= attackPower;
-		}
+		wildPokemon->TakeDamage(attackPower);
 	}
 	else
 	{
 		uint8_t attackPower{ wildPokemon->GetMoves()[m_CurrentMove].Power };
-		if (trainerPokemon->GetStats().CurrentHealth < attackPower)
-		{
-			trainerPokemon->GetStats().CurrentHealth = 0;
-		}
-		else
-		{
-			trainerPokemon->GetStats().CurrentHealth -= attackPower;
-		}
+		trainerPokemon->TakeDamage(attackPower);
 	}
 }
 

@@ -8,6 +8,18 @@
       0,
       0,
       0
+    ],
+    "NotVeryEffectiveAgainst": [
+      6,
+      9,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "IneffectiveAgainst": [
+      8
     ]
   },
   {
@@ -19,6 +31,18 @@
       6,
       17,
       9
+    ],
+    "NotVeryEffectiveAgainst": [
+      3,
+      4,
+      7,
+      14,
+      18,
+      0,
+      0
+    ],
+    "IneffectiveAgainst": [
+      8
     ]
   },
   {
@@ -29,6 +53,18 @@
       7,
       12,
       0,
+      0
+    ],
+    "NotVeryEffectiveAgainst": [
+      6,
+      9,
+      13,
+      0,
+      0,
+      0,
+      0
+    ],
+    "IneffectiveAgainst": [
       0
     ]
   },
@@ -41,6 +77,18 @@
       0,
       0,
       0
+    ],
+    "NotVeryEffectiveAgainst": [
+      4,
+      5,
+      6,
+      8,
+      0,
+      0,
+      0
+    ],
+    "IneffectiveAgainst": [
+      9
     ]
   },
   {
@@ -52,6 +100,18 @@
       4,
       6,
       9
+    ],
+    "NotVeryEffectiveAgainst": [
+      7,
+      12,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "IneffectiveAgainst": [
+      3
     ]
   },
   {
@@ -62,6 +122,18 @@
       15,
       3,
       7,
+      0
+    ],
+    "NotVeryEffectiveAgainst": [
+      2,
+      5,
+      9,
+      0,
+      0,
+      0,
+      0
+    ],
+    "IneffectiveAgainst": [
       0
     ]
   },
@@ -74,6 +146,18 @@
       17,
       0,
       0
+    ],
+    "NotVeryEffectiveAgainst": [
+      2,
+      3,
+      4,
+      8,
+      9,
+      10,
+      18
+    ],
+    "IneffectiveAgainst": [
+      0
     ]
   },
   {
@@ -85,6 +169,18 @@
       0,
       0,
       0
+    ],
+    "NotVeryEffectiveAgainst": [
+      17,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "IneffectiveAgainst": [
+      1
     ]
   },
   {
@@ -95,6 +191,18 @@
       6,
       18,
       0,
+      0
+    ],
+    "NotVeryEffectiveAgainst": [
+      9,
+      10,
+      11,
+      13,
+      0,
+      0,
+      0
+    ],
+    "IneffectiveAgainst": [
       0
     ]
   },
@@ -107,6 +215,18 @@
       7,
       9,
       0
+    ],
+    "NotVeryEffectiveAgainst": [
+      6,
+      10,
+      11,
+      16,
+      0,
+      0,
+      0
+    ],
+    "IneffectiveAgainst": [
+      0
     ]
   },
   {
@@ -117,6 +237,18 @@
       5,
       6,
       0,
+      0
+    ],
+    "NotVeryEffectiveAgainst": [
+      11,
+      12,
+      16,
+      0,
+      0,
+      0,
+      0
+    ],
+    "IneffectiveAgainst": [
       0
     ]
   },
@@ -129,6 +261,18 @@
       6,
       0,
       0
+    ],
+    "NotVeryEffectiveAgainst": [
+      3,
+      4,
+      7,
+      9,
+      10,
+      12,
+      16
+    ],
+    "IneffectiveAgainst": [
+      0
     ]
   },
   {
@@ -140,6 +284,18 @@
       0,
       0,
       0
+    ],
+    "NotVeryEffectiveAgainst": [
+      12,
+      13,
+      16,
+      0,
+      0,
+      0,
+      0
+    ],
+    "IneffectiveAgainst": [
+      5
     ]
   },
   {
@@ -151,6 +307,18 @@
       0,
       0,
       0
+    ],
+    "NotVeryEffectiveAgainst": [
+      9,
+      14,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "IneffectiveAgainst": [
+      17
     ]
   },
   {
@@ -161,6 +329,18 @@
       5,
       3,
       16,
+      0
+    ],
+    "NotVeryEffectiveAgainst": [
+      9,
+      10,
+      11,
+      15,
+      0,
+      0,
+      0
+    ],
+    "IneffectiveAgainst": [
       0
     ]
   },
@@ -173,6 +353,18 @@
       0,
       0,
       0
+    ],
+    "NotVeryEffectiveAgainst": [
+      9,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "IneffectiveAgainst": [
+      18
     ]
   },
   {
@@ -184,6 +376,18 @@
       0,
       0,
       0
+    ],
+    "NotVeryEffectiveAgainst": [
+      2,
+      17,
+      18,
+      0,
+      0,
+      0,
+      0
+    ],
+    "IneffectiveAgainst": [
+      0
     ]
   },
   {
@@ -194,6 +398,18 @@
       16,
       17,
       0,
+      0
+    ],
+    "NotVeryEffectiveAgainst": [
+      4,
+      9,
+      10,
+      0,
+      0,
+      0,
+      0
+    ],
+    "IneffectiveAgainst": [
       0
     ]
   }

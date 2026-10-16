@@ -64,12 +64,12 @@ PokemonComponent* TrainerComponent::GetActivePokemon() const
 
 bool TrainerComponent::CanPickupItem() const
 {
-	return m_ActivePokemon->GetStats().CurrentHealth != m_ActivePokemon->GetStats().MaxHealth;
+	return m_ActivePokemon->GetCurrentHealth() != m_ActivePokemon->GetStats().Health;
 }
 
 void TrainerComponent::HealActivePokemon()
 {
-	m_ActivePokemon->GetStats().CurrentHealth = m_ActivePokemon->GetStats().MaxHealth;
+	m_ActivePokemon->SetCurrentHealth(m_ActivePokemon->GetStats().Health);
 	m_ShowPickupPrompt = true;
 	m_MovementComponent->SetStatus(ControllableObject::Status::Disabled);
 }
@@ -95,7 +95,7 @@ void TrainerComponent::IncreaseScore(uint16_t amount)
 void TrainerComponent::Reset()
 {
 	m_Score = 1;
-	m_ActivePokemon->GetStats().CurrentHealth = m_ActivePokemon->GetStats().MaxHealth;
+	m_ActivePokemon->SetCurrentHealth(m_ActivePokemon->GetStats().Health);
 }
 
 PokemonComponent* TrainerComponent::CreateStartPokemon() const

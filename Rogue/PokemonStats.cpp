@@ -1,9 +1,7 @@
 #include "PokemonStats.h"
 
 PokemonStats::PokemonStats(const PODPokemon& pokemon) :
-	Level{ 1 },
-	MaxHealth{ pokemon.Health },
-	CurrentHealth{ MaxHealth },
+	Health{ pokemon.Health },
 	Attack{ pokemon.PhysicalAttack },
 	SpecialAttack{ pokemon.SpecicalAttack },
 	Defense{ pokemon.PhysicalDefense },

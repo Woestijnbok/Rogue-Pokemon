@@ -20,25 +20,29 @@ int main(int, char* [])
 	const std::filesystem::path elementsInputFilePath{ "Elements.json" };
 	assert(std::filesystem::exists(elementsInputFilePath));
 	const std::filesystem::path elementsOutputFilePath{ "Elements.bin" };
-	std::array<PODElement, POKEDEX_ELEMENT_COUNT> elements{};
-	ReadElements(elements, elementsInputFilePath);
-	WriteElements(elements, elementsOutputFilePath);
+	std::array<PODElement, POKEDEX_ELEMENT_COUNT>* elements{ new std::array<PODElement, POKEDEX_ELEMENT_COUNT>{} };
+	ReadElements(*elements, elementsInputFilePath);
+	WriteElements(*elements, elementsOutputFilePath);
 
 	// Read Write moves
 	const std::filesystem::path movesInputFilePath{ "Moves.json" };
 	assert(std::filesystem::exists(movesInputFilePath));
 	const std::filesystem::path movesOutputFilePath{ "Moves.bin" };
-	std::array<PODMove, POKEDEX_MOVE_COUNT> moves{};
-	ReadMoves(moves, movesInputFilePath);
-	WriteMoves(moves, movesOutputFilePath);
+	std::array<PODMove, POKEDEX_MOVE_COUNT>* moves{ new std::array<PODMove, POKEDEX_MOVE_COUNT>{} };
+	ReadMoves(*moves, movesInputFilePath);
+	WriteMoves(*moves, movesOutputFilePath);
 
 	// Read Write pokemon
 	const std::filesystem::path pokemonInputFilePath{ "Pokemon.json" };
 	assert(std::filesystem::exists(pokemonInputFilePath));
 	const std::filesystem::path pokemonOutputFilePath{ "Pokemon.bin" };
-	std::array<PODPokemon, POKEDEX_POKEMON_COUNT> pokemon{};
-	ReadPokemon(pokemon, pokemonInputFilePath);
-	WritePokemon(pokemon, pokemonOutputFilePath);
+	std::array<PODPokemon, POKEDEX_POKEMON_COUNT>* pokemon{ new std::array<PODPokemon, POKEDEX_POKEMON_COUNT>{} };
+	ReadPokemon(*pokemon, pokemonInputFilePath);
+	WritePokemon(*pokemon, pokemonOutputFilePath);
+
+	delete elements;
+	delete moves;
+	delete pokemon;
 
 	return 0;
 }
@@ -67,11 +71,25 @@ void ReadElements(std::array<PODElement, POKEDEX_ELEMENT_COUNT>& elements, const
 		// ID
 		currentElement->ID = elementObject.at("ID").get<uint8_t>();
 		
-		// EffectiveAgainst
-		const auto& effectiveAgainstData{ elementObject.at("SuperEffectiveAgainst") };
+		// SuperEffectiveAgainst
+		const auto& superEffectiveAgainstData{ elementObject.at("SuperEffectiveAgainst") };
 		for (size_t i = 0; i < 5; ++i)
 		{
-			currentElement->EffectiveAgainst[i] = effectiveAgainstData[i].get<uint8_t>();
+			currentElement->SuperEffectiveAgainst[i] = superEffectiveAgainstData[i].get<uint8_t>();
+		}
+
+		// NotVeryEffectiveAgainst
+		const auto& notVeryEffectiveAgainstData{ elementObject.at("NotVeryEffectiveAgainst") };
+		for (size_t i = 0; i < 7; ++i)
+		{
+			currentElement->NotVeryEffectiveAgainst[i] = notVeryEffectiveAgainstData[i].get<uint8_t>();
+		}
+
+		// IneffectiveAgainst
+		const auto& ineffectiveAgainstData{ elementObject.at("IneffectiveAgainst") };
+		for (size_t i = 0; i < 1; ++i)
+		{
+			currentElement->IneffectiveAgainst = ineffectiveAgainstData[i].get<uint8_t>();
 		}
 
 		++elementIndex;

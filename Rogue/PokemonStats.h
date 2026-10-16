@@ -22,9 +22,7 @@ struct PokemonStats
 	PokemonStats& operator=(const PokemonStats& other) = default;
 	PokemonStats& operator=(PokemonStats&& other) noexcept = default;
 
-	uint16_t Level;
-	uint16_t MaxHealth;
-	uint16_t CurrentHealth;
+	uint16_t Health;
 	uint16_t Attack;
 	uint16_t SpecialAttack;
 	uint16_t Defense;
