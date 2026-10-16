@@ -33,7 +33,8 @@ TrainerComponent::TrainerComponent(Minigin::GameObject* owner) :
 	m_ShowPickupPrompt{ false },
 	m_MovementComponent{ owner->GetComponent<MovementComponent>() },
 	m_InfoBoxTexture{ SceneManager::Instance()->GetScene("Battle")->GetGameObject("Manager")->GetComponent<BattleManagerComponent>()->GetInfoBoxTexture() },
-	m_PickupText{ new Text{ "is back to full health!", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } }
+	m_PickupText{ new Text{ "is back to full health!", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
+	m_Score{ 1 }
 {
 	
 }
@@ -93,7 +94,7 @@ void TrainerComponent::IncreaseScore(uint16_t amount)
 
 void TrainerComponent::Reset()
 {
-	m_Score = 0;
+	m_Score = 1;
 	m_ActivePokemon->GetStats().CurrentHealth = m_ActivePokemon->GetStats().MaxHealth;
 }
 

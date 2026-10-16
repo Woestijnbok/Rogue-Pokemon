@@ -227,6 +227,8 @@ void TileManagerComponent::RandomizeTiles()
 
 void TileManagerComponent::SetupNextLevel()
 {
+	m_DefeatedPokemon = 0;
+
 	m_TileChanceGrass *= (m_MultiplierTileChanceGrass / 100.0f);
 	m_TileChancePokemon *= (m_MultiplierTileChancePokemon / 100.0f);
 	m_TileChanceItem *= (m_MultiplierTileChanceItem / 100.0f);

@@ -138,7 +138,6 @@ void ConnectBattleEvents(BattleManagerComponent* battleManager, Minigin::Scene* 
 	battleManager->OnBattleFinished().AddObserver(std::bind(&FocusWorld, world, battle));
 
 	// Battle won event
-	battleManager->OnBattleWon().AddObserver(std::bind(&TrainerComponent::IncreaseScore, trainer, uint16_t(1)));
 	battleManager->OnBattleWon().AddObserver(std::bind(&TileManagerComponent::DefeatedPokemon, tileManager));
 
 	// Battle lost event
@@ -152,6 +151,7 @@ void ConnectBattleEvents(BattleManagerComponent* battleManager, Minigin::Scene* 
 	tileManager->OnLevelDefeated().AddObserver(std::bind(&MovementComponent::Reset, movementComponent));
 	tileManager->OnLevelDefeated().AddObserver(std::bind(&SpriteComponent::Reset, spriteComponent));
 	tileManager->OnLevelDefeated().AddObserver(std::bind(&UpdateWildPokemonLevelRange, battleManager));
+	tileManager->OnLevelDefeated().AddObserver(std::bind(&TrainerComponent::IncreaseScore, trainer, uint16_t(1)));
 }
 
 void SetupAudio(BattleManagerComponent* battleManager, TileManagerComponent* tileManager)

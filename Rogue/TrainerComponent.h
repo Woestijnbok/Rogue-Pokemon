@@ -86,6 +86,6 @@ private:
 	Minigin::Texture const * m_InfoBoxTexture;
 	// Cached pickup prompt text
 	std::unique_ptr<Minigin::Text> m_PickupText;
-	// Score based on how many wild pokemon we have defeated
+	// Score based on which level the player is at
 	uint16_t m_Score;
 };
