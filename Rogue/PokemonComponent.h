@@ -55,7 +55,7 @@ public:
 	* 
 	* @return The stats of the pokemon.
 	*/
-	const PokemonStats& GetStats();
+	const PokemonStats& GetStats() const;
 	/*
 	* Gets the current pokemon health.
 	*
@@ -134,7 +134,14 @@ public:
 	* 
 	* @return The ID to look up the pokemon in the pokedex.
 	*/
-	size_t GetPokedexID();
+	size_t GetPokedexID() const;
+	/*
+	* Checks Wether the pokemon is of a specific type.
+	* 
+	* @param type: The type index
+	* @return True if it's the type
+	*/
+	bool IsOfElement(uint8_t type) const;
 	
 private:
 	// ID used to search in the pokemon in the pokedex

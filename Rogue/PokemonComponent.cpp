@@ -108,12 +108,22 @@ void PokemonComponent::SetLevel(uint16_t level)
 	m_LevelText->SetText(std::format("Lv {}", m_Level));
 }
 
-size_t PokemonComponent::GetPokedexID()
+size_t PokemonComponent::GetPokedexID() const
 {
 	return m_ID;
 }
 
-const PokemonStats& PokemonComponent::GetStats()
+bool PokemonComponent::IsOfElement(uint8_t type) const
+{
+	if (type <= 0 or type >= POKEDEX_ELEMENT_COUNT)
+	{
+		throw std::runtime_error{"PokemonComponent::IsOfElement(...) invalid element type index"};
+	}
+
+	return std::ranges::any_of(m_Types, [type](uint8_t element) -> bool { return element == type; });
+}
+
+const PokemonStats& PokemonComponent::GetStats() const
 {
 	return m_Stats;
 }

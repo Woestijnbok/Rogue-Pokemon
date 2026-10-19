@@ -18,6 +18,7 @@
 #include "TrainerComponent.h"
 #include "MovementComponent.h"
 #include "PokedexComponent.h"
+#include "Move.h"
 
 // Other
 #include "Helpers.h"
@@ -170,14 +171,20 @@ void BattleManagerComponent::Confirm()
 		{
 		case BattleState::SelectMove:
 			m_CurrentBattleState = BattleState::PerformPlayerMove;
-			UseSelectedMove();
-			CheckBattleEnd();
+			if (MoveHits(m_CurrentBattle.first->GetActivePokemon()->GetMoves().at(m_CurrentMove)))
+			{
+				UseSelectedMove();
+				CheckBattleEnd();
+			}
 			break;
 		case BattleState::PerformPlayerMove:
 			m_CurrentBattleState = BattleState::PerformEnemyMove;
 			SelectEnemyMove();
-			UseSelectedMove();
-			CheckBattleEnd();
+			if (MoveHits(m_CurrentBattle.second->GetMoves().at(m_CurrentMove)))
+			{
+				UseSelectedMove();
+				CheckBattleEnd();
+			}
 			break;
 		case BattleState::PerformEnemyMove:
 			m_CurrentBattleState = BattleState::SelectMove;
@@ -243,7 +250,16 @@ void BattleManagerComponent::StartBattle(TrainerComponent* trainer, PokemonCompo
 {
 	m_CurrentBattle.first = trainer;
 	m_CurrentBattle.second = enemy;
-	m_CurrentBattleState = BattleState::SelectMove;
+
+	if (trainer->GetActivePokemon()->GetStats().Speed >= enemy->GetStats().Speed)
+	{
+		m_CurrentBattleState = BattleState::SelectMove;
+	}
+	else
+	{
+		m_CurrentBattleState = BattleState::PerformPlayerMove;
+		Confirm();
+	}
 
 	m_OnBattleStarted.Notify();
 }
@@ -446,13 +462,11 @@ void BattleManagerComponent::UseSelectedMove()
 
 	if (m_CurrentBattleState == BattleState::PerformPlayerMove)
 	{
-		uint8_t attackPower{ trainerPokemon->GetMoves()[m_CurrentMove].Power};
-		wildPokemon->TakeDamage(attackPower);
+		wildPokemon->TakeDamage(CalculateDamage(*trainerPokemon, *wildPokemon, trainerPokemon->GetMoves().at(m_CurrentMove)));
 	}
 	else
 	{
-		uint8_t attackPower{ wildPokemon->GetMoves()[m_CurrentMove].Power };
-		trainerPokemon->TakeDamage(attackPower);
+		trainerPokemon->TakeDamage(CalculateDamage(*wildPokemon, *trainerPokemon, wildPokemon->GetMoves().at(m_CurrentMove)));
 	}
 }
 
@@ -474,4 +488,27 @@ void BattleManagerComponent::CheckBattleEnd()
 void BattleManagerComponent::SetWildPokemonLevel(PokemonComponent* pokemon)
 {
 	pokemon->SetLevel(static_cast<uint16_t>(m_CurrentWildPokemonLevelDistribution(m_RandomEngine)));
+}
+
+bool BattleManagerComponent::MoveHits(const Move& move)
+{
+	return m_ChanceDistribution(m_RandomEngine) <= static_cast<float>(move.Accuracy);
+}
+
+uint16_t BattleManagerComponent::CalculateDamage(const PokemonComponent& attackingPokemon, const PokemonComponent& defendingPokemon, const Move& move) const
+{
+	// Raw move power
+	float damage{ static_cast<float>(move.Power) };
+
+	// Attack versus Defense depends on move if physical of special
+	float statRatio{ (move.Type == MoveType::Physical) ? float(attackingPokemon.GetStats().Attack) / defendingPokemon.GetStats().Defense : float(attackingPokemon.GetStats().SpecialAttack) / defendingPokemon.GetStats().SpecialDefense };
+	damage *= statRatio;
+
+	// STAB check, if the attacking pokemon uses a move which has the same element type has the pokemon itself it receives bonus damage
+	if (attackingPokemon.IsOfElement(move.Element)) damage *= 1.5f;
+
+	// Apply element type effectivness
+	damage *= m_Pokedex->GetTypeEffectiveness(move.ID, defendingPokemon.GetPokedexID());
+
+	return static_cast<uint16_t>(damage);
 }

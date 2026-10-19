@@ -20,6 +20,7 @@ namespace Minigin
 class PokemonComponent;
 class TrainerComponent;
 class PokedexComponent;
+struct Move;
 
 /*
 * Manages battles between trainers and wild pokemons.
@@ -179,6 +180,22 @@ private:
 	* Helper to set the level of the wild pokemon.
 	*/
 	void SetWildPokemonLevel(PokemonComponent* pokemon);
+	/*
+	* Checks wether the accuracy check of a move succeeds
+	* 
+	* @param move: The move to check
+	* @return True if the move succeeded the accuracy check
+	*/
+	bool MoveHits(const Move& move);
+	/*
+	* Does the damage calculations for moves
+	* 
+	* @param attackingPokemon: The pokemon that's performing the move.
+	* @param defendingPokemon: The pokemon that's taking damage.
+	* @param move: The attack
+	* @return the final damage
+	*/
+	uint16_t CalculateDamage(const PokemonComponent& attackingPokemon, const PokemonComponent& defendingPokemon, const Move& move) const;
 
 	// Pokedex Component containing all needed battle information about pokemon battles
 	PokedexComponent* m_Pokedex;

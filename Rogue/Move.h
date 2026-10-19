@@ -38,6 +38,8 @@ struct Move
 	const std::unique_ptr<Minigin::Text> Name;
 	// Move Type
 	MoveType Type;
+	// ID
+	uint8_t ID;
 	// Element Type
 	uint8_t Element;
 	// Power
