@@ -4,7 +4,6 @@
 #include <cstdint>
 #include <memory>
 #include <random>
-#include <optional>
 
 // Core
 #include "Component.h"
@@ -200,6 +199,16 @@ private:
 	* Render the info box that mentioned that the move failed to hit.
 	*/
 	void RenderMissedMove() const;
+	/*
+	* Perform's turn logic based on whose turn it is.
+	* 
+	* @param isPlayerTurn: True if it's the players turn.
+	*/
+	void PerformTurn(bool isPlayerTurn);
+	/*
+	* Progress message reads about the turn.
+	*/
+	void AdvanceTurn();
 
 	// Pokedex Component containing all needed battle information about pokemon battles
 	PokedexComponent* m_Pokedex;
@@ -251,6 +260,8 @@ private:
 	const float m_LegendaryChance;
 	// Current move index
 	uint8_t m_CurrentMove;
-	// Wether or not the player pokemon missed a move, empty if no move failed
-	std::optional<bool> m_PlayerMissedMove;
+	// Tracks wether or the current battlestate is during player or wild pokemon turn
+	bool m_IsPlayerTurn;
+	// Wether or not the last used move missed
+	bool m_LastMoveHit;
 };	

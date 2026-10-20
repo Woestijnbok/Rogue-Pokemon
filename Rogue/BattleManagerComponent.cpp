@@ -53,7 +53,8 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_LegendaryDistribution{ POKEDEX_POKEMON_LEGENDARY_START, POKEDEX_POKEMON_COUNT },
 	m_LegendaryChance{ 5 },
 	m_CurrentMove{ 0 },
-	m_PlayerMissedMove{}
+	m_IsPlayerTurn{ true },
+	m_LastMoveHit{ true }
 {
 	
 }
@@ -178,74 +179,24 @@ void BattleManagerComponent::Confirm()
 		switch (m_CurrentBattleState)
 		{
 		case BattleState::SelectMove:
-			m_CurrentBattleState = BattleState::PerformPlayerMove;
-			if (MoveHits(m_CurrentBattle.first->GetActivePokemon()->GetMoves().at(m_CurrentMove)))
-			{
-				UseSelectedMove();
-				CheckBattleEnd();
-			}
-			else
-			{
-				m_PlayerMissedMove = true;
-			}
+			PerformTurn(true);
 			break;
 		case BattleState::PerformPlayerMove:
-			if(!m_PlayerMissedMove.has_value())
-			{
-				m_CurrentBattleState = BattleState::PerformEnemyMove;
-				SelectEnemyMove();
-				if (MoveHits(m_CurrentBattle.second->GetMoves().at(m_CurrentMove)))
-				{
-					UseSelectedMove();
-					CheckBattleEnd();
-				}
-				else
-				{
-					m_PlayerMissedMove = false;
-				}
-			}
-			else
-			{
-				m_CurrentBattleState = BattleState::MissedMove;
-			}
-			break;
 		case BattleState::PerformEnemyMove:
-			if (!m_PlayerMissedMove.has_value())
+			if (m_LastMoveHit) 
 			{
-				m_CurrentBattleState = BattleState::SelectMove;
-				m_CurrentMove = 0;
+				AdvanceTurn();
 			}
-			else
+			else 
 			{
 				m_CurrentBattleState = BattleState::MissedMove;
 			}
 			break;
 		case BattleState::MissedMove:
-			if (m_PlayerMissedMove.value())
-			{
-				m_CurrentBattleState = BattleState::PerformEnemyMove;
-				SelectEnemyMove();
-				if (MoveHits(m_CurrentBattle.second->GetMoves().at(m_CurrentMove)))
-				{
-					UseSelectedMove();
-					CheckBattleEnd();
-				}
-				else
-				{
-					m_PlayerMissedMove = false;
-				}
-			}
-			else
-			{
-				m_CurrentBattleState = BattleState::SelectMove;
-				m_CurrentMove = 0;
-			}
-			m_PlayerMissedMove.reset();
+			AdvanceTurn();
 			break;
 		case BattleState::EndBattle:
 			EndBattle();
-			break;
-		case BattleState::None:
 			break;
 		default:
 			break;
@@ -290,9 +241,9 @@ std::uniform_int_distribution<int>::param_type BattleManagerComponent::GetWildPo
 
 void BattleManagerComponent::SetWildPokemonLevelRange(const std::uniform_int_distribution<int>::param_type& range)
 {
-	if ((range._Min > range._Max) or (range._Min < 0) or (range._Max > 100))
+	if ((range.a() > range.b()) or (range.a() < 0) or (range.b() > 100))
 	{
-		throw std::exception{ std::format("Invalid wild pokemon level range: minLevel = {}, maxLevel = {}", range._Max, range._Max).c_str() };
+		throw std::exception{ std::format("Invalid wild pokemon level range: minLevel = {}, maxLevel = {}", range.a(), range.b()).c_str()};
 	}
 
 	m_CurrentWildPokemonLevelDistribution.param(range);
@@ -306,10 +257,12 @@ void BattleManagerComponent::StartBattle(TrainerComponent* trainer, PokemonCompo
 	if (trainer->GetActivePokemon()->GetStats().Speed >= enemy->GetStats().Speed)
 	{
 		m_CurrentBattleState = BattleState::SelectMove;
+		m_IsPlayerTurn = true;
 	}
 	else
 	{
 		m_CurrentBattleState = BattleState::PerformPlayerMove;
+		m_IsPlayerTurn = false;
 		Confirm();
 	}
 
@@ -567,9 +520,45 @@ uint16_t BattleManagerComponent::CalculateDamage(const PokemonComponent& attacki
 
 void BattleManagerComponent::RenderMissedMove() const
 {
-	const glm::ivec2 topPosition{ 550.0f, 45.0f };
-	const glm::ivec2 bottomPosition{ 550.0f, 15.0f };
+	const glm::ivec2 startPosition{ 550.0f, 45.0f };
 
-	const glm::ivec2 position{ topPosition + (m_MissedMoveText->GetTexture()->GetSize() / 2) };
+	const glm::ivec2 position{ startPosition + (m_MissedMoveText->GetTexture()->GetSize() / 2) };
 	Renderer::Instance()->RenderText(*m_MissedMoveText, Transform{ position, 0, glm::vec2{ 1.0f } });
+}
+
+void BattleManagerComponent::PerformTurn(bool isPlayerTurn)
+{
+	m_IsPlayerTurn = isPlayerTurn;
+
+	if (m_IsPlayerTurn)
+	{
+		m_CurrentBattleState = BattleState::PerformPlayerMove;
+	}
+	else
+	{
+		m_CurrentBattleState = BattleState::PerformEnemyMove;
+		SelectEnemyMove();
+	}
+
+	PokemonComponent* attacker{ (m_IsPlayerTurn) ? m_CurrentBattle.first->GetActivePokemon() : m_CurrentBattle.second };
+
+	m_LastMoveHit = MoveHits(attacker->GetMoves().at(m_CurrentMove));
+	if (m_LastMoveHit)
+	{
+		UseSelectedMove();
+		CheckBattleEnd();
+	}
+}
+
+void BattleManagerComponent::AdvanceTurn()
+{
+	if (m_IsPlayerTurn)
+	{
+		PerformTurn(false);
+	}
+	else
+	{
+		m_CurrentBattleState = BattleState::SelectMove;
+		m_CurrentMove = 0;
+	}
 }
