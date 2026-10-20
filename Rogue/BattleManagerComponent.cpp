@@ -43,6 +43,7 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_SelectArrow{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Select Arrow.png") },
 	m_WildText{ new Text{ "Wild", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_UsedText{ new Text{ "used", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
+	m_MissedMoveText{ new Text{ "But, it failed", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_RandomDevice{},
 	m_RandomEngine{ m_RandomDevice() },
 	m_StartWildPokemonLevelDistribution{ 1, 5 },
@@ -51,7 +52,8 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_CommonDistribution{ 1, POKEDEX_POKEMON_LEGENDARY_START - 1 },
 	m_LegendaryDistribution{ POKEDEX_POKEMON_LEGENDARY_START, POKEDEX_POKEMON_COUNT },
 	m_LegendaryChance{ 5 },
-	m_CurrentMove{ 0 }
+	m_CurrentMove{ 0 },
+	m_PlayerMissedMove{}
 {
 	
 }
@@ -74,6 +76,9 @@ void BattleManagerComponent::Render() const
 		break;
 	case BattleState::PerformEnemyMove:
 		RenderUsedMove(false);
+		break;
+	case BattleState::MissedMove:
+		RenderMissedMove();
 		break;
 	case BattleState::EndBattle:
 		RenderUsedMove(m_CurrentBattle.second->IsDead());
@@ -132,32 +137,35 @@ bool BattleManagerComponent::InBattle() const
 
 void BattleManagerComponent::ChangeSelectedMove(Direction direction)
 {
-	switch (direction)
+	if(m_CurrentBattleState == BattleState::SelectMove)
 	{
-	case Direction::Up:
-		if (m_CurrentMove == 2 or m_CurrentMove == 3)
+		switch (direction)
 		{
-			m_CurrentMove -= 2;
+		case Direction::Up:
+			if (m_CurrentMove == 2 or m_CurrentMove == 3)
+			{
+				m_CurrentMove -= 2;
+			}
+			break;
+		case Direction::Right:
+			if (m_CurrentMove == 0 or m_CurrentMove == 2)
+			{
+				m_CurrentMove += 1;
+			}
+			break;
+		case Direction::Down:
+			if (m_CurrentMove == 0 or m_CurrentMove == 1)
+			{
+				m_CurrentMove += 2;
+			}
+			break;
+		case Direction::Left:
+			if (m_CurrentMove == 1 or m_CurrentMove == 3)
+			{
+				m_CurrentMove -= 1;
+			}
+			break;
 		}
-		break;
-	case Direction::Right:
-		if (m_CurrentMove == 0 or m_CurrentMove == 2)
-		{
-			m_CurrentMove += 1;
-		}
-		break;
-	case Direction::Down:
-		if (m_CurrentMove == 0 or m_CurrentMove == 1)
-		{
-			m_CurrentMove += 2;
-		}
-		break;
-	case Direction::Left:
-		if (m_CurrentMove == 1 or m_CurrentMove == 3)
-		{
-			m_CurrentMove -= 1;
-		}
-		break;
 	}
 
 	assert(m_CurrentMove >= 0 and m_CurrentMove < 4);
@@ -176,19 +184,63 @@ void BattleManagerComponent::Confirm()
 				UseSelectedMove();
 				CheckBattleEnd();
 			}
+			else
+			{
+				m_PlayerMissedMove = true;
+			}
 			break;
 		case BattleState::PerformPlayerMove:
-			m_CurrentBattleState = BattleState::PerformEnemyMove;
-			SelectEnemyMove();
-			if (MoveHits(m_CurrentBattle.second->GetMoves().at(m_CurrentMove)))
+			if(!m_PlayerMissedMove.has_value())
 			{
-				UseSelectedMove();
-				CheckBattleEnd();
+				m_CurrentBattleState = BattleState::PerformEnemyMove;
+				SelectEnemyMove();
+				if (MoveHits(m_CurrentBattle.second->GetMoves().at(m_CurrentMove)))
+				{
+					UseSelectedMove();
+					CheckBattleEnd();
+				}
+				else
+				{
+					m_PlayerMissedMove = false;
+				}
+			}
+			else
+			{
+				m_CurrentBattleState = BattleState::MissedMove;
 			}
 			break;
 		case BattleState::PerformEnemyMove:
-			m_CurrentBattleState = BattleState::SelectMove;
-			m_CurrentMove = 0;
+			if (!m_PlayerMissedMove.has_value())
+			{
+				m_CurrentBattleState = BattleState::SelectMove;
+				m_CurrentMove = 0;
+			}
+			else
+			{
+				m_CurrentBattleState = BattleState::MissedMove;
+			}
+			break;
+		case BattleState::MissedMove:
+			if (m_PlayerMissedMove.value())
+			{
+				m_CurrentBattleState = BattleState::PerformEnemyMove;
+				SelectEnemyMove();
+				if (MoveHits(m_CurrentBattle.second->GetMoves().at(m_CurrentMove)))
+				{
+					UseSelectedMove();
+					CheckBattleEnd();
+				}
+				else
+				{
+					m_PlayerMissedMove = false;
+				}
+			}
+			else
+			{
+				m_CurrentBattleState = BattleState::SelectMove;
+				m_CurrentMove = 0;
+			}
+			m_PlayerMissedMove.reset();
 			break;
 		case BattleState::EndBattle:
 			EndBattle();
@@ -511,4 +563,13 @@ uint16_t BattleManagerComponent::CalculateDamage(const PokemonComponent& attacki
 	damage *= m_Pokedex->GetTypeEffectiveness(move.ID, defendingPokemon.GetPokedexID());
 
 	return static_cast<uint16_t>(damage);
+}
+
+void BattleManagerComponent::RenderMissedMove() const
+{
+	const glm::ivec2 topPosition{ 550.0f, 45.0f };
+	const glm::ivec2 bottomPosition{ 550.0f, 15.0f };
+
+	const glm::ivec2 position{ topPosition + (m_MissedMoveText->GetTexture()->GetSize() / 2) };
+	Renderer::Instance()->RenderText(*m_MissedMoveText, Transform{ position, 0, glm::vec2{ 1.0f } });
 }

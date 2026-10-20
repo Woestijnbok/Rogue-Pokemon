@@ -51,6 +51,7 @@ enum class BattleState : uint8_t
 	SelectMove,
 	PerformPlayerMove,
 	PerformEnemyMove,
+	MissedMove,
 	EndBattle,
 	None
 };

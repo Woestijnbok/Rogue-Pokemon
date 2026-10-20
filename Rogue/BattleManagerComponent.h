@@ -4,11 +4,11 @@
 #include <cstdint>
 #include <memory>
 #include <random>
+#include <optional>
 
 // Core
 #include "Component.h"
 #include "Subject.h"
-
 #include "Enums.h"
 
 namespace Minigin
@@ -196,6 +196,10 @@ private:
 	* @return the final damage
 	*/
 	uint16_t CalculateDamage(const PokemonComponent& attackingPokemon, const PokemonComponent& defendingPokemon, const Move& move) const;
+	/*
+	* Render the info box that mentioned that the move failed to hit.
+	*/
+	void RenderMissedMove() const;
 
 	// Pokedex Component containing all needed battle information about pokemon battles
 	PokedexComponent* m_Pokedex;
@@ -227,6 +231,8 @@ private:
 	std::unique_ptr<Minigin::Text> m_WildText;
 	// Used text to show the move used by the trainer's pokemon.
 	std::unique_ptr<Minigin::Text> m_UsedText;
+	// Missed move text
+	std::unique_ptr<Minigin::Text> m_MissedMoveText;
 	// Random device used for creating seeds
 	std::random_device m_RandomDevice;
 	// Random engine used to generate random values based on a seed.
@@ -245,4 +251,6 @@ private:
 	const float m_LegendaryChance;
 	// Current move index
 	uint8_t m_CurrentMove;
+	// Wether or not the player pokemon missed a move, empty if no move failed
+	std::optional<bool> m_PlayerMissedMove;
 };	
