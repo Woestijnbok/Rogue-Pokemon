@@ -123,12 +123,17 @@ public:
 	*/
 	TrainerComponent const * GetTrainer() const;
 	/*
-	* Sets the pokemon's level, also clamps the level between 1 and 100.
+	* Sets the pokemon's level adjusting it's stats, also clamps the level between 1 and 100.
 	* Finnaly updates the level text to reflect the new level.
 	* 
 	* @param level: The new pokemon's level.
 	*/
-	void SetLevel(uint16_t level);
+	void SetLevel(uint8_t level);
+	/*
+	* Levels the pokemon up by one increasing it's stats.
+	* Also updating the level text to reflect the new level.
+	*/
+	void LevelUp();
 	/*
 	* Getter for the pokemon ID.
 	* 
@@ -142,12 +147,30 @@ public:
 	* @return True if it's the type
 	*/
 	bool IsOfElement(uint8_t type) const;
-	
+	/*
+	* Gets the current level of the pokemon.
+	* 
+	* @return The level of the pokemon.
+	*/
+	uint8_t GetLevel() const;
+	/*
+	* Gains experience towards the next level and possibily levels up.
+	* 
+	* @param experience: The gained experience
+	*/
+	void GainExperience(uint8_t experience);
+	/*
+	* Resets the pokemon as if it where to start from level 1.
+	*/
+	void Reset();
+
 private:
 	// ID used to search in the pokemon in the pokedex
 	size_t m_ID;
 	// Current level of the pokemon
-	uint16_t m_Level;
+	uint8_t m_Level;
+	// The current experience towards the next level.
+	uint8_t m_Experience;
 	// Current health of the pokemon different from m_Stats.Health which is max health
 	uint16_t m_CurrentHealth;
 	// Type indices of the pokemon, zero means no type

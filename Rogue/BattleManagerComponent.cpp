@@ -120,6 +120,7 @@ void BattleManagerComponent::EndBattle()
 	m_OnBattleFinished.Notify();
 	if (m_CurrentBattle.second->IsDead())
 	{
+		m_CurrentBattle.first->GetActivePokemon()->GainExperience(m_CurrentBattle.second->GetLevel());
 		m_OnBattleWon.Notify();
 	}
 	else
@@ -492,7 +493,7 @@ void BattleManagerComponent::CheckBattleEnd()
 
 void BattleManagerComponent::SetWildPokemonLevel(PokemonComponent* pokemon)
 {
-	pokemon->SetLevel(static_cast<uint16_t>(m_CurrentWildPokemonLevelDistribution(m_RandomEngine)));
+	pokemon->SetLevel(static_cast<uint8_t>(m_CurrentWildPokemonLevelDistribution(m_RandomEngine)));
 }
 
 bool BattleManagerComponent::MoveHits(const Move& move)

@@ -95,7 +95,8 @@ void TrainerComponent::IncreaseScore(uint16_t amount)
 void TrainerComponent::Reset()
 {
 	m_Score = 1;
-	m_ActivePokemon->SetCurrentHealth(m_ActivePokemon->GetStats().Health);
+	m_ActivePokemon->Reset();
+	m_ActivePokemon->SetLevel(3);
 }
 
 PokemonComponent* TrainerComponent::CreateStartPokemon() const
@@ -103,7 +104,7 @@ PokemonComponent* TrainerComponent::CreateStartPokemon() const
 	PODPokemon pokemon{ SceneManager::Instance()->GetScene("Battle")->GetGameObject("Manager")->GetComponent<PokedexComponent>()->GetPokemon(6) };
 	GameObject* pokemonObject{ GetOwner()->GetScene()->CreateGameObject(std::format("Trainer's {}", pokemon.Name)) };
 	PokemonComponent* pokemonComponent{ pokemonObject->CreateComponent<PokemonComponent>(pokemon, this) };
-	pokemonComponent->SetLevel(100);
+	pokemonComponent->SetLevel(3);
 
 	return pokemonComponent;
 }
