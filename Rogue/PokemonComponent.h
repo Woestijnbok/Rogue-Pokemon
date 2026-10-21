@@ -61,7 +61,7 @@ public:
 	*
 	* @return The current health of the pokemon.
 	*/
-	uint16_t GetCurrentHealth();
+	uint16_t GetCurrentHealth() const;
 	/*
 	* Sets the current pokemon health.
 	*

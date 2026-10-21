@@ -150,7 +150,7 @@ void ConnectBattleEvents(BattleManagerComponent* battleManager, Minigin::Scene* 
 	// Level defeated event
 	tileManager->OnLevelDefeated().AddObserver(std::bind(&MovementComponent::Reset, movementComponent));
 	tileManager->OnLevelDefeated().AddObserver(std::bind(&SpriteComponent::Reset, spriteComponent));
-	tileManager->OnLevelDefeated().AddObserver(std::bind(&UpdateWildPokemonLevelRange, battleManager));
+	tileManager->OnLevelDefeated().AddObserver(std::bind(&BattleManagerComponent::IncreaseDifficulty, battleManager));
 	tileManager->OnLevelDefeated().AddObserver(std::bind(&TrainerComponent::IncreaseScore, trainer, uint16_t(1)));
 }
 
@@ -176,14 +176,4 @@ void SetupAudio(BattleManagerComponent* battleManager, TileManagerComponent* til
 void OnSoundEffectFinished(const std::filesystem::path& /*path*/)
 {
 	AudioManager::Instance()->HandleMusic("Roam.mp3", AudioManager::Action::Resume);
-}
-
-void UpdateWildPokemonLevelRange(BattleManagerComponent* battleManager)
-{
-	constexpr int newLevelIncrease{ 5 };
-
-	std::uniform_int_distribution<int>::param_type oldLevelRange{ battleManager->GetWildPokemonLevelRange() };
-	std::uniform_int_distribution<int>::param_type newLevelRange{ oldLevelRange._Min + newLevelIncrease, oldLevelRange._Max + newLevelIncrease };
-
-	battleManager->SetWildPokemonLevelRange(newLevelRange);
 }

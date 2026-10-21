@@ -116,6 +116,10 @@ public:
 	* @param range: The new level range for wild pokemon.
 	*/
 	void SetWildPokemonLevelRange(const std::uniform_int_distribution<int>::param_type& range);
+	/*
+	* Increases the difficulty of the battles by one stage typically for each new level.
+	*/
+	void IncreaseDifficulty();
 
 private:
 	/*
@@ -256,8 +260,14 @@ private:
 	std::uniform_int_distribution<int> m_CommonDistribution;
 	// Distribution spanning all legendary pokemon pokedex indices
 	std::uniform_int_distribution<int> m_LegendaryDistribution;
+	// Start Chance of encountering a legendary pokemon
+	const float m_StartLegendaryChance;
 	// Chance of encountering a legendary pokemon
-	const float m_LegendaryChance;
+	float m_LegendaryChance;
+	// Start of enemy AI selecting a random move, if not will use a scoring system.
+	const float m_StartEnemySmartness;
+	// Chance of enemy AI selecting a random move, if not will use a scoring system.
+	float m_EnemySmartness;
 	// Current move index
 	uint8_t m_CurrentMove;
 	// Tracks wether or the current battlestate is during player or wild pokemon turn

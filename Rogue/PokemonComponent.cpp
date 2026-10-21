@@ -163,7 +163,7 @@ const PokemonStats& PokemonComponent::GetStats() const
 	return m_Stats;
 }
 
-uint16_t PokemonComponent::GetCurrentHealth()
+uint16_t PokemonComponent::GetCurrentHealth() const
 {
 	return m_CurrentHealth;
 }

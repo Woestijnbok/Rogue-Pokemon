@@ -1,5 +1,7 @@
 #include "BattleManagerComponent.h"
 
+#define POKEMON_MOVE_SCORING_EPSILON 0.1f
+
 // Libraries
 #include <cassert>
 #include <algorithm>
@@ -51,7 +53,10 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_ChanceDistribution{ 0.0f, 100.0f },
 	m_CommonDistribution{ 1, POKEDEX_POKEMON_LEGENDARY_START - 1 },
 	m_LegendaryDistribution{ POKEDEX_POKEMON_LEGENDARY_START, POKEDEX_POKEMON_COUNT },
-	m_LegendaryChance{ 5 },
+	m_StartLegendaryChance{ 1.0f },
+	m_LegendaryChance{ m_StartLegendaryChance },
+	m_StartEnemySmartness{ 30.0f },
+	m_EnemySmartness{ m_StartEnemySmartness },
 	m_CurrentMove{ 0 },
 	m_IsPlayerTurn{ true },
 	m_LastMoveHit{ true }
@@ -233,6 +238,8 @@ Texture const* BattleManagerComponent::GetInfoBoxTexture() const
 void BattleManagerComponent::Reset()
 {
 	m_CurrentWildPokemonLevelDistribution = m_StartWildPokemonLevelDistribution;
+	m_LegendaryChance = m_StartLegendaryChance;
+	m_EnemySmartness = m_StartEnemySmartness;
 }
 
 std::uniform_int_distribution<int>::param_type BattleManagerComponent::GetWildPokemonLevelRange()
@@ -248,6 +255,16 @@ void BattleManagerComponent::SetWildPokemonLevelRange(const std::uniform_int_dis
 	}
 
 	m_CurrentWildPokemonLevelDistribution.param(range);
+}
+
+void BattleManagerComponent::IncreaseDifficulty()
+{
+	constexpr int newLevelIncrease{ 5 };
+	std::uniform_int_distribution<int>::param_type newWildPokemonLevelRange{ m_CurrentWildPokemonLevelDistribution.a() + newLevelIncrease, m_CurrentWildPokemonLevelDistribution.b() + newLevelIncrease };
+	SetWildPokemonLevelRange(newWildPokemonLevelRange);
+
+	m_LegendaryChance = std::clamp(m_LegendaryChance + 1.0f, 0.0f, 100.0f);
+	m_EnemySmartness = std::clamp(m_EnemySmartness - 1.0f, 0.0f, 100.0f);
 }
 
 void BattleManagerComponent::StartBattle(TrainerComponent* trainer, PokemonComponent* enemy)
@@ -478,9 +495,49 @@ void BattleManagerComponent::UseSelectedMove()
 
 void BattleManagerComponent::SelectEnemyMove()
 {
-	// For now just select a random move, later we can implement some scoring system to select the best move based on the situation.
-	std::uniform_int_distribution<int> distribution{ 0, 3 };
-	m_CurrentMove = static_cast<uint8_t>(distribution(m_RandomEngine));
+	const PokemonComponent& enemy{ *m_CurrentBattle.second };
+	const PokemonComponent& player{ *m_CurrentBattle.first->GetActivePokemon() };
+	const std::array<Move, 4>& moves{ enemy.GetMoves() };
+
+	// Chooses random move if failed to hit smartness check and isn't a legendary pokemon
+	if (m_ChanceDistribution(m_RandomEngine) < m_EnemySmartness and enemy.GetPokedexID() < POKEDEX_POKEMON_LEGENDARY_START)
+	{
+		std::uniform_int_distribution<int> random{ 0, 3 };
+		m_CurrentMove = static_cast<uint8_t>(random(m_RandomEngine));
+	}
+	// Chooses a move based on scoring
+	else
+	{
+		float bestScore{ -1.0f };
+		std::vector<uint8_t> bestMoves;
+
+		for (uint8_t moveIndex{ 0 }; moveIndex < 4; ++moveIndex)
+		{
+			const Move& move{ moves.at(moveIndex) };
+			const float accuracy{ static_cast<float>(move.Accuracy) / 100.0f };
+			const float damage{ static_cast<float>(CalculateDamage(enemy, player, move)) };
+
+			// Scoring
+			float score{ damage * accuracy };						// expected damage
+			if (move.Power == 0) score = 1.0f;						// TODO: Status moves shouldn't be in the game really
+			if (damage >= player.GetCurrentHealth()) score *= 2.0f; // can finish the player off
+
+			// Checking if new best move
+			if (score > bestScore + POKEMON_MOVE_SCORING_EPSILON) 
+			{ 
+				bestScore = score; 
+				bestMoves.clear();
+				bestMoves.push_back(moveIndex);
+			}
+			else if (std::abs(score - bestScore) <= POKEMON_MOVE_SCORING_EPSILON) 
+			{ 
+				bestMoves.push_back(moveIndex);
+			}
+		}
+
+		std::uniform_int_distribution<size_t> pick{ 0, bestMoves.size() - 1 };
+		m_CurrentMove = bestMoves[pick(m_RandomEngine)];
+	}
 }
 
 void BattleManagerComponent::CheckBattleEnd()
