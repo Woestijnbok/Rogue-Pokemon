@@ -20,6 +20,7 @@ namespace Minigin
 		SceneManager& operator= (const SceneManager&) = delete;
 		SceneManager& operator= (const SceneManager&&) noexcept = delete;
 
+		void Render() const;
 		Scene* CreateScene(const std::string& name, bool enabled = true);
 		Scene* GetScene(const std::string& name) const;
 		void RemoveScene(const std::string name);

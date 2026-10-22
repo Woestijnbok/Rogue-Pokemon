@@ -41,6 +41,7 @@ namespace Minigin
 		GameObject* GetChild(size_t index) const;
 		const std::string& GetName() const;
 		Scene* GetScene() const;
+		std::vector<Component*> GetComponents() const;
 
 		template<typename Type, typename... Arguments>
 			requires IsComponent<Type>
@@ -54,7 +55,6 @@ namespace Minigin
 		const std::string m_Name;
 		Transform m_LocalTransform;
 		std::pair<bool, Transform> m_WorldTransform;
-		std::vector<std::unique_ptr<Component>> m_Components;
 		std::vector<GameObject*> m_Children;
 		GameObject* m_Parent;
 		Scene* const m_Scene;

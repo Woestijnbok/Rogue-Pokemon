@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ControllableObject.h"
+#include "RenderOrder.h"
 
 namespace Minigin
 {
@@ -24,8 +25,12 @@ namespace Minigin
 		virtual void LateUpdate();
 		virtual void Render() const;
 
+		RenderOrder GetRenderOrder() const;
+		void SetRenderOrder(const RenderOrder order);
+
 	private:
 		GameObject* const m_Owner;
+		RenderOrder m_RenderOrder;
 
 	};
 }

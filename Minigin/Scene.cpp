@@ -1,5 +1,9 @@
 #include "Scene.h"
 
+#include "Component.h"
+
+#include <algorithm>
+
 using namespace Minigin;
 
 Scene::Scene(const std::string& name) : 
@@ -38,4 +42,28 @@ GameObject* Minigin::Scene::GetGameObject(const std::string& name) const
 const std::string& Scene::GetName() const
 {
 	return m_Name;
+}
+
+void Scene::Render() const
+{
+	std::vector<Component*> componentsToRender{};
+	for (GameObject* object : GetEnabledObjects())
+	{
+		for (Component* component : object->GetComponents())
+		{
+			componentsToRender.push_back(component);
+		}
+	}
+
+	std::ranges::stable_sort(componentsToRender,
+		[](Component* a, Component* b)
+		{
+			return static_cast<uint8_t>(a->GetRenderOrder()) < static_cast<uint8_t>(b->GetRenderOrder());
+		}
+	);
+
+	for (Component* component : componentsToRender)
+	{
+		component->Render();
+	}
 }

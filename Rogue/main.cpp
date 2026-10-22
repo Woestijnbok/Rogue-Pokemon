@@ -59,6 +59,7 @@ void Load()
 	GameObject* trainerObject{ worldScene->CreateGameObject("Trainer", true) };
 	MovementComponent* movementComponent{ trainerObject->CreateComponent<MovementComponent>(tileManagerComponent) };
 	SpriteComponent* spriteComponent{ MakeTrainerSprites(trainerObject, tileManagerComponent, movementComponent) };
+	spriteComponent->SetRenderOrder(RenderOrder::Player);
 	TrainerComponent* trainerComponent{ trainerObject->CreateComponent<TrainerComponent>() };
 	ConnectSpritesToMovement(spriteComponent, movementComponent);
 

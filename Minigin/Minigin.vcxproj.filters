@@ -227,6 +227,9 @@
     <ClInclude Include="Color.h">
       <Filter>Data Types\Color</Filter>
     </ClInclude>
+    <ClInclude Include="RenderOrder.h">
+      <Filter>Data Types</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="imgui">

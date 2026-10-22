@@ -33,10 +33,12 @@ TrainerComponent::TrainerComponent(Minigin::GameObject* owner) :
 	m_ShowPickupPrompt{ false },
 	m_MovementComponent{ owner->GetComponent<MovementComponent>() },
 	m_InfoBoxTexture{ SceneManager::Instance()->GetScene("Battle")->GetGameObject("Manager")->GetComponent<BattleManagerComponent>()->GetInfoBoxTexture() },
+	m_RouteTexture{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Route Sign.png") },
 	m_PickupText{ new Text{ "is back to full health!", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
+	m_RouteText{ new Text{ "Route 1", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 25), Color::Black } },
 	m_Score{ 1 }
 {
-	
+	SetRenderOrder(RenderOrder::UI);
 }
 
 void TrainerComponent::Render() const
@@ -55,6 +57,8 @@ void TrainerComponent::Render() const
 		const glm::ivec2 textPosition{ namePosition.x + (m_ActivePokemon->GetNameText()->GetTexture()->GetSize().x / 2) + whitespace + (m_PickupText->GetTexture()->GetSize().x / 2), namePosition.y};
 		Renderer::Instance()->RenderTexture(*m_PickupText->GetTexture(), Transform{textPosition, 0, glm::vec2{1.0f}});
 	}
+
+	RenderRoute();
 }
 
 PokemonComponent* TrainerComponent::GetActivePokemon() const
@@ -86,15 +90,13 @@ void TrainerComponent::ConfirmPickup()
 void TrainerComponent::IncreaseScore(uint16_t amount)
 {
 	m_Score += amount;
-
-#ifdef _DEBUG
-	std::cout << std::format("Current score: {}", m_Score) << std::endl;
-#endif // DEBUG
+	m_RouteText->SetText(std::format("Route {}", m_Score));
 }
 
 void TrainerComponent::Reset()
 {
 	m_Score = 1;
+	m_RouteText->SetText(std::format("Route {}", m_Score));
 	m_ActivePokemon->Reset();
 	m_ActivePokemon->SetLevel(3);
 }
@@ -107,4 +109,12 @@ PokemonComponent* TrainerComponent::CreateStartPokemon() const
 	pokemonComponent->SetLevel(3);
 
 	return pokemonComponent;
+}
+
+void TrainerComponent::RenderRoute() const
+{
+	const glm::ivec2 routePosition{ 900.0f, 450.0f };
+
+	Renderer::Instance()->RenderTexture(*m_RouteTexture, Transform{ routePosition, 0, glm::vec2{ 1.0f } });
+	Renderer::Instance()->RenderTexture(*m_RouteText->GetTexture(), Transform{ routePosition, 0, glm::vec2{ 1.0f } });
 }

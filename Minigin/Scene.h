@@ -18,6 +18,7 @@ namespace Minigin
 		Scene& operator=(const Scene& other) = delete;
 		Scene& operator=(Scene&& other) noexcept = delete;
 
+		void Render() const;
 		GameObject* CreateGameObject(const std::string& name, bool enabled = true);
 		GameObject* GetGameObject(const std::string& name) const;
 		const std::string& GetName() const;

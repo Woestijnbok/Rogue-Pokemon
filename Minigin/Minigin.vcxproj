@@ -222,6 +222,7 @@
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="ObjectController.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="RenderOrder.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />

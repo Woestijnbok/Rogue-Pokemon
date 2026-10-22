@@ -12,7 +12,6 @@ GameObject::GameObject(Scene* scene, const std::string& name) :
 	ObjectController<Component>{},
 	m_LocalTransform{},
 	m_WorldTransform{},
-	m_Components{},
 	m_Children{},
 	m_Parent{},
 	m_Scene{ scene },
@@ -167,4 +166,9 @@ const std::string& GameObject::GetName() const
 Scene* GameObject::GetScene() const
 {
 	return m_Scene;
+}
+
+std::vector<Component*> Minigin::GameObject::GetComponents() const
+{
+	return GetEnabledObjects();
 }

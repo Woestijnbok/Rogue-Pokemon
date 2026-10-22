@@ -74,7 +74,17 @@ public:
 	void Reset();
 
 private:
+	/*
+	* Creates the starter pokemon to use for battles
+	* 
+	* @return The starter pokemon.
+	*/
 	PokemonComponent* CreateStartPokemon() const;
+
+	/*
+	* Render's the current route / level starting from 1.
+	*/
+	void RenderRoute() const;
 
 	// Active pokemon
 	PokemonComponent* m_ActivePokemon;
@@ -84,8 +94,12 @@ private:
 	MovementComponent* m_MovementComponent;
 	// Cached infobox texture
 	Minigin::Texture const * m_InfoBoxTexture;
+	// Route texture
+	const std::unique_ptr<Minigin::Texture> m_RouteTexture;
 	// Cached pickup prompt text
 	std::unique_ptr<Minigin::Text> m_PickupText;
+	// Current Score / level / route text
+	std::unique_ptr<Minigin::Text> m_RouteText;
 	// Score based on which level the player is at
 	uint16_t m_Score;
 };

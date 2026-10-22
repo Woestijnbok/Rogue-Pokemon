@@ -2,6 +2,14 @@
 
 using namespace Minigin;
 
+void SceneManager::Render() const
+{
+	for (Scene* scene : GetEnabledObjects())
+	{
+		scene->Render();
+	}
+}
+
 Scene* SceneManager::CreateScene(const std::string& name, bool enabled)
 {
 	Scene* scene{ new Scene{name} };

@@ -61,7 +61,7 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_IsPlayerTurn{ true },
 	m_LastMoveHit{ true }
 {
-	
+	SetRenderOrder(RenderOrder::UI);
 }
 
 void BattleManagerComponent::Render() const

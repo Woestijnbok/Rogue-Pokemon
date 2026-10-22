@@ -46,6 +46,7 @@ TileManagerComponent::TileManagerComponent(Minigin::GameObject* owner) :
 	m_LevelDefeatRatio{ 50.0f },
 	m_OnLevelDefeated{}
 {
+	SetRenderOrder(RenderOrder::World);
 	m_TileRenderScale = static_cast<float>(m_TileSize) / static_cast<float>(m_TileDirtTexture->GetSize().x);
 	RandomizeTiles();
 }
