@@ -61,19 +61,19 @@ public:
 	*
 	* @return The current health of the pokemon.
 	*/
-	uint16_t GetCurrentHealth() const;
+	int GetCurrentHealth() const;
 	/*
 	* Sets the current pokemon health.
 	*
 	* @param health: The new health of the pokemon.
 	*/
-	void SetCurrentHealth(uint16_t health);
+	void SetCurrentHealth(int health);
 	/*
 	* Makes the pokemon take damage.
 	*
 	* @param damage: The damage to take.
 	*/
-	void TakeDamage(uint16_t damage);
+	void TakeDamage(int damage);
 	/*
 	* Returns all moves this pokemon has, aka 4.
 	*
@@ -128,7 +128,7 @@ public:
 	* 
 	* @param level: The new pokemon's level.
 	*/
-	void SetLevel(uint8_t level);
+	void SetLevel(int level);
 	/*
 	* Levels the pokemon up by one increasing it's stats.
 	* Also updating the level text to reflect the new level.
@@ -143,22 +143,22 @@ public:
 	/*
 	* Checks Wether the pokemon is of a specific type.
 	* 
-	* @param type: The type index
-	* @return True if it's the type
+	* @param type: The type index starting from 1.
+	* @return True if it's the type.
 	*/
-	bool IsOfElement(uint8_t type) const;
+	bool IsOfElement(size_t type) const;
 	/*
 	* Gets the current level of the pokemon.
 	* 
 	* @return The level of the pokemon.
 	*/
-	uint8_t GetLevel() const;
+	int GetLevel() const;
 	/*
 	* Gains experience towards the next level and possibily levels up.
 	* 
 	* @param experience: The gained experience
 	*/
-	void GainExperience(uint8_t experience);
+	void GainExperience(int experience);
 	/*
 	* Resets the pokemon as if it where to start from level 1.
 	*/
@@ -168,15 +168,15 @@ private:
 	// ID used to search in the pokemon in the pokedex
 	size_t m_ID;
 	// Current level of the pokemon
-	uint8_t m_Level;
+	int m_Level;
 	// The current experience towards the next level.
-	uint8_t m_Experience;
-	// Current health of the pokemon different from m_Stats.Health which is max health
-	uint16_t m_CurrentHealth;
-	// Type indices of the pokemon, zero means no type
-	const std::array<uint8_t, 2> m_Types;
+	int m_Experience;
 	// Various pokemon stats
 	PokemonStats m_Stats;
+	// Current health of the pokemon different from m_Stats.Health which is max health
+	int m_CurrentHealth;
+	// Type indices of the pokemon, zero means no type
+	const std::array<uint8_t, 2> m_Types;
 	// The move indices of the pokemon
 	const std::array<Move, 4> m_Moves;
 	// Pokemon name in text

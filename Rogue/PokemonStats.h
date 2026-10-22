@@ -7,7 +7,7 @@
 #include "Pokedex.hpp"
 
 /*
-* Struct containing all stats for pokemon.
+* Struct containing all base stats for pokemon.
 */
 struct PokemonStats
 {
@@ -15,7 +15,6 @@ struct PokemonStats
 	* Constructs pokemon stats.
 	*/
 	explicit PokemonStats(const PODPokemon& pokemon);
-	explicit PokemonStats(uint16_t health, uint16_t speed, uint16_t attack, uint16_t defense, uint16_t specialAttack, uint16_t specialDefense);
 	~PokemonStats() = default;
 
 	PokemonStats(const PokemonStats& other) = default;
@@ -23,13 +22,21 @@ struct PokemonStats
 	PokemonStats& operator=(const PokemonStats& other) = default;
 	PokemonStats& operator=(PokemonStats&& other) noexcept = default;
 
+	/*
+	* Increases the pokemon base stats by 1.
+	*/
 	PokemonStats& operator++();
-	PokemonStats operator+(uint16_t levels) const;
+	/*
+	* Increases or decreases the pokemon base stats.
+	* 
+	* @param levelDifference: The difference between the new level and old level, can be negative.
+	*/
+	void operator+=(int levelDifference);
 
-	uint16_t Health;
-	uint16_t Attack;
-	uint16_t SpecialAttack;
-	uint16_t Defense;
-	uint16_t SpecialDefense;
-	uint16_t Speed;
+	int Health;
+	int Attack;
+	int SpecialAttack;
+	int Defense;
+	int SpecialDefense;
+	int Speed;
 };

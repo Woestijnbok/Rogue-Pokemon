@@ -2,6 +2,7 @@
 
 // Libraries
 #include <format>
+#include <algorithm>
 
 // Core
 #include "GameObject.h"
@@ -27,9 +28,9 @@ PokemonComponent::PokemonComponent(GameObject* owner, const PODPokemon& pokemon,
 	m_ID{ pokemon.ID },
 	m_Level{ 1 },
 	m_Experience{ 0 },
+	m_Stats{ pokemon },
 	m_CurrentHealth{ pokemon.Health },
 	m_Types{ pokemon.Types[0], pokemon.Types[1] },
-	m_Stats{ pokemon },
 	m_Moves
 	{
 		Move{ SceneManager::Instance()->GetScene("Battle")->GetGameObject("Manager")->GetComponent<PokedexComponent>()->GetMove(pokemon.Moves[0]), ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30) },
@@ -49,9 +50,9 @@ PokemonComponent::PokemonComponent(Minigin::GameObject* owner, const PODPokemon&
 	Component{ owner },
 	m_ID{ pokemon.ID },
 	m_Level{ 1 },
+	m_Stats{ pokemon },
 	m_CurrentHealth{ pokemon.Health },
 	m_Types{ pokemon.Types[0], pokemon.Types[1] },
-	m_Stats{ pokemon },
 	m_Moves
 	{
 		Move{ SceneManager::Instance()->GetScene("Battle")->GetGameObject("Manager")->GetComponent<PokedexComponent>()->GetMove(pokemon.Moves[0]), ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30) },
@@ -102,25 +103,21 @@ TrainerComponent const * PokemonComponent::GetTrainer() const
 	return  m_Trainer;
 }
 
-void PokemonComponent::SetLevel(uint8_t level)
+void PokemonComponent::SetLevel(int level)
 {
-	m_Level = std::clamp(level, static_cast<uint8_t>(1), static_cast<uint8_t>(100));
-	m_LevelText->SetText(std::format("Lv {}", m_Level));
-
-	const PODPokemon& pokedexEntry{ SceneManager::Instance()->GetScene("Battle")->GetGameObject("Manager")->GetComponent<PokedexComponent>()->GetPokemon(m_ID) };
-	if (m_Level > 1)
+	if (m_Level != level)
 	{
-		m_Stats = PokemonStats{ pokedexEntry } + static_cast<uint16_t>(level - 1);
-	}
-	else
-	{
-		m_Stats = PokemonStats{ pokedexEntry };
+		int levelDifference{ static_cast<int>(level) - static_cast<int>(m_Level) };
+		m_CurrentHealth = std::max(0, m_CurrentHealth + levelDifference);
+		m_Stats += levelDifference;
+		m_Level = std::clamp(level, 1, 100);
+		m_LevelText->SetText(std::format("Lv {}", m_Level));
 	}
 }
 
 void PokemonComponent::LevelUp()
 {
-	m_Level = std::clamp(static_cast<uint8_t>(m_Level + 1), static_cast<uint8_t>(1), static_cast<uint8_t>(100));
+	m_Level = std::clamp(m_Level + 1, 1, 100);
 	m_LevelText->SetText(std::format("Lv {}", m_Level));
 	++m_Stats;
 }
@@ -130,9 +127,9 @@ size_t PokemonComponent::GetPokedexID() const
 	return m_ID;
 }
 
-bool PokemonComponent::IsOfElement(uint8_t type) const
+bool PokemonComponent::IsOfElement(size_t type) const
 {
-	if (type <= 0 or type >= POKEDEX_ELEMENT_COUNT)
+	if (type <= 0 or type > POKEDEX_ELEMENT_COUNT)
 	{
 		throw std::runtime_error{"PokemonComponent::IsOfElement(...) invalid element type index"};
 	}
@@ -140,17 +137,21 @@ bool PokemonComponent::IsOfElement(uint8_t type) const
 	return std::ranges::any_of(m_Types, [type](uint8_t element) -> bool { return element == type; });
 }
 
-uint8_t PokemonComponent::GetLevel() const
+int PokemonComponent::GetLevel() const
 {
 	return m_Level;
 }
 
-void PokemonComponent::GainExperience(uint8_t experience)
+void PokemonComponent::GainExperience(int experience)
 {
-	// Should not be possibly to overflow the uint8_t since the max experience is 100 for a lvl 100 pokemon
+	if (experience <= 0)
+	{
+		throw std::runtime_error{"PokemonComponent::GainExperience(...) - Should not get negative experience or 0"};
+	}
+
 	m_Experience += experience;
 
-	// To go to lvl n from lvl m the pokemon needs m xp.
+	// Keep leveling up until the gained experience isn't enough to go to the next level.
 	while (m_Experience >= m_Level)
 	{
 		m_Experience -= m_Level;
@@ -163,26 +164,19 @@ const PokemonStats& PokemonComponent::GetStats() const
 	return m_Stats;
 }
 
-uint16_t PokemonComponent::GetCurrentHealth() const
+int PokemonComponent::GetCurrentHealth() const
 {
 	return m_CurrentHealth;
 }
 
-void PokemonComponent::SetCurrentHealth(uint16_t health)
+void PokemonComponent::SetCurrentHealth(int health)
 {
-	m_CurrentHealth = std::clamp(health, static_cast<uint16_t>(0), m_Stats.Health);
+	m_CurrentHealth = std::clamp(health, 0, m_Stats.Health);
 }
 
-void PokemonComponent::TakeDamage(uint16_t damage)
+void PokemonComponent::TakeDamage(int damage)
 {
-	if (m_CurrentHealth < damage)
-	{
-		SetCurrentHealth(0);
-	}
-	else
-	{
-		SetCurrentHealth(m_CurrentHealth - damage);
-	}
+	SetCurrentHealth(std::max(0, m_CurrentHealth - damage));
 }
 
 const std::array<Move, 4>& PokemonComponent::GetMoves() const
