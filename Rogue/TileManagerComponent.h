@@ -108,6 +108,12 @@ public:
 	*/
 	Minigin::Subject<>& OnItemEncounter();
 	/*
+	* Gets the ladder used event.
+	*
+	* @return The on lader used event.
+	*/
+	Minigin::Subject<>& OnLadderUse();
+	/*
 	* Resets the tile manager to a new starting tile set.
 	*/
 	void Reset();
@@ -139,6 +145,10 @@ private:
 	* Sets up the new tileset / level.
 	*/
 	void SetupNextLevel();
+	/*
+	* Spawn's the ladder to go to the next route / level.
+	*/
+	void SpawnLadder();
 
 	// Amount of rows
 	static constexpr int m_Rows{ 10 };
@@ -176,6 +186,10 @@ private:
 	const std::unique_ptr<Minigin::Texture> m_TileGrassTexture;
 	// Item tile texture
 	const std::unique_ptr<Minigin::Texture> m_TileItemTexture;
+	// Lower ladder Texture
+	const std::unique_ptr<Minigin::Texture> m_LowerLadderTexture;
+	// Upper ladder Texture
+	const std::unique_ptr<Minigin::Texture> m_UpperLadderTexture;
 	// Random device used to generate seeds
 	std::random_device m_RandomDevice;
 	// Random engine generate random numbers
@@ -186,8 +200,12 @@ private:
 	Minigin::Subject<TrainerComponent*> m_OnPokemonEncounter;
 	// Distributon for random tile
 	std::uniform_int_distribution<size_t> m_TileChanceDistribution;
+	// Distributon for random ladder tile
+	std::uniform_int_distribution<size_t> m_PossibleLadderTiles;
 	// On item pickup event
 	Minigin::Subject<> m_OnItemPickup;
+	// On item pickup event
+	Minigin::Subject<> m_OnLadderUse;
 	// Number of spawned pokemon this tileset in the begining
 	uint8_t m_SpawnedPokemon;
 	// Number of defeated pokemon this tileset
@@ -196,4 +214,6 @@ private:
 	const float m_LevelDefeatRatio;
 	// On level / tileset defeated event
 	Minigin::Subject<> m_OnLevelDefeated;
+	// Wether or not the ladder has already spawned on this route
+	bool m_LadderHasSpawned;
 };

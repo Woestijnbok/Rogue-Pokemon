@@ -35,16 +35,21 @@ TileManagerComponent::TileManagerComponent(Minigin::GameObject* owner) :
 	m_TileDirtTexture{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Tiles/Dirt.png") },
 	m_TileGrassTexture{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Tiles/Grass.png") },
 	m_TileItemTexture{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Tiles/Item.png") },
+	m_LowerLadderTexture{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Tiles/Ladder Low.jpg") },
+	m_UpperLadderTexture{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Tiles/Ladder High.jpg") },
 	m_RandomDevice{},
 	m_RandomEngine{ m_RandomDevice() },
 	m_ChanceDistribution{ 0.0f, 100.0f },
 	m_OnPokemonEncounter{},
 	m_TileChanceDistribution{ 0, (m_Rows * m_Collumns) - 1 },
+	m_PossibleLadderTiles{ 0, (m_Rows * m_Collumns) - 1 - m_Collumns },
 	m_OnItemPickup{},
+	m_OnLadderUse{},
 	m_SpawnedPokemon{},
 	m_DefeatedPokemon{},
 	m_LevelDefeatRatio{ 50.0f },
-	m_OnLevelDefeated{}
+	m_OnLevelDefeated{},
+	m_LadderHasSpawned{ false }
 {
 	SetRenderOrder(RenderOrder::World);
 	m_TileRenderScale = static_cast<float>(m_TileSize) / static_cast<float>(m_TileDirtTexture->GetSize().x);
@@ -140,6 +145,10 @@ void TileManagerComponent::CheckTile(TrainerComponent* trainer)
 			m_OnItemPickup.Notify();
 		}
 		break;
+	case Terrain::LadderLow:
+		SetupNextLevel();
+		m_OnLadderUse.Notify();
+		break;
 	default:
 		break;
 	}
@@ -166,6 +175,12 @@ void TileManagerComponent::RenderTile(const size_t row, const size_t collumn) co
 #ifdef _DEBUG
 			Renderer::Instance()->RenderBox(glm::ivec2{ collumn * m_TileSize, row * m_TileSize }, glm::ivec2{ (collumn * m_TileSize) + m_TileSize, (row * m_TileSize) + m_TileSize }, Color{ 255, 0, 0, 100 }, true);
 #endif // _DEBUG
+			break;
+		case Terrain::LadderLow:
+			Renderer::Instance()->RenderTexture(*m_LowerLadderTexture, transform);
+			break;
+		case Terrain::LadderHigh:
+			Renderer::Instance()->RenderTexture(*m_UpperLadderTexture, transform);
 			break;
 		default:
 			assert(false);
@@ -228,6 +243,7 @@ void TileManagerComponent::RandomizeTiles()
 
 void TileManagerComponent::SetupNextLevel()
 {
+	m_LadderHasSpawned = false;
 	m_DefeatedPokemon = 0;
 
 	m_TileChanceGrass *= (m_MultiplierTileChanceGrass / 100.0f);
@@ -241,6 +257,29 @@ void TileManagerComponent::SetupNextLevel()
 	RandomizeTiles();
 }
 
+void TileManagerComponent::SpawnLadder()
+{
+	size_t randomLowerTileIndex{ m_PossibleLadderTiles(m_RandomEngine) };
+	
+	if (m_Tiles.at(randomLowerTileIndex).Type == Terrain::Pokemon)
+	{
+		--m_SpawnedPokemon;
+	}
+	if (m_Tiles.at(randomLowerTileIndex + m_Collumns).Type == Terrain::Pokemon)
+	{
+		--m_SpawnedPokemon;
+	}
+
+	m_Tiles.at(randomLowerTileIndex).Type = Terrain::LadderLow;
+	m_Tiles.at(randomLowerTileIndex + m_Collumns).Type = Terrain::LadderHigh;
+	m_LadderHasSpawned = true;
+}
+
+Minigin::Subject<>& TileManagerComponent::OnLadderUse()
+{
+	return m_OnLadderUse;
+}
+
 void TileManagerComponent::Reset()
 {
 	m_SpawnedPokemon = 0;
@@ -249,15 +288,16 @@ void TileManagerComponent::Reset()
 	m_TileChancePokemon = m_StartTileChancePokemon;
 	m_TileChanceItem = m_StartTileChanceItem;
 	RandomizeTiles();
+	m_LadderHasSpawned = false;
 }
 
 void TileManagerComponent::DefeatedPokemon()
 {
 	++m_DefeatedPokemon;
-	if (std::round(float(m_DefeatedPokemon) / m_SpawnedPokemon) >= std::round(m_LevelDefeatRatio / 100.0f))
+	if (std::round(float(m_DefeatedPokemon) / m_SpawnedPokemon) >= std::round(m_LevelDefeatRatio / 100.0f) and !m_LadderHasSpawned)
 	{
+		SpawnLadder();
 		m_OnLevelDefeated.Notify();
-		SetupNextLevel();
 	}
 }
 

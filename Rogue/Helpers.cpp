@@ -148,10 +148,10 @@ void ConnectBattleEvents(BattleManagerComponent* battleManager, Minigin::Scene* 
 	battleManager->OnBattleLost().AddObserver(std::bind(&BattleManagerComponent::Reset, battleManager));
 
 	// Level defeated event
-	tileManager->OnLevelDefeated().AddObserver(std::bind(&MovementComponent::Reset, movementComponent));
-	tileManager->OnLevelDefeated().AddObserver(std::bind(&SpriteComponent::Reset, spriteComponent));
-	tileManager->OnLevelDefeated().AddObserver(std::bind(&BattleManagerComponent::IncreaseDifficulty, battleManager));
-	tileManager->OnLevelDefeated().AddObserver(std::bind(&TrainerComponent::IncreaseScore, trainer, uint16_t(1)));
+	tileManager->OnLadderUse().AddObserver(std::bind(&MovementComponent::Reset, movementComponent));
+	tileManager->OnLadderUse().AddObserver(std::bind(&SpriteComponent::Reset, spriteComponent));
+	tileManager->OnLadderUse().AddObserver(std::bind(&BattleManagerComponent::IncreaseDifficulty, battleManager));
+	tileManager->OnLadderUse().AddObserver(std::bind(&TrainerComponent::IncreaseScore, trainer, uint16_t(1)));
 }
 
 void SetupAudio(BattleManagerComponent* battleManager, TileManagerComponent* tileManager)

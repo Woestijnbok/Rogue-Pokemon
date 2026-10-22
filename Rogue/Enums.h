@@ -16,7 +16,9 @@ enum class Terrain : uint8_t
 	Dirt,
 	Grass,
 	Item,
-	Pokemon
+	Pokemon,
+	LadderLow,
+	LadderHigh
 };
 
 enum class MoveType : uint8_t
