@@ -45,7 +45,8 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_SelectArrow{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Select Arrow.png") },
 	m_WildText{ new Text{ "Wild", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_UsedText{ new Text{ "used", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
-	m_MissedMoveText{ new Text{ "But, it failed", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
+	m_MissedMoveText{ new Text{ "But it failed!", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
+	m_ACriticalMoveText{ new Text{ "A critical hit!", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_RandomDevice{},
 	m_RandomEngine{ m_RandomDevice() },
 	m_StartWildPokemonLevelDistribution{ 1, 5 },
@@ -57,9 +58,12 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_LegendaryChance{ m_StartLegendaryChance },
 	m_StartEnemySmartness{ 30.0f },
 	m_EnemySmartness{ m_StartEnemySmartness },
+	m_CriticalChance{ 4.0f },
+	m_CriticalHitMultiplier{ 1.5f },
 	m_CurrentMove{ 0 },
 	m_IsPlayerTurn{ true },
-	m_LastMoveHit{ true }
+	m_LastMoveHit{ true },
+	m_LastMoveCrit{ false }
 {
 	SetRenderOrder(RenderOrder::UI);
 }
@@ -84,10 +88,10 @@ void BattleManagerComponent::Render() const
 		RenderUsedMove(false);
 		break;
 	case BattleState::MissedMove:
-		RenderMissedMove();
+		RenderMessage(*m_MissedMoveText);
 		break;
-	case BattleState::EndBattle:
-		RenderUsedMove(m_CurrentBattle.second->IsDead());
+	case BattleState::CritMove:
+		RenderMessage(*m_ACriticalMoveText);
 		break;
 	case BattleState::None:
 		break;
@@ -189,20 +193,22 @@ void BattleManagerComponent::Confirm()
 			break;
 		case BattleState::PerformPlayerMove:
 		case BattleState::PerformEnemyMove:
-			if (m_LastMoveHit) 
-			{
-				AdvanceTurn();
-			}
-			else 
+			if (!m_LastMoveHit)
 			{
 				m_CurrentBattleState = BattleState::MissedMove;
 			}
+			else if (m_LastMoveCrit)
+			{
+				m_CurrentBattleState = BattleState::CritMove;
+			}
+			else
+			{
+				AdvanceTurn();
+			}
 			break;
 		case BattleState::MissedMove:
+		case BattleState::CritMove:
 			AdvanceTurn();
-			break;
-		case BattleState::EndBattle:
-			EndBattle();
 			break;
 		default:
 			break;
@@ -279,9 +285,7 @@ void BattleManagerComponent::StartBattle(TrainerComponent* trainer, PokemonCompo
 	}
 	else
 	{
-		m_CurrentBattleState = BattleState::PerformPlayerMove;
-		m_IsPlayerTurn = false;
-		Confirm();
+		PerformTurn(false);
 	}
 
 	m_OnBattleStarted.Notify();
@@ -540,12 +544,17 @@ void BattleManagerComponent::SelectEnemyMove()
 	}
 }
 
-void BattleManagerComponent::CheckBattleEnd()
+bool BattleManagerComponent::CheckBattleEnd()
 {
+	bool battleEnded{ false }; 
+
 	if (m_CurrentBattle.first->GetActivePokemon()->IsDead() or m_CurrentBattle.second->IsDead())
 	{
-		m_CurrentBattleState = BattleState::EndBattle;
+		EndBattle();
+		battleEnded = true;
 	}
+
+	return battleEnded;
 }
 
 void BattleManagerComponent::SetWildPokemonLevel(PokemonComponent* pokemon)
@@ -573,15 +582,18 @@ uint16_t BattleManagerComponent::CalculateDamage(const PokemonComponent& attacki
 	// Apply element type effectivness
 	damage *= m_Pokedex->GetTypeEffectiveness(move.ID, defendingPokemon.GetPokedexID());
 
+	// Critical hit
+	if (m_LastMoveCrit) damage *= m_CriticalHitMultiplier;
+
 	return static_cast<uint16_t>(damage);
 }
 
-void BattleManagerComponent::RenderMissedMove() const
+void BattleManagerComponent::RenderMessage(Minigin::Text& text) const
 {
 	const glm::ivec2 startPosition{ 550.0f, 45.0f };
 
-	const glm::ivec2 position{ startPosition + (m_MissedMoveText->GetTexture()->GetSize() / 2) };
-	Renderer::Instance()->RenderText(*m_MissedMoveText, Transform{ position, 0, glm::vec2{ 1.0f } });
+	const glm::ivec2 position{ startPosition + (text.GetTexture()->GetSize() / 2) };
+	Renderer::Instance()->RenderText(text, Transform{ position, 0, glm::vec2{ 1.0f } });
 }
 
 void BattleManagerComponent::PerformTurn(bool isPlayerTurn)
@@ -597,26 +609,36 @@ void BattleManagerComponent::PerformTurn(bool isPlayerTurn)
 		m_CurrentBattleState = BattleState::PerformEnemyMove;
 		SelectEnemyMove();
 	}
-
+	
 	PokemonComponent* attacker{ (m_IsPlayerTurn) ? m_CurrentBattle.first->GetActivePokemon() : m_CurrentBattle.second };
+	const Move& move{ attacker->GetMoves().at(m_CurrentMove) };
 
-	m_LastMoveHit = MoveHits(attacker->GetMoves().at(m_CurrentMove));
+	m_LastMoveHit = MoveHits(move);
+	m_LastMoveCrit = m_LastMoveHit and RollCritical(move);
+
 	if (m_LastMoveHit)
 	{
 		UseSelectedMove();
-		CheckBattleEnd();
 	}
 }
 
 void BattleManagerComponent::AdvanceTurn()
 {
-	if (m_IsPlayerTurn)
+	if (!CheckBattleEnd())
 	{
-		PerformTurn(false);
+		if (m_IsPlayerTurn)
+		{
+			PerformTurn(false);
+		}
+		else
+		{
+			m_CurrentBattleState = BattleState::SelectMove;
+			m_CurrentMove = 0;
+		}
 	}
-	else
-	{
-		m_CurrentBattleState = BattleState::SelectMove;
-		m_CurrentMove = 0;
-	}
+}
+
+bool BattleManagerComponent::RollCritical(const Move& move)
+{
+	return move.Power > 0 and m_ChanceDistribution(m_RandomEngine) <= m_CriticalChance;
 }

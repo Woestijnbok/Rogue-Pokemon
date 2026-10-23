@@ -177,8 +177,10 @@ private:
 	void SelectEnemyMove();
 	/*
 	* Checks if the battle is over and ends it if so.
+	* 
+	* @return If the battle ended or not.
 	*/
-	void CheckBattleEnd();
+	bool CheckBattleEnd();
 	/*
 	* Helper to set the level of the wild pokemon.
 	*/
@@ -200,9 +202,11 @@ private:
 	*/
 	uint16_t CalculateDamage(const PokemonComponent& attackingPokemon, const PokemonComponent& defendingPokemon, const Move& move) const;
 	/*
-	* Render the info box that mentioned that the move failed to hit.
+	* Render the info box that mentioned that a specifix text.
+	* 
+	* @param text: The text to render.
 	*/
-	void RenderMissedMove() const;
+	void RenderMessage(Minigin::Text& text) const;
 	/*
 	* Perform's turn logic based on whose turn it is.
 	* 
@@ -213,6 +217,13 @@ private:
 	* Progress message reads about the turn.
 	*/
 	void AdvanceTurn();
+	/*
+	* Rolls the critical hit chance.
+	* 
+	* @param move: The move that is used
+	* @return true if the critical hit roll succeeded.
+	*/
+	bool RollCritical(const Move& move);
 
 	// Pokedex Component containing all needed battle information about pokemon battles
 	PokedexComponent* m_Pokedex;
@@ -246,6 +257,8 @@ private:
 	std::unique_ptr<Minigin::Text> m_UsedText;
 	// Missed move text
 	std::unique_ptr<Minigin::Text> m_MissedMoveText;
+	// Missed move text
+	std::unique_ptr<Minigin::Text> m_ACriticalMoveText;
 	// Random device used for creating seeds
 	std::random_device m_RandomDevice;
 	// Random engine used to generate random values based on a seed.
@@ -268,10 +281,16 @@ private:
 	const float m_StartEnemySmartness;
 	// Chance of enemy AI selecting a random move, if not will use a scoring system.
 	float m_EnemySmartness;
+	// Chance of a critical hit.
+	const float m_CriticalChance;
+	// Critical hit multiplier
+	const float m_CriticalHitMultiplier;
 	// Current move index
 	uint8_t m_CurrentMove;
 	// Tracks wether or the current battlestate is during player or wild pokemon turn
 	bool m_IsPlayerTurn;
 	// Wether or not the last used move missed
 	bool m_LastMoveHit;
+	// Wether or not he last move was a critical hit.
+	bool m_LastMoveCrit;
 };	
