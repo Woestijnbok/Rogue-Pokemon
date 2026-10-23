@@ -94,7 +94,7 @@ public:
 	* 
 	* @param trainer: The trainer to check for.
 	*/
-	void CheckTile(TrainerComponent* trainer);
+	void CheckTile();
 	/*
 	* Gets the pokemon encounter event.
 	* 
@@ -128,6 +128,12 @@ public:
 	* @return The on level defeated event.
 	*/
 	Minigin::Subject<>& OnLevelDefeated();
+	/*
+	* Caches the trainer component that represents the player
+	* 
+	* @param trainer: The player trainer component.
+	*/
+	void CacheTrainer(TrainerComponent* trainer);
 
 private:
 	/*
@@ -216,4 +222,6 @@ private:
 	Minigin::Subject<> m_OnLevelDefeated;
 	// Wether or not the ladder has already spawned on this route
 	bool m_LadderHasSpawned;
+	// Cached player game object
+	TrainerComponent* m_Player;
 };

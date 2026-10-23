@@ -49,7 +49,8 @@ TileManagerComponent::TileManagerComponent(Minigin::GameObject* owner) :
 	m_DefeatedPokemon{},
 	m_LevelDefeatRatio{ 50.0f },
 	m_OnLevelDefeated{},
-	m_LadderHasSpawned{ false }
+	m_LadderHasSpawned{ false },
+	m_Player{ nullptr }
 {
 	SetRenderOrder(RenderOrder::World);
 	m_TileRenderScale = static_cast<float>(m_TileSize) / static_cast<float>(m_TileDirtTexture->GetSize().x);
@@ -126,19 +127,19 @@ const Tile& TileManagerComponent::GetTile(int row, int collumn) const
 	return m_Tiles.at((row * m_Collumns) + collumn);
 }
 
-void TileManagerComponent::CheckTile(TrainerComponent* trainer)
+void TileManagerComponent::CheckTile()
 {
-	const glm::ivec2 tileIndices{ GetTileIndices(trainer->GetOwner()->GetWorldTransform().GetPosition()) };
+	const glm::ivec2 tileIndices{ GetTileIndices(m_Player->GetOwner()->GetWorldTransform().GetPosition())};
 
 	switch (GetTile(tileIndices.x, tileIndices.y).Type)
 	{
 	case Terrain::Pokemon:
 			m_Tiles.at((tileIndices.x * m_Collumns) + tileIndices.y).Type = Terrain::Grass;
-			m_OnPokemonEncounter.Notify(trainer);
+			m_OnPokemonEncounter.Notify(m_Player);
 			break;
 	case Terrain::Item:
 		// check if the trainer can pick up the item
-		if (trainer->CanPickupItem())
+		if (m_Player->CanPickupItem())
 		{
 			// if yes, notify the item encounter
 			m_Tiles.at((tileIndices.x * m_Collumns) + tileIndices.y).Type = Terrain::Dirt;
@@ -259,19 +260,27 @@ void TileManagerComponent::SetupNextLevel()
 
 void TileManagerComponent::SpawnLadder()
 {
-	size_t randomLowerTileIndex{ m_PossibleLadderTiles(m_RandomEngine) };
+	const glm::ivec2 playterTileIndices{ GetTileIndices(m_Player->GetOwner()->GetWorldTransform().GetPosition()) };
+	const size_t playerTileIndex{ static_cast<size_t>(playterTileIndices.x * m_Collumns + playterTileIndices.y) };
+	size_t randomLowerLadderTileIndex{ static_cast<size_t>(-1) };
+
+	do
+	{
+		randomLowerLadderTileIndex = m_PossibleLadderTiles(m_RandomEngine);
+	} 
+	while (randomLowerLadderTileIndex == playerTileIndex);
 	
-	if (m_Tiles.at(randomLowerTileIndex).Type == Terrain::Pokemon)
+	if (m_Tiles.at(randomLowerLadderTileIndex).Type == Terrain::Pokemon)
 	{
 		--m_SpawnedPokemon;
 	}
-	if (m_Tiles.at(randomLowerTileIndex + m_Collumns).Type == Terrain::Pokemon)
+	if (m_Tiles.at(randomLowerLadderTileIndex + m_Collumns).Type == Terrain::Pokemon)
 	{
 		--m_SpawnedPokemon;
 	}
 
-	m_Tiles.at(randomLowerTileIndex).Type = Terrain::LadderLow;
-	m_Tiles.at(randomLowerTileIndex + m_Collumns).Type = Terrain::LadderHigh;
+	m_Tiles.at(randomLowerLadderTileIndex).Type = Terrain::LadderLow;
+	m_Tiles.at(randomLowerLadderTileIndex + m_Collumns).Type = Terrain::LadderHigh;
 	m_LadderHasSpawned = true;
 }
 
@@ -304,4 +313,9 @@ void TileManagerComponent::DefeatedPokemon()
 Minigin::Subject<>& TileManagerComponent::OnLevelDefeated()
 {
 	return m_OnLevelDefeated;
+}
+
+void TileManagerComponent::CacheTrainer(TrainerComponent* trainer)
+{
+	m_Player = trainer;
 }

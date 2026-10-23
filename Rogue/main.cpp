@@ -63,7 +63,8 @@ void Load()
 	TrainerComponent* trainerComponent{ trainerObject->CreateComponent<TrainerComponent>() };
 	ConnectSpritesToMovement(spriteComponent, movementComponent);
 
-	movementComponent->OnMoveCompleted().AddObserver(std::bind(&TileManagerComponent::CheckTile, tileManagerComponent, trainerComponent));
+	tileManagerComponent->CacheTrainer(trainerComponent);
+	movementComponent->OnMoveCompleted().AddObserver(std::bind(&TileManagerComponent::CheckTile, tileManagerComponent));
 	tileManagerComponent->OnItemEncounter().AddObserver(std::bind(&TrainerComponent::HealActivePokemon, trainerComponent));
 	ConnectBattleEvents(battleManagerComponent, worldScene, battleScene, tileManagerComponent, trainerComponent, movementComponent, spriteComponent);
 
