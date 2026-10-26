@@ -74,8 +74,8 @@ void BattleManagerComponent::Render() const
 {
 	RenderBackground();
 	RenderPokemons();
-	RenderTrainerCloud();
-	RenderEnemyCloud();
+	RenderCloud(*m_CurrentBattle.first->GetActivePokemon(), *m_TrainerCloud, glm::ivec2{ 500, 150 }, -110, 130);
+	RenderCloud(*m_CurrentBattle.second, *m_EnemyCloud, glm::ivec2{ 350, 350 }, -130, 110);
 	RenderInfoBox();
 
 	switch (m_CurrentBattleState)
@@ -311,101 +311,54 @@ void BattleManagerComponent::RenderPokemons() const
 	Renderer::Instance()->RenderTexture(*m_CurrentBattle.second->GetTexture(), enemyTransform);
 }
 
-void BattleManagerComponent::RenderTrainerCloud() const
+void BattleManagerComponent::RenderCloud(const PokemonComponent& pokemon, const Minigin::Texture& cloud, const glm::ivec2& cloudCenter, int nameLeftOffset, int levelRightOffset) const
 {
-	// TODO: Put RenderTrainerCloud and RenderEnemyCloud in one helper function
-	RenderTrainerHealth();
+	constexpr glm::ivec2 healthBottomLeftOffset{ -40, -20 };
+	constexpr glm::ivec2 healthTopRightOffset{ 120, 5 };
+	constexpr int textHeightOffset{ 20 };
+	constexpr int iconHeightOffset{ -2 };
+	constexpr int iconWhitespace{ 5 };
+	constexpr int secondIconWhitespace{ 2 };
+	constexpr float cloudScale{ 3.0f };
 
-	PokemonComponent const * trainerPokemon{ m_CurrentBattle.first->GetActivePokemon() };
+	// Health goes first so the cloud is drawn on top of it
+	RenderHealth(pokemon, cloudCenter + healthBottomLeftOffset, cloudCenter + healthTopRightOffset);
 
-	const Transform cloudTransform{ glm::ivec2{ 500, 150 }, 0, glm::vec2{ 3.0f } };
-	Renderer::Instance()->RenderTexture(*m_TrainerCloud, cloudTransform);
+	// RenderCloud
+	Renderer::Instance()->RenderTexture(cloud, Transform{ cloudCenter, 0, glm::vec2{ cloudScale } });
 
-	const int nameWidth{ trainerPokemon->GetNameText()->GetTexture()->GetSize().x };
-	const Transform nameTransform{ glm::ivec2{ 390 + (nameWidth / 2), 170 }, 0, glm::vec2{ 1.0f } };
-	Renderer::Instance()->RenderText(*trainerPokemon->GetNameText(), nameTransform);
+	const int textY{ cloudCenter.y + textHeightOffset };
+	const int nameLeft{ cloudCenter.x + nameLeftOffset };
+	const int levelRight{ cloudCenter.x + levelRightOffset };
 
-	const int levelWidth{ trainerPokemon->GetLevelText()->GetTexture()->GetSize().x };
-	const Transform levelTransform{ glm::ivec2{ 630 - (levelWidth / 2), 170 }, 0, glm::vec2{ 1.0f } };
-	Renderer::Instance()->RenderText(*trainerPokemon->GetLevelText(), levelTransform);
+	// Name, left aligned
+	const int nameWidth{ pokemon.GetNameText()->GetTexture()->GetSize().x };
+	Renderer::Instance()->RenderText(*pokemon.GetNameText(), Transform{ glm::ivec2{ nameLeft + (nameWidth / 2), textY }, 0, glm::vec2{ 1.0f } });
 
-	std::pair<Texture*, Texture*> elementIcons{ GetElementIcons(*trainerPokemon) };
-	const float iconScale{ 1.0f }, whitespace{ 5.0f };
-	const int iconWidth{ static_cast<int>(elementIcons.first->GetSize().x * iconScale) };
-	const Transform firstIconTransform{ glm::ivec2{ 390 + nameWidth + (iconWidth / 2) + whitespace, levelTransform.GetPosition().y - 2.0f }, 0, glm::vec2{ iconScale } };
-	Renderer::Instance()->RenderTexture(*elementIcons.first, firstIconTransform);
+	// Level, right aligned
+	const int levelWidth{ pokemon.GetLevelText()->GetTexture()->GetSize().x };
+	Renderer::Instance()->RenderText(*pokemon.GetLevelText(), Transform{ glm::ivec2{ levelRight - (levelWidth / 2), textY }, 0, glm::vec2{ 1.0f } });
 
-	if (elementIcons.second != nullptr)
+	// Element icons, right after the name
+	const std::pair<Texture*, Texture*> elements{ GetElementIcons(pokemon) };
+	const int iconWidth{ elements.first->GetSize().x };
+	const int iconY{ textY + iconHeightOffset };
+
+	const int firstIconX{ nameLeft + nameWidth + (iconWidth / 2) + iconWhitespace };
+	Renderer::Instance()->RenderTexture(*elements.first, Transform{ glm::ivec2{ firstIconX, iconY }, 0, glm::vec2{ 1.0f } });
+
+	if (elements.second != nullptr)
 	{
-		const Transform secondIconTransform{ glm::ivec2{ 390 + nameWidth + iconWidth + whitespace + (iconWidth / 2) + 2.0f, levelTransform.GetPosition().y - 2.0f }, 0, glm::vec2{ iconScale } };
-		Renderer::Instance()->RenderTexture(*elementIcons.second, secondIconTransform);
+		const int secondIconX{ firstIconX + iconWidth + secondIconWhitespace };
+		Renderer::Instance()->RenderTexture(*elements.second, Transform{ glm::ivec2{ secondIconX, iconY }, 0, glm::vec2{ 1.0f } });
 	}
 }
 
-void BattleManagerComponent::RenderTrainerHealth() const
+void BattleManagerComponent::RenderHealth(const PokemonComponent& pokemon, const glm::ivec2 bottomLeft, const glm::ivec2 topRight) const
 {
-	// TODO: Put RenderTrainerHealth and RenderEnemyHealth in one helper function
-
-	PokemonComponent const* trainerPokemon{ m_CurrentBattle.first->GetActivePokemon() };
-
-	constexpr glm::ivec2 bottomLeft{ 460, 130 };
-	constexpr glm::ivec2 topRight{ 620, 155 };
 	constexpr Color backgroundColor{ 76, 74, 76 };
 
-	const float healthPercentage{ trainerPokemon->GetHealthPercentage() };
-	const int healthWidth{ static_cast<int>((topRight.x - bottomLeft.x) * healthPercentage) };
-	const glm::ivec2 healthTopRight{ bottomLeft.x + healthWidth, topRight.y };
-	const glm::ivec2 backgroundBottomLeft{ healthTopRight.x, bottomLeft.y };
-
-	Color healthColor{ Color::Green };
-	if (healthPercentage <= 0.25f)
-	{
-		healthColor = Color::Red;
-	}
-	else if (healthPercentage <= 0.5f)
-	{
-		healthColor = Color{ 255, 165, 0 };
-	}
-
-	Renderer::Instance()->RenderBox(backgroundBottomLeft , topRight, backgroundColor, true);
-	Renderer::Instance()->RenderBox(bottomLeft, healthTopRight, healthColor, true);
-}
-
-void BattleManagerComponent::RenderEnemyCloud() const
-{
-	RenderEnemyHealth();
-
-	const Transform cloudTransform{ glm::ivec2{ 350, 350 }, 0, glm::vec2{ 3.0f, 3.0f } };
-	Renderer::Instance()->RenderTexture(*m_EnemyCloud, cloudTransform);
-
-	const int nameWidth{ m_CurrentBattle.second->GetNameText()->GetTexture()->GetSize().x };
-	const Transform nameTransform{ glm::ivec2{ 220 + (nameWidth / 2), 370}, 0, glm::vec2{1.0f} };
-	Renderer::Instance()->RenderText(*m_CurrentBattle.second->GetNameText(), nameTransform);
-
-	const int levelWidth{ m_CurrentBattle.second->GetLevelText()->GetTexture()->GetSize().x };
-	const Transform levelTransform{ glm::ivec2{ 460 - (levelWidth / 2), 370 }, 0, glm::vec2{ 1.0f } };
-	Renderer::Instance()->RenderText(*m_CurrentBattle.second->GetLevelText(), levelTransform);
-
-	std::pair<Texture*, Texture*> elementIcons{ GetElementIcons(*m_CurrentBattle.second) };
-	const float iconScale{ 1.0f }, whitespace{ 5.0f };
-	const int iconWidth{ static_cast<int>(elementIcons.first->GetSize().x * iconScale) };
-	const Transform iconTransform{ glm::ivec2{ 220 + nameWidth + (iconWidth / 2) + whitespace, levelTransform.GetPosition().y - 2.0f }, 0, glm::vec2{iconScale}};
-	Renderer::Instance()->RenderTexture(*elementIcons.first, iconTransform);
-
-	if (elementIcons.second != nullptr)
-	{
-		const Transform secondIconTransform{ glm::ivec2{ 220 + nameWidth + iconWidth + whitespace + (iconWidth / 2) + 2.0f, levelTransform.GetPosition().y - 2.0f }, 0, glm::vec2{ iconScale } };
-		Renderer::Instance()->RenderTexture(*elementIcons.second, secondIconTransform);
-	}
-}
-
-void BattleManagerComponent::RenderEnemyHealth() const
-{
-	constexpr glm::ivec2 bottomLeft{ 310, 330 };
-	constexpr glm::ivec2 topRight{ 470, 355 };
-	constexpr Color backgroundColor{ 76, 74, 76 };
-
-	const float healthPercentage{ m_CurrentBattle.second->GetHealthPercentage() };
+	const float healthPercentage{ pokemon.GetHealthPercentage() };
 	const int healthWidth{ static_cast<int>((topRight.x - bottomLeft.x) * healthPercentage) };
 	const glm::ivec2 healthTopRight{ bottomLeft.x + healthWidth, topRight.y };
 	const glm::ivec2 backgroundBottomLeft{ healthTopRight.x, bottomLeft.y };

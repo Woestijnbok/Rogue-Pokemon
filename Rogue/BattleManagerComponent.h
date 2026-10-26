@@ -9,6 +9,7 @@
 #include "Component.h"
 #include "Subject.h"
 #include "Enums.h"
+#include <vec2.hpp>
 
 namespace Minigin
 {
@@ -138,21 +139,23 @@ private:
 	*/
 	void RenderPokemons() const;
 	/*
-	* Renders trainer's cloud including name, cloud, level, hp.
+	* Renders a pokemon's cloud including health bar, name, level and element icons.
+	*
+	* @param pokemon: The pokemon to render the cloud for.
+	* @param cloud: The cloud background texture.
+	* @param cloudCenter: Center position of the cloud.
+	* @param nameLeftOffset: X offset from the cloud center to where the name text starts.
+	* @param levelRightOffset: X offset from the cloud center to where the level text ends.
 	*/
-	void RenderTrainerCloud() const;
+	void RenderCloud(const PokemonComponent& pokemon, const Minigin::Texture& cloud, const glm::ivec2& cloudCenter, int nameLeftOffset, int levelRightOffset) const;
 	/*
-	* Renders trainer's pokemon health bar.
+	* Renders a pokemon's health bar.
+	*
+	* @param pokemon: The pokemon to render the health for.
+	* @param bottomLeft: Bottom left position of the bar.
+	* @param topRight: Top right position of the bar.
 	*/
-	void RenderTrainerHealth() const;
-	/*
-	* Renders enemy's cloud including name, cloud, level, hp.
-	*/
-	void RenderEnemyCloud() const;
-	/*
-	* Renders enemy's pokemon health bar.
-	*/
-	void RenderEnemyHealth() const;
+	void RenderHealth(const PokemonComponent& pokemon, const glm::ivec2 bottomLeft, const glm::ivec2 topRight) const;
 	/*
 	* Renders move info box..
 	*/
