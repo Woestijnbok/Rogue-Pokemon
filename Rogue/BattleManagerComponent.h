@@ -275,6 +275,12 @@ private:
 	std::unique_ptr<Minigin::Text> m_MissedMoveText;
 	// Missed move text
 	std::unique_ptr<Minigin::Text> m_ACriticalMoveText;
+	// Missed move text
+	std::unique_ptr<Minigin::Text> m_SuperEffectiveMoveText;
+	// Missed move text
+	std::unique_ptr<Minigin::Text> m_NotVeryEffectiveMoveText;
+	// Missed move text
+	std::unique_ptr<Minigin::Text> m_ImmuneMoveText;
 	// Random device used for creating seeds
 	std::random_device m_RandomDevice;
 	// Random engine used to generate random values based on a seed.
@@ -301,6 +307,8 @@ private:
 	const float m_CriticalChance;
 	// Critical hit multiplier
 	const float m_CriticalHitMultiplier;
+	// The effectiveness of the last move
+	float m_LastMoveEffectiveness;
 	// Current move index
 	uint8_t m_CurrentMove;
 	// Tracks wether or the current battlestate is during player or wild pokemon turn

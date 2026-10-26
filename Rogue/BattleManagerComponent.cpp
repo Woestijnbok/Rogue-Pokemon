@@ -48,6 +48,9 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_UsedText{ new Text{ "used", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_MissedMoveText{ new Text{ "But it failed!", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_ACriticalMoveText{ new Text{ "A critical hit!", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
+	m_SuperEffectiveMoveText{ new Text{ "It's super effective!", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
+	m_NotVeryEffectiveMoveText{ new Text{ "It's not very effective...", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
+	m_ImmuneMoveText{ new Text{ "It has no effect", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_RandomDevice{},
 	m_RandomEngine{ m_RandomDevice() },
 	m_StartWildPokemonLevelDistribution{ 1, 5 },
@@ -61,6 +64,7 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_EnemySmartness{ m_StartEnemySmartness },
 	m_CriticalChance{ 4.0f },
 	m_CriticalHitMultiplier{ 1.5f },
+	m_LastMoveEffectiveness{ 1.0f },
 	m_CurrentMove{ 0 },
 	m_IsPlayerTurn{ true },
 	m_LastMoveHit{ true },
@@ -94,6 +98,11 @@ void BattleManagerComponent::Render() const
 		break;
 	case BattleState::CritMove:
 		RenderMessage(*m_ACriticalMoveText);
+		break;
+	case BattleState::Effectiveness:
+		if (m_LastMoveEffectiveness == 0.0f) RenderMessage(*m_ImmuneMoveText);
+		else if (m_LastMoveEffectiveness > 1.0f) RenderMessage(*m_SuperEffectiveMoveText);
+		else RenderMessage(*m_NotVeryEffectiveMoveText);
 		break;
 	case BattleState::None:
 		break;
@@ -203,14 +212,28 @@ void BattleManagerComponent::Confirm()
 			{
 				m_CurrentBattleState = BattleState::CritMove;
 			}
+			else if (m_LastMoveEffectiveness != 1.0f)
+			{
+				m_CurrentBattleState = BattleState::Effectiveness;
+			}
 			else
 			{
 				AdvanceTurn();
 			}
 			break;
 		case BattleState::MissedMove:
-		case BattleState::CritMove:
+		case BattleState::Effectiveness:
 			AdvanceTurn();
+			break;
+		case BattleState::CritMove:
+			if (m_LastMoveEffectiveness != 1.0f)
+			{
+				m_CurrentBattleState = BattleState::Effectiveness;
+			}
+			else
+			{
+				AdvanceTurn();
+			}
 			break;
 		default:
 			break;
@@ -588,10 +611,12 @@ void BattleManagerComponent::PerformTurn(bool isPlayerTurn)
 	}
 	
 	PokemonComponent* attacker{ (m_IsPlayerTurn) ? m_CurrentBattle.first->GetActivePokemon() : m_CurrentBattle.second };
+	PokemonComponent* defender{ (m_IsPlayerTurn) ? m_CurrentBattle.second : m_CurrentBattle.first->GetActivePokemon() };
 	const Move& move{ attacker->GetMoves().at(m_CurrentMove) };
 
 	m_LastMoveHit = MoveHits(move);
 	m_LastMoveCrit = m_LastMoveHit and RollCritical(move);
+	m_LastMoveEffectiveness = m_Pokedex->GetTypeEffectiveness(move.ID, defender->GetPokedexID());
 
 	if (m_LastMoveHit)
 	{
