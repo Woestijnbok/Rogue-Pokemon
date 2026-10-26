@@ -27,6 +27,12 @@ public:
 	*/
 	const PODElement& GetElement(size_t index);
 	/*
+	* Gets all available elements
+	* 
+	* @return Array with all elements
+	*/
+	const std::array<PODElement, POKEDEX_ELEMENT_COUNT>& GetElements() const;
+	/*
 	* Gets a certain move
 	*
 	* @param index: The move index, starts from 1.

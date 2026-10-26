@@ -224,6 +224,17 @@ private:
 	* @return true if the critical hit roll succeeded.
 	*/
 	bool RollCritical(const Move& move);
+	/*
+	* Fills the element icons array
+	*/
+	void LoadElementIcons();
+	/*
+	* Gets the element icon(s) for the specified pokemon
+	* 
+	* @param pokemon: The pokemon to get the element icons for.
+	* @return A pair of the element icons, second could be nullptr if pokemon only has one type.
+	*/
+	std::pair<Minigin::Texture*, Minigin::Texture*> GetElementIcons(const PokemonComponent& pokemon) const;
 
 	// Pokedex Component containing all needed battle information about pokemon battles
 	PokedexComponent* m_Pokedex;
@@ -251,6 +262,8 @@ private:
 	std::unique_ptr<Minigin::Texture> m_MoveBox;
 	// Select move arrow texture
 	std::unique_ptr<Minigin::Texture> m_SelectArrow;
+	// Element icons
+	std::vector<std::unique_ptr<Minigin::Texture>>m_ElementIcons;
 	// Wild pokemon name used to identify the enemy pokemon in the battle.
 	std::unique_ptr<Minigin::Text> m_WildText;
 	// Used text to show the move used by the trainer's pokemon.

@@ -35,6 +35,11 @@ const PODElement& PokedexComponent::GetElement(size_t index)
 	return m_Elements.at(index - 1);
 }
 
+const std::array<PODElement, POKEDEX_ELEMENT_COUNT>& PokedexComponent::GetElements() const
+{
+	return m_Elements;
+}
+
 const PODMove& PokedexComponent::GetMove(size_t index)
 {
 	if (index <= 0 or index > m_Moves.size())

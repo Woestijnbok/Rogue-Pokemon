@@ -137,6 +137,11 @@ bool PokemonComponent::IsOfElement(size_t type) const
 	return std::ranges::any_of(m_Types, [type](uint8_t element) -> bool { return element == type; });
 }
 
+std::pair<uint8_t, uint8_t> PokemonComponent::GetElements() const
+{
+	return std::make_pair(m_Types.at(0), m_Types.at(1));
+}
+
 int PokemonComponent::GetLevel() const
 {
 	return m_Level;

@@ -43,6 +43,7 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_InfoBox{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Info Box.png") },
 	m_MoveBox{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Move Box.png") },
 	m_SelectArrow{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Select Arrow.png") },
+	m_ElementIcons{},
 	m_WildText{ new Text{ "Wild", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_UsedText{ new Text{ "used", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_MissedMoveText{ new Text{ "But it failed!", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
@@ -66,6 +67,7 @@ BattleManagerComponent::BattleManagerComponent(GameObject* owner) :
 	m_LastMoveCrit{ false }
 {
 	SetRenderOrder(RenderOrder::UI);
+	LoadElementIcons();
 }
 
 void BattleManagerComponent::Render() const
@@ -311,6 +313,7 @@ void BattleManagerComponent::RenderPokemons() const
 
 void BattleManagerComponent::RenderTrainerCloud() const
 {
+	// TODO: Put RenderTrainerCloud and RenderEnemyCloud in one helper function
 	RenderTrainerHealth();
 
 	PokemonComponent const * trainerPokemon{ m_CurrentBattle.first->GetActivePokemon() };
@@ -325,10 +328,24 @@ void BattleManagerComponent::RenderTrainerCloud() const
 	const int levelWidth{ trainerPokemon->GetLevelText()->GetTexture()->GetSize().x };
 	const Transform levelTransform{ glm::ivec2{ 630 - (levelWidth / 2), 170 }, 0, glm::vec2{ 1.0f } };
 	Renderer::Instance()->RenderText(*trainerPokemon->GetLevelText(), levelTransform);
+
+	std::pair<Texture*, Texture*> elementIcons{ GetElementIcons(*trainerPokemon) };
+	const float iconScale{ 1.0f }, whitespace{ 5.0f };
+	const int iconWidth{ static_cast<int>(elementIcons.first->GetSize().x * iconScale) };
+	const Transform firstIconTransform{ glm::ivec2{ 390 + nameWidth + (iconWidth / 2) + whitespace, levelTransform.GetPosition().y - 2.0f }, 0, glm::vec2{ iconScale } };
+	Renderer::Instance()->RenderTexture(*elementIcons.first, firstIconTransform);
+
+	if (elementIcons.second != nullptr)
+	{
+		const Transform secondIconTransform{ glm::ivec2{ 390 + nameWidth + iconWidth + whitespace + (iconWidth / 2) + 2.0f, levelTransform.GetPosition().y - 2.0f }, 0, glm::vec2{ iconScale } };
+		Renderer::Instance()->RenderTexture(*elementIcons.second, secondIconTransform);
+	}
 }
 
 void BattleManagerComponent::RenderTrainerHealth() const
 {
+	// TODO: Put RenderTrainerHealth and RenderEnemyHealth in one helper function
+
 	PokemonComponent const* trainerPokemon{ m_CurrentBattle.first->GetActivePokemon() };
 
 	constexpr glm::ivec2 bottomLeft{ 460, 130 };
@@ -362,12 +379,24 @@ void BattleManagerComponent::RenderEnemyCloud() const
 	Renderer::Instance()->RenderTexture(*m_EnemyCloud, cloudTransform);
 
 	const int nameWidth{ m_CurrentBattle.second->GetNameText()->GetTexture()->GetSize().x };
-	const Transform nameTransform{ glm::ivec2{ 220 + (nameWidth / 2), 370}, 0, glm::vec2{1.0f}};
+	const Transform nameTransform{ glm::ivec2{ 220 + (nameWidth / 2), 370}, 0, glm::vec2{1.0f} };
 	Renderer::Instance()->RenderText(*m_CurrentBattle.second->GetNameText(), nameTransform);
 
 	const int levelWidth{ m_CurrentBattle.second->GetLevelText()->GetTexture()->GetSize().x };
 	const Transform levelTransform{ glm::ivec2{ 460 - (levelWidth / 2), 370 }, 0, glm::vec2{ 1.0f } };
 	Renderer::Instance()->RenderText(*m_CurrentBattle.second->GetLevelText(), levelTransform);
+
+	std::pair<Texture*, Texture*> elementIcons{ GetElementIcons(*m_CurrentBattle.second) };
+	const float iconScale{ 1.0f }, whitespace{ 5.0f };
+	const int iconWidth{ static_cast<int>(elementIcons.first->GetSize().x * iconScale) };
+	const Transform iconTransform{ glm::ivec2{ 220 + nameWidth + (iconWidth / 2) + whitespace, levelTransform.GetPosition().y - 2.0f }, 0, glm::vec2{iconScale}};
+	Renderer::Instance()->RenderTexture(*elementIcons.first, iconTransform);
+
+	if (elementIcons.second != nullptr)
+	{
+		const Transform secondIconTransform{ glm::ivec2{ 220 + nameWidth + iconWidth + whitespace + (iconWidth / 2) + 2.0f, levelTransform.GetPosition().y - 2.0f }, 0, glm::vec2{ iconScale } };
+		Renderer::Instance()->RenderTexture(*elementIcons.second, secondIconTransform);
+	}
 }
 
 void BattleManagerComponent::RenderEnemyHealth() const
@@ -403,27 +432,37 @@ void BattleManagerComponent::RenderInfoBox() const
 
 void BattleManagerComponent::RenderMoveSelect() const
 {
-	const std::array<Move, 4>& trainerPokemonMoves{ m_CurrentBattle.first->GetActivePokemon()->GetMoves()};
+	const std::array<Move, 4>& moves{ m_CurrentBattle.first->GetActivePokemon()->GetMoves() };
+	const glm::ivec2 elementIconSize{ m_ElementIcons.at(0)->GetSize() };
+	const float elementIconWhitespace{ 5.0f };
 
-	const int firstMoveWidth{ trainerPokemonMoves.at(0).Name->GetTexture()->GetSize().x };
+	const int firstMoveWidth{ moves.at(0).Name->GetTexture()->GetSize().x };
 	const glm::ivec2 firstMovePosition{ 580, 60 };
-	const Transform firstMoveTransform{ glm::ivec2{ firstMovePosition.x + (firstMoveWidth / 2), firstMovePosition.y }, 0, glm::vec2{1.0f}};
-	Renderer::Instance()->RenderText(*trainerPokemonMoves.at(0).Name.get(), firstMoveTransform);
+	const Transform firstMoveTransform{ glm::ivec2{ firstMovePosition.x + (firstMoveWidth / 2), firstMovePosition.y }, 0, glm::vec2{ 1.0f } };
+	Renderer::Instance()->RenderText(*moves.at(0).Name.get(), firstMoveTransform);
+	const Transform firstMoveElementIconTransform{ glm::ivec2{ firstMoveTransform.GetPosition().x + (firstMoveWidth / 2) + (elementIconSize.x / 2) + elementIconWhitespace, firstMoveTransform.GetPosition().y - 2 }, 0, glm::vec2{1.0f}};
+	Renderer::Instance()->RenderTexture(*m_ElementIcons.at(moves.at(0).Element - 1), firstMoveElementIconTransform);
 
-	const int secondMoveWidth{ trainerPokemonMoves.at(1).Name->GetTexture()->GetSize().x };
+	const int secondMoveWidth{ moves.at(1).Name->GetTexture()->GetSize().x };
 	const glm::ivec2 secondMovePosition{ 780, 60 };
 	const Transform secondMoveTransform{ glm::ivec2{ secondMovePosition.x + (secondMoveWidth / 2), secondMovePosition.y }, 0, glm::vec2{1.0f} };
-	Renderer::Instance()->RenderText(*trainerPokemonMoves.at(1).Name.get(), secondMoveTransform);
+	Renderer::Instance()->RenderText(*moves.at(1).Name.get(), secondMoveTransform);
+	const Transform secondMoveElementIconTransform{ glm::ivec2{ secondMoveTransform.GetPosition().x + (secondMoveWidth / 2) + (elementIconSize.x / 2) + elementIconWhitespace, secondMoveTransform.GetPosition().y - 2 }, 0, glm::vec2{1.0f} };
+	Renderer::Instance()->RenderTexture(*m_ElementIcons.at(moves.at(1).Element - 1), secondMoveElementIconTransform);
 
-	const int thirdMoveWidth{ trainerPokemonMoves.at(2).Name->GetTexture()->GetSize().x };
+	const int thirdMoveWidth{ moves.at(2).Name->GetTexture()->GetSize().x };
 	const glm::ivec2 thirdMovePosition{ 580, 25 };
 	const Transform thirdMoveTransform{ glm::ivec2{ thirdMovePosition.x + (thirdMoveWidth / 2), thirdMovePosition.y }, 0, glm::vec2{1.0f} };
-	Renderer::Instance()->RenderText(*trainerPokemonMoves.at(2).Name.get(), thirdMoveTransform);
+	Renderer::Instance()->RenderText(*moves.at(2).Name.get(), thirdMoveTransform);
+	const Transform thirdMoveElementIconTransform{ glm::ivec2{ thirdMoveTransform.GetPosition().x + (thirdMoveWidth / 2) + (elementIconSize.x / 2) + elementIconWhitespace, thirdMoveTransform.GetPosition().y - 2 }, 0, glm::vec2{1.0f} };
+	Renderer::Instance()->RenderTexture(*m_ElementIcons.at(moves.at(2).Element - 1), thirdMoveElementIconTransform);
 
-	const int fourthMoveWidth{ trainerPokemonMoves.at(3).Name->GetTexture()->GetSize().x };
+	const int fourthMoveWidth{ moves.at(3).Name->GetTexture()->GetSize().x };
 	const glm::ivec2 fourthMovePosition{ 780, 25 };
 	const Transform fourthMoveTransform{ glm::ivec2{ fourthMovePosition.x + (fourthMoveWidth / 2), fourthMovePosition.y }, 0, glm::vec2{1.0f} };
-	Renderer::Instance()->RenderText(*trainerPokemonMoves.at(3).Name.get(), fourthMoveTransform);
+	Renderer::Instance()->RenderText(*moves.at(3).Name.get(), fourthMoveTransform);
+	const Transform fourthMoveElementIconTransform{ glm::ivec2{ fourthMoveTransform.GetPosition().x + (fourthMoveWidth / 2) + (elementIconSize.x / 2) + elementIconWhitespace, fourthMoveTransform.GetPosition().y - 2 }, 0, glm::vec2{1.0f} };
+	Renderer::Instance()->RenderTexture(*m_ElementIcons.at(moves.at(3).Element - 1), fourthMoveElementIconTransform);
 
 	glm::ivec2 arrowPosition{};
 	switch (m_CurrentMove)
@@ -441,7 +480,7 @@ void BattleManagerComponent::RenderMoveSelect() const
 		arrowPosition = glm::ivec2{ 765.0f, 25.0f };
 		break;
 	default:
-		throw std::runtime_error("BattleManagerComponent::RenderMoveSelect: Invalid move index");
+		throw std::runtime_error(std::format("BattleManagerComponent::RenderMoveSelect: Invalid move index {}", m_CurrentMove));
 	}
 
 	Renderer::Instance()->RenderTexture(*m_SelectArrow.get(), Transform{ arrowPosition, 0, glm::vec2{ 1.0f } });
@@ -641,4 +680,26 @@ void BattleManagerComponent::AdvanceTurn()
 bool BattleManagerComponent::RollCritical(const Move& move)
 {
 	return move.Power > 0 and m_ChanceDistribution(m_RandomEngine) <= m_CriticalChance;
+}
+
+void BattleManagerComponent::LoadElementIcons()
+{
+	for (const PODElement& element : m_Pokedex->GetElements())
+	{
+		const std::filesystem::path iconPath{ std::format("Elements/{}.png", element.Name) };
+
+		m_ElementIcons.emplace_back(Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / iconPath));
+	}
+}
+
+std::pair<Texture*, Texture*> BattleManagerComponent::GetElementIcons(const PokemonComponent& pokemon) const
+{
+	std::pair<uint8_t, uint8_t> pokemonElements{ pokemon.GetElements() };
+
+	if((pokemonElements.first < 1 or pokemonElements.first > POKEDEX_ELEMENT_COUNT) or (pokemonElements.second > POKEDEX_ELEMENT_COUNT))
+	{
+		throw std::runtime_error{ std::format("BattleManager::GetElements(...) Invalid pokemon element id's ({}, {})", pokemonElements.first, pokemonElements.second) };
+	}
+
+	return std::make_pair(m_ElementIcons.at(pokemonElements.first - 1).get(), (pokemonElements.second > 0) ? m_ElementIcons.at(pokemonElements.second - 1).get() : nullptr);
 }

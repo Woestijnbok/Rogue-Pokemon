@@ -148,6 +148,12 @@ public:
 	*/
 	bool IsOfElement(size_t type) const;
 	/*
+	* Gets the elements / types of this pokemon.
+	* 
+	* @return The elements of this pokemon, second could be 0 if the pokemon only has 1 type / element
+	*/
+	std::pair<uint8_t, uint8_t> GetElements() const;
+	/*
 	* Gets the current level of the pokemon.
 	* 
 	* @return The level of the pokemon.
