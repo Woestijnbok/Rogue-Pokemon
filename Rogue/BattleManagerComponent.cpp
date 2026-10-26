@@ -434,56 +434,41 @@ void BattleManagerComponent::RenderMoveSelect() const
 {
 	const std::array<Move, 4>& moves{ m_CurrentBattle.first->GetActivePokemon()->GetMoves() };
 	const glm::ivec2 elementIconSize{ m_ElementIcons.at(0)->GetSize() };
-	const float elementIconWhitespace{ 5.0f };
+	constexpr glm::ivec2 elementIconOffset { 5.0f, -2.0f };
+	constexpr glm::ivec2 arrowOffset{ -10, 0 };
 
-	const int firstMoveWidth{ moves.at(0).Name->GetTexture()->GetSize().x };
-	const glm::ivec2 firstMovePosition{ 580, 60 };
-	const Transform firstMoveTransform{ glm::ivec2{ firstMovePosition.x + (firstMoveWidth / 2), firstMovePosition.y }, 0, glm::vec2{ 1.0f } };
-	Renderer::Instance()->RenderText(*moves.at(0).Name.get(), firstMoveTransform);
-	const Transform firstMoveElementIconTransform{ glm::ivec2{ firstMoveTransform.GetPosition().x + (firstMoveWidth / 2) + (elementIconSize.x / 2) + elementIconWhitespace, firstMoveTransform.GetPosition().y - 2 }, 0, glm::vec2{1.0f}};
-	Renderer::Instance()->RenderTexture(*m_ElementIcons.at(moves.at(0).Element - 1), firstMoveElementIconTransform);
-
-	const int secondMoveWidth{ moves.at(1).Name->GetTexture()->GetSize().x };
-	const glm::ivec2 secondMovePosition{ 780, 60 };
-	const Transform secondMoveTransform{ glm::ivec2{ secondMovePosition.x + (secondMoveWidth / 2), secondMovePosition.y }, 0, glm::vec2{1.0f} };
-	Renderer::Instance()->RenderText(*moves.at(1).Name.get(), secondMoveTransform);
-	const Transform secondMoveElementIconTransform{ glm::ivec2{ secondMoveTransform.GetPosition().x + (secondMoveWidth / 2) + (elementIconSize.x / 2) + elementIconWhitespace, secondMoveTransform.GetPosition().y - 2 }, 0, glm::vec2{1.0f} };
-	Renderer::Instance()->RenderTexture(*m_ElementIcons.at(moves.at(1).Element - 1), secondMoveElementIconTransform);
-
-	const int thirdMoveWidth{ moves.at(2).Name->GetTexture()->GetSize().x };
-	const glm::ivec2 thirdMovePosition{ 580, 25 };
-	const Transform thirdMoveTransform{ glm::ivec2{ thirdMovePosition.x + (thirdMoveWidth / 2), thirdMovePosition.y }, 0, glm::vec2{1.0f} };
-	Renderer::Instance()->RenderText(*moves.at(2).Name.get(), thirdMoveTransform);
-	const Transform thirdMoveElementIconTransform{ glm::ivec2{ thirdMoveTransform.GetPosition().x + (thirdMoveWidth / 2) + (elementIconSize.x / 2) + elementIconWhitespace, thirdMoveTransform.GetPosition().y - 2 }, 0, glm::vec2{1.0f} };
-	Renderer::Instance()->RenderTexture(*m_ElementIcons.at(moves.at(2).Element - 1), thirdMoveElementIconTransform);
-
-	const int fourthMoveWidth{ moves.at(3).Name->GetTexture()->GetSize().x };
-	const glm::ivec2 fourthMovePosition{ 780, 25 };
-	const Transform fourthMoveTransform{ glm::ivec2{ fourthMovePosition.x + (fourthMoveWidth / 2), fourthMovePosition.y }, 0, glm::vec2{1.0f} };
-	Renderer::Instance()->RenderText(*moves.at(3).Name.get(), fourthMoveTransform);
-	const Transform fourthMoveElementIconTransform{ glm::ivec2{ fourthMoveTransform.GetPosition().x + (fourthMoveWidth / 2) + (elementIconSize.x / 2) + elementIconWhitespace, fourthMoveTransform.GetPosition().y - 2 }, 0, glm::vec2{1.0f} };
-	Renderer::Instance()->RenderTexture(*m_ElementIcons.at(moves.at(3).Element - 1), fourthMoveElementIconTransform);
-
-	glm::ivec2 arrowPosition{};
-	switch (m_CurrentMove)
+	// Layout: top-left, top-right, bottom-left, bottom-right (matches m_CurrentMove indices 0-3)
+	constexpr std::array<glm::ivec2, 4> movePositions
 	{
-	case 0:
-		arrowPosition = glm::ivec2{ 565.0f, 60.0f };
-		break;
-	case 1:
-		arrowPosition = glm::ivec2{ 765.0f, 60.0f };
-		break;
-	case 2:
-		arrowPosition = glm::ivec2{ 565.0f, 25.0f };
-		break;
-	case 3:
-		arrowPosition = glm::ivec2{ 765.0f, 25.0f };
-		break;
-	default:
+		glm::ivec2{ 560, 60 },
+		glm::ivec2{ 780, 60 },
+		glm::ivec2{ 560, 25 },
+		glm::ivec2{ 780, 25 }
+	};
+
+	for (size_t i{ 0 }; i < moves.size(); ++i)
+	{
+		const Move& move{ moves.at(i) };
+		const glm::ivec2& position{ movePositions.at(i) };
+
+		// Move name
+		const int nameWidth{ move.Name->GetTexture()->GetSize().x };
+		const glm::ivec2 namePosition{ glm::ivec2{ position.x + (nameWidth / 2), position.y } };
+		Renderer::Instance()->RenderText(*move.Name, Minigin::Transform{ namePosition, 0, glm::vec2{ 1.0f } });
+
+		// Element icon
+		const glm::ivec2 elementIconPosition{ namePosition.x + (nameWidth / 2) + (elementIconSize.x / 2) + elementIconOffset.x, namePosition.y + elementIconOffset.y };
+		Renderer::Instance()->RenderTexture(*m_ElementIcons.at(move.Element - 1), Minigin::Transform{ elementIconPosition, 0, glm::vec2{ 1.0f } } );
+	}
+
+	if (m_CurrentMove >= movePositions.size())
+	{
 		throw std::runtime_error(std::format("BattleManagerComponent::RenderMoveSelect: Invalid move index {}", m_CurrentMove));
 	}
 
-	Renderer::Instance()->RenderTexture(*m_SelectArrow.get(), Transform{ arrowPosition, 0, glm::vec2{ 1.0f } });
+	// The move select arrow
+	const glm::ivec2 arrowPosition{ movePositions.at(m_CurrentMove) + arrowOffset };
+	Renderer::Instance()->RenderTexture(*m_SelectArrow, Minigin::Transform{ arrowPosition, 0, glm::vec2{ 1.0f } });
 }
 
 void BattleManagerComponent::RenderUsedMove(bool isPlayerMove) const
