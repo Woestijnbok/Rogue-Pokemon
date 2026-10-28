@@ -8,8 +8,5 @@ SkipBattleCommand::SkipBattleCommand(BattleManagerComponent* battleManager) :
 
 void SkipBattleCommand::Execute()
 {
-	if (GetComponent()->InBattle())
-	{
-		GetComponent()->EndBattle();
-	}
+	GetComponent()->SkipBattle();
 }

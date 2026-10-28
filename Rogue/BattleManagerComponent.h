@@ -121,6 +121,12 @@ public:
 	* Increases the difficulty of the battles by one stage typically for each new level.
 	*/
 	void IncreaseDifficulty();
+#ifdef _DEBUG
+	/*
+	* Skips the current battle as if the trainer's pokemon won.
+	*/
+	void SkipBattle();
+#endif
 
 private:
 	/*

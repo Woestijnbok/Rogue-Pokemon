@@ -298,6 +298,17 @@ void BattleManagerComponent::IncreaseDifficulty()
 	m_EnemySmartness = std::clamp(m_EnemySmartness - 1.0f, 0.0f, 100.0f);
 }
 
+#ifdef _DEBUG
+void BattleManagerComponent::SkipBattle()
+{
+	if(InBattle())
+	{
+		m_CurrentBattle.second->SetCurrentHealth(0);
+		EndBattle();
+	}
+}
+#endif
+
 void BattleManagerComponent::StartBattle(TrainerComponent* trainer, PokemonComponent* enemy)
 {
 	m_CurrentBattle.first = trainer;
