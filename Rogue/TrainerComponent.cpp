@@ -116,6 +116,10 @@ void TrainerComponent::Reset()
 	m_RouteText->SetText(std::format("Route {}", m_Score));
 	m_ActivePokemon->Reset();
 	m_ActivePokemon->SetLevel(3);
+	for (size_t index{ 0 }; index < static_cast<size_t>(ItemType::Count); ++index)
+	{
+		m_Inventory.at(index) = 0;
+	}
 }
 
 bool TrainerComponent::TryUseItem(const ItemType item)
