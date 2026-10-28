@@ -168,9 +168,10 @@ void SetupAudio(BattleManagerComponent* battleManager, TileManagerComponent* til
 	battleManager->OnBattleWon().AddObserver(std::bind(&AudioManager::HandleEffect, AudioManager::Instance(), "Battle Won.mp3", AudioManager::Action::Play));
 	battleManager->OnBattleLost().AddObserver(std::bind(&AudioManager::HandleEffect, AudioManager::Instance(), "Battle Lost.mp3", AudioManager::Action::Play));
 
-	tileManager->OnItemEncounter().AddObserver(std::bind(&AudioManager::StopAllEffects, AudioManager::Instance()));
-	tileManager->OnItemEncounter().AddObserver(std::bind(&AudioManager::HandleMusic, AudioManager::Instance(), "Roam.mp3", AudioManager::Action::Pause));
-	tileManager->OnItemEncounter().AddObserver(std::bind(&AudioManager::HandleEffect, AudioManager::Instance(), "Heal.mp3", AudioManager::Action::Play));
+	tileManager;
+	//tileManager->OnItemEncounter().AddObserver(std::bind(&AudioManager::StopAllEffects, AudioManager::Instance()));
+	//tileManager->OnItemEncounter().AddObserver(std::bind(&AudioManager::HandleMusic, AudioManager::Instance(), "Roam.mp3", AudioManager::Action::Pause));
+	//tileManager->OnItemEncounter().AddObserver(std::bind(&AudioManager::HandleEffect, AudioManager::Instance(), "Heal.mp3", AudioManager::Action::Play));
 }
 
 void OnSoundEffectFinished(const std::filesystem::path& /*path*/)

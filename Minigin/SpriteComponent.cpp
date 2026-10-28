@@ -51,7 +51,7 @@ void SpriteComponent::Update()
 			m_CurrentFrame = (m_CurrentFrame + 1) % m_CurrentSprite->Sprite->GetFrames();
 			m_AccumulatedFrameTime -= frameTime;
 
-			if (m_CurrentFrame == 0)
+			if (m_CurrentFrame == 0 and !m_Loop)
 			{
 				m_Paused = true;
 			}

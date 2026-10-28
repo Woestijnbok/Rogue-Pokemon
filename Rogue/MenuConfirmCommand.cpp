@@ -1,19 +1,12 @@
 #include "MenuConfirmCommand.h"
 
-// Core
-#include "Command.h"
-
-// Other
-#include "TrainerComponent.h"
-
 MenuConfirmCommand::MenuConfirmCommand(TrainerComponent* trainer) :
-	GameObjectCommand{ trainer->GetOwner() },
-	m_Trainer{ trainer }
+	Minigin::ComponentCommand<TrainerComponent>{ trainer }
 {
 
 }
 
 void MenuConfirmCommand::Execute()
 {
-	m_Trainer->ConfirmPickup();
+	GetComponent()->ConfirmPickup();
 }

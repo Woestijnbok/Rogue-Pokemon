@@ -47,6 +47,9 @@
     <ClCompile Include="PokedexComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="UseItemCommand.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Components">
@@ -107,6 +110,9 @@
     </ClInclude>
     <ClInclude Include="PokedexComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="UseItemCommand.h">
+      <Filter>Commands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

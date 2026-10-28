@@ -106,7 +106,7 @@ public:
 	*
 	* @return The on item encounter event.
 	*/
-	Minigin::Subject<>& OnItemEncounter();
+	Minigin::Subject<const ItemType>& OnItemEncounter();
 	/*
 	* Gets the ladder used event.
 	*
@@ -182,6 +182,8 @@ private:
 	float m_TileChancePokemon;
 	// Chance to generate a tile with an item
 	float m_TileChanceItem;
+	// Chances for each item to spawn should accumulate to 100%
+	std::array<const float, static_cast<size_t>(ItemType::Count)> m_ItemChances;
 	// Start tile indices, this tile will always be dirt
 	const glm::ivec2 m_StartTile;
 	// Container containing all tiles
@@ -209,7 +211,7 @@ private:
 	// Distributon for random ladder tile
 	std::uniform_int_distribution<size_t> m_PossibleLadderTiles;
 	// On item pickup event
-	Minigin::Subject<> m_OnItemPickup;
+	Minigin::Subject<const ItemType> m_OnItemPickup;
 	// On item pickup event
 	Minigin::Subject<> m_OnLadderUse;
 	// Number of spawned pokemon this tileset in the begining

@@ -1,7 +1,5 @@
 #include "Command.h"
-#include "GameObject.h"
 #include "Scene.h"
-#include "Component.h"
 
 using namespace Minigin;
 
@@ -30,21 +28,4 @@ bool Minigin::GameObjectCommand::IsValid() const
 GameObject* GameObjectCommand::GetGameObject() const
 {
 	return m_GameObject;
-}
-
-Minigin::ComponentCommand::ComponentCommand(Component* component) :
-	GameObjectCommand(component->GetOwner()),
-	m_Component{ component }
-{
-
-}
-
-bool Minigin::ComponentCommand::IsValid() const
-{
-	return GameObjectCommand::IsValid() and m_Component->GetStatus() == ControllableObject::Status::Enabled;
-}
-
-Component* Minigin::ComponentCommand::GetComponent() const
-{
-	return m_Component;
 }

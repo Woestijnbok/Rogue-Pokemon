@@ -21,31 +21,17 @@ enum class Terrain : uint8_t
 	LadderHigh
 };
 
+enum class ItemType : uint8_t
+{
+	FullRestore,
+	RareCandy,
+	Count
+};
+
 enum class MoveType : uint8_t
 {
 	Physical,
 	Special
-};
-
-enum class ElementType : uint8_t
-{
-	Normal,
-	Fire,
-	Water,
-	Electric,
-	Grass,
-	Ice,
-	Fighting,
-	Poison,
-	Ground,
-	Flying,
-	Psychic,
-	Bug,
-	Rock,
-	Ghost,
-	Dragon,
-	Dark,
-	Steel
 };
 
 enum class BattleState : uint8_t

@@ -1,11 +1,11 @@
 #pragma once
-
 #include <vec2.hpp>
+#include "Component.h"
+#include "GameObject.h"
 
 namespace Minigin
 {
 	class GameObject;
-	class Component;
 
 	class Command
 	{
@@ -51,10 +51,18 @@ namespace Minigin
 
 	};
 
+	template<typename ComponentType>
+		requires IsComponent<ComponentType>
 	class ComponentCommand : public Minigin::GameObjectCommand
 	{
 	public:
-		explicit ComponentCommand(Component* component);
+		explicit ComponentCommand(ComponentType* component) :
+			GameObjectCommand(component->GetOwner()),
+			m_Component{ component }
+		{
+
+		}
+
 		virtual ~ComponentCommand() = default;
 
 		ComponentCommand(const ComponentCommand&) = delete;
@@ -62,14 +70,17 @@ namespace Minigin
 		ComponentCommand& operator= (const ComponentCommand&) = delete;
 		ComponentCommand& operator= (const ComponentCommand&&) noexcept = delete;
 
-		virtual bool IsValid() const override;
-		Component* GetComponent() const;
+		virtual bool IsValid() const override
+		{
+			return GameObjectCommand::IsValid() and m_Component->GetStatus() == ControllableObject::Status::Enabled;
+		}
 
-	protected:
-
-
+		ComponentType* GetComponent() const
+		{
+			return m_Component;
+		}
 	private:
-		Component* m_Component;
+		ComponentType* m_Component;
 
 	};
 }

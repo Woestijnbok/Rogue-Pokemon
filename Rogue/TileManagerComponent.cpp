@@ -30,6 +30,7 @@ TileManagerComponent::TileManagerComponent(Minigin::GameObject* owner) :
 	m_TileChanceGrass{ m_StartTileChanceGrass },
 	m_TileChancePokemon{ m_StartTileChancePokemon },
 	m_TileChanceItem{ m_StartTileChanceItem },
+	m_ItemChances{ 50.0f, 50.0f },
 	m_StartTile{ 5, 5 },
 	m_Tiles{},
 	m_TileDirtTexture{ Renderer::Instance()->CreateTexture(ResourceManager::Instance()->GetTextureRootPath() / "Tiles/Dirt.png") },
@@ -117,7 +118,7 @@ Minigin::Subject<TrainerComponent*>& TileManagerComponent::OnPokemonEncounter()
 	return m_OnPokemonEncounter;
 }
 
-Minigin::Subject<>& TileManagerComponent::OnItemEncounter()
+Minigin::Subject<const ItemType>& TileManagerComponent::OnItemEncounter()
 {
 	return m_OnItemPickup;
 }
@@ -134,16 +135,28 @@ void TileManagerComponent::CheckTile()
 	switch (GetTile(tileIndices.x, tileIndices.y).Type)
 	{
 	case Terrain::Pokemon:
-			m_Tiles.at((tileIndices.x * m_Collumns) + tileIndices.y).Type = Terrain::Grass;
-			m_OnPokemonEncounter.Notify(m_Player);
-			break;
+		m_Tiles.at((tileIndices.x * m_Collumns) + tileIndices.y).Type = Terrain::Grass;
+		m_OnPokemonEncounter.Notify(m_Player);
+		break;
 	case Terrain::Item:
-		// check if the trainer can pick up the item
-		if (m_Player->CanPickupItem())
 		{
-			// if yes, notify the item encounter
+			// Remove the item from the tileset and change it to a dirt tile
 			m_Tiles.at((tileIndices.x * m_Collumns) + tileIndices.y).Type = Terrain::Dirt;
-			m_OnItemPickup.Notify();
+
+			// Generate a random item
+			ItemType randomItem{ ItemType::FullRestore };
+			const float randomValue{ m_ChanceDistribution(m_RandomEngine) };
+			if (randomValue < m_ItemChances.at(static_cast<size_t>(ItemType::FullRestore)))
+			{
+				randomItem = ItemType::FullRestore;
+			}
+			else
+			{
+				randomItem = ItemType::RareCandy;
+			}
+
+			// Notify the pickup of the random item
+			m_OnItemPickup.Notify(randomItem);
 		}
 		break;
 	case Terrain::LadderLow:

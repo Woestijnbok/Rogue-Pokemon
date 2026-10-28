@@ -28,6 +28,7 @@
 #include "SelectMoveCommand.h"
 #include "BattleConfirmCommand.h"
 #include "MenuConfirmCommand.h"
+#include "UseItemCommand.h"
 #ifdef _DEBUG
 #include "DebugCommands.h"
 #endif
@@ -65,7 +66,7 @@ void Load()
 
 	tileManagerComponent->CacheTrainer(trainerComponent);
 	movementComponent->OnMoveCompleted().AddObserver(std::bind(&TileManagerComponent::CheckTile, tileManagerComponent));
-	tileManagerComponent->OnItemEncounter().AddObserver(std::bind(&TrainerComponent::HealActivePokemon, trainerComponent));
+	tileManagerComponent->OnItemEncounter().AddObserver(std::bind(&TrainerComponent::PickupItem, trainerComponent, std::placeholders::_1));
 	ConnectBattleEvents(battleManagerComponent, worldScene, battleScene, tileManagerComponent, trainerComponent, movementComponent, spriteComponent);
 
 	// Movement input
@@ -81,6 +82,10 @@ void Load()
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::D, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Right));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::S, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Down));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::A, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Left));
+
+	// Inventory input
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::H, InputAction::Trigger::Pressed, std::make_shared<UseItemCommand>(trainerComponent, ItemType::FullRestore));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::L, InputAction::Trigger::Pressed, std::make_shared<UseItemCommand>(trainerComponent, ItemType::RareCandy));
 
 #ifdef _DEBUG
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::B, InputAction::Trigger::Pressed, std::make_shared<SkipBattleCommand>(battleManagerComponent));

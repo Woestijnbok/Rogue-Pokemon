@@ -2,16 +2,12 @@
 
 // Core
 #include "Command.h"
-
-// Other
-#include "Enums.h"
-
-class BattleManagerComponent;
+#include "BattleManagerComponent.h"
 
 /*
 * Command that will change the selected move.
 */
-class BattleConfirmCommand final : public Minigin::GameObjectCommand
+class BattleConfirmCommand final : public Minigin::ComponentCommand<BattleManagerComponent>
 {
 public:
 	/*
@@ -32,9 +28,4 @@ public:
 	* Will confirm the current state of the battle manager.
 	*/
 	virtual void Execute() override;
-
-private:
-	// Cached movement component
-	BattleManagerComponent* m_BattleManager;
-
 };

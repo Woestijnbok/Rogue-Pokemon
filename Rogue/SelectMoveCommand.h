@@ -2,16 +2,12 @@
 
 // Core
 #include "Command.h"
-
-// Other
-#include "Enums.h"
-
-class BattleManagerComponent;
+#include "BattleManagerComponent.h"
 
 /*
 * Command that will change the selected move.
 */
-class SelectMoveCommand final : public Minigin::GameObjectCommand
+class SelectMoveCommand final : public Minigin::ComponentCommand<BattleManagerComponent>
 {
 public:
 	/*
@@ -36,7 +32,5 @@ public:
 private:
 	// Move direction for all move calls
 	Direction m_Direction;
-	// Cached movement component
-	BattleManagerComponent* m_BattleManager;
 
 };

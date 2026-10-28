@@ -2,16 +2,15 @@
 
 // Core
 #include "Command.h"
+#include "MovementComponent.h"
 
 // Other
 #include "Enums.h"
 
-class MovementComponent;
-
 /*
 * Command that will call move on the movement component in the given direction.
 */
-class MovementCommand final : public Minigin::ComponentCommand
+class MovementCommand final : public Minigin::ComponentCommand<MovementComponent>
 {
 public:
 	/*
@@ -36,7 +35,4 @@ public:
 private:
 	// Move direction for all move calls
 	Direction m_Direction;
-	// Cached movement component
-	MovementComponent* m_MovementComponent;
-
 };

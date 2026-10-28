@@ -2,9 +2,11 @@
 
 // Core
 #include "Component.h"
+#include "Enums.h"
 
 // Libraries
 #include <memory>
+#include <array>
 
 class PokemonComponent;
 class MovementComponent;
@@ -44,20 +46,6 @@ public:
 	* @return The active pokemon.
 	*/
 	PokemonComponent* GetActivePokemon() const;
-
-	/*
-	* Wether or not the trainer can pick up an item.
-	*
-	* @return true if the trainer can pick up an item.
-	*/
-	bool CanPickupItem() const;
-
-	/*
-	* Heal the active pokemon back to full health.
-	* Also disables the movement component and flags to show the pickup prompt.
-	*/
-	void HealActivePokemon();
-
 	/*
 	* Remove the pickup prompt.
 	*/
@@ -72,6 +60,19 @@ public:
 	* Resets the trainer tot the starting.
 	*/
 	void Reset();
+	/*
+	* Tries to use the specified item, if the trainer still has the item in it's inventory.
+	* 
+	* @param item: The item we want to try use.
+	* @return Wether or not we used the item.
+	*/
+	bool TryUseItem(const ItemType item);
+	/*
+	* Picks up the specified item and puts it in the player's inventory.
+	* 
+	* @param item: The item type to pickup
+	*/
+	void PickupItem(const ItemType item);
 
 private:
 	/*
@@ -80,26 +81,44 @@ private:
 	* @return The starter pokemon.
 	*/
 	PokemonComponent* CreateStartPokemon() const;
-
 	/*
 	* Render's the current route / level starting from 1.
 	*/
 	void RenderRoute() const;
+	/*
+	* Heal the active pokemon back to full health.
+	* Also disables the movement component and flags to show the pickup prompt.
+	*/
+	void HealActivePokemon();
+	/*
+	* Renders the item prompt for when picking up or using an item.
+	*/
+	void RenderItemPrompt() const;
+	/*
+	* Sets the show item prompt flag and disables or enables the movement component.
+	* 
+	* @param enable: Wether or not to enable or disable the movement component and how to set the flag.
+	*/
+	void SwitchItemPrompt(bool enable);
 
+	// Wether or not we show the pickup prompt
+	bool m_ShowItemPrompt;
+	// Score based on which level the player is at
+	uint16_t m_Score;
 	// Active pokemon
 	PokemonComponent* m_ActivePokemon;
-	// Wether or not we show the pickup prompt
-	bool m_ShowPickupPrompt;
 	// Cached movement component
 	MovementComponent* m_MovementComponent;
 	// Cached infobox texture
 	Minigin::Texture const * m_InfoBoxTexture;
 	// Route texture
 	const std::unique_ptr<Minigin::Texture> m_RouteTexture;
-	// Cached pickup prompt text
-	std::unique_ptr<Minigin::Text> m_PickupText;
+	// Item prompt text
+	std::unique_ptr<Minigin::Text> m_ItemPromptText;
+	// Inventory prompt text
+	std::unique_ptr<Minigin::Text> m_InventoryPromptText;
 	// Current Score / level / route text
 	std::unique_ptr<Minigin::Text> m_RouteText;
-	// Score based on which level the player is at
-	uint16_t m_Score;
+	// Inventory of the player holding the amount left for each item.
+	std::array<uint16_t, static_cast<size_t>(ItemType::Count)> m_Inventory;
 };

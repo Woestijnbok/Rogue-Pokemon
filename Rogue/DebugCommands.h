@@ -2,14 +2,13 @@
 
 // Core
 #include "Command.h"
-
-class BattleManagerComponent;
+#include "BattleManagerComponent.h"
 
 /*
 * Debug command to skip the current battle.
 * Will not be compiled in release modes.
 */
-class SkipBattleCommand final : public Minigin::Command
+class SkipBattleCommand final : public Minigin::ComponentCommand<BattleManagerComponent>
 {
 public:
 	/*
@@ -17,7 +16,7 @@ public:
 	* 
 	* @param battleManager: The battle manager component.
 	*/
-	SkipBattleCommand(BattleManagerComponent* battleManager);
+	SkipBattleCommand(BattleManagerComponent* battleManager) ;
 	virtual ~SkipBattleCommand() = default;
 
 	SkipBattleCommand(const SkipBattleCommand&) = delete;
@@ -29,9 +28,4 @@ public:
 	* Will try to stop the current batlle via the battle manager.
 	*/
 	virtual void Execute() override;
-
-private:
-	// Cached battle manager
-	BattleManagerComponent* m_BattleManager;
-
 };
