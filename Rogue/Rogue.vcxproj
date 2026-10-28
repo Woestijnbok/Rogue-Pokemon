@@ -129,16 +129,26 @@
       <AdditionalDependencies>Minigin.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /I "$(SolutionDir)Libraries\SDL\lib\$(PlatformTarget)\SDL2.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\SDL2_image.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\vld_$(PlatformTarget).dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\dbghelp.dll" $(OutDir)
-xcopy "$(ProjectDir)Resources" "$(OutDir)Resources" /E /I /H /K /Y
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Elements.bin" $(OutDir)Resources\Files
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Moves.bin" $(OutDir)Resources\Files
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokemon.bin" $(OutDir)Resources\Files</Command>
+      <Command>copy  /Y "$(SolutionDir)Libraries\SDL\lib\$(PlatformTarget)\SDL2.dll" "$(OutDir)"
+
+copy  /Y "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\SDL2_image.dll" "$(OutDir)"
+
+copy /Y "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" "$(OutDir)"
+
+copy /Y "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" "$(OutDir)"
+robocopy "$(ProjectDir)Resources" "$(OutDir)Resources" /E /COPY:DAT /DCOPY:DAT /XO /R:2 /W:1
+if not exist "$(OutDir)Resources\Files" mkdir "$(OutDir)Resources\Files"
+
+
+copy /Y "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Elements.bin" "$(OutDir)Resources\Files\Elements.bin"
+
+copy /Y "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Moves.bin" "$(OutDir)Resources\Files\Moves.bin"
+
+copy /Y "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokemon.bin" "$(OutDir)Resources\Files\Pokemon.bin"
+copy /Y "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\vld_$(PlatformTarget).dll" $(OutDir)
+copy /Y "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\dbghelp.dll" $(OutDir)
+copy /Y "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\Microsoft.DTfW.DHL.manifest" $(OutDir)
+copy /Y "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x86\clang_rt.asan_dynamic-i386.dll" $(OutDir)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -158,14 +168,22 @@ xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokemon.bin"
       <AdditionalDependencies>Minigin.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /I "$(SolutionDir)Libraries\SDL\lib\$(PlatformTarget)\SDL2.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\SDL2_image.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)
-xcopy "$(ProjectDir)Resources" "$(OutDir)Resources" /E /I /H /K /Y
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Elements.bin" $(OutDir)Resources\Files
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Moves.bin" $(OutDir)Resources\Files
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokemon.bin" $(OutDir)Resources\Files</Command>
+      <Command>copy  /Y "$(SolutionDir)Libraries\SDL\lib\$(PlatformTarget)\SDL2.dll" "$(OutDir)"
+
+copy  /Y "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\SDL2_image.dll" "$(OutDir)"
+
+copy /Y "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" "$(OutDir)"
+
+copy /Y "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" "$(OutDir)"
+robocopy "$(ProjectDir)Resources" "$(OutDir)Resources" /E /COPY:DAT /DCOPY:DAT /XO /R:2 /W:1
+if not exist "$(OutDir)Resources\Files" mkdir "$(OutDir)Resources\Files"
+
+
+copy /Y "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Elements.bin" "$(OutDir)Resources\Files\Elements.bin"
+
+copy /Y "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Moves.bin" "$(OutDir)Resources\Files\Moves.bin"
+
+copy /Y "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokemon.bin" "$(OutDir)Resources\Files\Pokemon.bin"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -183,16 +201,26 @@ xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokemon.bin"
       <AdditionalDependencies>Minigin.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /I "$(SolutionDir)Libraries\SDL\lib\$(PlatformTarget)\SDL2.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\SDL2_image.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\vld_$(PlatformTarget).dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\dbghelp.dll" $(OutDir)
-xcopy "$(ProjectDir)Resources" "$(OutDir)Resources" /E /I /H /K /Y
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Elements.bin" $(OutDir)Resources\Files
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Moves.bin" $(OutDir)Resources\Files
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokemon.bin" $(OutDir)Resources\Files</Command>
+      <Command>copy  /Y "$(SolutionDir)Libraries\SDL\lib\$(PlatformTarget)\SDL2.dll" "$(OutDir)"
+
+copy  /Y "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\SDL2_image.dll" "$(OutDir)"
+
+copy /Y "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" "$(OutDir)"
+
+copy /Y "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" "$(OutDir)"
+robocopy "$(ProjectDir)Resources" "$(OutDir)Resources" /E /COPY:DAT /DCOPY:DAT /XO /R:2 /W:1
+if not exist "$(OutDir)Resources\Files" mkdir "$(OutDir)Resources\Files"
+
+
+copy /Y "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Elements.bin" "$(OutDir)Resources\Files\Elements.bin"
+
+copy /Y "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Moves.bin" "$(OutDir)Resources\Files\Moves.bin"
+
+copy /Y "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokemon.bin" "$(OutDir)Resources\Files\Pokemon.bin"
+copy /Y "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\vld_$(PlatformTarget).dll" $(OutDir)
+copy /Y "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\dbghelp.dll" $(OutDir)
+copy /Y "$(SolutionDir)Libraries\VLD\lib\$(PlatformTarget)\Microsoft.DTfW.DHL.manifest" $(OutDir)
+copy /Y "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\clang_rt.asan_dynamic-x86_64.dll" $(OutDir)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -212,14 +240,22 @@ xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokemon.bin"
       <AdditionalDependencies>Minigin.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /I "$(SolutionDir)Libraries\SDL\lib\$(PlatformTarget)\SDL2.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\SDL2_image.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" $(OutDir)
-xcopy /Y /I "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" $(OutDir)
-xcopy "$(ProjectDir)Resources" "$(OutDir)Resources" /E /I /H /K /Y
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Elements.bin" $(OutDir)Resources\Files
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Moves.bin" $(OutDir)Resources\Files
-xcopy /Y /I "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokemon.bin" $(OutDir)Resources\Files</Command>
+      <Command>copy  /Y "$(SolutionDir)Libraries\SDL\lib\$(PlatformTarget)\SDL2.dll" "$(OutDir)"
+
+copy  /Y "$(SolutionDir)Libraries\SDL Image\lib\$(PlatformTarget)\SDL2_image.dll" "$(OutDir)"
+
+copy /Y "$(SolutionDir)Libraries\SDL Mixer\lib\$(PlatformTarget)\SDL2_mixer.dll" "$(OutDir)"
+
+copy /Y "$(SolutionDir)Libraries\SDL TTF\lib\$(PlatformTarget)\SDL2_ttf.dll" "$(OutDir)"
+robocopy "$(ProjectDir)Resources" "$(OutDir)Resources" /E /COPY:DAT /DCOPY:DAT /XO /R:2 /W:1
+if not exist "$(OutDir)Resources\Files" mkdir "$(OutDir)Resources\Files"
+
+
+copy /Y "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Elements.bin" "$(OutDir)Resources\Files\Elements.bin"
+
+copy /Y "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Moves.bin" "$(OutDir)Resources\Files\Moves.bin"
+
+copy /Y "$(SolutionDir)Pokedex\Output\Release\$(PlatformTarget)\Pokemon.bin" "$(OutDir)Resources\Files\Pokemon.bin"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
