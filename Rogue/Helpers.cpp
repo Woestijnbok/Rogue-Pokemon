@@ -178,3 +178,12 @@ void OnSoundEffectFinished(const std::filesystem::path& /*path*/)
 {
 	AudioManager::Instance()->HandleMusic("Roam.mp3", AudioManager::Action::Resume);
 }
+
+void ExplainControls()
+{
+	std::cout << "-----KEYBINDS-----" << std::endl;
+	std::cout << "'WASD' for movement on the map and to select moves in battle" << std::endl;
+	std::cout << "'SPACE' to confirm any prompt or performing selected moves in battle" << std::endl;
+	std::cout << "'H' to use a Full Restore if you have any left and are not in battle" << std::endl;
+	std::cout << "'L' to use a Rare Candy if you have any left and are not in battle" << std::endl << std::endl;;
+}

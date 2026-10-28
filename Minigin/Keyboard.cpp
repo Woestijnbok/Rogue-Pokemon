@@ -264,6 +264,9 @@ unsigned int Keyboard::Impl::ConvertKey(Keyboard::Key key) const
 	case Minigin::Keyboard::Key::Backspace:
 		return static_cast<unsigned int>(SDLK_BACKSPACE);	
 		break;
+	case Minigin::Keyboard::Key::Space:
+		return static_cast<unsigned int>(SDLK_SPACE);
+		break;
 	case Minigin::Keyboard::Key::F1:
 		return static_cast<unsigned int>(SDLK_F1);	
 		break;

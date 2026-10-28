@@ -122,3 +122,8 @@ void SetupAudio(BattleManagerComponent* battleManager, TileManagerComponent* til
 * @param path: The path to the sound effect that finished playing.
 */
 void OnSoundEffectFinished(const std::filesystem::path& path);
+
+/*
+* Writes the keybinding for the game onto the console.
+*/
+void ExplainControls();

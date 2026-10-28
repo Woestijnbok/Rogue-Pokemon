@@ -55,6 +55,7 @@ namespace Minigin
 			Down,
 			Left,
 			Backspace,
+			Space,
 			F1
 		};
 

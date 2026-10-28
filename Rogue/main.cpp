@@ -76,8 +76,8 @@ void Load()
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::A, InputAction::Trigger::Pressed, std::make_shared<MovementCommand>(movementComponent, Direction::Left));
 
 	// Select input
-	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::One, InputAction::Trigger::Pressed, std::make_shared<BattleConfirmCommand>(battleManagerComponent));
-	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::One, InputAction::Trigger::Pressed, std::make_shared<MenuConfirmCommand>(trainerComponent));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::Space, InputAction::Trigger::Pressed, std::make_shared<BattleConfirmCommand>(battleManagerComponent));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::Space, InputAction::Trigger::Pressed, std::make_shared<MenuConfirmCommand>(trainerComponent));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::W, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Up));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::D, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Right));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::S, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Down));
@@ -98,6 +98,7 @@ void Load()
 int main(int, char* [])
 {
 	Engine::Initialize("Rogue Pokemon", glm::ivec2{ 960, 480 });
+	ExplainControls();
 	Engine::Run(&Load);
 	Engine::Destroy();
 
