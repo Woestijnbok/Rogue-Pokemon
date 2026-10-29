@@ -27,8 +27,8 @@ As you progress to higher routes, the game becomes more challenging. The chance 
 You can collect items throughout each route to help you on your journey. These items are explained in the next section.
 
 <div align="center">
-  <img src="https://github.com/Woestijnbok/Rogue-Pokemon/blob/main/Screenshots/Roaming%201.png?raw=true" width="500">
-  <img src="https://github.com/Woestijnbok/Rogue-Pokemon/blob/main/Screenshots/Roaming%202.png?raw=true" width="500">
+  <img src="https://github.com/Woestijnbok/Rogue-Pokemon/blob/main/Screenshots/Roaming%201.png?raw=true" width="400">
+  <img src="https://github.com/Woestijnbok/Rogue-Pokemon/blob/main/Screenshots/Roaming%202.png?raw=true" width="400">
 </div>
 
 # Battle System
