@@ -38,7 +38,8 @@ TrainerComponent::TrainerComponent(Minigin::GameObject* owner) :
 	m_ItemPromptText{ new Text{ "...", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_InventoryPromptText{ new Text{ "...", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 30), Color::Black } },
 	m_RouteText{ new Text{ "Route 1", ResourceManager::Instance()->GetOrLoadFont("Emerald.ttf", "Emerald", 25), Color::Black } },
-	m_Inventory{}
+	m_Inventory{},
+	m_OnItemUse{}
 {
 	SetRenderOrder(RenderOrder::UI);
 }
@@ -152,6 +153,8 @@ bool TrainerComponent::TryUseItem(const ItemType item)
 		default:
 			break;
 		}
+
+		m_OnItemUse.Notify(item);
 	}
 
 	return canUseItem;
@@ -176,6 +179,11 @@ void TrainerComponent::PickupItem(const ItemType item)
 	}
 	
 	SwitchItemPrompt(true);
+}
+
+Minigin::Subject<const ItemType>& TrainerComponent::OnItemUse()
+{
+	return m_OnItemUse;
 }
 
 PokemonComponent* TrainerComponent::CreateStartPokemon() const

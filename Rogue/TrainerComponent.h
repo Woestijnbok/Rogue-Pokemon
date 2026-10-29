@@ -3,6 +3,7 @@
 // Core
 #include "Component.h"
 #include "Enums.h"
+#include "Subject.h"
 
 // Libraries
 #include <memory>
@@ -73,6 +74,12 @@ public:
 	* @param item: The item type to pickup
 	*/
 	void PickupItem(const ItemType item);
+	/*
+	* Retusn the on item use event
+	* 
+	* @return the on item use event
+	*/
+	Minigin::Subject<const ItemType>& OnItemUse();
 
 private:
 	/*
@@ -121,4 +128,6 @@ private:
 	std::unique_ptr<Minigin::Text> m_RouteText;
 	// Inventory of the player holding the amount left for each item.
 	std::array<uint16_t, static_cast<size_t>(ItemType::Count)> m_Inventory;
+	// The event for when an item is used
+	Minigin::Subject<const ItemType> m_OnItemUse;
 };

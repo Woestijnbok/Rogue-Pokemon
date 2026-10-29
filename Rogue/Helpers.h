@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Enums.h"
+
 // Libraries
 #include <cstdint>
 #include <filesystem>
@@ -113,8 +115,10 @@ void ConnectBattleEvents(BattleManagerComponent* battleManager, Minigin::Scene* 
 * Sets up all audio for the game, links to certain events.
 * 
 * @param battleManager: The battle manager component to connect events to.
+* @param tileManager: The tile manager component to connect events to.
+* @param trainer: The trainer component to connect events to.
 */
-void SetupAudio(BattleManagerComponent* battleManager, TileManagerComponent* tileManager);
+void SetupAudio(BattleManagerComponent* battleManager, TileManagerComponent* tileManager, TrainerComponent* trainer);
 
 /*
 * Helper callback function for when a sound effect is finished playing to trigger correct new sounds based on the finished sound effect.
@@ -122,6 +126,13 @@ void SetupAudio(BattleManagerComponent* battleManager, TileManagerComponent* til
 * @param path: The path to the sound effect that finished playing.
 */
 void OnSoundEffectFinished(const std::filesystem::path& path);
+
+/*
+* Callback when the player uses an item.
+* 
+* @param item: The item type that was used.
+*/
+void OnItemUseSoundEffect(const ItemType item);
 
 /*
 * Writes the keybinding for the game onto the console.
