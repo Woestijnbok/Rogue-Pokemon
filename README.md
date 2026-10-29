@@ -42,8 +42,8 @@ Wild Pokémon also have an AI system that determines which move they use. Depend
 Both the chance of encountering legendary Pokémon and the intelligence of wild Pokémon increase as you progress to higher routes.
 
 <div align="center">
-  <img src="https://github.com/Woestijnbok/Rogue-Pokemon/blob/main/Screenshots/Battle%201.png?raw=true" width="500">
-  <img src="https://github.com/Woestijnbok/Rogue-Pokemon/blob/main/Screenshots/Battle%202.png?raw=true" width="500">
+  <img src="https://github.com/Woestijnbok/Rogue-Pokemon/blob/main/Screenshots/Battle%201.png?raw=true" width="400">
+  <img src="https://github.com/Woestijnbok/Rogue-Pokemon/blob/main/Screenshots/Battle%202.png?raw=true" width="400">
 </div>
 
 # Items
@@ -58,8 +58,8 @@ There are currently two types of items available:
 You can carry as many items as you find, so make sure to collect them whenever possible! Items can only be used outside of battle, using the keybinds listed in the Controls section.
 
 <div align="center">
-  <img src="https://github.com/Woestijnbok/Rogue-Pokemon/blob/main/Screenshots/Item%201.png?raw=true" width="500">
-  <img src="https://github.com/Woestijnbok/Rogue-Pokemon/blob/main/Screenshots/Item%202.png?raw=true" width="500">
+  <img src="https://github.com/Woestijnbok/Rogue-Pokemon/blob/main/Screenshots/Item%201.png?raw=true" width="400">
+  <img src="https://github.com/Woestijnbok/Rogue-Pokemon/blob/main/Screenshots/Item%202.png?raw=true" width="400">
 </div>
 
 # Final Thoughts
