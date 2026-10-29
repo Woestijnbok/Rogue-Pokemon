@@ -74,6 +74,10 @@ void Load()
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::D, InputAction::Trigger::Pressed, std::make_shared<MovementCommand>(movementComponent, Direction::Right));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::S, InputAction::Trigger::Pressed, std::make_shared<MovementCommand>(movementComponent, Direction::Down));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::A, InputAction::Trigger::Pressed, std::make_shared<MovementCommand>(movementComponent, Direction::Left));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::Up, InputAction::Trigger::Pressed, std::make_shared<MovementCommand>(movementComponent, Direction::Up));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::Right, InputAction::Trigger::Pressed, std::make_shared<MovementCommand>(movementComponent, Direction::Right));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::Down, InputAction::Trigger::Pressed, std::make_shared<MovementCommand>(movementComponent, Direction::Down));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::Left, InputAction::Trigger::Pressed, std::make_shared<MovementCommand>(movementComponent, Direction::Left));
 
 	// Select input
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::Space, InputAction::Trigger::Pressed, std::make_shared<BattleConfirmCommand>(battleManagerComponent));
@@ -82,6 +86,10 @@ void Load()
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::D, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Right));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::S, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Down));
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::A, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Left));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::Up, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Up));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::Right, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Right));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::Down, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Down));
+	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::Left, InputAction::Trigger::Pressed, std::make_shared<SelectMoveCommand>(battleManagerComponent, Direction::Left));
 
 	// Inventory input
 	InputManager::Instance()->GetKeyboard().AddInputAction(Keyboard::Key::H, InputAction::Trigger::Pressed, std::make_shared<UseItemCommand>(trainerComponent, ItemType::FullRestore));
