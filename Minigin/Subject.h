@@ -43,7 +43,7 @@ namespace Minigin
 				m_Observers.begin(), m_Observers.end(), [&observer](const std::function<void(Arguments...)>& function) -> bool
 				{
 					return function.target_type() == observer.target_type() and
-					function.target<void(*)(Arguments...)>() == observer.target<void(*)(Arguments...)>();
+					function.template target<void(*)(Arguments...)>() == observer.template target<void(*)(Arguments...)>();
 				}
 			)	
 		};
